@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("../assets//fonts/Poppins/Poppins-Regular.ttf") format("woff");
+  /* Add more src lines if your font has multiple file formats */
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("../assets//fonts/Poppins/Poppins-Bold.ttf") format("woff");
+  /* Add more src lines if your font has multiple file formats */
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("../assets//fonts/Poppins/Poppins-Light.ttf") format("woff");
+  /* Add more src lines if your font has multiple file formats */
+  font-weight: light;
+  font-style: normal;
+}

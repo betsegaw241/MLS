@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { HeaderObj, IAPICallConfig } from './types';
-import { API_ROUTE, cookieKeys } from 'utils/constants';
+import { API_ROUTE, cookieKeys } from '../utils/constants';
 import axios, { AxiosResponse } from 'axios';
 import APIError from './APIError';
 import { baseErrors } from './ErrorCodes';
