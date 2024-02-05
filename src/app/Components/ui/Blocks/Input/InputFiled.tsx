@@ -16,7 +16,7 @@ import {
   flex,
   background
 } from 'styled-system';
-import { theme } from 'styles/theme';
+import { theme } from '../../../../../styles/theme';
 import { InputProps, TextAreaProps } from './types';
 
 export const InputField = styled(Field)<InputProps>`

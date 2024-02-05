@@ -1,22 +1,18 @@
-import { FormValues } from "../../components/create_account/types";
+// import { FormValues } from "../../components/create_account/types";
 export interface create_accountProps {}
 
 export const initialValues: FormValues = {
   email: "",
-  firstName: "",
-  lastName: "",
+  // firstName: "",
+  // lastName: "",
   password: "",
   
 };
-
-// export enum RoleEnum {
-//   diaspora = "diaspora",
-//   bank = "bank",
-//   admin = "admin",
-//   telephonist = "telephonist",
-// }
-
-// export type RolesType = {
-//   value: RoleEnum;
-//   label: string;
-// };
+import { FormValues } from "app/Pages/Login/types";
+export interface SignupComponentProp {
+  initialValues: FormValues;
+  signupSchema: object;
+  // isSigningup: boolean;
+  onSignupClick: (values: FormValues) => void;
+  errorMessage: string;
+}

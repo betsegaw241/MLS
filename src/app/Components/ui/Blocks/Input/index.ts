@@ -21,7 +21,7 @@ export const Input = styled.input<InputProps>`
   box-sizing: border-box;
   :focus {
     outline: none;
-   
+   background-color:transparent;
   }
   ${compose(
     border,
@@ -35,7 +35,7 @@ export const Input = styled.input<InputProps>`
     fontFamily,
     boxShadow,
     flexbox,
-    background,
+    background
   )}
 `;
 

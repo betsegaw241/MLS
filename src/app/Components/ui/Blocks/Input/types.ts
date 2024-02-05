@@ -1,4 +1,4 @@
-import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
+
 import React from 'react';
 import {
   BorderProps,
@@ -29,8 +29,7 @@ export interface InputProps
     FlexBasisProps,
     BackgroundProps,
     BoxShadowProps {
-      icon?:ReactJSXElement;
-      haveLeftIcon?:ReactJSXElement;
+     
       onIconClick?: () => void;
 
      
@@ -59,3 +58,9 @@ export interface InputFileProps
     FontSizeProps,
     FontWeightProps,
     BoxShadowProps {}
+    
+export interface checkboxProps {
+  label: string;
+  show:boolean;
+  clicked: () => void;
+}

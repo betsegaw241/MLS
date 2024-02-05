@@ -1,5 +1,5 @@
 import { Form, Formik } from "formik";
-import { theme } from "styles/theme";
+import { theme } from "../../../styles/theme";
 import { Box, Button, Flex, Text } from "app/Components/ui/Blocks";
 import { InputField } from "app/Components/ui/InputComponent";
 import { LoginInComponentProp } from "./types";
@@ -13,7 +13,7 @@ const LoginComponent = (props: LoginInComponentProp) => {
   const [showpassword, setShowPassword] = useState(false);
   return (
     <Box
-      backgroundColor={theme.colors.dark.primary[5]}
+      backgroundColor={theme.colors.dark.black[2]}
       margin={"0px"}
       padding={"0px"}
       top={"0px"}
