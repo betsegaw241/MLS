@@ -13,6 +13,9 @@ export const routeConstants = {
   signup: "/sign-up",
 };
 
+export const cookieKeys = {
+  authToken: 'au-few92',
+};
 export const adminMenu: ISideBarMenu[] = [
   {
     label: "Dashboard",

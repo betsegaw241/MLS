@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Layout from "./Components/layouts";
+import LoginPage from "./Pages/Login";
 
 // import { useAllowedRole } from 'utils/hook/useAllowedRole';
 
@@ -8,7 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Layout />} path={"/"} />
+        <Route element={<LoginPage />} path={"/"} />
       </Routes>
     </BrowserRouter>
   );

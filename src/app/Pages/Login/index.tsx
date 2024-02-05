@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import LoginComponent from 'app/Components/login_component/login';
 import { initialValues } from './constants';
 import { loginInSchema } from './validators';
@@ -8,8 +8,8 @@ import {
   selectIsAuthenticated,
   selectIsLogging,
   selectRole,
-} from 'app/Pages/Layout/slice/selectors';
-import { useDefaultLayoutSlice } from 'app/Pages/Layout/slice';
+} from '../Layout/slice/selectors';
+import { useDefaultLayoutSlice } from '../Layout/slice';
 import { useNavigate } from 'react-router';
 import { FormValues } from './types';
 function LoginPage() {

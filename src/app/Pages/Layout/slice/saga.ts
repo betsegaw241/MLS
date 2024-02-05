@@ -3,9 +3,9 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { defaultLayoutActions as actions } from '.';
 import { PayloadAction } from '@reduxjs/toolkit';
 
-import  CallApi  from 'API/index';
-import { IUserModel } from 'app/models/user';
-import { FormValues } from 'app/pages/Login/types';
+import  CallApi  from '../../../../API/index';
+import { IUserModel } from '../../../models/user';
+import { FormValues } from '../../Login/types';
 
 function* handleLogin(action: PayloadAction<FormValues>) {
 

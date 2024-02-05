@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { ButtonProps } from './types';
+import styled from "styled-components";
+import { ButtonProps } from "./types";
 import {
   background,
   borderColor,
@@ -18,17 +18,13 @@ import {
   space,
   textAlign,
   variant,
-} from 'styled-system';
+} from "styled-system";
 
-export const Button = styled('button')<ButtonProps>`
+export const Button = styled("button")<ButtonProps>`
   outline: none;
   border: none;
-color:white,
-  border-radius: 4px;
- 
-  font-size: 16px;
-  box-sizing: border-box;
-cursor:pointer ;
+
+  cursor: pointer;
   &:disabled {
     cursor: not-allowed;
   }
@@ -57,23 +53,23 @@ cursor:pointer ;
     variant({
       variants: {
         primary: {
-          bg: '#065AD8',
-          color: '#ffffff',
+          bg: "#0C07FF",
+          color: "#ffffff",
         },
         secondary: {
-          color: '#ffffff',
-          bg: '#065AD8',
+          color: "#ffffff",
+          bg: "#065AD8",
         },
         warning: {
-          color: '#ffffff',
-          bg: '#cc3300',
+          color: "#ffffff",
+          bg: "#cc3300",
         },
         success: {
-          color: '#ffffff',
-          bg: '4CAF50',
+          color: "#ffffff",
+          bg: "#4CAF50",
         },
       },
-    }),
+    })
   )}
 `;
 

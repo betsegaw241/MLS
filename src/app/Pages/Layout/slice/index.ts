@@ -1,9 +1,9 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import { createSlice } from 'store/utils/toolkit';
-import { useInjectReducer, useInjectSaga } from 'store/utils/redux-injectors';
+import { createSlice } from '../../../../store/utils/toolkit';
+import { useInjectReducer, useInjectSaga } from '../../../../store/utils/redux-injectors';
 import { DefaultLayoutSaga } from './saga';
 import { LayoutState, IModeAction, IRedirectAction } from './types';
-import { IUserModel } from 'app/models/user';
+import { IUserModel } from '../../../models/user';
 
 export const initialState: LayoutState = {
   isAuthenticated: false,
