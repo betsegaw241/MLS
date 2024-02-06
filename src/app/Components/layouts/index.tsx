@@ -5,7 +5,7 @@ import { LayoutsComponentProps } from "./types";
 
 const Layouts = (props: LayoutsComponentProps) => {
   return (
-    <Box>
+    <Box top={'0px'} left={'0px'}>
       <Header />
       <SideBar />
       {props.children}

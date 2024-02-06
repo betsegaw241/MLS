@@ -5,16 +5,14 @@ import { Input, TextAreaInput } from "../Blocks/Input";
 import { InputFields } from "../Blocks/InputField";
 import { theme } from "../../../../styles/theme";
 import { Flex } from "../Blocks";
-import '../../../../styles/fonts.css'
+import "../../../../styles/fonts.css";
 function InputField(props: InputProps) {
   return (
     <>
       <Flex justifyContent={"space-between"} alignItems={"center"}>
         <Text
           fontFamily={"poppins"}
-          
           fontSize={"15px"}
-
           lineHeight="18px"
           textAlign={"center"}
         >

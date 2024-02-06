@@ -1,18 +1,40 @@
 import { useLocation, Link } from "react-router-dom";
 import { Flex, Text } from "../../ui/Blocks";
 import { SideBarMenuItemProp } from "./types";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import "styles/fonts.css";
+import { useSelector } from "react-redux";
+import { selectRole } from "app/Pages/Layout/slice/selectors";
 
 export function SideBarMenuItem(props: SideBarMenuItemProp) {
   const { label, to, icon } = props.menuItem;
   const { pathname } = useLocation();
+  const role = useSelector(selectRole);
+  const [screenSize, setScreenSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+console.log(screenSize.width > 600)
   return (
     <Link
       style={{
         textDecoration: "none",
-        color: "",
+        color: "inherit",
       }}
-      to={`/`}
+      to={`/${role}${to}`}
     >
       <Flex
         alignItems={"center"}
@@ -23,25 +45,28 @@ export function SideBarMenuItem(props: SideBarMenuItemProp) {
           props.setIsCollapsed?.(false);
           props.setshowMenu?.(false);
         }}
-        p={"2px"}
+        paddingLeft={"10px"}
         style={{ gap: "10px", cursor: "pointer" }}
       >
-        <Text fontSize={3} fontWeight={2} color={'#fff'}>
+        <Text fontSize={3} fontWeight={2} color={"#fff"}>
           {React.createElement(icon)}
         </Text>
 
-        {/* {props.isCollapsed && ( */}
+        {screenSize.width > 600 && (
           <Text
-            fontFamily="Inter"
-            fontSize={2}
+            fontFamily={"poppins"}
+            fontSize={5}
             lineHeight={1}
             padding={1}
-            color={'#fff '}
+            color={"#fff "}
+
             // backgroundColor={"#0C07FF"}
           >
             {label}
           </Text>
-        {/* )} */}
+        )}
+
+      
       </Flex>
     </Link>
   );

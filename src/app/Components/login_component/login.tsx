@@ -81,7 +81,7 @@ const LoginComponent = (props: LoginInComponentProp) => {
                     <Text variant="error"></Text>
                     <Flex justifyContent={"flex-end"}>
                       <Text fontFamily={"poppins"} fontSize={1}>
-                        <Link to={""}>Forget your password</Link>
+                        <Link to={""}>Forget your password?</Link>
                       </Text>
                     </Flex>
                     <Button

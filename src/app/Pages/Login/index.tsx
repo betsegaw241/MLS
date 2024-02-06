@@ -22,6 +22,8 @@ function LoginPage() {
   const errorMessage = useSelector(selectErrorMessage);
   
   function onLoginClick(values: FormValues) {
+    localStorage.setItem('token','fkwepofkpeo'),
+    localStorage.setItem('role','admin'),
     dispatch(actions.login(values));
   }
   useEffect(() => {
