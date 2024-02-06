@@ -6,3 +6,7 @@
     redirect?:string;
     allowedRole:string;
   }
+  export interface IProtectedRoute {
+    children: React.ReactNode;
+    allowedRole: string;
+  } 

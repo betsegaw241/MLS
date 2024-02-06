@@ -32,6 +32,11 @@ export const adminMenu: ISideBarMenu[] = [
     to: "/users",
     icon: AiOutlineBank,
   },
+  {
+    label: "Account",
+    to: "/account",
+    icon: VscRequestChanges,
+  },
 ];
 export const PharmaciesMenu = [
   {

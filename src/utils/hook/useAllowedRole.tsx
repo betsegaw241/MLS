@@ -1,4 +1,4 @@
-import { selectRole } from 'app/layouts/DefaultLayout/slice/selectors';
+import { selectRole } from 'app/Pages/Layout/slice/selectors';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 // import { AccessControl } from 'accesscontrol';
@@ -17,4 +17,3 @@ export function useAllowedRole(props: IUseAllowedRole) {
 }
 
 export function usePermission() {}
-// {"Admin": {User: {resource: 'user', action: 'create:any'}}}
