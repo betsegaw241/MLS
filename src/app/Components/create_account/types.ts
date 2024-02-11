@@ -1,14 +1,14 @@
-// import { FormValues } from "../../components/create_account/types";
+//import { FormValues } from "../../components/create_account/types";
 export interface create_accountProps {}
 
 export const initialValues: FormValues = {
   email: "",
-  // firstName: "",
-  // lastName: "",
+  firstName: "",
+  lastName: "",
   password: "",
   
 };
-import { FormValues } from "app/Pages/Login/types";
+import { FormValues } from "app/Pages/createAccountPage/types";
 export interface SignupComponentProp {
   initialValues: FormValues;
   signupSchema: object;
