@@ -17,16 +17,24 @@ export function SideBar() {
 
       // width={isCollapsed ? ["24%", "25%", "15%"] : ["9%", "8%", "8%", "5%"]}
     >
+      <Text
+        fontFamily={"poppins"}
+        fontSize={6}
+        lineHeight={1}
+        padding={1}
+        color={"#fff "}
+      >
+        Medicine Locator
+      </Text>
       <Flex
         flexDirection={"column"}
         justifyContent={"space-between"}
-        paddingTop={100}
+        paddingTop={50}
       >
         <SideBarMenu
           isCollapsed={isCollapsed}
           setIsCollapsed={setIsCollapsed}
         />
-        
       </Flex>
     </Box>
   );

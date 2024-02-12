@@ -3,7 +3,7 @@ import { SignupComponentProp } from "./types";
 import { Box, Button, Flex, Text } from "../ui/Blocks";
 import { InputField } from "../ui/InputComponent";
 import { Link } from "react-router-dom";
-import CheckBox from "../ui/Blocks/Input/checkbox";
+import CheckBox from "../ui/Blocks/InputField/checkbox";
 import { useState } from "react";
 import { theme } from "../../../styles/theme";
 

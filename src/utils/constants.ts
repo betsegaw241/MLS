@@ -28,6 +28,11 @@ export const adminMenu: ISideBarMenu[] = [
     icon: FaUserSecret,
   },
   {
+    label: "Feedback",
+    to: "/feedbacks",
+    icon: FaUserSecret,
+  },
+  {
     label: "users",
     to: "/users",
     icon: AiOutlineBank,
@@ -51,3 +56,5 @@ export const PharmaciesMenu = [
     icon: VscRequestChanges,
   },
 ];
+
+

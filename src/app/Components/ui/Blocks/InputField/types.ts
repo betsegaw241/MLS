@@ -27,3 +27,8 @@ export interface InputFieldProp
   children: React.ReactNode;
   as: string;
 }
+export interface checkboxProps {
+  label: string;
+  show: boolean;
+  clicked: () => void;
+}

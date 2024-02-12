@@ -1,6 +1,6 @@
-import { Text, Flex } from "../../Blocks/";
+import { Text, Flex } from "..";
 import { checkboxProps } from "./types";
-import {InputField} from "./InputFiled";
+import {InputField} from "../Input/InputFiled";
 
 
 function CheckBox(props: checkboxProps) {

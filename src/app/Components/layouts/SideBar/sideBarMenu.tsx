@@ -18,7 +18,7 @@ function SideBarMenu(props: SideBarMenuProp) {
       style={{ gap: "10px" }}
 
     >
-      {getMenu(role || localStorage.getItem("role"))?.map((menuItem, index) => {
+      {getMenu(role || localStorage.getItem("role"))?.map((menuItem: ISideBarMenu, index: number) => {
         return (
           <SideBarMenuItem
             isCollapsed={props.isCollapsed}

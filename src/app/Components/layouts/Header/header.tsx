@@ -1,11 +1,11 @@
 import { Box, Flex } from "../../ui/Blocks";
 import UserInfo from "./userInfo";
-import { theme } from "../../../../styles/theme";
+import Search from "app/Components/ui/SearchBar";
 const Header = () => {
   return (
     <>
       <Flex
-        backgroundColor={theme.colors.dark.black[8]}
+        backgroundColor={"#E3E2FF"}
         height={"25px"}
         position={"fixed"}
         py={["10px"]}
@@ -20,6 +20,10 @@ const Header = () => {
           mx={3}
           width={"100%"}
         >
+          <Box marginLeft={"auto"}>
+            <Search  />
+             </Box>
+
           <Box marginLeft={"auto"}>
             <UserInfo />
           </Box>

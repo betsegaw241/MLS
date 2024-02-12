@@ -23,7 +23,7 @@ function LoginPage() {
   
   function onLoginClick(values: FormValues) {
     localStorage.setItem('token','fkwepofkpeo'),
-    localStorage.setItem('role','admin'),
+    localStorage.setItem('role','pharmacy'),
     dispatch(actions.login(values));
   }
   useEffect(() => {
