@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { Box, Flex,Text } from "../../ui/Blocks";
-import SideBarMenu from "./sideBarMenu";
+import { useSelector } from "react-redux";
+import { Box, Flex } from "../../ui/Blocks";
+import SideBarMenuItem from "./SideBarMenuItem";
+import { getMenu } from "utils/getMenu";
+import { selectRole } from "app/Pages/Layout/slice/selectors";
 
 export function SideBar() {
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  // const [mode] = useLocalStorage('mode','')
- 
+  const role = useSelector(selectRole);
   return (
     <Box
       backgroundColor={"#0D0F11"}
@@ -22,11 +22,21 @@ export function SideBar() {
         justifyContent={"space-between"}
         paddingTop={100}
       >
-        <SideBarMenu
-          isCollapsed={isCollapsed}
-          setIsCollapsed={setIsCollapsed}
-        />
-        
+        <Flex
+          flexDirection={"column"}
+          // backgroundColor={'#ffff'}
+          height={"90%"}
+          overflow={"none"}
+          p={1}
+          pt={2}
+          style={{ gap: "10px" }}
+        >
+          {getMenu(role || localStorage.getItem("role"))?.map(
+            (menuItem, index) => {
+              return <SideBarMenuItem key={index} menuItem={menuItem} />;
+            }
+          )}
+        </Flex>
       </Flex>
     </Box>
   );

@@ -6,9 +6,9 @@ const Header = () => {
     <>
       <Flex
         backgroundColor={theme.colors.dark.black[8]}
-        height={"25px"}
+        height={"50px "}
         position={"fixed"}
-        py={["10px"]}
+        // py={["10px"]}
         top={"0px"}
         width={["95%", "86%"]}
         // width={["50px",'15%']}
@@ -17,7 +17,7 @@ const Header = () => {
         <Flex
           alignItems={"center"}
           justifyContent={"space-between"}
-          mx={3}
+          mx={3}  
           width={"100%"}
         >
           <Box marginLeft={"auto"}>
