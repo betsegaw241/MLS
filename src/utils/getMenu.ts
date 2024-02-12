@@ -1,10 +1,10 @@
 import { PharmaciesMenu, adminMenu } from './constants';
 
 export const getMenu = (role?: string | null) => {
-  return role === 'admin'
+  return role === "admin"
     ? adminMenu
-     : role === 'pharmacy'
+    : role === "pharmcy"
     ? PharmaciesMenu
-  :null
+    : null;
     
 };
