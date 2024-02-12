@@ -17,6 +17,7 @@ const UserInfo = () => {
   return (
     <>
       <Flex
+      
         alignItems={"center"}
         // border={"1px solid transparent"}
         backgroundColor={"#fff"}
