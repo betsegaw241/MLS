@@ -1,6 +1,8 @@
 import { Box, Flex } from "../../ui/Blocks";
 import UserInfo from "./userInfo";
 import Search from "app/Components/ui/SearchBar";
+import { IoMdNotificationsOutline } from "react-icons/io";
+import Badge from "@mui/material/Badge";
 const Header = () => {
   return (
     <>
@@ -21,9 +23,16 @@ const Header = () => {
           width={"100%"}
         >
           <Box marginLeft={"auto"}>
-            <Search  />
-             </Box>
-
+            <Search />
+          </Box>
+          <Box marginLeft={"auto"}>
+            <Badge badgeContent={4} color="error">
+              <IoMdNotificationsOutline
+                color="action"
+                style={{ fontSize: 28 }}
+              />
+            </Badge>
+          </Box>
           <Box marginLeft={"auto"}>
             <UserInfo />
           </Box>
