@@ -13,10 +13,8 @@ import { v4 as uuid } from "uuid";
 // import { useAllowedRole } from 'utils/hook/useAllowedRole';
 const ProtectedRoute = (props: IProtectedRoute) => {
   if (!localStorage.getItem("token")) {
-    console.log('invalid')
     return <Navigate to={routeConstants.login} />;
   }
-  console.log('in ')
   useAllowedRole({ allowedRole: props.allowedRole });
   return <>{props.children}</>;
 };
@@ -29,7 +27,7 @@ function App() {
         <Route element={<Navigate replace={true} to="/login" />} path="/" />
         <Route element={<LoginPage />} path="/login" />
       </Routes>
-      <Layout>
+      {/* <Layout> */}
         <Routes>
           {routes.map((route: IRoute) => (
             <React.Fragment key={uuid()}>
@@ -48,7 +46,7 @@ function App() {
             </React.Fragment>
           ))}
         </Routes>
-      </Layout>
+      {/* </Layout> */}
     </BrowserRouter>
   );
 }

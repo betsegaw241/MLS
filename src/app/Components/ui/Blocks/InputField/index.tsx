@@ -1,11 +1,10 @@
-import styled from 'styled-components';
-import { InputFieldProp } from './types';
+import styled from "styled-components";
+import { InputFieldProp } from "./types";
 import {
   compose,
   space,
   layout,
   border,
-  borderRadius,
   fontSize,
   fontWeight,
   fontFamily,
@@ -14,19 +13,19 @@ import {
   flexbox,
   background,
   color,
-} from 'styled-system';
+} from "styled-system";
 
-import { Field } from 'formik';
+import { Field } from "formik";
 
 export const InputFields = styled(Field)<InputFieldProp>`
   border: none;
   outline: none;
+  border-radius: 8px;
   resize: none;
   ${compose(
     space,
     layout,
     border,
-    borderRadius,
     fontSize,
     fontWeight,
     fontFamily,
@@ -34,6 +33,6 @@ export const InputFields = styled(Field)<InputFieldProp>`
     boxShadow,
     flexbox,
     background,
-    color,
+    color
   )}
 `;

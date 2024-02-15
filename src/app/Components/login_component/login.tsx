@@ -50,7 +50,7 @@ const LoginComponent = (props: LoginInComponentProp) => {
           <Flex mb={5}>
             <Text fontFamily={"Poppins"} fontSize={1}>
               Dont have an account?
-              <Link to={""}>signup</Link>
+              <Link to={"/signup"}>signup</Link>
             </Text>
           </Flex>
 
@@ -66,7 +66,7 @@ const LoginComponent = (props: LoginInComponentProp) => {
                 <Form>
                   <Flex flexDirection={"column"} width={["300px"]}>
                     <InputField name="email" type={"text"} label={"Email"} />
-                    <Text variant="error"></Text>
+                 
 
                     <InputField
                       name="password"
@@ -78,7 +78,7 @@ const LoginComponent = (props: LoginInComponentProp) => {
                       topIcon={showpassword ? <BiShow /> : <BiHide />}
                       topIconlabel={showpassword ? "hide" : "show"}
                     />
-                    <Text variant="error"></Text>
+                   
                     <Flex justifyContent={"flex-end"}>
                       <Text fontFamily={"poppins"} fontSize={1}>
                         <Link to={""}>Forget your password?</Link>

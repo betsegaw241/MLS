@@ -24,7 +24,7 @@ export const adminMenu: ISideBarMenu[] = [
   },
   {
     label: "Pharmacies",
-    to: "/Pharmacies",
+    to: "/map",
     icon: FaUserSecret,
   },
   {

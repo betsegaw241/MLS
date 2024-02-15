@@ -180,6 +180,7 @@ export const theme: Theme = {
         '#FDFDFD',
         '#ECEEF3', //11
         '#F5F5F7',
+       ' #F5F5F5'//13
       ],
       primary: [
         '#0F0F0F',

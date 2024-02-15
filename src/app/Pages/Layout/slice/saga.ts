@@ -3,14 +3,14 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { defaultLayoutActions as actions } from '.';
 import { PayloadAction } from '@reduxjs/toolkit';
 
-import  CallApi  from '../../../../API/index';
+import  api  from '../../../../API/api';
 import { IUserModel } from '../../../models/user';
 import { FormValues } from '../../Login/types';
 
 function* handleLogin(action: PayloadAction<FormValues>) {
 
   try {
-    const res: IUserModel = yield call(CallApi, {
+    const res: IUserModel = yield call(api, {
       method: 'POST',
       route: '/user/login',
       body: action.payload,

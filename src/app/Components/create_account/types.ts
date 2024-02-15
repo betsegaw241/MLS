@@ -1,18 +1,28 @@
 // import { FormValues } from "../../components/create_account/types";
 export interface create_accountProps {}
 
-export const initialValues: FormValues = {
-  email: "",
-  // firstName: "",
-  // lastName: "",
-  password: "",
-  
-};
-import { FormValues } from "app/Pages/Login/types";
-export interface SignupComponentProp {
-  initialValues: FormValues;
-  signupSchema: object;
-  // isSigningup: boolean;
-  onSignupClick: (values: FormValues) => void;
+import {
+  FormValues,
+  UserFormValues,
+  DocumentFormValues,
+  ParmacyFormValues,
+} from "app/Pages/createAccountPage/types";
+
+export interface CreateAccountComponentProp {
+  createAccountSchemaStep1: object;
+  createAccountSchemaStep2?: object;
+  createAccountSchemaStep3?: object;
+  currentStep: number;
   errorMessage: string;
+  UploadingDocument: boolean;
+  initialValues: FormValues;
+  userItialValues: UserFormValues;
+  set1Data: UserFormValues | null;
+  set2Data: ParmacyFormValues | null;
+  documentItialValues: DocumentFormValues;
+  pharmacyItialValues: ParmacyFormValues;
+  handleStep1: (values: UserFormValues) => void;
+  handleStep2: (values: ParmacyFormValues) => void;
+  onSignupClick: (values: DocumentFormValues) => void;
+  back: () => void;
 }

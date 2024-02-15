@@ -68,6 +68,10 @@ export const Button = styled("button")<ButtonProps>`
           color: "#ffffff",
           bg: "#4CAF50",
         },
+        neuteral: {
+          color: "#000",
+          bg: "#F5F5F5",
+        },
       },
     })
   )}

@@ -12,7 +12,7 @@ function InputField(props: InputProps) {
       <Flex justifyContent={"space-between"} alignItems={"center"}>
         <Text
           fontFamily={"poppins"}
-          fontSize={"15px"}
+          fontSize={"12px"}
           lineHeight="18px"
           textAlign={"center"}
         >
@@ -86,11 +86,9 @@ function InputField(props: InputProps) {
       ) : (
         <InputFields
           border={`1px solid ${theme.colors.light.black[12]}`}
-          borderRadius={"5px"}
           fontSize={"13px"}
           height={"35px"}
           id={props.name}
-          marginTop={"5px"}
           name={props.name}
           placeholder={props.placeholder}
           required
