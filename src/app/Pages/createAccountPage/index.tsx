@@ -106,8 +106,8 @@ const CreateAccountPage = () => {
     try {
       setUploadingDocument(true);
       const nigdFikadURL = await handleUpload(values.nigdFikad);
-      const pharmacistLicenseURL = await handleUpload(values.pharmacistLicense);
       const pharmacyLicenseURL = await handleUpload(values.pharmacyLicense);
+      const pharmacistLicenseURL = await handleUpload(values.pharmacistLicense);
 
       const updatedData = {
         ...values,

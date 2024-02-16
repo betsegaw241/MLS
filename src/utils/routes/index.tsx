@@ -3,6 +3,7 @@ import Header from "../../app/Components/layouts/Header/header";
 import { IRoute } from "./types";
 import MapComponent from "app/Components/ui/MapComponent";
 import CreateAccountPage from "app/Pages/createAccountPage/index";
+import AddPharmacyPage from "app/Pages/AddPharmacyPage/index";
 
 export const routes: IRoute[] = [
   {
@@ -30,6 +31,13 @@ export const routes: IRoute[] = [
     element: <CreateAccountPage />,
     exact: true,
     path: "/signup",
+    isProtected: false,
+    allowedRole: "*",
+  },
+  {
+    element: <AddPharmacyPage />,
+    exact: true,
+    path: "/addpharmacy",
     isProtected: false,
     allowedRole: "*",
   },
