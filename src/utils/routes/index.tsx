@@ -4,6 +4,7 @@ import { IRoute } from "./types";
 import MapComponent from "app/Components/ui/MapComponent";
 import CreateAccountPage from "app/Pages/createAccountPage/index";
 import AddPharmacyPage from "app/Pages/AddPharmacyPage/index";
+import HomePage from "app/Pages/HomePage";
 
 export const routes: IRoute[] = [
   {
@@ -38,6 +39,13 @@ export const routes: IRoute[] = [
     element: <AddPharmacyPage />,
     exact: true,
     path: "/addpharmacy",
+    isProtected: false,
+    allowedRole: "*",
+  },
+  {
+    element: <HomePage />,
+    exact: true,
+    path: "/home",
     isProtected: false,
     allowedRole: "*",
   },
