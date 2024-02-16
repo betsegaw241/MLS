@@ -5,6 +5,7 @@
     element: JSX.Element;
     redirect?:string;
     allowedRole:string;
+    needsLayout?:boolean;
   }
   export interface IProtectedRoute {
     children: React.ReactNode;
