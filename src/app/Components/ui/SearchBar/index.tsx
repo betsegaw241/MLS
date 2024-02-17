@@ -16,7 +16,7 @@ return (
       />
       <CiSearch />
     </Flex>
-    <Button backgroundColor={"#BFBFD2"} p={1} ml={1} borderRadius={"8px"}>
+    <Button backgroundColor={"#ebeff5"} p={1} ml={1} borderRadius={"8px"}>
       search
     </Button>
   </Flex>

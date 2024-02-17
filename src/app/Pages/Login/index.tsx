@@ -22,7 +22,7 @@ function LoginPage() {
   const errorMessage = useSelector(selectErrorMessage);
   
   function onLoginClick(values: FormValues) {
-    localStorage.setItem('token','fkwepofkpeo'),
+    localStorage.setItem('token','fkwepfokpeo'),
     localStorage.setItem('role','pharmacy'),
     dispatch(actions.login(values));
   }

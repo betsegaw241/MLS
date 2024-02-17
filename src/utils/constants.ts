@@ -7,6 +7,7 @@ import { VscRequestChanges } from "react-icons/vsc";
 import { AiOutlineTransaction } from "react-icons/ai";
 import { MdOutlineInventory2 } from "react-icons/md";
 import { MdOutlineAccountBalance } from "react-icons/md";
+//import DataTable from "app/Components/layouts/Main";
 
 export const API_ROUTE = import.meta.env.VITE_API_ROUTE;
 
@@ -14,6 +15,7 @@ export const routeConstants = {
   home: "/",
   login: "/login",
   signup: "/sign-up",
+  profile:"/profile",
 };
 
 export const cookieKeys = {
@@ -64,8 +66,8 @@ export const PharmaciesMenu = [
     icon: MdOutlineInventory2,
   },
   {
-    label: "order",
-    to: "/requests",
+    label: "orders",
+    to: "/request",
     icon: VscRequestChanges,
   },
   {

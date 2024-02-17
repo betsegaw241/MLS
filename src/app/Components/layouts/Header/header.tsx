@@ -23,8 +23,9 @@ const Header = () => {
           width={"100%"}
         >
           <Box marginLeft={"auto"}>
-            <Search />
+            <Search/>
           </Box>
+
           <Box marginLeft={"50%"}>
             <Badge badgeContent={4} color="error">
               <IoMdNotificationsOutline
@@ -33,7 +34,7 @@ const Header = () => {
               />
             </Badge>
           </Box>
-          <Box  marginBottom={'2'} marginLeft={"auto"}>
+          <Box marginBottom={"2"} marginLeft={"auto"}>
             <UserInfo />
           </Box>
         </Flex>

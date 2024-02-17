@@ -50,7 +50,7 @@ const LoginComponent = (props: LoginInComponentProp) => {
           <Flex mb={5}>
             <Text fontFamily={"Poppins"} fontSize={1}>
               Dont have an account?
-              <Link to={""}>signup</Link>
+              <Link to={"/profile"}>signup</Link>
             </Text>
           </Flex>
 
