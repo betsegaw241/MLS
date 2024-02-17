@@ -149,8 +149,7 @@ const CreateAccountPage = () => {
         back={handlePrevStep}
         set1Data={set1Data}
         set2Data={set2Data}
-        UploadingDocument={uploadingDocument}
-      />
+        UploadingDocument={uploadingDocument}     />
     </>
   );
 };

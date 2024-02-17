@@ -3,12 +3,14 @@ import { Box, Button, Flex, Text } from "../ui/Blocks";
 import Header from "../ui/Header";
 import { InputField } from "../ui/InputComponent";
 import { Form, Formik } from "formik";
+import { editProfileComponentProp } from "./types";
 
-const ProfileComponent = () => {
+const ProfileComponent = (props:editProfileComponentProp) => {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
   };
+  
   return (
     <>
       <Header />
@@ -44,11 +46,12 @@ const ProfileComponent = () => {
           <Text> 123jorge@gmail.com</Text>
           <Text> +251946453721</Text>
           <Button
-            backgroundColor={"#19C37D"}
             color={"#fff"}
             borderRadius={"8%"}
             height={"40px"}
             width={"130px"}
+            variant="secondary"
+            fontWeight={"bold"}
             onClick={toggleFormVisibility}
           >
             Edit
@@ -61,46 +64,58 @@ const ProfileComponent = () => {
           marginY={"30px"}
         >
           {isFormVisible && (
-            <Formik>
-              <Form>
-                <Flex
-                  flexDirection={"column"}
-                  marginLeft={"74px"}
-                  width={"70%"}
-                  padding={10}
-                  pt={10}
-                  borderRadius={"10%"}
-                  marginTop={"30px"}
-                  backgroundColor={"#e2edf0"}
-                  style={{ gap: "20px" }}
-                >
-                  <InputField
-                    label="Name:"
-                    name={"name"}
-                    type={"text"}
-                  ></InputField>
-                  <InputField
-                    label="Email:"
-                    name={"email"}
-                    type={"text"}
-                  ></InputField>
-                  <InputField
-                    label="Phone:"
-                    name={"phone"}
-                    type={"text"}
-                  ></InputField>
-                  <Button
-                    backgroundColor={"#19C37D"}
-                    color={"#fff"}
-                    borderRadius={"8%"}
-                    height={"40px"}
-                    width={"130px"}
-                    marginLeft={"40%"}
-                  >
-                    Save
-                  </Button>
-                </Flex>
-              </Form>
+            <Formik
+              initialValues={props.initialValues}
+              onSubmit={(values) => {
+                props.onSaveClick(values);
+              }}
+              validationSchema={props.EditSchema}
+            >
+              {({ handleSubmit }) => {
+                return (
+                  <Form>
+                    <Flex
+                      flexDirection={"column"}
+                      marginLeft={"74px"}
+                      width={"70%"}
+                      padding={10}
+                      pt={10}
+                      borderRadius={"10%"}
+                      marginTop={"30px"}
+                      backgroundColor={"#e2edf0"}
+                      style={{ gap: "20px" }}
+                    >
+                      <InputField
+                        label="Name:"
+                        name={"name"}
+                        type={"text"}
+                      ></InputField>
+                      <InputField
+                        label="Email:"
+                        name={"email"}
+                        type={"text"}
+                      ></InputField>
+                      <InputField
+                        label="Phone:"
+                        name={"phone"}
+                        type={"text"}
+                      ></InputField>
+                      <Button
+                        variant="secondary"
+                        color={"#fff"}
+                        borderRadius={"8%"}
+                        height={"40px"}
+                        width={"130px"}
+                        marginLeft={"40%"}
+                        fontWeight={"bold"}
+                        onClick={() => handleSubmit()}
+                      >
+                        Save
+                      </Button>
+                    </Flex>
+                  </Form>
+                );
+              }}
             </Formik>
           )}
         </Box>

@@ -11,7 +11,7 @@ export const selectCreateAccountPage = createSelector(
   (state) => state
 );
 
-export const selectAccount = createSelector(
+export const selectProfile = createSelector(
   [selectSlice],
   (state) => state.account
 );

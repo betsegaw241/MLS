@@ -1,8 +1,8 @@
 import { FormValues } from "./types";
 export const initialValues: FormValues = {
-    email: "",
-    phone: "",
-    name: ""
+  email: "",
+  phone: "",
+  name: "",
 };
 
 export const errorValues = {
@@ -14,8 +14,9 @@ export const errorValues = {
     required: "Email is required",
   },
   phone: {
-    min: "Phone must be at least 10 digits",
-    max: "Phone is too long",
-    required: "Phone is required",
+    invalid: "Invalid phone number",
+    required: "Phone Number is required",
+    min: "Phone Number must be at least 10 digits",
+    max: "Phone Number is too long",
   },
 };

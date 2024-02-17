@@ -15,7 +15,7 @@ export interface CreateAccountComponentProp {
   currentStep: number;
 
   initialValues: FormValues;
-  signupSchema: object;
+  // signupSchema: object;
   // isSigningup: boolean;
   errorMessage: string;
   UploadingDocument: boolean;
