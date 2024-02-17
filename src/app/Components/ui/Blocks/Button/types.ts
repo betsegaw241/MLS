@@ -14,9 +14,15 @@ import {
   ShadowProps,
   SpaceProps,
   TypographyProps,
-} from 'styled-system';
+} from "styled-system";
 
-export type variant = 'primary' | 'secondary' | 'warning' | 'success' | 'login';
+export type variant =
+  | "primary"
+  | "secondary"
+  | "warning"
+  | "success"
+  | "login"
+  | "neuteral";
 
 export interface ButtonProps
   extends SpaceProps,

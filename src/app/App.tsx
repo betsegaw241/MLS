@@ -12,10 +12,8 @@ import ProfilePage from "./Pages/ProfilePage/index";
 // import { useAllowedRole } from 'utils/hook/useAllowedRole';
 const ProtectedRoute = (props: IProtectedRoute) => {
   if (!localStorage.getItem("token")) {
-    console.log('invalid')
     return <Navigate to={routeConstants.login} />;
   }
-  console.log('in ')
   useAllowedRole({ allowedRole: props.allowedRole });
   return <>{props.children}</>;
 };
@@ -30,24 +28,29 @@ function App() {
       
       </Routes>
       {/* <Layout> */}
-        <Routes>
-          {routes.map((route: IRoute) => (
-            <React.Fragment key={uuid()}>
-              {route.isProtected ? (
-                <Route
-                  element={
-                    <ProtectedRoute allowedRole={route.allowedRole}>
-                      {route.element}
-                    </ProtectedRoute>
-                  }
-                  path={route.path}
-                />
-              ) : (
-                <Route element={route.element} path={route.path} />
-              )}
-            </React.Fragment>
-          ))}
-        </Routes>
+      <Routes>
+        {routes.map((route: IRoute) => (
+          <React.Fragment key={uuid()}>
+            {route.isProtected ? (
+              <Route
+                element={
+                  <ProtectedRoute allowedRole={route.allowedRole}>
+                    {/* {route.element} */}
+                    {route.needsLayout ? (
+                      <Layout>{route.element}</Layout>
+                    ) : (
+                      route.element
+                    )}
+                  </ProtectedRoute>
+                }
+                path={route.path}
+              />
+            ) : (
+              <Route element={route.element} path={route.path} />
+            )}
+          </React.Fragment>
+        ))}
+      </Routes>
       {/* </Layout> */}
     </BrowserRouter>
   );

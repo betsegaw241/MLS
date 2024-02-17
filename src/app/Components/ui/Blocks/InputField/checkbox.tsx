@@ -11,7 +11,7 @@ function CheckBox(props: checkboxProps) {
   return (
     <Flex alignItems={"center"}>
       <InputField type="checkbox" onClick={clicked} checked={show} />
-      <Text fontFamily={"poppins"}>{label}</Text>
+      <Text fontFamily={"poppins"} fontSize={'12px'}>{label}</Text>
     </Flex>
   );
 }
