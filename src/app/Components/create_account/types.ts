@@ -1,4 +1,4 @@
-// import { FormValues } from "../../components/create_account/types";
+//import { FormValues } from "../../components/create_account/types";
 export interface create_accountProps {}
 
 import {
@@ -13,9 +13,13 @@ export interface CreateAccountComponentProp {
   createAccountSchemaStep2?: object;
   createAccountSchemaStep3?: object;
   currentStep: number;
+
+  initialValues: FormValues;
+  signupSchema: object;
+  // isSigningup: boolean;
   errorMessage: string;
   UploadingDocument: boolean;
-  initialValues: FormValues;
+
   userItialValues: UserFormValues;
   set1Data: UserFormValues | null;
   set2Data: ParmacyFormValues | null;

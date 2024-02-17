@@ -59,8 +59,3 @@ export interface InputFileProps
     FontWeightProps,
     BoxShadowProps {}
     
-export interface checkboxProps {
-  label: string;
-  show:boolean;
-  clicked: () => void;
-}

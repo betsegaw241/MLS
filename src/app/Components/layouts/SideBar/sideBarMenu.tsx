@@ -2,11 +2,11 @@ import { useSelector } from "react-redux";
 import { getMenu } from "../../../../utils/getMenu";
 import { Flex } from "../../ui/Blocks";
 import SideBarMenuItem from "./SideBarMenuItem";
+import { ISideBarMenu, SideBarMenuProp } from "./types";
 import { selectRole } from "app/Pages/Layout/slice/selectors";
 
-const SideBarMenu = () => {
+function SideBarMenu(props: SideBarMenuProp) {
   const role = useSelector(selectRole);
-  const menuItems = getMenu(role || localStorage.getItem("role")) || [];
   return (
     <Flex
       flexDirection={"column"}
@@ -16,11 +16,19 @@ const SideBarMenu = () => {
       p={1}
       pt={2}
       style={{ gap: "10px" }}
+
     >
-      {menuItems.map((menuItem, index) => (
-        <SideBarMenuItem key={index} menuItem={menuItem} />
-      ))}
+      {getMenu(role || localStorage.getItem("role"))?.map((menuItem: ISideBarMenu, index: number) => {
+        return (
+          <SideBarMenuItem
+            isCollapsed={props.isCollapsed}
+            key={index}
+            menuItem={menuItem}
+            setIsCollapsed={props.setIsCollapsed}
+          />
+        );
+      })}
     </Flex>
   );
-};
+}
 export default SideBarMenu;

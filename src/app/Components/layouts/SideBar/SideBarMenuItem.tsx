@@ -27,7 +27,7 @@ export function SideBarMenuItem(props: SideBarMenuItemProp) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
+console.log(screenSize.width > 600)
   return (
     <Link
       style={{
@@ -42,6 +42,7 @@ export function SideBarMenuItem(props: SideBarMenuItemProp) {
         borderRadius={0}
         color={location.pathname.includes(to) ? "#fff" : ""}
         onClick={() => {
+          props.setIsCollapsed?.(false);
           props.setshowMenu?.(false);
         }}
         paddingLeft={"10px"}
@@ -64,6 +65,8 @@ export function SideBarMenuItem(props: SideBarMenuItemProp) {
             {label}
           </Text>
         )}
+
+      
       </Flex>
     </Link>
   );

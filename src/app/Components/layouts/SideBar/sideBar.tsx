@@ -1,11 +1,11 @@
-import { useSelector } from "react-redux";
-import { Box, Flex } from "../../ui/Blocks";
-import SideBarMenuItem from "./SideBarMenuItem";
-import { getMenu } from "utils/getMenu";
-import { selectRole } from "app/Pages/Layout/slice/selectors";
+import { useEffect, useState } from "react";
+import { Box, Flex,Text } from "../../ui/Blocks";
+import SideBarMenu from "./sideBarMenu";
 
 export function SideBar() {
-  const role = useSelector(selectRole);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  // const [mode] = useLocalStorage('mode','')
+ 
   return (
     <Box
       backgroundColor={"#0D0F11"}
@@ -17,26 +17,24 @@ export function SideBar() {
 
       // width={isCollapsed ? ["24%", "25%", "15%"] : ["9%", "8%", "8%", "5%"]}
     >
+      <Text
+        fontFamily={"poppins"}
+        fontSize={6}
+        lineHeight={1}
+        padding={1}
+        color={"#fff "}
+      >
+        Medicine Locator
+      </Text>
       <Flex
         flexDirection={"column"}
         justifyContent={"space-between"}
-        paddingTop={100}
+        paddingTop={50}
       >
-        <Flex
-          flexDirection={"column"}
-          // backgroundColor={'#ffff'}
-          height={"90%"}
-          overflow={"none"}
-          p={1}
-          pt={2}
-          style={{ gap: "10px" }}
-        >
-          {getMenu(role || localStorage.getItem("role"))?.map(
-            (menuItem, index) => {
-              return <SideBarMenuItem key={index} menuItem={menuItem} />;
-            }
-          )}
-        </Flex>
+        <SideBarMenu
+          isCollapsed={isCollapsed}
+          setIsCollapsed={setIsCollapsed}
+        />
       </Flex>
     </Box>
   );

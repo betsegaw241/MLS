@@ -1,14 +1,13 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-
 import LoginPage from "./Pages/Login/index";
 import { IProtectedRoute, IRoute } from "utils/routes/types";
 import { routeConstants } from "utils/constants";
 import { useAllowedRole } from "utils/hook/useAllowedRole";
 import { Layout } from "./Pages/Layout";
-import { GlobalStyle } from "styles/global-styles";
 import { routes } from "utils/routes";
 import React from "react";
 import { v4 as uuid } from "uuid";
+import ProfilePage from "./Pages/ProfilePage/index";
 
 // import { useAllowedRole } from 'utils/hook/useAllowedRole';
 const ProtectedRoute = (props: IProtectedRoute) => {
@@ -26,6 +25,7 @@ function App() {
       <Routes>
         <Route element={<Navigate replace={true} to="/login" />} path="/" />
         <Route element={<LoginPage />} path="/login" />
+      
       </Routes>
       {/* <Layout> */}
       <Routes>

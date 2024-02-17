@@ -2,7 +2,7 @@ import { Form, Formik } from "formik";
 import { CreateAccountComponentProp } from "./types";
 import { Button, Flex } from "../ui/Blocks";
 import { InputField } from "app/Components/ui/InputComponent";
-import CheckBox from "../ui/Blocks/Input/checkbox";
+import CheckBox from "../ui/Blocks/InputField/checkbox";
 import { useState } from "react";
 import { theme } from "../../../styles/theme";
 import { userItialValues } from "app/Pages/createAccountPage/constants";
