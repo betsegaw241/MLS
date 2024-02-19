@@ -8,6 +8,8 @@ import { BiShow } from "react-icons/bi";
 import { BiHide } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import "styles/fonts.css";
+import Spinner from "react-activity/dist/Spinner";
+import "react-activity/dist/Spinner.css";
 
 const LoginComponent = (props: LoginInComponentProp) => {
   const [showpassword, setShowPassword] = useState(false);
@@ -66,7 +68,6 @@ const LoginComponent = (props: LoginInComponentProp) => {
                 <Form>
                   <Flex flexDirection={"column"} width={["300px"]}>
                     <InputField name="email" type={"text"} label={"Email"} />
-                 
 
                     <InputField
                       name="password"
@@ -78,7 +79,7 @@ const LoginComponent = (props: LoginInComponentProp) => {
                       topIcon={showpassword ? <BiShow /> : <BiHide />}
                       topIconlabel={showpassword ? "hide" : "show"}
                     />
-                   
+
                     <Flex justifyContent={"flex-end"}>
                       <Text fontFamily={"poppins"} fontSize={1}>
                         <Link to={""}>Forget your password?</Link>
@@ -99,8 +100,13 @@ const LoginComponent = (props: LoginInComponentProp) => {
                       type="submit"
                       padding={1}
                       width={"100%"}
+                      textAlign={"center"}
                     >
-                      Login
+                      {props.isLogging ? (
+                        <Spinner style={{ marginLeft: "45%" }} />
+                      ) : (
+                        "Login"
+                      )}
                     </Button>
                   </Flex>
                 </Form>

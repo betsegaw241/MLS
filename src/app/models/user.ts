@@ -1,10 +1,14 @@
 import { ITimeStamp } from './shared';
 
 export interface IUserModel extends ITimeStamp {
-    name?:string;
+    data:data;
+    status:number;
+}
+export interface data {
+  name?:string;
     email:string;
     isFirstTime:boolean;
     role:string;
-    token?:string;
-    _id:string;
+    accessToken?:string;
+    _id:string;   
 }

@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { HeaderObj, IAPICallConfig } from './types';
-import { API_ROUTE, cookieKeys } from '../utils/constants';
-import axios, { AxiosResponse } from 'axios';
-import APIError from './APIError';
-import { baseErrors } from './ErrorCodes';
-import Cookies from 'js-cookie';
+import { HeaderObj, IAPICallConfig } from "./types";
+import { API_ROUTE, cookieKeys } from "../utils/constants";
+import axios, { AxiosResponse } from "axios";
+import APIError from "./APIError";
+import { baseErrors } from "./ErrorCodes";
+import Cookies from "js-cookie";
 
 const api = async (config: IAPICallConfig) => {
   try {
     const fullURL = `${API_ROUTE}${config.route}`;
     const header: HeaderObj = config.header || {};
     const authToken = config.isSecureRoute
-      ? localStorage.getItem('token') || Cookies.get(cookieKeys.authToken)
+      ? localStorage.getItem("token") || Cookies.get(cookieKeys.authToken)
       : undefined;
 
     if (authToken) {
@@ -24,12 +24,11 @@ const api = async (config: IAPICallConfig) => {
       data: config.body,
       url: fullURL,
       headers: { ...header },
-      responseType: config.responseType || 'json',
+      responseType: config.responseType || "json",
       onUploadProgress: config.onUploadProgress,
     });
-
-    if (response.statusText === 'OK') {
-      return response.data;
+    if (response.status === 200) {
+      return response;
     } else {
       throw new APIError(response.data?.code, response.data?.message);
     }

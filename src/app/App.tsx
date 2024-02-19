@@ -7,7 +7,6 @@ import { Layout } from "./Pages/Layout";
 import { routes } from "utils/routes";
 import React from "react";
 import { v4 as uuid } from "uuid";
-import ProfilePage from "./Pages/ProfilePage/index";
 
 // import { useAllowedRole } from 'utils/hook/useAllowedRole';
 const ProtectedRoute = (props: IProtectedRoute) => {

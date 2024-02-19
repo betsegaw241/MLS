@@ -1,110 +1,120 @@
 import { useEffect } from "react";
 import { Box, Button, Flex, Text } from "../ui/Blocks";
 import { HomePageProps } from "./types";
+import Header from "../ui/Header";
+import { useNavigate } from "react-router";
 
 const HomePageComponent = (props: HomePageProps) => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     document.body.style.margin = "0";
     document.body.style.padding = "0";
   }, []);
 
   return (
-    <Flex
-      backgroundColor={"#f5f5f5"}
-      width={"100vw"}
-      height={"100vh"}
-      justifyContent={"center"}
-      alignItems={"center"}
-      margin={"0px"}
-      flexDirection={"column"}
-      style={{ gap: 5 }}
-    >
+    <>
+      <Header />
       <Flex
-        backgroundColor={"#ffff"}
-        width={["100%", "80%"]}
+        backgroundColor={"#f5f5f5"}
+        width={"100vw"}
+        height={"100vh"}
+        justifyContent={"flex-start"}
         alignItems={"center"}
-        justifyContent={"space-between"}
-        borderRadius={"5px"}
-        paddingY={3}
-      >
-        <Flex ml={1}>
-          <Text fontFamily={"poppins"} fontSize={6}>
-            My pharmacy
-          </Text>
-        </Flex>
-        <Flex mr={1}>
-          <Button
-            variant="primary"
-            borderRadius={"8px"}
-            p={1}
-            fontFamily={"poppins"}
-            fontSize={5}
-          >
-            Add New Pharmacy
-          </Button>
-        </Flex>
-      </Flex>
-      {/* second */}
-      <Flex
-        backgroundColor={"#ffff"}
-        width={["100%", "80%"]}
-        height={"500px"}
-        paddingBottom={4}
-        borderRadius={"5px"}
+        margin={"0px"}
         flexDirection={"column"}
+        style={{ gap: 5 }}
       >
         <Flex
-          backgroundColor={"#f5f5f5"}
-          flexDirection={"row"}
-          m={1}
-          p={2}
-          style={{ gap: 20 }}
+          backgroundColor={"#ffff"}
+          width={["100%", "80%"]}
+          marginTop={"80px"}
           alignItems={"center"}
-          borderRadius={"8px"}
+          justifyContent={"space-between"}
+          borderRadius={"5px"}
+          paddingY={3}
         >
-          <Box
-            backgroundColor={"#ffff"}
-            width={"50px"}
-            height={"50px"}
-            borderRadius={"50%"}
-          ></Box>
-          <Text fontFamily={"poppins"} fontSize={6}>
-            Flex Pharmacy
-          </Text>
-          <Flex>
-            <Text fontFamily={"poppins"} fontSize={4}>
-              last year
+          <Flex ml={1}>
+            <Text fontFamily={"poppins"} fontSize={6}>
+              My pharmacy
             </Text>
           </Flex>
-          <Flex>:</Flex>
+          <Flex mr={1}>
+            <Button
+              variant="primary"
+              borderRadius={"8px"}
+              p={1}
+              fontFamily={"poppins"}
+              fontSize={5}
+              onClick={() => navigate("/addPharmacy")}
+            >
+              Add New Pharmacy
+            </Button>
+          </Flex>
         </Flex>
+        {/* second */}
         <Flex
-          backgroundColor={"#f5f5f5"}
-          flexDirection={"row"}
-          m={1}
-          p={2}
-          style={{ gap: 20 }}
-          alignItems={"center"}
-          borderRadius={"8px"}
+          backgroundColor={"#ffff"}
+          width={["100%", "80%"]}
+          height={"500px"}
+          paddingBottom={4}
+          borderRadius={"5px"}
+          flexDirection={"column"}
         >
-          <Box
-            backgroundColor={"#ffff"}
-            width={"50px"}
-            height={"50px"}
-            borderRadius={"50%"}
-          ></Box>
-          <Text fontFamily={"poppins"} fontSize={6}>
-            Flex Pharmacy
-          </Text>
-          <Flex>
-            <Text fontFamily={"poppins"} fontSize={4}>
-              last year
+          <Flex
+            backgroundColor={"#f5f5f5"}
+            flexDirection={"row"}
+            m={1}
+            p={2}
+            style={{ gap: 20 }}
+            alignItems={"center"}
+            borderRadius={"8px"}
+            onClick={() => navigate("/pharmacist/dashboard")}
+          >
+            <Box
+              backgroundColor={"#ffff"}
+              width={"50px"}
+              height={"50px"}
+              borderRadius={"50%"}
+            ></Box>
+            <Text fontFamily={"poppins"} fontSize={6}>
+              Flex Pharmacy
             </Text>
+            <Flex>
+              <Text fontFamily={"poppins"} fontSize={4}>
+                last year
+              </Text>
+            </Flex>
+            <Flex>:</Flex>
           </Flex>
-          <Flex>:</Flex>
+          <Flex
+            backgroundColor={"#f5f5f5"}
+            flexDirection={"row"}
+            m={1}
+            p={2}
+            style={{ gap: 20 }}
+            alignItems={"center"}
+            borderRadius={"8px"}
+          >
+            <Box
+              backgroundColor={"#ffff"}
+              width={"50px"}
+              height={"50px"}
+              borderRadius={"50%"}
+            ></Box>
+            <Text fontFamily={"poppins"} fontSize={6}>
+              Flex Pharmacy
+            </Text>
+            <Flex>
+              <Text fontFamily={"poppins"} fontSize={4}>
+                last year
+              </Text>
+            </Flex>
+            <Flex>:</Flex>
+          </Flex>
         </Flex>
       </Flex>
-    </Flex>
+    </>
   );
 };
 export default HomePageComponent;

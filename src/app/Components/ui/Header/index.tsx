@@ -2,9 +2,10 @@ import Badge from "@mui/material/Badge";
 import { Box, Flex, Text } from "../Blocks";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import UserInfo from "../../layouts/Header/userInfo";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <>
       <Flex
@@ -24,18 +25,20 @@ const Header = () => {
           alignItems={"center"}
           paddingX={10}
         >
-          <Text fontFamily={"poppins"} fontSize={6} fontWeight={"bold"}>
+          <Text
+            fontFamily={"poppins"}
+            fontSize={6}
+            fontWeight={"bold"}
+            onClick={() => navigate("/pharmacist/home")}
+          >
             Medicine Locator
           </Text>
-          <Flex style={{ gap: 50 }}>
-            <Text fontFamily={"poppins"}>My Pharmacy</Text>
-            <Text fontFamily={"poppins"}>Profile</Text>
-            <Text fontFamily={"poppins"}>Settings</Text>
-          </Flex>
+
           <Flex
             alignItems={"center"}
             justifyContent={"space-between"}
             style={{ gap: 50 }}
+            marginLeft={"auto"}
           >
             <Box>
               <Badge badgeContent={4} color="error">

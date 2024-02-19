@@ -3,5 +3,6 @@ export interface ModalComponentProps {
     setOpen?: () => void
     top?: string;
     open:boolean;
+    background?:string;
    
   }

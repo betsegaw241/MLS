@@ -6,10 +6,11 @@ import "styles/fonts.css";
 import { useSelector } from "react-redux";
 import { selectRole } from "app/Pages/Layout/slice/selectors";
 
-export function SideBarMenuItem(props: SideBarMenuItemProp) {
+const SideBarMenuItem = (props: SideBarMenuItemProp) => {
   const { label, to, icon } = props.menuItem;
   const { pathname } = useLocation();
-  const role = useSelector(selectRole);
+  // const role = useSelector(selectRole);
+  const role = localStorage.getItem('role');
   const [screenSize, setScreenSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -27,7 +28,7 @@ export function SideBarMenuItem(props: SideBarMenuItemProp) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-console.log(screenSize.width > 600)
+
   return (
     <Link
       style={{
@@ -45,14 +46,14 @@ console.log(screenSize.width > 600)
           props.setIsCollapsed?.(false);
           props.setshowMenu?.(false);
         }}
-        paddingLeft={"10px"}
+       p={1}
         style={{ gap: "10px", cursor: "pointer" }}
       >
-        <Text fontSize={3} fontWeight={2} color={"#fff"}>
+        <Text fontSize={5} fontWeight={2} color={"#fff"}>
           {React.createElement(icon)}
         </Text>
 
-        {screenSize.width > 600 && (
+        {!props.isCollapsed && (
           <Text
             fontFamily={"poppins"}
             fontSize={5}

@@ -6,9 +6,17 @@ import CreateAccountPage from "app/Pages/createAccountPage/index";
 import AddPharmacyPage from "app/Pages/AddPharmacyPage/index";
 import HomePage from "app/Pages/HomePage";
 import ProfilePage from "app/Pages/ProfilePage";
-import OrderComponent from "app/Components/layouts/OrderComponent";
+import OrderComponent from "app/Components/OrderComponent";
 
 export const routes: IRoute[] = [
+  {
+    element: <></>,
+    exact: true,
+    path: "/pharmacist/dashboard",
+    isProtected: true,
+    allowedRole: "pharmacist",
+    needsLayout: true,
+  },
   {
     element: <Header />,
     exact: true,
@@ -47,16 +55,17 @@ export const routes: IRoute[] = [
   {
     element: <HomePage />,
     exact: true,
-    path: "/home",
-
-    isProtected: false,
-    allowedRole: "*",
+    path: "/pharmacist/home",
+    isProtected: true,
+    allowedRole: "pharmacist",
   },
   {
     element: <OrderComponent />,
     exact: true,
-    path: "null/request",
-    allowedRole: "*",
+    path: "pharmacist/request",
+    allowedRole: "pharmacist",
+    needsLayout: true,
+    isProtected: true,
   },
   {
     element: <ProfilePage />,
