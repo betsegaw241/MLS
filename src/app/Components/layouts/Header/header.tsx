@@ -23,7 +23,7 @@ const Header = () => {
           width={"100%"}
         >
           <Box marginLeft={"auto"}>
-            <Search/>
+            <Search />
           </Box>
 
           <Box marginLeft={"50%"}>

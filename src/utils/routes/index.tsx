@@ -55,8 +55,10 @@ export const routes: IRoute[] = [
   {
     element: <OrderComponent />,
     exact: true,
-    path: "null/request",
-    allowedRole: "*",
+    path: "pharmacist/request",
+    allowedRole: "pharmacist",
+    needsLayout: true,
+    isProtected: true,
   },
   {
     element: <ProfilePage />,

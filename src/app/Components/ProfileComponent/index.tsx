@@ -5,12 +5,12 @@ import { InputField } from "../ui/InputComponent";
 import { Form, Formik } from "formik";
 import { editProfileComponentProp } from "./types";
 
-const ProfileComponent = (props:editProfileComponentProp) => {
+const ProfileComponent = (props: editProfileComponentProp) => {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
   };
-  
+
   return (
     <>
       <Header />
@@ -59,7 +59,7 @@ const ProfileComponent = (props:editProfileComponentProp) => {
         </Flex>
 
         <Box
-          width={["55px", "200px", "200px", "62%"]}
+          width={["100%", "62%"]}
           backgroundColor={"#D9D9D9"}
           marginY={"30px"}
         >
@@ -76,12 +76,14 @@ const ProfileComponent = (props:editProfileComponentProp) => {
                   <Form>
                     <Flex
                       flexDirection={"column"}
-                      marginLeft={"74px"}
-                      width={"70%"}
-                      padding={10}
+                      marginLeft={["20px", "40px", "50px", "74px"]}
+                      marginRight={["20px", "40px", "50px", "74px"]}
+                      width={["50%", "60%", "65%", "70%"]}
+                      padding={"10%"}
                       pt={10}
                       borderRadius={"10%"}
                       marginTop={"30px"}
+                      marginBottom={"10px"}
                       backgroundColor={"#e2edf0"}
                       style={{ gap: "20px" }}
                     >
@@ -105,8 +107,8 @@ const ProfileComponent = (props:editProfileComponentProp) => {
                         color={"#fff"}
                         borderRadius={"8%"}
                         height={"40px"}
-                        width={"130px"}
-                        marginLeft={"40%"}
+                        width={["50px", "80px", "100px", "130px"]}
+                        marginLeft={["30%", "40%"]}
                         fontWeight={"bold"}
                         onClick={() => handleSubmit()}
                       >

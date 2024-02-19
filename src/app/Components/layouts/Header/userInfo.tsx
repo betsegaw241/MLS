@@ -20,7 +20,7 @@ const UserInfo = () => {
         alignItems={"center"}
         // border={"1px solid transparent"}
         backgroundColor={"#fff"}
-        width={210}
+        width={[20, 60, 100, 210]}
         borderRadius={2}
         // hover={{
         //   border: "1px solid #0cb7b8",
