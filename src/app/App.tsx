@@ -10,7 +10,9 @@ import { v4 as uuid } from "uuid";
 
 // import { useAllowedRole } from 'utils/hook/useAllowedRole';
 const ProtectedRoute = (props: IProtectedRoute) => {
-  if (!localStorage.getItem("token")) {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
     return <Navigate to={routeConstants.login} />;
   }
   useAllowedRole({ allowedRole: props.allowedRole });
@@ -24,7 +26,6 @@ function App() {
       <Routes>
         <Route element={<Navigate replace={true} to="/login" />} path="/" />
         <Route element={<LoginPage />} path="/login" />
-      
       </Routes>
       {/* <Layout> */}
       <Routes>

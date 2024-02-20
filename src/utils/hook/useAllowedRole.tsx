@@ -1,6 +1,6 @@
-import { selectRole } from 'app/Pages/Login/slice/selectors';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { selectRole } from "app/Pages/Login/slice/selectors";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 // import { AccessControl } from 'accesscontrol';
 
 interface IUseAllowedRole {
@@ -8,14 +8,12 @@ interface IUseAllowedRole {
 }
 
 export function useAllowedRole(props: IUseAllowedRole) {
-  // const role = useSelector(selectRole);
-  const role = localStorage.getItem('role');
+  const role = useSelector(selectRole) || localStorage.getItem("role");
 
-  console.log('allwed-role',role)  
   const navigate = useNavigate();
 
   if (role !== props.allowedRole) {
-    navigate('/login');
+    navigate("/login");
   }
 }
 
