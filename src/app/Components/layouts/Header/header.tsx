@@ -1,4 +1,4 @@
-import { Box, Flex } from "../../ui/Blocks";
+import { Box, Flex,Text } from "../../ui/Blocks";
 import UserInfo from "./userInfo";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import Badge from "@mui/material/Badge";
@@ -32,16 +32,19 @@ const Header = () => {
         position={"fixed"}
         py={["10px"]}
         top={"0px"}
-        width={isCollapsed ? "95%" : "86%"}
+        // width={isCollapsed ? "95%" : "86%"}
+        width={'100%'}
         marginLeft={isCollapsed ? "40px" : "190px"}
         paddingRight={2}
-      >
+        justifyContent={'space-around'}
+      >  <Text></Text>
         <Flex
           alignItems={"center"}
           justifyContent={"space-between"}
           mx={3}
-          width={"100%"}
+         
         >
+        
           <Flex
             alignItems={"center"}
             justifyContent={"space-between"}

@@ -7,6 +7,8 @@ import AddPharmacyPage from "app/Pages/AddPharmacyPage/index";
 import HomePage from "app/Pages/HomePage";
 import ProfilePage from "app/Pages/ProfilePage";
 import OrderComponent from "app/Components/OrderComponent";
+import ManageInventory from "app/Components/ManageInventory";
+import ManagePharmacyAccount from "app/Components/ManagePharmacyAccount";
 
 export const routes: IRoute[] = [
   {
@@ -73,5 +75,21 @@ export const routes: IRoute[] = [
     path: "/profile",
     isProtected: false,
     allowedRole: "*",
+  },
+  {
+    element: <ManageInventory />,
+    exact: true,
+    path: "pharmacist/inventory",
+    isProtected: true,
+    allowedRole: "pharmacist",
+    needsLayout: true,
+  },
+  {
+    element: <ManagePharmacyAccount />,
+    exact: true,
+    path: "pharmacist/account",
+    isProtected: true,
+    allowedRole: "pharmacist",
+    needsLayout: true,
   },
 ];

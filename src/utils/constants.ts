@@ -72,7 +72,7 @@ export const PharmaciesMenu = [
   },
   {
     label: "Account",
-    to: "/pharmAccount",
+    to: "/account",
     icon: MdOutlineAccountBalance,
   },
 ];
