@@ -119,7 +119,7 @@ export default function OrderComponent() {
 
   return (
     <>
-      <Box height={"84%"} width={"100%"} marginLeft={1}>
+      <Box height={"84%"} width={"100%"} marginLeft={1} p={1}>
         <Flex style={{ display: "flex", alignItems: "center" }}>
           <div style={{ marginLeft: "30px" }}>
             <h2>Orders</h2>

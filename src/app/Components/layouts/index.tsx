@@ -10,6 +10,10 @@ const Layouts = (props: LayoutsComponentProps) => {
     height: window.innerHeight,
   });
   const [isCollapsed, setIsCollapsed] = useState(screenSize.width < 1000);
+  useEffect(() => {
+    document.body.style.margin = "0";
+    document.body.style.padding = "0";
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -25,10 +29,19 @@ const Layouts = (props: LayoutsComponentProps) => {
     };
   }, []);
   return (
-    <Box top={"0px"} left={"0px"}>
+    <Box
+      top={"0px"}
+      left={"0px"}
+      width={"100%"}
+      margin={"0px"}
+      padding={"0px"}
+      right={"0px"}
+      height={'100vh'}
+      backgroundColor={"#F2EEDE"}
+    >
       <Header />
       <SideBar />
-      <Flex marginTop={"60px"} marginLeft={isCollapsed ? "50px" : "195px"}>
+      <Flex paddingTop={"55px"} marginLeft={isCollapsed ? "50px" : "195px"}>
         {props.children}
       </Flex>
     </Box>

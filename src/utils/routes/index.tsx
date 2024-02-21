@@ -9,6 +9,8 @@ import ProfilePage from "app/Pages/ProfilePage";
 import OrderComponent from "app/Components/OrderComponent";
 import ManageInventory from "app/Components/ManageInventory";
 import ManagePharmacyAccount from "app/Components/ManagePharmacyAccount";
+import OrderDetailComponent from "app/Components/OrdersDetailComponent";
+import ColumnGroupingTable from "app/Components/OrderComponent/Order";
 
 export const routes: IRoute[] = [
   {
@@ -77,7 +79,7 @@ export const routes: IRoute[] = [
     allowedRole: "*",
   },
   {
-    element: <ManageInventory />,
+    element: <ColumnGroupingTable />,
     exact: true,
     path: "pharmacist/inventory",
     isProtected: true,
@@ -88,6 +90,13 @@ export const routes: IRoute[] = [
     element: <ManagePharmacyAccount />,
     exact: true,
     path: "pharmacist/account",
+    isProtected: true,
+    allowedRole: "pharmacist",
+    needsLayout: true,
+  },  {
+    element: <OrderDetailComponent />,
+    exact: true,
+    path: "pharmacist/inventory/orderdetail",
     isProtected: true,
     allowedRole: "pharmacist",
     needsLayout: true,

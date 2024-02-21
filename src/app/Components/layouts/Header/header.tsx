@@ -34,7 +34,7 @@ const Header = () => {
         top={"0px"}
         // width={isCollapsed ? "95%" : "86%"}
         width={'100%'}
-        marginLeft={isCollapsed ? "40px" : "190px"}
+        marginLeft={isCollapsed ? "40px" : "180px"}
         paddingRight={2}
         justifyContent={'space-around'}
       >  <Text></Text>

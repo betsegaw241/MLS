@@ -1,4 +1,4 @@
-import { ISideBarMenu } from "./types";
+import { IColumn, ISideBarMenu } from "./types";
 import { RxDashboard } from "react-icons/rx";
 import { FaUserSecret } from "react-icons/fa";
 import { AiOutlineBank } from "react-icons/ai";
@@ -78,3 +78,39 @@ export const PharmaciesMenu = [
 ];
 
 
+export const OrderTableColumns: IColumn[] = [
+  {
+    id: 'NO',
+    label: 'NO',
+    minWidth: 50,
+  },  {
+    id: 'name',
+    label: 'Name',
+    minWidth: 150,
+  },
+  {
+    id: 'Phone',
+    label: 'Phone',
+    minWidth: 100,
+  },
+  {
+    id: 'Drug',
+    label: 'Drug',
+    minWidth: 100,
+  },
+  {
+    id: 'Location',
+    label: 'Location',
+    minWidth: 100,
+  },
+  {
+    id: 'Time',
+    label: 'Time',
+    minWidth: 100,
+  }, {
+    id: 'Order Stutus',
+    label: 'Order Stutus',
+    minWidth: 100,
+  },
+ 
+];
