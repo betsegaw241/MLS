@@ -36,12 +36,12 @@ const Layouts = (props: LayoutsComponentProps) => {
       margin={"0px"}
       padding={"0px"}
       right={"0px"}
-      height={'100vh'}
+      height={"100vh"}
       backgroundColor={"#F2EEDE"}
     >
       <Header />
       <SideBar />
-      <Flex paddingTop={"55px"} marginLeft={isCollapsed ? "50px" : "195px"}>
+      <Flex paddingTop={"55px"} marginLeft={isCollapsed ? "0px" : "195px"}>
         {props.children}
       </Flex>
     </Box>

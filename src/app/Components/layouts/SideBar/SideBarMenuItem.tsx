@@ -1,33 +1,19 @@
 import { useLocation, Link } from "react-router-dom";
 import { Flex, Text } from "../../ui/Blocks";
 import { SideBarMenuItemProp } from "./types";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "styles/fonts.css";
 import { useSelector } from "react-redux";
 import { selectRole } from "app/Pages/Layout/slice/selectors";
+import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp } from "react-icons/io";
 
 const SideBarMenuItem = (props: SideBarMenuItemProp) => {
-  const { label, to, icon } = props.menuItem;
+  const { label, to, icon, subMenuItems } = props.menuItem;
   const { pathname } = useLocation();
   // const role = useSelector(selectRole);
-  const role = localStorage.getItem('role');
-  const [screenSize, setScreenSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
-
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    };
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const role = localStorage.getItem("role");
+  const [openSubMenu, setOpenSubMenu] = useState(false);
 
   return (
     <Link
@@ -38,22 +24,22 @@ const SideBarMenuItem = (props: SideBarMenuItemProp) => {
       to={`/${role}${to}`}
     >
       <Flex
-        alignItems={"center"}
+        // alignItems={"center"}
+        justifyContent={"flex-start"}
         backgroundColor={pathname.includes(to) ? "#0C07FF" : ""}
-        borderRadius={0}
+        // borderRadius={0}
         color={location.pathname.includes(to) ? "#fff" : ""}
-        onClick={() => {
-          props.setIsCollapsed?.(false);
-          props.setshowMenu?.(false);
-        }}
-       p={1}
+        p={"5px"}
         style={{ gap: "10px", cursor: "pointer" }}
+        flexDirection={"column"}
       >
-        <Text fontSize={5} fontWeight={2} color={"#fff"}>
-          {React.createElement(icon)}
-        </Text>
-
-        {!props.isCollapsed && (
+        <Flex
+          alignItems={"center"}
+          onClick={() => setOpenSubMenu(!openSubMenu)}
+        >
+          <Text fontSize={5} fontWeight={2} color={"#fff"}>
+            {React.createElement(icon)}
+          </Text>
           <Text
             fontFamily={"poppins"}
             fontSize={5}
@@ -65,12 +51,61 @@ const SideBarMenuItem = (props: SideBarMenuItemProp) => {
           >
             {label}
           </Text>
-        )}
 
-      
+          {subMenuItems && subMenuItems.length > 0 ? (
+            <Flex ml={"auto"}>
+              {openSubMenu && subMenuItems ? (
+                <IoIosArrowUp color="#fff" />
+              ) : (
+                <IoIosArrowDown color="#fff" />
+              )}
+            </Flex>
+          ) : null}
+        </Flex>
       </Flex>
+      {openSubMenu && subMenuItems && subMenuItems.length > 0 && (
+        <Flex flexDirection={"column"} style={{ gap: "2px" }} mt={"3px"}>
+          {subMenuItems.map((subMenuItem, index) => (
+            <Link
+              key={index}
+              style={{
+                textDecoration: "none",
+                color: "inherit",
+              }}
+              to={`/${role}${subMenuItem.to}`}
+            >
+              <Flex
+                alignItems={"center"}
+                backgroundColor={
+                  pathname.includes(subMenuItem.to) ? "#0C07FF" : "#19191c"
+                }
+                // borderRadius={0}
+                color={location.pathname.includes(to) ? "#fff" : ""}
+                onClick={() => {
+                  props.setIsCollapsed?.(false);
+                  props.setshowMenu?.(false);
+                }}
+                style={{ gap: "5x", cursor: "pointer" }}
+              >
+                <Text fontSize={5} fontWeight={2} color={"transparent"}>
+                  {React.createElement(icon)}
+                </Text>
+                <Text
+                  fontFamily={"poppins"}
+                  fontSize={5}
+                  lineHeight={1}
+                  padding={1}
+                  color={"#fff "}
+                >
+                  {subMenuItem.label}
+                </Text>
+              </Flex>
+            </Link>
+          ))}
+        </Flex>
+      )}
     </Link>
   );
-}
+};
 
 export default SideBarMenuItem;

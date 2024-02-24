@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Box, Flex, Text } from "../../ui/Blocks";
+import { Flex, Text } from "../../ui/Blocks";
 import SideBarMenu from "./sideBarMenu";
 
 export function SideBar() {
@@ -24,35 +24,38 @@ export function SideBar() {
   }, []);
 
   return (
-    <Flex
-      backgroundColor={"#0D0F11"}
-      height={"100%"}
-      position="fixed"
-      left={"0px"}
-      top={"0px"}
-      alignItems={"center"}
-      flexDirection={"column"}
-      width={isCollapsed ? "55px" : "200px"}
-    >
-      {!isCollapsed && (
-        <Text
-          fontFamily={"poppins"}
-          fontWeight={"bold"}
-          fontSize={5}
-          lineHeight={1}
-          paddingY={3}
-          color={"#fff "}
+    <>
+      {!isCollapsed ? (
+        <Flex
+          backgroundColor={"#0D0F11"}
+          height={"100%"}
+          position="fixed"
+          left={"0px"}
+          top={"0px"}
+          alignItems={"center"}
+          flexDirection={"column"}
+          width={isCollapsed ? "55px" : "200px"}
         >
-          Medicine Locator
-        </Text>
-      )}
+          <Text
+            fontFamily={"poppins"}
+            fontWeight={"bold"}
+            fontSize={5}
+            lineHeight={1}
+            paddingY={3}
+            color={"#fff "}
+          >
+            Medicine Locator
+          </Text>
 
-      <Flex flexDirection={"column"} justifyContent={"space-between"}>
-        <SideBarMenu
-          isCollapsed={isCollapsed}
-          setIsCollapsed={setIsCollapsed}
-        />
-      </Flex>
-    </Flex>
+          <Flex
+            flexDirection={"column"}
+            justifyContent={"space-between"}
+            width={"90%"}
+          >
+            <SideBarMenu />
+          </Flex>
+        </Flex>
+      ) : null}
+    </>
   );
 }

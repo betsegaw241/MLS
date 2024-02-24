@@ -1,8 +1,8 @@
 import { Box, Button, Flex, Grid, Text } from "../ui/Blocks";
 import { GridBox } from "../ui/Blocks/GridBox";
 import MapComponent from "../ui/MapComponent";
-export interface IStatus{
-  status: "ACCEPTED" | "REJECTED" | "Pending"
+export interface IStatus {
+  status: "ACCEPTED" | "REJECTED" | "Pending";
 }
 const OrderDetailComponent = () => {
   const status: IStatus = { status: "Pending" };
@@ -16,7 +16,9 @@ const OrderDetailComponent = () => {
       borderRadius={1}
     >
       <Flex justifyContent={"space-between"} alignItems={"center"}>
-        <Text fontSize={7}> Order Details</Text>
+        <Text fontSize={7} color={"#3d3939"}>
+          Order Details
+        </Text>
         {/* <Text
           backgroundColor={
             status === "ACCEPTED"
@@ -43,7 +45,9 @@ const OrderDetailComponent = () => {
       <Box borderRadius={0}>
         {/*  */}
         <Box>
-          <Text fontFamily={"poppins"}>Drug Information</Text>
+          <Text fontFamily={"poppins"} fontSize={2}>
+            Drug Information
+          </Text>
           <Grid
             border={"1px solid #f5f5f5f5"}
             borderRadius={0}
@@ -58,14 +62,16 @@ const OrderDetailComponent = () => {
             mb={2}
             p={1}
           >
-            <GridBox lable={"Name"} value={"Zuma"} />
+            <GridBox lable={"Drug"} value={"Advil 1ml"} />
             <GridBox lable={"Dosage"} value={"Zuma"} />
-            <GridBox lable={"quantity"} value={"Zuma"} />
+            <GridBox lable={"quantity"} value={"5"} />
             <GridBox lable={"Drug"} value={"Zuma"} />
           </Grid>
         </Box>
         <Box>
-          <Text fontFamily={"poppins"}>Client Information</Text>
+          <Text fontFamily={"poppins"} fontSize={2}>
+            Client Information
+          </Text>
           <Grid
             border={"1px solid #f5f5f5f5"}
             borderRadius={0}
@@ -80,14 +86,15 @@ const OrderDetailComponent = () => {
             mb={2}
             p={1}
           >
-            <GridBox lable={"Name"} value={"Zuma"} />
-            <GridBox lable={"Location"} value={"Zuma"} />
-            <GridBox lable={"Phone"} value={"Zuma"} />
-            <GridBox lable={"Drug"} value={"Zuma"} />
+            <GridBox lable={"Name"} value={"Roba James"} />
+            <GridBox lable={"Location"} value={"Adama"} />
+            <GridBox lable={"Phone"} value={"0935354556"} />
           </Grid>
         </Box>
         <Box>
-          <Text fontFamily={"poppins"}>Delivery Information</Text>
+          <Text fontFamily={"poppins"} fontSize={2}>
+            Delivery Information
+          </Text>
           <Grid
             border={"1px solid #f5f5f5f5"}
             borderRadius={0}
@@ -102,14 +109,18 @@ const OrderDetailComponent = () => {
             mb={2}
             p={1}
           >
-            <GridBox lable={"Distance"} value={"Zuma"} />
-            <GridBox lable={"Due time"} value={"Zuma"} />
-            <GridBox lable={"quantity"} value={"Zuma"} />
-            <GridBox lable={"Drug"} value={"Zuma"} />
+            <GridBox lable={"Distance"} value={"5km"} />
+            <GridBox lable={"Due time"} value={"2:05"} />
+            <GridBox lable={"Order Date"} value={"sat 23,2024"} />
+            <GridBox lable={"quantity"} value={"4"} />
+            <GridBox lable={"price per unit"} value={"5$"} />
+            <GridBox lable={"Total Cost"} value={"50$"} />
           </Grid>
         </Box>
         <Flex flexDirection={"column"}>
-          <Text fontFamily={"poppins"}>Delivery Location</Text>
+          <Text fontFamily={"poppins"} fontSize={2}>
+            Delivery Location
+          </Text>
           <Box
             width={"100%"}
             height={"300px"}
@@ -119,11 +130,28 @@ const OrderDetailComponent = () => {
             <MapComponent />
           </Box>
         </Flex>
-        <Flex justifyContent={"flex-end"} padding={5} paddingRight={15} style={{gap:15}}>
-          <Button variant="secondary" p={1} fontSize={5} width={'100px'} borderRadius={1}>
+        <Flex
+          justifyContent={"flex-end"}
+          padding={5}
+          paddingRight={15}
+          style={{ gap: 15 }}
+        >
+          <Button
+            variant="secondary"
+            p={1}
+            fontSize={5}
+            width={"100px"}
+            borderRadius={1}
+          >
             Accept
           </Button>
-          <Button variant="warning" p={1} fontSize={5}  width={'100px'} borderRadius={1}>
+          <Button
+            variant="warning"
+            p={1}
+            fontSize={5}
+            width={"100px"}
+            borderRadius={1}
+          >
             Reject
           </Button>
         </Flex>

@@ -1,15 +1,20 @@
-import { Box, Flex,Text } from "../../ui/Blocks";
+import { Box, Flex, Text } from "../../ui/Blocks";
 import UserInfo from "./userInfo";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import Badge from "@mui/material/Badge";
 import { useEffect, useState } from "react";
+import Modal from "app/Components/ui/Modal";
+import SideBarMenu from "../SideBar/sideBarMenu";
+import { MdMenu } from "react-icons/md";
+
 const Header = () => {
   const [screenSize, setScreenSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
   const [isCollapsed, setIsCollapsed] = useState(screenSize.width < 1000);
-
+  const [ShowMenu, setShowMenu] = useState(false);
+  const [showLogout, setShowLogout] = useState(false);
   useEffect(() => {
     const handleResize = () => {
       setScreenSize({
@@ -22,8 +27,8 @@ const Header = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
-
+  }, [ShowMenu, showLogout]);
+  console.log("---collapsed", isCollapsed);
   return (
     <>
       <Flex
@@ -32,24 +37,36 @@ const Header = () => {
         position={"fixed"}
         py={["10px"]}
         top={"0px"}
-        // width={isCollapsed ? "95%" : "86%"}
-        width={'100%'}
-        marginLeft={isCollapsed ? "40px" : "180px"}
-        paddingRight={2}
-        justifyContent={'space-around'}
-      >  <Text></Text>
+        width={"100%"}
+        marginLeft={isCollapsed ? "0px" : "180px"}
+        justifyContent={isCollapsed ? "space-between" : "center"}
+      >
+        {isCollapsed ? (
+          <Text
+            onClick={() => {
+              setShowMenu(true);
+              setShowLogout(true);
+            }}
+            fontSize={10}
+            ml={1}
+          >
+            <MdMenu />
+          </Text>
+        ) : (
+          <Text></Text>
+        )}
+
         <Flex
           alignItems={"center"}
           justifyContent={"space-between"}
           mx={3}
-         
+          px={3}
+          marginLeft={"45%"}
         >
-        
           <Flex
             alignItems={"center"}
             justifyContent={"space-between"}
             style={{ gap: 50 }}
-            marginLeft={"auto"}
           >
             <Box>
               <Badge badgeContent={4} color="error">
@@ -65,6 +82,45 @@ const Header = () => {
           </Flex>
         </Flex>
       </Flex>
+      {ShowMenu && (
+        <Modal
+          open={ShowMenu}
+          setOpen={() => {
+            setShowMenu(!ShowMenu);
+          }}
+          background="transparent"
+        >
+          <Flex
+            backgroundColor={"#0D0F11"}
+            height={"100%"}
+            position="fixed"
+            left={"0px"}
+            top={"0px"}
+            alignItems={"center"}
+            flexDirection={"column"}
+            width={"200px"}
+          >
+            <Text
+              fontFamily={"poppins"}
+              fontWeight={"bold"}
+              fontSize={5}
+              lineHeight={1}
+              paddingY={3}
+              color={"#fff "}
+            >
+              Medicine Locator
+            </Text>
+
+            <Flex
+              flexDirection={"column"}
+              justifyContent={"space-between"}
+              width={"90%"}
+            >
+              <SideBarMenu />
+            </Flex>
+          </Flex>
+        </Modal>
+      )}
     </>
   );
 };

@@ -36,7 +36,12 @@ const api = async (config: IAPICallConfig) => {
     if (axios.isAxiosError(error)) {
       const response = error.response;
       if (response) {
-        throw new APIError(response.data?.code, response.data?.message);
+        if (response.status === 401) {
+          console.log("expired");
+          handleTokenExpiration();
+        } else {
+          throw new APIError(response.data?.code, response.data?.message);
+        }
       }
     }
     throw JSON.stringify(new APIError(baseErrors.NETWORK));
@@ -44,3 +49,11 @@ const api = async (config: IAPICallConfig) => {
 };
 
 export default api;
+
+function handleTokenExpiration() {
+  localStorage.removeItem("token");
+  localStorage.removeItem("id");
+  localStorage.removeItem("email");
+  localStorage.removeItem("name");
+  localStorage.removeItem("role");
+}

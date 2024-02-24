@@ -7,6 +7,8 @@ import { VscRequestChanges } from "react-icons/vsc";
 import { AiOutlineTransaction } from "react-icons/ai";
 import { MdOutlineInventory2 } from "react-icons/md";
 import { MdOutlineAccountBalance } from "react-icons/md";
+import { IoIosAdd } from "react-icons/io";
+
 //import DataTable from "app/Components/layouts/Main";
 
 export const API_ROUTE = import.meta.env.VITE_API_ROUTE;
@@ -15,11 +17,11 @@ export const routeConstants = {
   home: "/",
   login: "/login",
   signup: "/sign-up",
-  profile:"/profile",
+  profile: "/profile",
 };
 
 export const cookieKeys = {
-  authToken: 'au-few92',
+  authToken: "au-few92",
 };
 export const adminMenu: ISideBarMenu[] = [
   {
@@ -64,6 +66,18 @@ export const PharmaciesMenu = [
     label: "Inventory",
     to: "/inventory",
     icon: MdOutlineInventory2,
+    subMenuItems: [
+      {
+        label: "Add drugs",
+        to: "/inventory/orderdetail",
+        icon: IoIosAdd,
+      },
+      {
+        label: "Stock",
+        to: "/dashboard",
+        icon: RxDashboard,
+      },
+    ],
   },
   {
     label: "Orders",
@@ -77,40 +91,40 @@ export const PharmaciesMenu = [
   },
 ];
 
-
 export const OrderTableColumns: IColumn[] = [
   {
-    id: 'NO',
-    label: 'NO',
+    id: "NO",
+    label: "NO",
     minWidth: 50,
-  },  {
-    id: 'name',
-    label: 'Name',
+  },
+  {
+    id: "name",
+    label: "Name",
     minWidth: 150,
   },
   {
-    id: 'Phone',
-    label: 'Phone',
+    id: "Phone",
+    label: "Phone",
     minWidth: 100,
   },
   {
-    id: 'Drug',
-    label: 'Drug',
+    id: "Drug",
+    label: "Drug",
     minWidth: 100,
   },
   {
-    id: 'Location',
-    label: 'Location',
+    id: "Location",
+    label: "Location",
     minWidth: 100,
   },
   {
-    id: 'Time',
-    label: 'Time',
-    minWidth: 100,
-  }, {
-    id: 'Order Stutus',
-    label: 'Order Stutus',
+    id: "Time",
+    label: "Time",
     minWidth: 100,
   },
- 
+  {
+    id: "Order Stutus",
+    label: "Order Stutus",
+    minWidth: 100,
+  },
 ];
