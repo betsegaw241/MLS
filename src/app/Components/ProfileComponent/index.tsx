@@ -8,7 +8,7 @@ import { useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { RiLockPasswordFill } from "react-icons/ri";
 import Header from "../ui/Header";
-
+import { backgroundColor } from "styled-system";
 
 const ProfileComponent = (props: editProfileComponentProp) => {
   const { isFocused, isDragAccept } = useDropzone({ maxFiles: 1 });
@@ -30,48 +30,64 @@ const ProfileComponent = (props: editProfileComponentProp) => {
         marginLeft={"0px"}
         border={"1px  #d8cfcf solid"}
         marginTop={"50px"}
-        justifyContent={"space-around"}
+        //justifyContent={"space-between"}
         backgroundColor={"#F5F5F5"}
         marginBottom={"0px"}
       >
-        <Flex
-          flexDirection={"row"}
-          backgroundColor={"#dadada95"}
-          height={"50px"}
-          width={"200px"}
-          marginTop={"30px"}
-          marginLeft={"-30px"}
-          alignItems={"center"}
-          borderRadius={"10px"}
+        <Box
+          marginY={"35px"}
+          border={"1px  #d8cfcf solid"}
+          width={["100%", "320px"]}
+          borderRadius={"4%"}
+          backgroundColor={"#fff"}
+          marginLeft={"20px"}
         >
-          <CgProfile
-            style={{ fontSize: "40px", color: "#6ebaec", marginRight: "14px" }}
-          />
-          <P fontFamily={"poppins"} color="#262829">
-            Profile
-          </P>
-        </Flex>
-        <Flex marginRight={"14px"} marginTop={"140px"} marginLeft={"-480px"}>
-          <RiLockPasswordFill
-            style={{
-              fontSize: "40px",
-              color: "#6ebaec",
-              marginRight: "14px",
+          <Flex
+            flexDirection={"row"}
+            marginLeft={"16px"}
+            alignItems={"center"}
+            hover={{
+              backgroundColor: "#dadada95",
             }}
-          />
-          <P fontFamily={"poppins"} color="#242525">
-            Password and authentication
-          </P>
-        </Flex>
-      
+          >
+            <CgProfile
+              style={{
+                fontSize: "24px",
+                color: "#292a2b",
+                marginRight: "14px",
+              }}
+            />
+            <P fontFamily={"poppins"} color="#262829">
+              Profile
+            </P>
+          </Flex>
+          <Flex
+            alignItems={"center"}
+            hover={{
+              backgroundColor: "#dadada95",
+            }}
+            marginLeft={"16px"}
+          >
+            <RiLockPasswordFill
+              style={{
+                fontSize: "30px",
+                color: "#202122",
+                marginRight: "14px",
+              }}
+            />
+            <P fontFamily={"poppins"} color="#242525">
+              Password and authentication
+            </P>
+          </Flex>
+        </Box>
+
         <Box
           width={["100%", "62%"]}
           backgroundColor={"#fff"}
           marginY={"35px"}
           border={"1px  #d8cfcf solid"}
           borderRadius={"4%"}
-          marginLeft={"-200px"}
-         
+          marginLeft={"20px"}
         >
           <Flex
             justifyContent={"center"}
