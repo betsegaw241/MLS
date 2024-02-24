@@ -1,41 +1,38 @@
-import { useEffect } from 'react';
-import LoginComponent from 'app/Components/login_component/login';
-import { initialValues } from './constants';
-import { loginInSchema } from './validators';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from "react";
+import LoginComponent from "app/Components/login_component/login";
+import { initialValues } from "./constants";
+import { loginInSchema } from "./validators";
+import { useDispatch, useSelector } from "react-redux";
 import {
   selectErrorMessage,
   selectIsAuthenticated,
   selectIsLogging,
   selectRole,
-} from '../Layout/slice/selectors';
-import { useDefaultLayoutSlice } from '../Layout/slice';
-import { useNavigate } from 'react-router';
-import { FormValues } from './types';
+} from "./slice/selectors";
+import { useNavigate } from "react-router";
+import { FormValues } from "./types";
+import { useLoginSlice } from "./slice";
 function LoginPage() {
-  const { actions } = useDefaultLayoutSlice();
+  const { actions } = useLoginSlice();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const role = useSelector(selectRole);
   const isLogging = useSelector(selectIsLogging);
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const errorMessage = useSelector(selectErrorMessage);
-  
+
   function onLoginClick(values: FormValues) {
-    localStorage.setItem('token','fkwepfokpeo'),
-    localStorage.setItem('role','pharmacy'),
     dispatch(actions.login(values));
   }
   useEffect(() => {
-    if (localStorage.getItem('token')) {
-     
-      navigate(`/${role}/dashboard`);
+    if (localStorage.getItem("token")) {
+      navigate(`/${role}/home`);
     }
   }, []);
 
   useEffect(() => {
-    if (isAuthenticated && localStorage.getItem('token')) {
-      navigate(`/${role}/dashboard`);
+    if (isAuthenticated && localStorage.getItem("token")) {
+      navigate(`/${role}/home`);
     }
   }, [isAuthenticated]);
 

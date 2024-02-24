@@ -1,14 +1,21 @@
-import { useState } from "react";
-import { Box, Button, Flex, Text } from "../ui/Blocks";
-import Header from "../ui/Header";
+import { Box, Button, Flex, P } from "../ui/Blocks";
 import { InputField } from "../ui/InputComponent";
 import { Form, Formik } from "formik";
 import { editProfileComponentProp } from "./types";
+import Dropzone, { useDropzone } from "react-dropzone";
+import { H2, H4 } from "../ui/Blocks/Text/Text";
+import { useState } from "react";
+import { CgProfile } from "react-icons/cg";
+import { RiLockPasswordFill } from "react-icons/ri";
+import Header from "../ui/Header";
+
 
 const ProfileComponent = (props: editProfileComponentProp) => {
-  const [isFormVisible, setIsFormVisible] = useState(false);
-  const toggleFormVisibility = () => {
-    setIsFormVisible(!isFormVisible);
+  const { isFocused, isDragAccept } = useDropzone({ maxFiles: 1 });
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const handleFileDrop = (files: File[]) => {
+    setSelectedFile(files[0]);
   };
 
   return (
@@ -18,108 +25,164 @@ const ProfileComponent = (props: editProfileComponentProp) => {
         flexDirection={["column", "row"]}
         width={"100%"}
         height={"100%"}
-        marginTop={"80px"}
+        alignSelf={"center"}
+        justifySelf={"center"}
+        marginLeft={"0px"}
+        border={"1px  #d8cfcf solid"}
+        marginTop={"50px"}
         justifyContent={"space-around"}
         backgroundColor={"#F5F5F5"}
+        marginBottom={"0px"}
       >
         <Flex
-          flexDirection={"column"}
-          backgroundColor={"#D9D9D9"}
-          style={{ gap: 20 }}
-          width={["100%", "30%"]}
-          height={"500px"}
-          paddingY={50}
-          justifyContent={"center"}
+          flexDirection={"row"}
+          backgroundColor={"#dadada95"}
+          height={"50px"}
+          width={"200px"}
+          marginTop={"30px"}
+          marginLeft={"-30px"}
           alignItems={"center"}
-          marginY={"30px"}
+          borderRadius={"10px"}
         >
-          <Box>
+          <CgProfile
+            style={{ fontSize: "40px", color: "#6ebaec", marginRight: "14px" }}
+          />
+          <P fontFamily={"poppins"} color="#262829">
+            Profile
+          </P>
+        </Flex>
+        <Flex marginRight={"14px"} marginTop={"140px"} marginLeft={"-480px"}>
+          <RiLockPasswordFill
+            style={{
+              fontSize: "40px",
+              color: "#6ebaec",
+              marginRight: "14px",
+            }}
+          />
+          <P fontFamily={"poppins"} color="#242525">
+            Password and authentication
+          </P>
+        </Flex>
+      
+        <Box
+          width={["100%", "62%"]}
+          backgroundColor={"#fff"}
+          marginY={"35px"}
+          border={"1px  #d8cfcf solid"}
+          borderRadius={"4%"}
+          marginLeft={"-200px"}
+         
+        >
+          <Flex
+            justifyContent={"center"}
+            marginLeft={["20px", "40px", "50px", "42%"]}
+            marginRight={["20px", "40px", "50px", "74px"]}
+            flexDirection={"column"}
+            marginTop={"20px"}
+            style={{ gap: 20 }}
+          >
             <img
-              src="data:image/jpeg;base64,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"
+              src={
+                selectedFile
+                  ? URL.createObjectURL(selectedFile)
+                  : "data:image/jpeg;base64,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"
+              }
               alt=""
               width={"100px"}
               height={"100px"}
               style={{ borderRadius: "50%" }}
             />
-          </Box>
-          <Text> Jorge Bush</Text>
-          <Text> 123jorge@gmail.com</Text>
-          <Text> +251946453721</Text>
-          <Button
-            color={"#fff"}
-            borderRadius={"8%"}
-            height={"40px"}
-            width={"130px"}
-            variant="secondary"
-            fontWeight={"bold"}
-            onClick={toggleFormVisibility}
+            <Flex>
+              <Dropzone onDrop={handleFileDrop}>
+                {({ getRootProps, getInputProps }) => (
+                  <Flex
+                    backgroundColor={isFocused ? "green" : "#fff"}
+                    width={"140px"}
+                    height={"40px"}
+                    marginLeft={["20px", "40px", "50px", "-30px"]}
+                    borderColor={isDragAccept ? "red" : null}
+                    border={"1px #d8cfcf solid"}
+                    justifyContent={"center"}
+                    alignItems={"center"}
+                    borderRadius={"8px"}
+                    {...getRootProps({
+                      className: "dropzone",
+                      onDrop: (event) => event.stopPropagation(),
+                    })}
+                  >
+                    <input {...getInputProps()} />
+                    <H2 fontFamily={"poppins"} fontSize={[2, 1]}>
+                      Choose File
+                    </H2>
+                  </Flex>
+                )}
+              </Dropzone>
+              <P></P>
+            </Flex>
+          </Flex>
+          <Formik
+            initialValues={props.initialValues}
+            onSubmit={(values) => {
+              props.onSaveClick(values);
+            }}
+            validationSchema={props.EditSchema}
           >
-            Edit
-          </Button>
-        </Flex>
-
-        <Box
-          width={["100%", "62%"]}
-          backgroundColor={"#D9D9D9"}
-          marginY={"30px"}
-        >
-          {isFormVisible && (
-            <Formik
-              initialValues={props.initialValues}
-              onSubmit={(values) => {
-                props.onSaveClick(values);
-              }}
-              validationSchema={props.EditSchema}
-            >
-              {({ handleSubmit }) => {
-                return (
-                  <Form>
-                    <Flex
-                      flexDirection={"column"}
-                      marginLeft={["20px", "40px", "50px", "74px"]}
-                      marginRight={["20px", "40px", "50px", "74px"]}
-                      width={["50%", "60%", "65%", "70%"]}
-                      padding={"10%"}
-                      pt={10}
-                      borderRadius={"10%"}
-                      marginTop={"30px"}
-                      marginBottom={"10px"}
-                      backgroundColor={"#e2edf0"}
-                      style={{ gap: "20px" }}
+            {({ handleSubmit }) => {
+              return (
+                <Form>
+                  <Flex
+                    flexDirection={"column"}
+                    marginLeft={["20px", "40px", "50px", "74px"]}
+                    marginRight={["20px", "40px", "50px", "74px"]}
+                    width={["50%", "60%", "65%", "70%"]}
+                    padding={"4%"}
+                    pt={10}
+                    borderRadius={"10%"}
+                    marginTop={"10px"}
+                    marginBottom={"2px"}
+                    style={{ gap: "2px" }}
+                  >
+                    <InputField
+                      label="First Name:"
+                      name={"firstName"}
+                      type={"text"}
+                      value={props.initialValues.firstName}
+                    ></InputField>
+                    <InputField
+                      label="Last Name:"
+                      name={"lastName"}
+                      type={"text"}
+                      value={props.initialValues.lastName}
+                    ></InputField>
+                    <InputField
+                      label="Email:"
+                      name={"email"}
+                      type={"text"}
+                      value={props.initialValues.email}
+                    ></InputField>
+                    <InputField
+                      label="Phone:"
+                      name={"phone"}
+                      type={"text"}
+                      value={props.initialValues.phone}
+                    ></InputField>
+                    <Button
+                      backgroundColor="#399bdd"
+                      color={"#fff"}
+                      borderRadius={"8%"}
+                      height={"40px"}
+                      width={["50px", "80px", "100px", "130px"]}
+                      marginLeft={["30%", "40%"]}
+                      fontWeight={"bold"}
+                      onClick={() => handleSubmit()}
                     >
-                      <InputField
-                        label="Name:"
-                        name={"name"}
-                        type={"text"}
-                      ></InputField>
-                      <InputField
-                        label="Email:"
-                        name={"email"}
-                        type={"text"}
-                      ></InputField>
-                      <InputField
-                        label="Phone:"
-                        name={"phone"}
-                        type={"text"}
-                      ></InputField>
-                      <Button
-                        variant="secondary"
-                        color={"#fff"}
-                        borderRadius={"8%"}
-                        height={"40px"}
-                        width={["50px", "80px", "100px", "130px"]}
-                        marginLeft={["30%", "40%"]}
-                        fontWeight={"bold"}
-                        onClick={() => handleSubmit()}
-                      >
-                        Save
-                      </Button>
-                    </Flex>
-                  </Form>
-                );
-              }}
-            </Formik>
-          )}
+                      Save
+                    </Button>
+                  </Flex>
+                </Form>
+              );
+            }}
+          </Formik>
         </Box>
       </Flex>
     </>

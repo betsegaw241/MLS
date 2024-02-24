@@ -2,12 +2,16 @@ import { FormValues } from "./types";
 export const initialValues: FormValues = {
   email: "",
   phone: "",
-  name: "",
+  firstName: "",
+  lastName:"",
 };
 
 export const errorValues = {
-  name: {
-    required: "Name is required",
+  firstName: {
+    required: " First Name is required",
+  },
+  lastName: {
+    required: " Last Name is required",
   },
   email: {
     invalid: "Invalid email address",

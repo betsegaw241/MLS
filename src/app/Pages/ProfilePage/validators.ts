@@ -2,7 +2,8 @@ import * as Yup from "yup";
 import { errorValues } from "./constants";
 
 export const EditSchema = Yup.object({
-  name: Yup.string().required(errorValues.name.required),
+  firstName: Yup.string().required(errorValues.firstName.required),
+  lastName: Yup.string().required(errorValues.lastName.required),
   email: Yup.string()
     .email(errorValues.email.invalid)
     .required(errorValues.email.required),

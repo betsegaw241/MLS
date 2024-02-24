@@ -7,7 +7,7 @@ import { PayloadAction } from "@reduxjs/toolkit";
 function* handleGetPharmacies(action: PayloadAction<string>) {
   try {
     const res: AxiosResponse = yield api({
-      route: "/pharmacy/add",
+      route: "/pharmacist/add",
       method: "POST",
       isSecureRoute: true,
       body: { user: action.payload },

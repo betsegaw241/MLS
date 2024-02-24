@@ -1,12 +1,11 @@
 import { call, put, takeLatest } from "redux-saga/effects";
 // import { AxiosResponse } from 'axios';
-import { defaultLayoutActions as actions } from ".";
+import { loginActions as actions } from ".";
 import { PayloadAction } from "@reduxjs/toolkit";
 
 import api from "../../../../API/api";
 import { IUserModel } from "../../../models/user";
-import { FormValues } from "../../Login/types";
-import { AxiosResponse } from "axios";
+import { FormValues } from "../types";
 
 function* handleLogin(action: PayloadAction<FormValues>) {
 
@@ -33,6 +32,6 @@ function* handleLogin(action: PayloadAction<FormValues>) {
   }
 }
 
-export function* DefaultLayoutSaga() {
+export function* LoginSaga() {
   yield takeLatest(actions.login.type, handleLogin);
 }

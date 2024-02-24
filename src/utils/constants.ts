@@ -66,12 +66,12 @@ export const PharmaciesMenu = [
     icon: MdOutlineInventory2,
   },
   {
-    label: "orders",
+    label: "Orders",
     to: "/request",
     icon: VscRequestChanges,
   },
   {
-    label: "pharmacy account",
+    label: "Account",
     to: "/pharmAccount",
     icon: MdOutlineAccountBalance,
   },

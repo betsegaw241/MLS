@@ -34,11 +34,12 @@ function ProfilePage() {
     <>
       <ProfileComponent
         errorMessage={errorMessage}
-      initialValues={initialValues}
+        initialValues={initialValues}
         isEditing={isEditing}
-        EditSchema={EditSchema}  
-        onSaveClick={onSaveClick}
-      />
+        EditSchema={EditSchema}
+        onSaveClick={onSaveClick} file={function <T extends File>(arg0: T): void {
+          throw new Error("Function not implemented.");
+        } }      />
     </>
   );
 }

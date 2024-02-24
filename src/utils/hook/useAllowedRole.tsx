@@ -1,4 +1,4 @@
-import { selectRole } from 'app/Pages/Layout/slice/selectors';
+import { selectRole } from 'app/Pages/Login/slice/selectors';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 // import { AccessControl } from 'accesscontrol';
@@ -8,7 +8,10 @@ interface IUseAllowedRole {
 }
 
 export function useAllowedRole(props: IUseAllowedRole) {
-  const role = useSelector(selectRole);
+  // const role = useSelector(selectRole);
+  const role = localStorage.getItem('role');
+
+  console.log('allwed-role',role)  
   const navigate = useNavigate();
 
   if (role !== props.allowedRole) {

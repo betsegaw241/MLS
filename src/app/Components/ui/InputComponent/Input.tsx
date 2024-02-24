@@ -12,7 +12,7 @@ function InputField(props: InputProps) {
       <Flex justifyContent={"space-between"} alignItems={"center"}>
         <Text
           fontFamily={"poppins"}
-          fontSize={"12px"}
+          fontSize={"16px"}
           lineHeight="18px"
           textAlign={"center"}
         >

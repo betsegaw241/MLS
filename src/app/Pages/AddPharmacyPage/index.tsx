@@ -47,7 +47,7 @@ const AddPharmacyPage = () => {
         nigdFikad: nigdFikadURL,
         pharmacyLicense: pharmacyLicenseURL,
       }; 
-      dispatch(actions.addPharmacy(updatedData))
+      // dispatch(actions.addPharmacy(updatedData))
        console.log("handleAddPharmacy",  updatedData );
     } catch (error) {
       console.log("handleAddPharmacy--error", error);

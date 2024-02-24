@@ -1,14 +1,14 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '../../../../store/utils/toolkit';
 import { useInjectReducer, useInjectSaga } from '../../../../store/utils/redux-injectors';
-import { DefaultLayoutSaga } from './saga';
-import { LayoutState, IModeAction, IRedirectAction } from './types';
+import { LoginSaga } from './saga';
+import { IModeAction, IRedirectAction, LoginState } from './types';
 import { IUserModel, data } from '../../../models/user';
 
-export const initialState: LayoutState = {
+export const initialState: LoginState = {
   isAuthenticated: false,
   user: undefined,
-  role: null,
+  role: '',
   mode: 'light',
   isLogging: false,
   redirectTo: {
@@ -18,44 +18,29 @@ export const initialState: LayoutState = {
 };
 
 const slice = createSlice({
-  name: 'Layout',
+  name: 'login',
   initialState,
   reducers: {
    
-    login: (state:LayoutState) => {
+    login: (state:LoginState, action: PayloadAction<any>) => {
       state.isLogging = true;
       
     },
-    loginSuccess: (state:LayoutState, action: PayloadAction<data>) => {
+    loginSuccess: (state:LoginState, action: PayloadAction<data>) => {
       state.isLogging = false;
       state.isAuthenticated = true;
       // state.user = action.payload;
       state.role = action.payload.role;
-      console.log(action.payload)
+      console.log('ussre-role',action.payload.role)
     },
-    loginFailed: (state:LayoutState, action: PayloadAction<string>) => {
+    loginFailed: (state:LoginState, action: PayloadAction<any>) => {
       state.isLogging = false;
       state.isAuthenticated = false;
       state.errorMessage = action.payload;
     },
-    setRole(state:LayoutState, action: PayloadAction<string | null>) {
-      state.role = action.payload;
-    },
-    clearRole(state:LayoutState) {
-      state.role = undefined;
-    },
-    setMode(state:LayoutState, action: PayloadAction<IModeAction>) {
-      state.mode = action.payload;
-    },
-    setRedirectTo(state:LayoutState, action: PayloadAction<IRedirectAction>) {
-      state.redirectTo = action.payload;
-    },
-    clearRedirectTo(state:LayoutState) {
-      state.redirectTo = {
-        path: null,
-      };
-    },
-    logout:( state :LayoutState)=> {
+   
+    logout:( state :LoginState)=> {
+      console.log('logout')
       state.isAuthenticated = false;
       state.user = undefined;
       localStorage.removeItem('token');
@@ -67,11 +52,11 @@ const slice = createSlice({
   },
 });
 
-export const { actions: defaultLayoutActions } = slice;
+export const { actions: loginActions } = slice;
 
-export const useDefaultLayoutSlice = () => {
+export const useLoginSlice = () => {
   useInjectReducer({ key: slice.name, reducer: slice.reducer });
-  useInjectSaga({ key: slice.name, saga: DefaultLayoutSaga });
+  useInjectSaga({ key: slice.name, saga: LoginSaga });
   return { actions: slice.actions };
 };
 

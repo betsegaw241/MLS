@@ -13,11 +13,11 @@ function* handleEditProfile(action: PayloadAction<string>) {
       body: { user: action.payload },
     });
     if (res.status === 200) {
-      yield put(actions.EditProfileSuccess(res));
+      yield put(actions.editProfileSuccess(res));
     }
   } catch (error) {
     console.log(error);
-    yield put(actions.EditProfileFailed(error));
+    yield put(actions.editProfileFailed(error));
   }
 }
 
