@@ -35,6 +35,7 @@ const api = async (config: IAPICallConfig) => {
       throw new APIError(response.data?.code, response.data?.message);
     }
   } catch (error: any) {
+    console.log('error-----',error?.response.data)
     if (error?.response) {
       const { response } = error;
       if (response) {
@@ -43,7 +44,7 @@ const api = async (config: IAPICallConfig) => {
         }
       }
       if (error instanceof APIError) throw error;
-      else throw new APIError(response.data?.code, response.data?.message);
+      else throw (response.data?.code, response.data?.message);
     }
     throw new APIError(baseErrors.NETWORK);
   }
