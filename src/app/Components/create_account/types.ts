@@ -16,7 +16,9 @@ export interface CreateAccountComponentProp {
 
   initialValues: FormValues;
   // signupSchema: object;
-  // isSigningup: boolean;
+  isUploading: boolean;
+  isUploaded: boolean;
+  creatingAccount: boolean;
   errorMessage: string;
   UploadingDocument: boolean;
 
@@ -27,6 +29,7 @@ export interface CreateAccountComponentProp {
   pharmacyItialValues: ParmacyFormValues;
   handleStep1: (values: UserFormValues) => void;
   handleStep2: (values: ParmacyFormValues) => void;
+  handleStep3: (values: DocumentFormValues) => void;
   onSignupClick: (values: DocumentFormValues) => void;
   back: () => void;
 }

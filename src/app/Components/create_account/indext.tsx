@@ -29,7 +29,7 @@ const CreateAccount = (props: CreateAccountComponentProp) => {
         justifyContent={"center"}
         alignItems={"center"}
         backgroundColor={theme.colors.light.white[13]}
-        borderBottom={"2px solid #9DA7BC"}
+        // borderBottom={"2px solid #9DA7BC"}
         height={"100px"}
         top={"0px"}
         right={"0px"}
@@ -94,7 +94,7 @@ const CreateAccount = (props: CreateAccountComponentProp) => {
           </Flex>
         </Flex>
       </Flex>
-      <Box paddingTop={"100px"} >{steps[props.currentStep]}</Box>
+      <Box paddingTop={"100px"}>{steps[props.currentStep]}</Box>
     </Flex>
   );
 };

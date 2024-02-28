@@ -7,7 +7,7 @@ import { createAccountPageState } from "./types";
 export const initialState: createAccountPageState = {
   isCreatingAccount: false,
   errorMessage: "",
-  account: undefined
+  isAcountCreated: false,
 };
 
 const slice = createSlice({
@@ -19,13 +19,12 @@ const slice = createSlice({
     },
     createAccountSuccess: (state, action: PayloadAction<any>) => {
       state.isCreatingAccount = false;
-      state.account = action.payload;
-      // state.isAccountCreated = true;
+      state.isAcountCreated = true;
     },
     createAccountFailed: (state, action: PayloadAction<any>) => {
       state.isCreatingAccount = false;
       state.errorMessage = action.payload;
-      // state.isAccountCreated = false;
+      state.isAcountCreated = false;
     },
   },
 });

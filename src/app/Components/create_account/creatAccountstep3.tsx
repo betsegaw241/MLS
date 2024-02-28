@@ -4,12 +4,13 @@ import FileUpload from "../ui/FileUpload";
 import { FileObject } from "app/Pages/createAccountPage/types";
 import { ErrorMessage, Form, Formik } from "formik";
 import { theme } from "../../../styles/theme";
+import Spinner from "react-activity/dist/Spinner";
+import "react-activity/dist/Spinner.css";
+
 const CreateAccountStep3 = (props: CreateAccountComponentProp) => {
   return (
     <Flex
-    
       backgroundColor={theme.colors.light.white[0]}
-
       alignItems={"center"}
       justifyContent={"center"}
       flexDirection={"column"}
@@ -39,7 +40,7 @@ const CreateAccountStep3 = (props: CreateAccountComponentProp) => {
                 <Flex
                   flexDirection={"column"}
                   width={"100%"}
-                  style={{ gap: "10px" }}
+                  // style={{ gap: "10px" }}
                 >
                   <Text fontFamily={"poppins"}>Pharmacist Lisence</Text>
                   <FileUpload
@@ -104,45 +105,76 @@ const CreateAccountStep3 = (props: CreateAccountComponentProp) => {
                     <ErrorMessage name="nigdFikad" />
                   </Text>
                 </Flex>
-
-                <Flex justifyContent="space-between" alignItems="center" pt={2}>
+                {props.isUploaded ? (
                   <Button
+                    variant="secondary"
                     borderRadius={40}
-                    fontWeight="bold"
                     fontFamily="poppins"
                     color="white"
                     fontSize={2}
                     my={2}
-                    variant="neuteral"
-                    onClick={() => {
-                      props.back();
-                    }}
-                    type="button"
+                    pt={2}
+                    width={"100%"}
                     padding={1}
-                    disabled={props.UploadingDocument}
-                    width="200px"
-                  >
-                    back
-                  </Button>{" "}
-                  <Button
-                    borderRadius={40}
-                    fontWeight="bold"
-                    fontFamily="poppins"
-                    color="white"
-                    fontSize={2}
-                    my={2}
-                    variant="primary"
+                    type="button"
                     onClick={() => {
                       handleSubmit();
                     }}
-                    disabled={props.UploadingDocument}
-                    type="submit"
-                    padding={1}
-                    width="200px"
                   >
-                    Submit
+                    {props.creatingAccount ? (
+                      <Spinner style={{ marginLeft: "45%" }} />
+                    ) : (
+                      "Submit"
+                    )}
                   </Button>
-                </Flex>
+                ) : (
+                  <Flex
+                    justifyContent="space-between"
+                    alignItems="center"
+                    pt={2}
+                  >
+                    <Button
+                      borderRadius={40}
+                      fontWeight="bold"
+                      fontFamily="poppins"
+                      color="white"
+                      fontSize={2}
+                      my={2}
+                      variant="neuteral"
+                      onClick={() => {
+                        props.back();
+                      }}
+                      type="button"
+                      padding={1}
+                      disabled={props.UploadingDocument}
+                      width="200px"
+                    >
+                      back
+                    </Button>
+                    <Button
+                      borderRadius={40}
+                      fontWeight="bold"
+                      fontFamily="poppins"
+                      color="white"
+                      fontSize={2}
+                      my={2}
+                      variant="primary"
+                      onClick={() => {
+                        props.handleStep3(values);
+                      }}
+                      disabled={props.UploadingDocument}
+                      type="submit"
+                      padding={1}
+                      width="200px"
+                    >
+                      {props.isUploading ? (
+                        <Spinner style={{ marginLeft: "45%" }} />
+                      ) : (
+                        "Next"
+                      )}
+                    </Button>
+                  </Flex>
+                )}
               </Flex>
             </Form>
           );

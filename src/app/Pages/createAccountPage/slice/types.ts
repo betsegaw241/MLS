@@ -18,7 +18,7 @@ export interface Account {
 }
 
 export interface createAccountPageState {
-  account?: Account;
+  isAcountCreated: boolean;
   errorMessage: string;
   isCreatingAccount: boolean;
 }

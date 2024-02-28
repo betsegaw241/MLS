@@ -3,23 +3,22 @@ import { createSelector } from "@reduxjs/toolkit";
 import { RootState } from "store/types";
 import { initialState } from ".";
 
-const selectSlice = (state: RootState) =>
-  state?.createAccount || initialState;
+const selectSlice = (state: RootState) => state?.verifyAccount || initialState;
 
-export const selectCreateAccountPage = createSelector(
+export const selectVerifyAccountPage = createSelector(
   [selectSlice],
   (state) => state
 );
 
-export const selectIsAcountCreated = createSelector(
+export const selectIsAcountVerified = createSelector(
   [selectSlice],
-  (state) => state.isAcountCreated
+  (state) => state.isAcountVerified
 );
 export const selectErrorMessage = createSelector(
   [selectSlice],
   (state) => state.errorMessage
 );
-export const selectCreating = createSelector(
+export const selectVerifying = createSelector(
   [selectSlice],
-  (state) => state.isCreatingAccount
+  (state) => state.isVerifyingAccount
 );

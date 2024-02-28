@@ -7,14 +7,15 @@ import { baseErrors } from "./ErrorCodes";
 import Cookies from "js-cookie";
 
 const api = async (config: IAPICallConfig) => {
+  let authToken;
+
   try {
     const fullURL = `${API_ROUTE}${config.route}`;
     const header: HeaderObj = config.header || {};
-    const authToken = config.isSecureRoute
-      ? localStorage.getItem("token") || Cookies.get(cookieKeys.authToken)
-      : undefined;
 
-    if (authToken) {
+    if (config.isSecureRoute) {
+      authToken =
+        localStorage.getItem("token") || Cookies.get(cookieKeys.authToken);
       header.Authorization = `Bearer ${authToken}`;
     }
 
@@ -27,24 +28,24 @@ const api = async (config: IAPICallConfig) => {
       responseType: config.responseType || "json",
       onUploadProgress: config.onUploadProgress,
     });
+
     if (response.status === 200) {
-      return response;
+      return response.data;
     } else {
       throw new APIError(response.data?.code, response.data?.message);
     }
   } catch (error: any) {
-    if (axios.isAxiosError(error)) {
-      const response = error.response;
+    if (error?.response) {
+      const { response } = error;
       if (response) {
         if (response.status === 401) {
-          console.log("expired");
           handleTokenExpiration();
-        } else {
-          throw new APIError(response.data?.code, response.data?.message);
         }
       }
+      if (error instanceof APIError) throw error;
+      else throw new APIError(response.data?.code, response.data?.message);
     }
-    throw JSON.stringify(new APIError(baseErrors.NETWORK));
+    throw new APIError(baseErrors.NETWORK);
   }
 };
 
@@ -57,3 +58,43 @@ function handleTokenExpiration() {
   localStorage.removeItem("name");
   localStorage.removeItem("role");
 }
+
+//   try {
+//     const fullURL = `${API_ROUTE}${config.route}`;
+//     const header: HeaderObj = config.header || {};
+//     const authToken = config.isSecureRoute
+//       ? localStorage.getItem("token") || Cookies.get(cookieKeys.authToken)
+//       : undefined;
+
+//     if (authToken) {
+//       header.Authorization = `Bearer ${authToken}`;
+//     }
+
+//     const response: AxiosResponse = await axios({
+//       method: config.method,
+//       params: config.query,
+//       data: config.body,
+//       url: fullURL,
+//       headers: { ...header },
+//       responseType: config.responseType || "json",
+//       onUploadProgress: config.onUploadProgress,
+//     });
+//     if (response.status === 200) {
+//       return response;
+//     } else {
+//       throw new APIError(response.data?.code, response.data?.message);
+//     }
+//   } catch (error: any) {
+//     if (axios.isAxiosError(error)) {
+//       const response = error.response;
+//       if (response) {
+//         if (response.status === 401) {
+//           handleTokenExpiration();
+//         } else {
+//           throw new APIError(response.data?.code, response.data?.message);
+//         }
+//       }
+//     }
+//     throw JSON.stringify(new APIError(baseErrors.NETWORK));
+//   }
+// };
