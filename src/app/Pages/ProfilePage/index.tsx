@@ -32,9 +32,11 @@ function ProfilePage() {
     }
   }, []);
 
+
   useEffect(() => {
     dispatch(actions.getUser(userID));
   }, []);
+
 
   useEffect(() => {
     if (isAuthenticated && localStorage.getItem("token")) {

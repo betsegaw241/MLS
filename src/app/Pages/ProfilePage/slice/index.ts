@@ -46,7 +46,7 @@ const slice = createSlice({
       state.isgettingUser = false;
       state.isUserExist = true;
       const nameParts = action.payload.name.split(" ");
-      console.log(nameParts);
+
       state.profile.firstName = nameParts[0];
       state.profile.avatar = action.payload.avatar;
       state.profile.lastName = nameParts[1];

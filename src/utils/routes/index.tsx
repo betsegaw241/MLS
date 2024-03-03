@@ -78,7 +78,7 @@ export const routes: IRoute[] = [
     element: <ProfilePage />,
     exact: true,
     path: "/profile",
-    isProtected: false,
+    isProtected: true,
     allowedRole: "*",
   },
   {

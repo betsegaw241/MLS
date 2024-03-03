@@ -15,7 +15,8 @@ function* handleEditProfile(action: PayloadAction<string>) {
       isSecureRoute: true,
       body: { user: (action.payload as unknown as PayloadType).user },
     });
-    if (res.status === 200) {
+
+    if (res) {
       yield put(actions.editProfileSuccess(res));
     }
   } catch (error) {
@@ -30,9 +31,8 @@ function* handleGetUser(action: PayloadAction<string>) {
       isSecureRoute: true,
       query: { id: action.payload },
     });
-
-    if (res.status === 200) {
-      yield put(actions.getUserSuccess(res.data));
+    if (res) {
+      yield put(actions.getUserSuccess(res));
     }
   } catch (error) {
     console.log(error);
