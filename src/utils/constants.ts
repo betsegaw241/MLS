@@ -129,12 +129,10 @@ export const OrderTableColumns: IColumn[] = [
   },
 ];
 export const drugTableColumn: IColumn[] = [
-  
   {
     id: "NO",
     label: "NO",
     minWidth: 10,
-
   },
   {
     id: "Drug",
@@ -165,25 +163,23 @@ export const drugTableColumn: IColumn[] = [
     id: "Stock Leve",
     label: "Stock Leve",
     minWidth: 50,
-  }, {
+  },
+  {
     id: "Minimum Stock Level",
     label: "Minimum Stock Level",
     minWidth: 50,
   },
 ];
 export const drugDetails: IColumn[] = [
-  
   {
     id: "Date",
     label: "Date",
     minWidth: 50,
-
   },
- 
-  
+
   {
-    id: "Unit Price",
-    label: "Unit Price",
+    id: "Recived",
+    label: "Recived",
     minWidth: 50,
   },
   {
@@ -192,8 +188,8 @@ export const drugDetails: IColumn[] = [
     minWidth: 50,
   },
   {
-    id: "Stock Leve",
-    label: "Stock Leve",
+    id: "Balance",
+    label: "Balance",
     minWidth: 50,
   },
 ];

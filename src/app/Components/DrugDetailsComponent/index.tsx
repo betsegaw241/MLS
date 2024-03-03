@@ -11,47 +11,41 @@ import { drugDetails } from "utils/constants";
 import { Box, Button, Flex, Grid, Text } from "../ui/Blocks";
 import { GridBox } from "../ui/Blocks/GridBox";
 import { TableHeader } from "../ui/Blocks/Table";
-import MapComponent from "../ui/MapComponent";
 export interface IStatus {
   status: "ACCEPTED" | "REJECTED" | "Pending";
 }
 const DrugDetailsComponent = () => {
-  const status: IStatus = { status: "Pending" };
   const Drug = [
     {
-      date: "09/35/33",
-      price_per_unit: "23",
+      date: "05/35/33",
+      recived: 400,
       expiration_date: "09/35/33",
-      stock_Level: "40",
+      balance: 90,
     },
 
     {
       date: "09/35/33",
-      price_per_unit: "23",
+      recived: 400,
       expiration_date: "09/35/33",
-      min_sockLevel: "20",
-      stock_Level: "40",
+      balance: 7,
     },
     {
-      date: "09/35/33",
-      price_per_unit: "23",
+      date: "12/35/33",
+      recived: 400,
       expiration_date: "09/35/33",
-      min_sockLevel: "20",
-      stock_Level: "40",
+      balance: 0,
     },
     {
-      date: "09/35/33",
-      price_per_unit: "23",
+      date: "10/35/33",
+      recived: 400,
       expiration_date: "09/35/33",
-      min_sockLevel: "20",
-      stock_Level: "40",
+      balance: 100,
     },
     {
-      date: "09/35/33",
-      price_per_unit: "23",
+      date: "29/35/33",
+      recived: 400,
       expiration_date: "09/35/33",
-      min_sockLevel: "20",
-      stock_Level: "40",
+      balance: 0,
     },
   ];
   return (
@@ -96,31 +90,7 @@ const DrugDetailsComponent = () => {
             <GridBox lable={"Minimum stock level"} value={"20"} />
           </Grid>
         </Box>
-        <Box>
-          <Text fontFamily={"poppins"} fontSize={2}>
-            Batch Information
-          </Text>
-          <Grid
-            border={"1px solid #f5f5f5f5"}
-            borderRadius={0}
-            gridColumnGap={"40px"}
-            gridRowGap={"15px"}
-            gridTemplateColumns={[
-              "repeat(1, 1fr)",
-              "repeat(2, 1fr)",
-              "repeat(3, 1fr)",
-              "repeat(4, 1fr)",
-            ]}
-            mb={2}
-            p={1}
-          >
-            <GridBox lable={"Drug"} value={"Advil 1ml"} />
-            <GridBox lable={"Dosage"} value={"350mg"} />
-            <GridBox lable={"Strength"} value={"5ml"} />
-            <GridBox lable={"Stock level"} value={"400"} />
-            <GridBox lable={"Minimum stock level"} value={"20"} />
-          </Grid>
-        </Box>
+
         <Text fontFamily={"poppins"} fontSize={2}>
           Batch Information
         </Text>
@@ -171,13 +141,13 @@ const DrugDetailsComponent = () => {
                             fontFamily: "poppins",
                           }}
                         >
-                          {item.price_per_unit}
+                          {item.recived}
                         </TableCell>
                         <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
                           {item.expiration_date}
                         </TableCell>
                         <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                          {item.stock_Level}
+                          {item.balance}
                         </TableCell>
                       </TableRow>
                     ))}
