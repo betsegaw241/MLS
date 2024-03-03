@@ -12,6 +12,8 @@ import ManagePharmacyAccount from "app/Components/ManagePharmacyAccount";
 import OrderDetailComponent from "app/Components/OrdersDetailComponent";
 import VerifyEmailComponent from "app/Components/verifyEmail/VerifyEmailComponent";
 import VerifyEmailPage from "app/Pages/VerifyEmailPage";
+import StockComponent from "app/Components/StockComponent";
+import DrugDetailsComponent from "app/Components/DrugDetailsComponent";
 
 export const routes: IRoute[] = [
   {
@@ -98,7 +100,7 @@ export const routes: IRoute[] = [
   {
     element: <OrderDetailComponent />,
     exact: true,
-    path: "pharmacist/inventory/orderdetail",
+    path: "pharmacist/orderdetail",
     isProtected: true,
     allowedRole: "pharmacist",
     needsLayout: true,
@@ -116,5 +118,20 @@ export const routes: IRoute[] = [
     path: "/verifiedemail/activate",
     isProtected: false,
     allowedRole: "*",
+  },
+  {
+    element: <StockComponent />,
+    exact: true,
+    path: "pharmacist/stock",
+    isProtected: true,
+    allowedRole: "pharmacist",
+    needsLayout: true,
+  }, {
+    element: <DrugDetailsComponent />,
+    exact: true,
+    path: "pharmacist/drugdetails",
+    isProtected: true,
+    allowedRole: "pharmacist",
+    needsLayout: true,
   },
 ];

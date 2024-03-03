@@ -69,12 +69,12 @@ export const PharmaciesMenu = [
     subMenuItems: [
       {
         label: "Add drugs",
-        to: "/inventory/orderdetail",
+        to: "/orderdetail",
         icon: IoIosAdd,
       },
       {
         label: "Stock",
-        to: "/dashboard",
+        to: "/stock",
         icon: RxDashboard,
       },
     ],
@@ -126,5 +126,74 @@ export const OrderTableColumns: IColumn[] = [
     id: "Order Stutus",
     label: "Order Stutus",
     minWidth: 100,
+  },
+];
+export const drugTableColumn: IColumn[] = [
+  
+  {
+    id: "NO",
+    label: "NO",
+    minWidth: 10,
+
+  },
+  {
+    id: "Drug",
+    label: "Drug",
+    minWidth: 100,
+  },
+  {
+    id: "Dosage",
+    label: "Dosage",
+    minWidth: 50,
+  },
+  {
+    id: "Strength",
+    label: "Strength",
+    minWidth: 50,
+  },
+  {
+    id: "Unit Price",
+    label: "Unit Price",
+    minWidth: 50,
+  },
+  {
+    id: "Expairation Date",
+    label: "Expairation Date",
+    minWidth: 50,
+  },
+  {
+    id: "Stock Leve",
+    label: "Stock Leve",
+    minWidth: 50,
+  }, {
+    id: "Minimum Stock Level",
+    label: "Minimum Stock Level",
+    minWidth: 50,
+  },
+];
+export const drugDetails: IColumn[] = [
+  
+  {
+    id: "Date",
+    label: "Date",
+    minWidth: 50,
+
+  },
+ 
+  
+  {
+    id: "Unit Price",
+    label: "Unit Price",
+    minWidth: 50,
+  },
+  {
+    id: "Expairation Date",
+    label: "Expairation Date",
+    minWidth: 50,
+  },
+  {
+    id: "Stock Leve",
+    label: "Stock Leve",
+    minWidth: 50,
   },
 ];
