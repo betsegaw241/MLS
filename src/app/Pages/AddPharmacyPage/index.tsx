@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 import { useAddPharmacyPageSlice } from "./slice";
 
 const AddPharmacyPage = () => {
-
   const { actions } = useAddPharmacyPageSlice();
   const dispatch = useDispatch();
 
@@ -46,14 +45,11 @@ const AddPharmacyPage = () => {
         ...values,
         nigdFikad: nigdFikadURL,
         pharmacyLicense: pharmacyLicenseURL,
-      }; 
-      // dispatch(actions.addPharmacy(updatedData))
-       console.log("handleAddPharmacy",  updatedData );
+      };
+      console.log("handleAddPharmacy", updatedData);
     } catch (error) {
       console.log("handleAddPharmacy--error", error);
     }
-
-  
   };
 
   return (

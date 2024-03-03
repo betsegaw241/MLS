@@ -3,8 +3,7 @@ import { createSelector } from "@reduxjs/toolkit";
 import { RootState } from "store/types";
 import { initialState } from ".";
 
-const selectSlice = (state: RootState) =>
-  state?.editProfilePage || initialState;
+const selectSlice = (state: RootState) => state?.editProfile || initialState;
 
 export const selectEditProfilePage = createSelector(
   [selectSlice],
@@ -25,4 +24,8 @@ export const selectIsAuthenticated = createSelector(
 export const selectProfile = createSelector(
   [selectSlice],
   (state) => state.profile
+);
+export const selectUserExist = createSelector(
+  [selectSlice],
+  (state) => state.isUserExist
 );

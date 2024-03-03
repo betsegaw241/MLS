@@ -11,6 +11,5 @@ export interface FileObject {
     type: string;
     size: number;
     path: string;
-    // Add any other properties you need for the file
   }
   

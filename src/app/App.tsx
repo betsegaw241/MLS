@@ -7,8 +7,6 @@ import { Layout } from "./Pages/Layout";
 import { routes } from "utils/routes";
 import React from "react";
 import { v4 as uuid } from "uuid";
-
-// import { useAllowedRole } from 'utils/hook/useAllowedRole';
 const ProtectedRoute = (props: IProtectedRoute) => {
   if (!localStorage.getItem("token")) {
     return <Navigate to={routeConstants.login} />;
@@ -20,13 +18,10 @@ const ProtectedRoute = (props: IProtectedRoute) => {
 function App() {
   return (
     <BrowserRouter>
-      {/* <GlobalStyle /> */}
       <Routes>
         <Route element={<Navigate replace={true} to="/login" />} path="/" />
         <Route element={<LoginPage />} path="/login" />
-      
       </Routes>
-      {/* <Layout> */}
       <Routes>
         {routes.map((route: IRoute) => (
           <React.Fragment key={uuid()}>
@@ -34,7 +29,6 @@ function App() {
               <Route
                 element={
                   <ProtectedRoute allowedRole={route.allowedRole}>
-                    {/* {route.element} */}
                     {route.needsLayout ? (
                       <Layout>{route.element}</Layout>
                     ) : (
@@ -50,7 +44,6 @@ function App() {
           </React.Fragment>
         ))}
       </Routes>
-      {/* </Layout> */}
     </BrowserRouter>
   );
 }

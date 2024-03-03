@@ -3,11 +3,9 @@ import { Flex, P } from "../Blocks";
 
 const FileUpload = (props: any) => {
   const { isFocused, isDragAccept } = useDropzone({ maxFiles: 1 });
-    // console.log(isFocused, isDragAccept, isDragReject);
 
-    return (
+  return (
     <Flex>
-      {/* <Dropzone onDrop={(files) => handleUpload(files[0])}> */}
       <Dropzone onDrop={(files) => props.file(files[0])}>
         {({ getRootProps, getInputProps }) => (
           <Flex

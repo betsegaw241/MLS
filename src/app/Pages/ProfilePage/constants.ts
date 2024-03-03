@@ -3,7 +3,8 @@ export const initialValues: FormValues = {
   email: "",
   phone: "",
   firstName: "",
-  lastName:"",
+  lastName: "",
+  avatar: ""
 };
 
 export const errorValues = {

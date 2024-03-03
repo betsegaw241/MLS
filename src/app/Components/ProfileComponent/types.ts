@@ -1,12 +1,16 @@
-import { FormValues } from "app/Pages/ProfilePage/types";
-
 export interface editProfileComponentProp {
-  //file<T extends File>(arg0: T): void;
-  initialValues: FormValues;
+  initialValues: IProfile;
   EditSchema: object;
   isEditing: boolean;
-  file: (file: File) => void;
-  onSaveClick: (values: FormValues) => void;
+  profile: (file: File) => void;
+  onSaveClick: (values: IProfile) => void;
   errorMessage: string;
 }
 
+export interface IProfile {
+  firstName: String;
+  lastName: String;
+  email: String;
+  phone: String;
+  avatar: string;
+}

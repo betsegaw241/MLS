@@ -72,7 +72,6 @@ const AddParmacyComponent = (props: AddPharmacyComponentProps) => {
                         setFieldValue("pharmacyLicense", file)
                       }
                     />
-
                     <Flex>
                       <Text fontFamily={"poppins"} color={"green"}>
                         {pharmacyLicense}

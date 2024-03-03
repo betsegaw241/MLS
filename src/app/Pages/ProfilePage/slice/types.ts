@@ -1,15 +1,20 @@
-
-export interface Profile {
-  name: string;
-  email: string;
-  phone: string;
-  
-}
-
 export interface editProfilePageState {
   isAuthenticated: any;
   isCreating: any;
-  profile?:Profile;
+  profile: IProfile;
   errorMessage: string;
   isEditing: boolean;
+  isgettingUser: boolean;
+  isUserExist: boolean;
+}
+export interface PayloadType {
+  id: string;
+  user: string;
+}
+export interface IProfile {
+  firstName: String;
+  lastName: String;
+  email: String;
+  phone: String;
+  avatar: string;
 }
