@@ -12,12 +12,7 @@ import {
   createAccoutSchemaStep3,
 } from "./validators";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  selectErrorMessage,
-  selectIsAuthenticated,
-  selectIsLogging,
-  selectRole,
-} from "../Layout/slice/selectors";
+import { selectIsAcountCreated, selectErrorMessage ,selectCreating} from "./slice/selector";
 import { useCreateAccountPageSlice } from "./slice";
 import { useNavigate } from "react-router";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
@@ -25,26 +20,42 @@ import { storage } from "utils/firebaseConfig";
 import { FormValues } from "./types";
 
 const CreateAccountPage = () => {
+  
+  const isaccountCreated = useSelector(selectIsAcountCreated);
+  const creatatingAccount = useSelector(selectCreating);
+  const errorMessage = useSelector(selectErrorMessage);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const role = useSelector(selectRole);
   const { actions } = useCreateAccountPageSlice();
-  const errorMessage = useSelector(selectErrorMessage);
+
+  
 
   const [uploadingDocument, setUploadingDocument] = useState(false);
+  const [isUploaded, setIsUploaded] = useState(false);
   const [data, setData] = useState<FormValues>(initialValues);
   const [set1Data, setStep1Data] = useState(null);
   const [set2Data, setStep2Data] = useState(null);
   // const [set3Data, setStep3Data] = useState(null);
   const [currentStep, setCurrentStep] = useState(0);
   const totalSteps = 3;
+  console.log('123456',isaccountCreated,creatatingAccount);
 
   function onSignupClick() {
-    dispatch(actions.createAccount(data));
+    dispatch(
+      actions.createAccount({
+        name: `${data.firstName} ${data.lastName}`,
+        phoneNumber: data.phoneNumber,
+        password: data.password,
+        email: data.email,
+        pharmaciestLicense: data.pharmacistLicense,
+        pharmacyName: data.pharmacyName,
+        pharmacyLocation: data.pharmacyLocation,
+        pharmacyEmail: data.pharmacyEmailAddress,
+        pharmacyPhoneNumber: data.pharmacyPhoneNumber,
+        pharmacyLicense: data.pharmacyLicense,
+      })
+    );
   }
-
-  //------ firebase document upload
 
   const handleUpload = (file: any) => {
     return new Promise((resolve, reject) => {
@@ -74,10 +85,10 @@ const CreateAccountPage = () => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      navigate(`/${role}/dashboard`);
+    if (isaccountCreated) {
+      navigate(`/verifyemail`);
     }
-  }, []);
+  }, [isaccountCreated]);
 
   const handleNext = () => {
     if (currentStep + 1 < totalSteps) {
@@ -105,25 +116,36 @@ const CreateAccountPage = () => {
   const handleStep3 = async (values: any) => {
     try {
       setUploadingDocument(true);
+
       const nigdFikadURL = await handleUpload(values.nigdFikad);
       const pharmacyLicenseURL = await handleUpload(values.pharmacyLicense);
       const pharmacistLicenseURL = await handleUpload(values.pharmacistLicense);
+
+      if (
+        nigdFikadURL === null ||
+        pharmacyLicenseURL === null ||
+        pharmacistLicenseURL === null
+      ) {
+        console.error("Error uploading files: One or more documents are null");
+        return;
+      }
 
       const updatedData = {
         ...values,
         nigdFikad: nigdFikadURL,
         pharmacistLicense: pharmacistLicenseURL,
-        pharmacyLicense: pharmacyLicenseURL,
+        pharmacyLicense: pharmacyLicenseURL, // Corrected property name
       };
 
       setUploadingDocument(false);
       setData((prev) => ({ ...prev, ...updatedData }));
+
       if (
-        updatedData.nigdFikad != "" &&
-        updatedData.pharmacistLicense != "" &&
-        updatedData.pharmacyLicense != ""
+        updatedData.nigdFikad !== "" &&
+        updatedData.pharmacistLicense !== "" &&
+        updatedData.pharmacyLicense !== ""
       ) {
-        onSignupClick();
+        setIsUploaded(!isUploaded);
       }
     } catch (error) {
       setUploadingDocument(false);
@@ -144,12 +166,17 @@ const CreateAccountPage = () => {
         userItialValues={userItialValues}
         handleStep1={handleStep1}
         handleStep2={handleStep2}
-        onSignupClick={handleStep3}
+        handleStep3={handleStep3}
+        onSignupClick={onSignupClick}
         currentStep={currentStep}
         back={handlePrevStep}
         set1Data={set1Data}
         set2Data={set2Data}
-        UploadingDocument={uploadingDocument}     />
+        UploadingDocument={uploadingDocument}
+        isUploading={uploadingDocument}
+        isUploaded={isUploaded}
+        creatingAccount={creatatingAccount}
+      />
     </>
   );
 };

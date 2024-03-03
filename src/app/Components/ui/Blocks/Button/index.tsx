@@ -23,7 +23,6 @@ import {
 export const Button = styled("button")<ButtonProps>`
   outline: none;
   border: none;
-
   cursor: pointer;
   &:disabled {
     cursor: not-allowed;

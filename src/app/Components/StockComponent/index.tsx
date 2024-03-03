@@ -6,89 +6,68 @@ import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import { Box, Flex, P, Text } from "../ui/Blocks";
 import { useNavigate } from "react-router";
-import { OrderTableColumns } from "utils/constants";
+import { drugTableColumn } from "utils/constants";
 import { TableHeader } from "../ui/Blocks/Table";
 import Search from "../ui/SearchBar";
 import { FiChevronDown } from "react-icons/fi";
 import { Pagination } from "@mui/material";
 import { useState } from "react";
 
-const OrderComponent = () => {
+const StockComponent = () => {
   const navigate = useNavigate();
   const [showSortBy, setShowSortBy] = useState(false);
 
-  const orders = [
-    {
-      id: 1,
-      name: "Beka",
-      drug: "Advil",
-      phone: "0935354",
-      location: "A.A",
-      time: "4:30 PM",
-      status: "PENDING",
-    },
+  const Drug = [
     {
       id: 2,
-      name: "Toltu",
-      drug: "Differin",
-      phone: "092535454",
-      location: "Wolkite",
-      time: "4:30 PM",
-      status: "REJECTED",
+      name: "Advil",
+      strength: "120mg",
+      dosage: "8ml",
+      price_per_unit: "23",
+      expiration_date: "09/35/33",
+      min_sockLevel: "20",
+      stock_Level: "40",
     },
-    {
-      id: 3,
-      name: "Desta",
-      drug: "Orajel",
-      phone: "093535421",
-      location: "Dire",
-      time: "4:30 PM",
-      status: "ACCEPTED",
-    },
-    {
-      id: 4,
-      name: "Damtew",
-      drug: "Advil",
-      phone: "091535488",
-      location: "A.A",
-      time: "4:30 PM",
-      status: "PENDING",
-    },
+
     {
       id: 5,
-      name: "Getu",
-      drug: "Differin",
-      phone: "095535477",
-      location: "Gubrye",
-      time: "4:30 PM",
-      status: "PENDING",
+      name: "Differin",
+      strength: "120mg",
+      dosage: "8ml",
+      price_per_unit: "23",
+      expiration_date: "09/35/33",
+      min_sockLevel: "20",
+      stock_Level: "40",
     },
     {
       id: 6,
-      name: "Roba",
-      drug: "Advil",
-      phone: "093535455",
-      location: "Adama",
-      time: "4:30 PM",
-      status: "REJECTED",
+      name: "Orajel",
+      strength: "120mg",
+      dosage: "8ml",
+      price_per_unit: "23",
+      expiration_date: "09/35/33",
+      min_sockLevel: "20",
+      stock_Level: "40",
     },
     {
       id: 7,
-      name: "Iskindir",
-      drug: "Clifford",
-      phone: "093535433",
-      location: "Bahirdar",
-      time: "4:30 PM",
-      status: "ACCEPTED",
+      name: "Clifford",
+      strength: "120mg",
+      dosage: "8ml",
+      price_per_unit: "23",
+      expiration_date: "09/35/33",
+      min_sockLevel: "20",
+      stock_Level: "40",
     },
     {
       id: 8,
-      name: "Iskindir",
-      drug: "Clifford",
-      phone: "093535433",
-      location: "Bahirdar",
-      time: "4:30 PM",
-      status: "ACCEPTED",
+      name: "Clifford",
+      strength: "120mg",
+      dosage: "8ml",
+      price_per_unit: "23",
+      expiration_date: "09/35/33",
+      min_sockLevel: "20",
+      stock_Level: "40",
     },
   ];
 
@@ -104,10 +83,10 @@ const OrderComponent = () => {
       <Flex alignItems={"center"} p={1}>
         <Flex flexDirection={"column"} paddingY={1}>
           <P margin={"0px"} padding={"0px"} fontFamily={"poppins"} fontSize={6}>
-            Orders
+            Drugs
           </P>
           <P margin={"0px"} padding={"0px"} fontFamily={"poppins"} fontSize={1}>
-            All Orders
+            All Drugs
           </P>
         </Flex>
         <Flex
@@ -153,23 +132,23 @@ const OrderComponent = () => {
                 stickyHeader
                 sx={{ minWidth: 650 }}
               >
-                <TableHeader columnName={OrderTableColumns} />
+                <TableHeader columnName={drugTableColumn} />
                 <TableBody>
-                  {orders?.map((loanOffer) => (
+                  {Drug?.map((item) => (
                     <TableRow
                       hover
-                      key={loanOffer.id}
+                      key={item.id}
                       sx={{
                         "&:last-child td, &:last-child th": { border: "none" },
                         cursor: "pointer",
                         boxShadow: "none",
                       }}
                       onClick={() => {
-                        navigate(`/pharmacist/inventory/orderdetail`);
+                        navigate(`/pharmacist/drugdetails`);
                       }}
                     >
                       <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                        {loanOffer.id}
+                        {item.id}
                       </TableCell>
 
                       <TableCell
@@ -181,32 +160,24 @@ const OrderComponent = () => {
                           fontFamily: "poppins",
                         }}
                       >
-                        {loanOffer.name}
+                        {item.name}
                       </TableCell>
                       <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                        {loanOffer.drug}
+                        {item.dosage}
                       </TableCell>
                       <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                        {loanOffer.location}
+                        {item.strength}
                       </TableCell>
                       <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                        {loanOffer.time}
+                        {item.price_per_unit}
+                      </TableCell><TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
+                        {item.expiration_date}
                       </TableCell>
                       <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                        {loanOffer.phone}
+                        {item.stock_Level}
                       </TableCell>
-                      <TableCell
-                        sx={{
-                          color:
-                            loanOffer.status === "ACCEPTED"
-                              ? "#12e528"
-                              : loanOffer.status === "REJECTED"
-                              ? "#F84F4F"
-                              : "#000000",
-                          fontFamily: "poppins",
-                        }}
-                      >
-                        {loanOffer.status}
+                      <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
+                        {item.min_sockLevel}
                       </TableCell>
                     </TableRow>
                   ))}
@@ -229,4 +200,4 @@ const OrderComponent = () => {
   );
 };
 
-export default OrderComponent;
+export default StockComponent;

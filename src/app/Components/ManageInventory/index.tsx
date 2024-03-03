@@ -13,11 +13,11 @@ import { FiChevronDown } from "react-icons/fi";
 import { Pagination } from "@mui/material";
 import { useState } from "react";
 
-const OrderComponent = () => {
+const ManageInventory = () => {
   const navigate = useNavigate();
   const [showSortBy, setShowSortBy] = useState(false);
 
-  const orders = [
+  const loanOffers = [
     {
       id: 1,
       name: "Beka",
@@ -155,7 +155,7 @@ const OrderComponent = () => {
               >
                 <TableHeader columnName={OrderTableColumns} />
                 <TableBody>
-                  {orders?.map((loanOffer) => (
+                  {loanOffers?.map((loanOffer) => (
                     <TableRow
                       hover
                       key={loanOffer.id}
@@ -229,4 +229,4 @@ const OrderComponent = () => {
   );
 };
 
-export default OrderComponent;
+export default ManageInventory;

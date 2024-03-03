@@ -8,7 +8,9 @@ import { routes } from "utils/routes";
 import React from "react";
 import { v4 as uuid } from "uuid";
 const ProtectedRoute = (props: IProtectedRoute) => {
-  if (!localStorage.getItem("token")) {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
     return <Navigate to={routeConstants.login} />;
   }
   useAllowedRole({ allowedRole: props.allowedRole });

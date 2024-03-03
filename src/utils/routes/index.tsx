@@ -7,6 +7,13 @@ import AddPharmacyPage from "app/Pages/AddPharmacyPage/index";
 import HomePage from "app/Pages/HomePage";
 import ProfilePage from "app/Pages/ProfilePage";
 import OrderComponent from "app/Components/OrderComponent";
+import ManageInventory from "app/Components/ManageInventory";
+import ManagePharmacyAccount from "app/Components/ManagePharmacyAccount";
+import OrderDetailComponent from "app/Components/OrdersDetailComponent";
+import VerifyEmailComponent from "app/Components/verifyEmail/VerifyEmailComponent";
+import VerifyEmailPage from "app/Pages/VerifyEmailPage";
+import StockComponent from "app/Components/StockComponent";
+import DrugDetailsComponent from "app/Components/DrugDetailsComponent";
 
 export const routes: IRoute[] = [
   {
@@ -73,5 +80,58 @@ export const routes: IRoute[] = [
     path: "/profile",
     isProtected: false,
     allowedRole: "*",
+  },
+  {
+    element: <ManageInventory />,
+    exact: true,
+    path: "pharmacist/inventory",
+    isProtected: true,
+    allowedRole: "pharmacist",
+    needsLayout: true,
+  },
+  {
+    element: <ManagePharmacyAccount />,
+    exact: true,
+    path: "pharmacist/account",
+    isProtected: true,
+    allowedRole: "pharmacist",
+    needsLayout: true,
+  },
+  {
+    element: <OrderDetailComponent />,
+    exact: true,
+    path: "pharmacist/orderdetail",
+    isProtected: true,
+    allowedRole: "pharmacist",
+    needsLayout: true,
+  },
+  {
+    element: <VerifyEmailComponent />,
+    exact: true,
+    path: "/verifyemail",
+    isProtected: false,
+    allowedRole: "*",
+  },
+  {
+    element: <VerifyEmailPage />,
+    exact: true,
+    path: "/verifiedemail/activate",
+    isProtected: false,
+    allowedRole: "*",
+  },
+  {
+    element: <StockComponent />,
+    exact: true,
+    path: "pharmacist/stock",
+    isProtected: true,
+    allowedRole: "pharmacist",
+    needsLayout: true,
+  }, {
+    element: <DrugDetailsComponent />,
+    exact: true,
+    path: "pharmacist/drugdetails",
+    isProtected: true,
+    allowedRole: "pharmacist",
+    needsLayout: true,
   },
 ];

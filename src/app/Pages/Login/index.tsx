@@ -25,12 +25,6 @@ function LoginPage() {
     dispatch(actions.login(values));
   }
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      navigate(`/${role}/home`);
-    }
-  }, []);
-
-  useEffect(() => {
     if (isAuthenticated && localStorage.getItem("token")) {
       navigate(`/${role}/home`);
     }
