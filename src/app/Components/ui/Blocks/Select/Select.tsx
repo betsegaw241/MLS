@@ -1,16 +1,16 @@
 import React from 'react';
 import { SelectProps } from './type';
 import { ErrorMessage } from 'formik';
-import { Text } from '../';
+import { Flex, Text } from '../';
 import { Selector } from '../Selectors';
-import { theme } from 'styles/theme';
+import { theme } from '../../../../../styles/theme';
 function Select(props: SelectProps) {
   const { options } = props;
 
   return (
-    <>
+    <Flex flexDirection={'column'} width={'100%'} alignItems={'flex-start'}>
       <Text
-        fontFamily={'Roboto'}
+        fontFamily={'poppins'}
         fontSize={'14px'}
         fontWeight={2}
         lineHeight="18px"
@@ -24,22 +24,21 @@ function Select(props: SelectProps) {
         border={`1px solid ${theme.colors.light.black[12]}`}
         borderRadius={'5px'}
         fontSize={'15px'}
-        height={'50px'}
+        height={'40px'}
         id={props.name}
         name={props.name}
         onChange={props.onChange}
         type={props.type}
-        width="100%"
+        value={props.value} 
+        width={'100%'}
         
       >
-         <option ></option>
-        {options.map(role => (
-          <option
-            key={role.value}
-            selected={props.value === role.value}
-            value={role.value}
-          >
-            {role.label}
+        <option value="" disabled hidden >
+          Select an option
+        </option>
+        {options.map(option => (
+          <option key={option.value} value={option.value}>
+            {option.label}
           </option>
         ))}
       </Selector>
@@ -50,9 +49,9 @@ function Select(props: SelectProps) {
         fontWeight={3}
         paddingTop={'5px'}
       >
-        <ErrorMessage name={props.name} />
+        {/* <ErrorMessage name={props.name} /> */}
       </Text>
-    </>
+    </Flex>
   );
 }
 

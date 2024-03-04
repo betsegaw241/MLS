@@ -165,7 +165,7 @@ const OrderComponent = () => {
                         boxShadow: "none",
                       }}
                       onClick={() => {
-                        navigate(`/pharmacist/inventory/orderdetail`);
+                        navigate(`/pharmacist/orderdetail`);
                       }}
                     >
                       <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
