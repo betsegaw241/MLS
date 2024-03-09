@@ -34,6 +34,7 @@ export function SideBar() {
           top={"0px"}
           alignItems={"center"}
           flexDirection={"column"}
+          zIndex={200}
           width={isCollapsed ? "55px" : "200px"}
         >
           <Text

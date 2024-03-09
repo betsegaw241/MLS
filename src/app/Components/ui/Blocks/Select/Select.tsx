@@ -37,8 +37,8 @@ function Select(props: SelectProps) {
           Select an option
         </option>
         {options.map(option => (
-          <option key={option.value} value={option.value}>
-            {option.label}
+          <option key={Date.now()} value={option}>
+            {option}
           </option>
         ))}
       </Selector>

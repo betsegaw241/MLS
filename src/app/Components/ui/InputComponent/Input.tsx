@@ -66,17 +66,19 @@ function InputField(props: InputProps) {
             return (
               <>
                 <Input
+
                   {...props.field}
-                  background={`${theme.colors.light.black[8]}`}
-                  borderRadius={2}
+                  border={`1px solid ${theme.colors.light.black[12]}`}
+                  borderRadius={1}
+                  p={1}
                   id={props.name}
                   onChange={(event) => {
                     const date = new Date(event.target.value);
                     props.form.setFieldValue("releaseDate", date);
                   }}
-                  padding={4}
+
                   type="date"
-                  value={props.field.value.toISOString().substring(0, 10)}
+                  // value={props.field.value.toISOString().substring(0, 10)}
                   width="100%"
                 />
               </>
