@@ -1,21 +1,17 @@
 import { Form, Formik } from "formik";
 import { theme } from "../../../styles/theme";
 import { Button, Flex, Grid, Text } from "../ui/Blocks";
-import MultipleSelectChip from "../ui/Blocks/Select/MSelect";
 import { InputField } from "../ui/InputComponent";
 import { initialValues } from "app/Pages/Login/constants";
-import { useNavigate } from "react-router";
 
-const AddDrugComponent = () => {
-    const navigate = useNavigate();
+const RegisterDrug = () => {
+
 
     return (
-        <Flex m={1} borderRadius={1} p={4} backgroundColor={theme.colors.light.white[0]} width={'100%'} height={'100vh'} flexDirection={'column'}>
-            <Flex width={'100%'} justifyContent={'space-between'}>
-                <Text fontSize={6} fontFamily={'poppins'}>Add Drug</Text>
-                <Button p={1} fontSize={5} borderRadius={'8px'} variant="secondary" onClick={() => navigate('/pharmacist/addnewdrug')}>Add New Drug</Button>
-            </Flex>
-            <Flex justifyContent={'center'}>
+        <Flex m={1} borderRadius={1} p={4} backgroundColor={theme.colors.light.white[0]} width={'100%'} flexDirection={'column'}>
+            <Text fontFamily={'poppins'} fontSize={6}>Add New Drug</Text>
+            <Flex>
+
                 <Formik
                     initialValues={initialValues}
                     onSubmit={(values) => {
@@ -35,10 +31,13 @@ const AddDrugComponent = () => {
                                     justifyContent={'center'}
                                     style={{ gap: 10 }}
                                 >
-                                    <MultipleSelectChip ></MultipleSelectChip>
+                                    <InputField
+                                        name="name"
+                                        type="text"
+                                        label="Drug Name"
+                                    />
 
                                     <Grid
-                                        border={"1px solid #f5f5f5f5"}
                                         borderRadius={0}
                                         gridColumnGap={"40px"}
                                         gridRowGap={"15px"}
@@ -48,24 +47,71 @@ const AddDrugComponent = () => {
                                             "repeat(3, 1fr)",
 
                                         ]}
-                                        mb={2}
-                                        p={1}
+                                       
+
                                     >
-                                        <Flex flexDirection={'column'}>
+                                        <Flex flexDirection={'column'} style={{ gap: 3 }} >
+                                            <InputField
+                                                name="stength"
+                                                type="text"
+                                                label="Strength"
+                                            />
+                                        </Flex>
+                                        <Flex flexDirection={'column'} style={{ gap: 3 }}>
+                                            <InputField
+                                                name="dosage"
+                                                type="text"
+                                                label="Dosage Form"
+                                            />
+                                        </Flex>
+                                        <Flex flexDirection={'column'} style={{ gap: 3 }}>
+
+                                            <InputField
+                                                name="unitOFIssue"
+                                                type=""
+                                                label="Unit of issue"
+                                            />
+                                        </Flex>
+                                    </Grid>
+
+                                    <InputField
+                                        name="usage"
+                                        type="textarea"
+                                        label="Usage"
+                                    />
+                                    <InputField
+                                        name="sideEffects"
+                                        type="textarea"
+                                        label="Side Effects"
+                                    />
+                                    <Grid
+                                        borderRadius={0}
+                                        gridColumnGap={"40px"}
+                                        gridRowGap={"15px"}
+                                        gridTemplateColumns={[
+                                            "repeat(1, 1fr)",
+                                            "repeat(2, 1fr)",
+                                            "repeat(3, 1fr)",
+
+                                        ]}
+
+
+                                    >
+                                        <Flex flexDirection={'column'} style={{ gap: 3 }}>
                                             <InputField
                                                 name="amount"
                                                 type="text"
                                                 label="Amount"
                                             />
                                         </Flex>
-                                        <Flex flexDirection={'column'}>
+                                        <Flex flexDirection={'column'} style={{ gap: 3 }}>
                                             <InputField
                                                 name="expirationdate"
                                                 type="date"
                                                 label="Expiration Date"
                                             />
                                         </Flex>
-                                        <Flex flexDirection={'column'}>
+                                        <Flex flexDirection={'column'} style={{ gap: 3 }}>
 
                                             <InputField
                                                 name="pharmacyPhoneNumber"
@@ -92,7 +138,7 @@ const AddDrugComponent = () => {
                                             }}
                                             type="button"
                                             padding={1}
-                                            width={"50%"}
+                                            width={"100%"}
                                         >
                                             Add
                                         </Button>
@@ -102,10 +148,9 @@ const AddDrugComponent = () => {
                         );
                     }}
                 </Formik>
+
             </Flex>
         </Flex>
     )
 }
-
-
-export default AddDrugComponent;
+export default RegisterDrug;

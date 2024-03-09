@@ -43,15 +43,15 @@ function getStyles(name: string, personName: readonly string[], theme: Theme) {
 } 
  
 export default function MultipleSelectChip() { 
-  const [personName, setPersonName] = useState<string>(); 
+  const [drugName, setDrugName] = useState<string>(); 
   const [open, setOpen] = useState(false); 
  
-  const handleChange = (event: SelectChangeEvent<typeof personName>) => { 
+  const handleChange = (event: SelectChangeEvent<typeof drugName>) => { 
     const { 
       target: { value }, 
     } = event; 
  
-    setPersonName(value); 
+    setDrugName(value); 
     setOpen(false); 
   }; 
  
@@ -62,7 +62,7 @@ export default function MultipleSelectChip() {
         <Select 
           labelId="demo-single-chip-label" 
           id="demo-single-chip" 
-          value={personName} 
+          value={drugName} 
           onChange={handleChange} 
           input={<OutlinedInput id="select-single-chip" label="Select Drug" />} 
           MenuProps={MenuProps} 

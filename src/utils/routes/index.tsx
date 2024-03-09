@@ -15,6 +15,7 @@ import VerifyEmailPage from "app/Pages/VerifyEmailPage";
 import StockComponent from "app/Components/StockComponent";
 import DrugDetailsComponent from "app/Components/DrugDetailsComponent";
 import AddDrugComponent from "app/Components/AddDrugComponent";
+import RegisterDrug from "app/Components/RegisterNewDrug";
 
 export const routes: IRoute[] = [
   {
@@ -139,6 +140,13 @@ export const routes: IRoute[] = [
     element: <AddDrugComponent />,
     exact: true,
     path: "pharmacist/adddrug",
+    isProtected: true,
+    allowedRole: "pharmacist",
+    needsLayout: true,
+  }, {
+    element: <RegisterDrug />,
+    exact: true,
+    path: "pharmacist/addnewdrug",
     isProtected: true,
     allowedRole: "pharmacist",
     needsLayout: true,

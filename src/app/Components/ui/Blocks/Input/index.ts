@@ -1,6 +1,5 @@
-
-import { InputProps, TextAreaProps } from './types';
-import styled from 'styled-components';
+import { InputProps, TextAreaProps } from "./types";
+import styled from "styled-components";
 import {
   compose,
   border,
@@ -15,13 +14,13 @@ import {
   boxShadow,
   flexbox,
   background,
-} from 'styled-system';
+} from "styled-system";
 
 export const Input = styled.input<InputProps>`
   box-sizing: border-box;
   :focus {
     outline: none;
-   background-color:transparent;
+    background-color: transparent;
   }
   ${compose(
     border,
@@ -40,6 +39,11 @@ export const Input = styled.input<InputProps>`
 `;
 
 export const TextAreaInput = styled.textarea<TextAreaProps>`
+  box-sizing: border-box;
+  :focus {
+    outline: none;
+    background-color: transparent;
+  }
   ${compose(
     background,
     border,
@@ -52,7 +56,7 @@ export const TextAreaInput = styled.textarea<TextAreaProps>`
     lineHeight,
     fontFamily,
     boxShadow,
-    flexbox,
+    flexbox
   )}
 `;
 
@@ -68,6 +72,6 @@ export const FileInput = styled.input<InputProps>`
     lineHeight,
     fontFamily,
     boxShadow,
-    flexbox,
+    flexbox
   )};
 `;
