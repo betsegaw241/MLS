@@ -27,10 +27,10 @@ function ProfilePage() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [image, setImage] = useState<any>();
 
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem("token")) {
+  //   }
+  // }, []);
 
 
   useEffect(() => {
@@ -38,10 +38,10 @@ function ProfilePage() {
   }, []);
 
 
-  useEffect(() => {
-    if (isAuthenticated && localStorage.getItem("token")) {
-    }
-  }, [isAuthenticated]);
+  // useEffect(() => {
+  //   if (isAuthenticated && localStorage.getItem("token")) {
+  //   }
+  // }, [isAuthenticated]);
 
   async function onSaveClick(values: IProfile): Promise<void> {
     setData((prev) => ({ ...prev, ...values }));

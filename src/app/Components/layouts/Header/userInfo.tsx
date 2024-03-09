@@ -99,6 +99,7 @@ const UserInfo = () => {
                   }}
                   p={1}
                   style={{ cursor: "pointer" }}
+                  onClick={() => navigate("/pharmacist/profile")}
                 >
                   <CgProfile />
                   <Text
@@ -108,7 +109,7 @@ const UserInfo = () => {
                     padding={1}
                     fontWeight={3}
                     lineHeight={0}
-                    onClick={() => navigate("/profile")}
+
                   >
                     Profile
                   </Text>
@@ -121,6 +122,10 @@ const UserInfo = () => {
                 }}
                 p={1}
                 style={{ cursor: "pointer" }}
+                onClick={() => {
+                  setShowUserInfo(false);
+                  setShowLogout(true);
+                }}
               >
                 <GrPowerShutdown />
 
@@ -131,10 +136,7 @@ const UserInfo = () => {
                   padding={1}
                   fontWeight={3}
                   lineHeight={0}
-                  onClick={() => {
-                    setShowUserInfo(false);
-                    setShowLogout(true);
-                  }}
+                 
                 >
                   Sign out
                 </Text>
