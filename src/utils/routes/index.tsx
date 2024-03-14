@@ -79,7 +79,7 @@ export const routes: IRoute[] = [
     exact: true,
     path: "/profile",
     isProtected: true,
-    allowedRole: "*",
+    allowedRole: "pharmacist",
   },
   {
     element: <ManageInventory />,
@@ -126,7 +126,8 @@ export const routes: IRoute[] = [
     isProtected: true,
     allowedRole: "pharmacist",
     needsLayout: true,
-  }, {
+  },
+  {
     element: <DrugDetailsComponent />,
     exact: true,
     path: "pharmacist/drugdetails",

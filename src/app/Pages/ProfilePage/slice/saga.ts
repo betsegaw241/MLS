@@ -39,7 +39,24 @@ function* handleGetUser(action: PayloadAction<string>) {
     yield put(actions.getUserFailed(error));
   }
 }
+function* handleChangePassword(action: PayloadAction<string>) {
+  try {
+    const res: AxiosResponse = yield api({
+      route: "/user/:userId",
+      method: "POST",
+      isSecureRoute: true,
+      query: { id: action.payload },
+    });
+    if (res) {
+      yield put(actions.changePasswordSuccess(res));
+    }
+  } catch (error) {
+    console.log(error);
+    yield put(actions.changePasswordFailed(error));
+  }
+}
 export function* EditProfilePageSaga() {
   yield takeLatest(actions.editProfile.type, handleEditProfile);
   yield takeLatest(actions.getUser.type, handleGetUser);
+  yield takeLatest(actions.changePassword.type, handleChangePassword);
 }

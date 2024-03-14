@@ -4,6 +4,9 @@ export interface FormValues {
   lastName: string;
   email: string;
   phone: string;
+  currentPassword:string;
+  newPassword:string;
+  confirmPassword:string;
 }
 export interface FileObject {
   name: string;

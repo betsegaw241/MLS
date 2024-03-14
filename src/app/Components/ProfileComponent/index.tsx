@@ -1,4 +1,4 @@
-import { Box, Button, Flex, P } from "../ui/Blocks";
+import { Box, Button, Flex, P, Text } from "../ui/Blocks";
 import { InputField } from "../ui/InputComponent";
 import { Form, Formik } from "formik";
 import { editProfileComponentProp } from "./types";
@@ -9,10 +9,12 @@ import { CgProfile } from "react-icons/cg";
 import { RiLockPasswordFill } from "react-icons/ri";
 import Header from "../ui/Header";
 import Spinner from "react-activity/dist/Spinner";
+import Modal from "../ui/Modal";
 
 const ProfileComponent = (props: editProfileComponentProp) => {
   const { isFocused, isDragAccept } = useDropzone({ maxFiles: 1 });
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
 
   return (
     <>
@@ -70,7 +72,13 @@ const ProfileComponent = (props: editProfileComponentProp) => {
                 marginRight: "14px",
               }}
             />
-            <P fontFamily={"poppins"} color="#242525">
+            <P
+              fontFamily={"poppins"}
+              color="#242525"
+              onClick={() => {
+                setShowChangePasswordModal(true);
+              }}
+            >
               Password and authentication
             </P>
           </Flex>
@@ -201,6 +209,113 @@ const ProfileComponent = (props: editProfileComponentProp) => {
             }}
           </Formik>
         </Box>
+
+        {showChangePasswordModal && (
+          <Modal
+            open={showChangePasswordModal}
+            setOpen={() => {
+              setShowChangePasswordModal(false);
+            }}
+          >
+            <Flex
+              alignItems={"center"}
+              height={"20%"}
+              justifyContent={"center"}
+              position={"relative"}
+            >
+              <Box backgroundColor={"white"} borderRadius={1} p={4}>
+                <H2>Change Password</H2>
+                <Text fontSize={5} fontWeight={4} fontFamily={"poppins"}>
+                  Your password must be at least 6 combination of characters
+                </Text>
+                <Formik
+                  initialValues={props.initialValues}
+                  onSubmit={(values) => {
+                    props.changePassword(values);
+                  }}
+                  validationSchema={props.EditSchema}
+                >
+                  {({ handleSubmit }) => {
+                    return (
+                      <Form>
+                        <Flex
+                          flexDirection={"column"}
+                          marginLeft={["20px", "40px", "50px", "74px"]}
+                          marginRight={["20px", "40px", "50px", "74px"]}
+                          width={["50%", "60%", "65%", "70%"]}
+                          padding={"4%"}
+                          pt={10}
+                          borderRadius={"10%"}
+                          marginTop={"4px"}
+                          marginBottom={"2px"}
+                          style={{ gap: "4px" }}
+                        >
+                          <InputField
+                            name="currentPassword"
+                            type={"text"}
+                            label={""}
+                            placeholder="Enter current password"
+                          />
+                          <InputField
+                            name="newPassword"
+                            type={"text"}
+                            label={""}
+                            placeholder="Enter new password"
+                          />
+                          <InputField
+                            name="confirmPassword"
+                            type={"text"}
+                            label={""}
+                            placeholder="Re-type new password"
+                          />
+                        </Flex>
+
+                        <Flex
+                          alignItems={"center"}
+                          justifyContent={"center"}
+                          mt={2}
+                          style={{ gap: "20px" }}
+                        >
+                          <Button
+                            borderRadius={0}
+                            variant="secondary"
+                            color={"white"}
+                            fontSize={2}
+                            onClick={() => handleSubmit()}
+                            px={4}
+                            py={1}
+                          >
+                            {props.ischangingPassword ? (
+                              <Spinner style={{ marginLeft: "45%" }} />
+                            ) : (
+                              "Change password"
+                            )}{" "}
+                          </Button>
+                          <Button
+                            backgroundColor={"#eaecef"}
+                            borderRadius={0}
+                            variant="warning"
+                            color={"#fff"}
+                            fontSize={2}
+                            onClick={() => {
+                              setShowChangePasswordModal(
+                                !showChangePasswordModal
+                              );
+                            }}
+                            px={4}
+                            py={1}
+                          >
+                            Cancel
+                          </Button>
+                        </Flex>
+                      </Form>
+                    );
+                  }}
+                </Formik>
+              </Box>
+            </Flex>
+          </Modal>
+        )}
       </Flex>
     </>
   );

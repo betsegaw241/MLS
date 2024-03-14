@@ -10,13 +10,18 @@ export const initialState: editProfilePageState = {
   isEditing: false,
   isgettingUser: false,
   isUserExist: false,
+  ischangingPassword: false,              
   profile: {
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
     avatar: "",
+    confirmPassword: "",
+    currentPassword: "",
+    newPassword: "",
   },
+  passwordChanged: false,
 };
 const slice = createSlice({
   name: "editProfile",
@@ -55,6 +60,17 @@ const slice = createSlice({
     },
     getUserFailed: (state, action: PayloadAction<any>) => {
       state.isgettingUser = false;
+      state.errorMessage = action.payload;
+    },
+    changePassword: (state, action: PayloadAction<any>) => {
+      state.ischangingPassword = true;
+    },
+    changePasswordSuccess: (state, action: PayloadAction<any>) => {
+      state.ischangingPassword = false;
+      state.passwordChanged = true;
+    },
+    changePasswordFailed: (state, action: PayloadAction<any>) => {
+      state.ischangingPassword = false;
       state.errorMessage = action.payload;
     },
   },

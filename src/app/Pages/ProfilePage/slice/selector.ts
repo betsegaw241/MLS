@@ -29,3 +29,11 @@ export const selectUserExist = createSelector(
   [selectSlice],
   (state) => state.isUserExist
 );
+export const selectIsPasswordChanged = createSelector(
+  [selectSlice],
+  (state) => state.passwordChanged
+);
+export const selectIsChangingPassword = createSelector(
+  [selectSlice],
+  (state) => state.ischangingPassword
+);

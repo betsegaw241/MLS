@@ -4,7 +4,10 @@ export const initialValues: FormValues = {
   phone: "",
   firstName: "",
   lastName: "",
-  avatar: ""
+  avatar: "",
+  currentPassword: "",
+  newPassword: "",
+  confirmPassword: ""
 };
 
 export const errorValues = {
@@ -23,5 +26,17 @@ export const errorValues = {
     required: "Phone Number is required",
     min: "Phone Number must be at least 10 digits",
     max: "Phone Number is too long",
+  },
+  currentPassword: {
+    required: " current password is required",
+    min: "currentPassword must be at least 6 digits",
+  },
+  newPassword: {
+    required: " new password is required",
+    min: "newPassword must be at least 6 digits",
+  },
+  confirmPassword: {
+    required: " confirm the password",
+    min: "confirmPassword must be at least 6 digits",
   },
 };

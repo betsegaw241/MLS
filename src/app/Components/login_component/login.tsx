@@ -10,9 +10,11 @@ import { Link } from "react-router-dom";
 import "styles/fonts.css";
 import Spinner from "react-activity/dist/Spinner";
 import "react-activity/dist/Spinner.css";
+import Modal from "../ui/Modal";
 
 const LoginComponent = (props: LoginInComponentProp) => {
   const [showpassword, setShowPassword] = useState(false);
+  const [showForgotPasswordModal, setshowForgotPasswordModal] = useState(false);
   return (
     <Box
       backgroundColor={theme.colors.dark.black[2]}
@@ -82,7 +84,14 @@ const LoginComponent = (props: LoginInComponentProp) => {
 
                     <Flex justifyContent={"flex-end"}>
                       <Text fontFamily={"poppins"} fontSize={1}>
-                        <Link to={""}>Forget your password?</Link>
+                        <Link
+                          to={""}
+                          onClick={() => {
+                            setshowForgotPasswordModal(true); // Set showForgotPasswordModal to true when the link is clicked
+                          }}
+                        >
+                          Forget your password?
+                        </Link>
                       </Text>
                     </Flex>
                     <Button
@@ -115,6 +124,72 @@ const LoginComponent = (props: LoginInComponentProp) => {
           </Formik>
         </Flex>
       </Flex>
+
+      {showForgotPasswordModal && (
+        <Modal
+          open={showForgotPasswordModal}
+          setOpen={() => {
+            setshowForgotPasswordModal(false);
+          }}
+        >
+          <Flex
+            alignItems={"center"}
+            height={"20%"}
+            justifyContent={"center"}
+            position={"relative"}
+          >
+            <Box backgroundColor={"white"} borderRadius={1} p={4}>
+              <Text fontSize={5} fontWeight={4} fontFamily={"poppins"}>
+                Enter your email to send link and change password
+              </Text>
+              <Formik
+                initialValues={props.initialValues}
+                onSubmit={(values) => {
+                  props.onLoginClick(values);
+                }}
+                validationSchema={props.loginInSchema}
+              >
+                <InputField name="email" type={"text"} label={"Email"} />
+              </Formik>
+
+              <Flex
+                alignItems={"center"}
+                justifyContent={"center"}
+                mt={2}
+                style={{ gap: "20px" }}
+              >
+                <Button
+                  borderRadius={0}
+                  variant="secondary"
+                  color={"white"}
+                  fontSize={2}
+                  onClick={() => {
+                    //setshowForgotPasswordModal(!showForgotPasswordModal);
+                  }}
+                  px={4}
+                  py={1}
+                >
+                  Send
+                </Button>
+                <Button
+                  backgroundColor={"#eaecef"}
+                  borderRadius={0}
+                  variant="warning"
+                  color={"#fff"}
+                  fontSize={2}
+                  onClick={() => {
+                    setshowForgotPasswordModal(!showForgotPasswordModal);
+                  }}
+                  px={4}
+                  py={1}
+                >
+                  Cancel
+                </Button>
+              </Flex>
+            </Box>
+          </Flex>
+        </Modal>
+      )}
     </Box>
   );
 };

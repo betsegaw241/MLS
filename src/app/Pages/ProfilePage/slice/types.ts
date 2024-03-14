@@ -6,6 +6,8 @@ export interface editProfilePageState {
   isEditing: boolean;
   isgettingUser: boolean;
   isUserExist: boolean;
+  ischangingPassword: boolean;
+  passwordChanged: boolean;
 }
 export interface PayloadType {
   id: string;
@@ -17,4 +19,7 @@ export interface IProfile {
   email: String;
   phone: String;
   avatar: string;
+  confirmPassword: String;
+  currentPassword: String;
+  newPassword: String;
 }

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectErrorMessage,
   selectIsAuthenticated,
+  selectIsChangingPassword,
   selectIsEditing,
   selectProfile,
   selectUserExist,
@@ -16,6 +17,7 @@ import { IProfile } from "./slice/types";
 
 function ProfilePage() {
   const isEditing = useSelector(selectIsEditing);
+    const ischangingPassword = useSelector(selectIsChangingPassword);
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const profile = useSelector(selectProfile);
   const [data, setData] = useState<IProfile>(profile);
@@ -32,11 +34,9 @@ function ProfilePage() {
     }
   }, []);
 
-
   useEffect(() => {
     dispatch(actions.getUser(userID));
   }, []);
-
 
   useEffect(() => {
     if (isAuthenticated && localStorage.getItem("token")) {
@@ -93,6 +93,8 @@ function ProfilePage() {
   const handleFileDrop = (file: File) => {
     setSelectedFile(file);
   };
+  const handleChangePassword = (values: IProfile) => {};
+
   return (
     <>
       {user && (
@@ -100,9 +102,11 @@ function ProfilePage() {
           errorMessage={errorMessage}
           initialValues={profile}
           isEditing={isEditing}
+          ischangingPassword={ischangingPassword}
           EditSchema={EditSchema}
           onSaveClick={onSaveClick}
           profile={handleFileDrop}
+          changePassword={handleChangePassword}
         />
       )}
     </>
