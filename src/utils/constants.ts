@@ -69,7 +69,7 @@ export const PharmaciesMenu = [
     subMenuItems: [
       {
         label: "Add drugs",
-        to: "/orderdetail",
+        to: "/adddrug",
         icon: IoIosAdd,
       },
       {

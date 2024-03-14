@@ -28,7 +28,6 @@ const Header = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [ShowMenu, showLogout]);
-  console.log("---collapsed", isCollapsed);
   return (
     <>
       <Flex
@@ -38,6 +37,7 @@ const Header = () => {
         py={["10px"]}
         top={"0px"}
         width={"100%"}
+        zIndex={200}
         marginLeft={isCollapsed ? "0px" : "180px"}
         justifyContent={isCollapsed ? "space-between" : "center"}
       >
@@ -49,6 +49,7 @@ const Header = () => {
             }}
             fontSize={10}
             ml={1}
+            style={{ cursor: 'pointer' }}
           >
             <MdMenu />
           </Text>
@@ -107,6 +108,7 @@ const Header = () => {
               lineHeight={1}
               paddingY={3}
               color={"#fff "}
+              style={{ cursor: 'pointer' }}
             >
               Medicine Locator
             </Text>
