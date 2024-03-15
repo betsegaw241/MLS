@@ -16,6 +16,7 @@ import StockComponent from "app/Components/StockComponent";
 import DrugDetailsComponent from "app/Components/DrugDetailsComponent";
 import AddDrugComponent from "app/Components/AddDrugComponent";
 import RegisterDrug from "app/Components/RegisterNewDrug";
+import AdminVerifyPharmacy from "app/Components/AdminVerifyPharmacy";
 
 export const routes: IRoute[] = [
   {
@@ -148,6 +149,13 @@ export const routes: IRoute[] = [
     element: <RegisterDrug />,
     exact: true,
     path: "pharmacist/addnewdrug",
+    isProtected: true,
+    allowedRole: "pharmacist",
+    needsLayout: true,
+  }, {
+    element: <AdminVerifyPharmacy />,
+    exact: true,
+    path: "pharmacist/verify",
     isProtected: true,
     allowedRole: "pharmacist",
     needsLayout: true,
