@@ -17,7 +17,7 @@ import { IProfile } from "./slice/types";
 
 function ProfilePage() {
   const isEditing = useSelector(selectIsEditing);
-    const ischangingPassword = useSelector(selectIsChangingPassword);
+  const ischangingPassword = useSelector(selectIsChangingPassword);
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const profile = useSelector(selectProfile);
   const [data, setData] = useState<IProfile>(profile);
@@ -30,18 +30,8 @@ function ProfilePage() {
   const [image, setImage] = useState<any>();
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-    }
-  }, []);
-
-  useEffect(() => {
     dispatch(actions.getUser(userID));
   }, []);
-
-  useEffect(() => {
-    if (isAuthenticated && localStorage.getItem("token")) {
-    }
-  }, [isAuthenticated]);
 
   async function onSaveClick(values: IProfile): Promise<void> {
     setData((prev) => ({ ...prev, ...values }));
