@@ -30,9 +30,7 @@ const slice = createSlice({
     loginSuccess: (state: LoginState, action: PayloadAction<data>) => {
       state.isLogging = false;
       state.isAuthenticated = true;
-      // state.user = action.payload;
       state.role = action.payload.role;
-      console.log("ussre-role", action.payload.role);
     },
     loginFailed: (state: LoginState, action: PayloadAction<any>) => {
       state.isLogging = false;
