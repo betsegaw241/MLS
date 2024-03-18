@@ -13,6 +13,7 @@ import Modal from "../ui/Modal";
 
 const ProfileComponent = (props: editProfileComponentProp) => {
   const { isFocused, isDragAccept } = useDropzone({ maxFiles: 1 });
+  const [edit, setEdit] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
 
@@ -22,7 +23,7 @@ const ProfileComponent = (props: editProfileComponentProp) => {
       <Flex
         flexDirection={["column", "row"]}
         width={"100%"}
-        height={"100%"}
+        height={"90vh"}
         alignSelf={"center"}
         justifySelf={"center"}
         marginLeft={"0px"}
@@ -111,38 +112,6 @@ const ProfileComponent = (props: editProfileComponentProp) => {
               height={"100px"}
               style={{ borderRadius: "50%" }}
             />
-            <Flex>
-              <Dropzone
-                onDrop={(files) => {
-                  props.profile(files[0]);
-                  setSelectedFile(files[0]);
-                }}
-              >
-                {({ getRootProps, getInputProps }) => (
-                  <Flex
-                    backgroundColor={isFocused ? "green" : "#fff"}
-                    width={"140px"}
-                    height={"40px"}
-                    marginLeft={["-30px", "-30px", "-30px", "-30px"]}
-                    borderColor={isDragAccept ? "red" : null}
-                    border={"1px #d8cfcf solid"}
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    borderRadius={"8px"}
-                    {...getRootProps({
-                      className: "dropzone",
-                      onDrop: (event) => event.stopPropagation(),
-                    })}
-                  >
-                    <input {...getInputProps()} />
-                    <H2 fontFamily={"poppins"} fontSize={[2, 1]}>
-                      Choose File
-                    </H2>
-                  </Flex>
-                )}
-              </Dropzone>
-              <P></P>
-            </Flex>
           </Flex>
           <Formik
             initialValues={props.initialValues}
@@ -154,56 +123,145 @@ const ProfileComponent = (props: editProfileComponentProp) => {
             {({ handleSubmit }) => {
               return (
                 <Form>
-                  <Flex
-                    flexDirection={"column"}
-                    marginLeft={["20px", "40px", "50px", "74px"]}
-                    marginRight={["20px", "40px", "50px", "74px"]}
-                    width={["50%", "60%", "65%", "70%"]}
-                    padding={"4%"}
-                    pt={10}
-                    borderRadius={"10%"}
-                    marginTop={"10px"}
-                    marginBottom={"2px"}
-                    style={{ gap: "2px" }}
-                  >
-                    <InputField
-                      label="First Name:"
-                      name={"firstName"}
-                      type={"text"}
-                    ></InputField>
-                    <InputField
-                      label="Last Name:"
-                      name={"lastName"}
-                      type={"text"}
-                    ></InputField>
-                    <InputField
-                      label="Email:"
-                      name={"email"}
-                      type={"text"}
-                    ></InputField>
-                    <InputField
-                      label="Phone:"
-                      name={"phone"}
-                      type={"text"}
-                    ></InputField>
-                    <Button
-                      backgroundColor="#399bdd"
-                      color={"#fff"}
-                      type="button"
-                      borderRadius={"8%"}
-                      height={"40px"}
-                      width={["50px", "80px", "100px", "130px"]}
-                      marginLeft={["30%", "40%"]}
-                      fontWeight={"bold"}
-                      onClick={() => handleSubmit()}
+                  {edit ? (
+                    <Flex
+                      flexDirection={"column"}
+                      marginLeft={["20px", "40px", "50px", "74px"]}
+                      marginRight={["20px", "40px", "50px", "74px"]}
+                      width={["50%", "60%", "65%", "70%"]}
+                      padding={"4%"}
+                      pt={10}
+                      borderRadius={"10%"}
+                      marginTop={"10px"}
+                      marginBottom={"2px"}
+                      style={{ gap: "2px" }}
                     >
-                      {props.isEditing ? (
-                        <Spinner style={{ marginLeft: "45%" }} />
-                      ) : (
-                        "Save"
-                      )}
-                    </Button>
-                  </Flex>
+                      <Flex justifyContent={"center"} mt={"-40px"} mb={"20px"}>
+                        <Dropzone
+                          onDrop={(files) => {
+                            props.profile(files[0]);
+                            setSelectedFile(files[0]);
+                          }}
+                        >
+                          {({ getRootProps, getInputProps }) => (
+                            <Flex
+                              backgroundColor={isFocused ? "green" : "#fff"}
+                              width={"140px"}
+                              height={"40px"}
+                              marginLeft={["-30px", "-30px", "-30px", "-30px"]}
+                              borderColor={isDragAccept ? "red" : null}
+                              border={"1px #d8cfcf solid"}
+                              justifyContent={"center"}
+                              alignItems={"center"}
+                              borderRadius={"8px"}
+                              {...getRootProps({
+                                className: "dropzone",
+                                onDrop: (event) => event.stopPropagation(),
+                              })}
+                            >
+                              <input {...getInputProps()} />
+                              <H2 fontFamily={"poppins"} fontSize={[2, 1]}>
+                                Choose File
+                              </H2>
+                            </Flex>
+                          )}
+                        </Dropzone>
+                      </Flex>
+                      <InputField
+                        label="Phone"
+                        name={"phone"}
+                        type={"text"}
+                      ></InputField>
+                      <Button
+                        backgroundColor="#399bdd"
+                        color={"#fff"}
+                        type="button"
+                        borderRadius={"8%"}
+                        height={"40px"}
+                        width={["50px", "80px", "100px", "130px"]}
+                        marginLeft={["30%", "35%"]}
+                        fontWeight={"bold"}
+                        mt={"30px"}
+                        onClick={() => handleSubmit()}
+                      >
+                        {props.isEditing ? (
+                          <Spinner style={{ marginLeft: "45%" }} />
+                        ) : (
+                          "Save"
+                        )}
+                      </Button>
+                    </Flex>
+                  ) : (
+                    <Flex
+                      flexDirection={"column"}
+                      marginLeft={["20px", "40px", "50px", "74px"]}
+                      marginRight={["20px", "40px", "50px", "74px"]}
+                      width={["50%", "60%", "65%", "70%"]}
+                      padding={"4%"}
+                      pt={10}
+                      borderRadius={"10%"}
+                      marginTop={"10px"}
+                      marginBottom={"2px"}
+                      style={{ gap: "2px" }}
+                    >
+                      <Flex
+                        ml={"40%"}
+                        mb={"6%"}
+                        mt={"1%"}
+                        flexDirection={"column"}
+                      >
+                        <Text
+                          fontSize="16px"
+                          fontWeight="bold"
+                          marginBottom="10px"
+                          color="#333"
+                        >
+                          First Name: {"  "}
+                          {props.initialValues.firstName}
+                        </Text>
+                        <Text
+                          fontSize="16px"
+                          fontWeight="bold"
+                          marginBottom="10px"
+                          color="#333"
+                        >
+                          Last Name: {"  "}
+                          {props.initialValues.lastName}
+                        </Text>
+                        <Text
+                          fontSize="16px"
+                          fontWeight="bold"
+                          marginBottom="10px"
+                          color="#333"
+                        >
+                          Email: {"  "}
+                          {props.initialValues.email}
+                        </Text>
+                        <Text
+                          fontSize="16px"
+                          fontWeight="bold"
+                          marginBottom="10px"
+                          color="#333"
+                        >
+                          Phone: {props.initialValues.phone}
+                        </Text>
+                      </Flex>
+
+                      <Button
+                        backgroundColor="#399bdd"
+                        color={"#fff"}
+                        type="button"
+                        borderRadius={"8%"}
+                        height={"40px"}
+                        width={["50px", "80px", "100px", "130px"]}
+                        marginLeft={["30%", "40%"]}
+                        fontWeight={"bold"}
+                        onClick={() => setEdit(true)}
+                      >
+                        Edit
+                      </Button>
+                    </Flex>
+                  )}
                 </Form>
               );
             }}
@@ -233,7 +291,7 @@ const ProfileComponent = (props: editProfileComponentProp) => {
                   onSubmit={(values) => {
                     props.changePassword(values);
                   }}
-                  validationSchema={props.EditSchema}
+                  validationSchema={props.PasswordValidationSchema}
                 >
                   {({ handleSubmit }) => {
                     return (

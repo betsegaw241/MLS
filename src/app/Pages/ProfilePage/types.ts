@@ -1,12 +1,9 @@
 export interface FormValues {
-  avatar:string
-  firstName: string;
-  lastName: string;
-  email: string;
+  avatar: string;
   phone: string;
-  currentPassword:string;
-  newPassword:string;
-  confirmPassword:string;
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
 }
 export interface FileObject {
   name: string;

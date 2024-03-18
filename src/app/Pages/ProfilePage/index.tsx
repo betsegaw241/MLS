@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { EditSchema } from "./validators";
+import { EditSchema, changePasswordValidationSchema } from "./validators";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectErrorMessage,
@@ -34,24 +34,31 @@ function ProfilePage() {
   }, []);
 
   async function onSaveClick(values: IProfile): Promise<void> {
+    console.log("hi save button clicked");
     setData((prev) => ({ ...prev, ...values }));
     if (selectedFile) {
       const avatar = await handleUpload(selectedFile);
       setImage(avatar);
+      dispatch(
+        actions.editProfile({
+          user: {
+            phoneNumber: data.phone,
+            avatar: image ? image : data.avatar,
+          },
+          id: userID,
+        })
+      );
+    } else {
+      dispatch(
+        actions.editProfile({
+          user: {
+            phoneNumber: data.phone,
+            avatar: image ? image : data.avatar,
+          },
+          id: userID,
+        })
+      );
     }
-    console.log(data.firstName, data.lastName, data.phone, image, data.email);
-
-    dispatch(
-      actions.editProfile({
-        user: {
-          name: `${data.firstName} ${data.lastName}`,
-          phoneNumber: data.phone,
-          avatar: image ? image : data.avatar,
-          email: data.email,
-        },
-        id: userID,
-      })
-    );
   }
 
   const handleUpload = (file: File) => {
@@ -83,6 +90,7 @@ function ProfilePage() {
   const handleFileDrop = (file: File) => {
     setSelectedFile(file);
   };
+
   const handleChangePassword = (values: IProfile) => {};
 
   return (
@@ -91,7 +99,9 @@ function ProfilePage() {
         <ProfileComponent
           errorMessage={errorMessage}
           initialValues={profile}
+          ///
           isEditing={isEditing}
+          PasswordValidationSchema={changePasswordValidationSchema}
           ischangingPassword={ischangingPassword}
           EditSchema={EditSchema}
           onSaveClick={onSaveClick}

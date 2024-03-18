@@ -2,6 +2,7 @@ export interface editProfileComponentProp {
   initialValues: IProfile;
   EditSchema: object;
   isEditing: boolean;
+  PasswordValidationSchema:Object;
   ischangingPassword: boolean;
   profile: (file: File) => void;
   onSaveClick: (values: IProfile) => void;

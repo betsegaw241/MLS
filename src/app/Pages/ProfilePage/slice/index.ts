@@ -10,16 +10,16 @@ export const initialState: editProfilePageState = {
   isEditing: false,
   isgettingUser: false,
   isUserExist: false,
-  ischangingPassword: false,              
+  ischangingPassword: false,
   profile: {
-    firstName: "",
-    lastName: "",
-    email: "",
     phone: "",
     avatar: "",
     confirmPassword: "",
     currentPassword: "",
     newPassword: "",
+    firstName: "",
+    lastName: "",
+    email: "",
   },
   passwordChanged: false,
 };
@@ -32,12 +32,7 @@ const slice = createSlice({
     },
     editProfileSuccess: (state, action: PayloadAction<any>) => {
       state.isEditing = false;
-      const nameParts = action.payload.name.split(" ");
-      console.log(nameParts);
-      state.profile.firstName = nameParts[0];
       state.profile.avatar = action.payload.avatar;
-      state.profile.lastName = nameParts[1];
-      state.profile.email = action.payload.email;
       state.profile.phone = action.payload.phone;
     },
     editProfileFailed: (state, action: PayloadAction<any>) => {
@@ -51,11 +46,10 @@ const slice = createSlice({
       state.isgettingUser = false;
       state.isUserExist = true;
       const nameParts = action.payload.name.split(" ");
-
       state.profile.firstName = nameParts[0];
-      state.profile.avatar = action.payload.avatar;
       state.profile.lastName = nameParts[1];
       state.profile.email = action.payload.email;
+      state.profile.avatar = action.payload.avatar;
       state.profile.phone = action.payload.phoneNumber;
     },
     getUserFailed: (state, action: PayloadAction<any>) => {
