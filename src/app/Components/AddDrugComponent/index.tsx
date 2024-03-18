@@ -31,8 +31,8 @@ const AddDrugComponent = () => {
       height={"100vh"}
       flexDirection={"column"}
     >
-      <Flex width={"100%"} justifyContent={"space-between"} >
-        <Text fontSize={6} fontFamily={"poppins"}>
+      <Flex width={"100%"} justifyContent={"space-between"}>
+        <Text fontSize={6} fontFamily={"poppins"} p={1}>
           Add Drug
         </Text>
         <Button
@@ -107,20 +107,19 @@ const AddDrugComponent = () => {
 
                   <Flex justifyContent="flex-end" alignItems="center">
                     <Button
-                      borderRadius={40}
-                      fontWeight="bold"
-                      border={"1px solod #000"}
+                      borderRadius={2}
                       fontFamily="poppins"
                       color="white"
-                      fontSize={2}
-                      my={2}
-                      variant="primary"
+                      fontSize={5}
+                      my={5}
+                      variant="secondary"
                       onClick={() => {
                         handleSubmit();
                       }}
                       type="button"
                       padding={1}
-                      width={"50%"}
+                      width={"100%"}
+                      height={7}
                     >
                       Add
                     </Button>
