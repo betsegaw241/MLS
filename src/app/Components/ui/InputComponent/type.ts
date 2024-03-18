@@ -9,4 +9,5 @@ export type InputProps = {
   topIconlabel?: string;
   topIcon?: React.ReactNode;
   onIconClick?: () => void;
+  date?: () => void;
 };
