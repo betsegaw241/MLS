@@ -96,7 +96,7 @@ function InputField(props: InputProps) {
           placeholder={props.placeholder}
           required
           type={props.type}
-          width="100%"
+          width="90%"
           fontFamily={"poppins"}
         />
       )}

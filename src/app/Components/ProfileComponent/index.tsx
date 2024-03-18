@@ -148,7 +148,7 @@ const ProfileComponent = (props: editProfileComponentProp) => {
                               backgroundColor={isFocused ? "green" : "#fff"}
                               width={"140px"}
                               height={"40px"}
-                              marginLeft={["-30px", "-30px", "-30px", "-30px"]}
+                              marginLeft={["-30px", "-30px", "-30px", "-10px"]}
                               borderColor={isDragAccept ? "red" : null}
                               border={"1px #d8cfcf solid"}
                               justifyContent={"center"}
@@ -179,7 +179,7 @@ const ProfileComponent = (props: editProfileComponentProp) => {
                         borderRadius={"8%"}
                         height={"40px"}
                         width={["50px", "80px", "100px", "130px"]}
-                        marginLeft={["30%", "35%"]}
+                        marginLeft={["30%", "38%"]}
                         fontWeight={"bold"}
                         mt={"30px"}
                         onClick={() => handleSubmit()}
