@@ -36,7 +36,6 @@ const Layouts = (props: LayoutsComponentProps) => {
       margin={"0px"}
       padding={"0px"}
       right={"0px"}
-      height={"100vh"}
       backgroundColor={"#F2EEDE"}
     >
       <Header />

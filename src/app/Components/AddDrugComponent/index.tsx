@@ -65,6 +65,9 @@ const AddDrugComponent = () => {
                   style={{ gap: 10 }}
                   pt={10}
                 >
+                  <Text fontFamily={"poppins"} fontSize={5}>
+                    Selct drug to add
+                  </Text>
                   <ReactSelect
                     options={options}
                     setSelectedOption={(value: string) =>

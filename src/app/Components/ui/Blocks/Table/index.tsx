@@ -7,7 +7,7 @@ import { TableHead } from "@mui/material";
 
 export const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.head}`]: {
-    // backgroundColor: '#F9FAFB',
+    backgroundColor: '#F9FAFB',
     fontSize: 16,
     fontFamily: "poppins",
     paddingBottom: "15px",
