@@ -16,4 +16,6 @@ export interface RootState {
   homePage: homePageState;
   verifyAccount: verifyAccountPageState;
   manageInventory: ManageInventorState;
+  addDrug: ManageInventorState;
+  
 }
