@@ -4,7 +4,7 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
-import { Box, Flex, Grid, P, Text } from "../ui/Blocks";
+import { Flex, Grid, P, Text } from "../ui/Blocks";
 import { useNavigate } from "react-router";
 import {
   LowStockAlertColumn,
@@ -36,123 +36,8 @@ const theme = createTheme({
   },
 });
 
-const ManageInventory = () => {
+const ManageInventory = (props: any) => {
   const navigate = useNavigate();
-
-  const orders = [
-    {
-      id: 1,
-      name: "Beka",
-      drug: "Advil",
-      phone: "0935354",
-      location: "A.A",
-      time: "4:30 PM",
-      status: "PENDING",
-      date: "29/35/33",
-      recived: 400,
-      balance: 400,
-      expiration_date: "09/35/33",
-      batch: 1233,
-    },
-    {
-      id: 2,
-      name: "Toltu",
-      drug: "Differin",
-      phone: "092535454",
-      location: "Wolkite",
-      time: "4:30 PM",
-      status: "REJECTED",
-      date: "29/35/33",
-      recived: 400,
-      balance: 400,
-      expiration_date: "09/35/33",
-      batch: 1233,
-    },
-    {
-      id: 3,
-      name: "Desta",
-      drug: "Orajel",
-      phone: "093535421",
-      location: "Dire",
-      time: "4:30 PM",
-      status: "ACCEPTED",
-      date: "29/35/33",
-      recived: 400,
-      balance: 400,
-      expiration_date: "09/35/33",
-      batch: 1233,
-    },
-    {
-      id: 4,
-      name: "Damtew",
-      drug: "Advil",
-      phone: "091535488",
-      location: "A.A",
-      time: "4:30 PM",
-      status: "PENDING",
-      date: "29/35/33",
-      recived: 400,
-      balance: 400,
-      expiration_date: "09/35/33",
-      batch: 1233,
-    },
-    {
-      id: 5,
-      name: "Getu",
-      drug: "Differin",
-      phone: "095535477",
-      location: "Gubrye",
-      time: "4:30 PM",
-      status: "PENDING",
-      date: "29/35/33",
-      recived: 400,
-      balance: 4,
-      expiration_date: "09/35/33",
-      batch: 1233,
-    },
-    {
-      id: 6,
-      name: "Roba",
-      drug: "Advil",
-      phone: "093535455",
-      location: "Adama",
-      time: "4:30 PM",
-      status: "REJECTED",
-      date: "29/35/33",
-      recived: 400,
-      balance: 400,
-      expiration_date: "09/35/33",
-      batch: 1233,
-    },
-    {
-      id: 7,
-      name: "Iskindir",
-      drug: "Clifford",
-      phone: "093535433",
-      location: "Bahirdar",
-      time: "4:30 PM",
-      status: "ACCEPTED",
-      date: "29/35/33",
-      recived: 400,
-      balance: 3,
-      expiration_date: "09/35/33",
-      batch: 1233,
-    },
-    {
-      id: 8,
-      name: "Iskindir",
-      drug: "Clifford",
-      phone: "093535433",
-      location: "Bahirdar",
-      time: "4:30 PM",
-      status: "ACCEPTED",
-      date: "29/35/33",
-      recived: 400,
-      balance: 1,
-      expiration_date: "09/35/33",
-      batch: 1233,
-    },
-  ];
 
   const contentRefs: React.RefObject<HTMLDivElement>[] = Array.from(
     { length: 4 },
@@ -208,7 +93,6 @@ const ManageInventory = () => {
               boxShadow={"-1px 5px 8px -3px #B6BABD"}
               backgroundColor={"#B4D4FF"}
               alignItems={"center"}
-             
               onClick={scrollToContent(0)}
             >
               <Flex>
@@ -362,7 +246,7 @@ const ManageInventory = () => {
                 >
                   <TableHeader columnName={RecentlyAdded} />
                   <TableBody>
-                    {orders?.map((drug) => (
+                    {props.orders?.map((drug) => (
                       <TableRow
                         hover
                         key={drug.id}
@@ -460,10 +344,10 @@ const ManageInventory = () => {
                   >
                     <TableHeader columnName={LowStockAlertColumn} />
                     <TableBody>
-                      {orders?.map((loanOffer) => (
+                      {props.orders?.map((drug) => (
                         <TableRow
                           hover
-                          key={loanOffer.id}
+                          key={drug.id}
                           sx={{
                             "&:last-child td, &:last-child th": {
                               border: "none",
@@ -484,18 +368,18 @@ const ManageInventory = () => {
                               fontFamily: "poppins",
                             }}
                           >
-                            {loanOffer.drug}
+                            {drug.drug}
                           </TableCell>
                           <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {loanOffer.expiration_date}
+                            {drug.expiration_date}
                           </TableCell>
 
                           <TableCell>
                             <Text
                               fontFamily={"poppins"}
-                              color={loanOffer.balance > 10 ? "#805a0f" : "red"}
+                              color={drug.balance > 10 ? "#805a0f" : "red"}
                             >
-                              {loanOffer.balance}
+                              {drug.balance}
                             </Text>
                           </TableCell>
                         </TableRow>
@@ -556,7 +440,7 @@ const ManageInventory = () => {
                   >
                     <TableHeader columnName={OutOFStock} />
                     <TableBody>
-                      {orders?.map((drug) => (
+                      {props.orders?.map((drug) => (
                         <TableRow
                           hover
                           key={drug.id}
@@ -642,7 +526,7 @@ const ManageInventory = () => {
                   >
                     <TableHeader columnName={SoonExpiring} />
                     <TableBody>
-                      {orders?.map((drug) => (
+                      {props.orders?.map((drug) => (
                         <TableRow
                           hover
                           key={drug.id}
@@ -735,7 +619,7 @@ const ManageInventory = () => {
                   >
                     <TableHeader columnName={SoonExpiring} />
                     <TableBody>
-                      {orders?.map((drug) => (
+                      {props.orders?.map((drug) => (
                         <TableRow
                           hover
                           key={drug.id}

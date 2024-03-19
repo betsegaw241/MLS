@@ -17,6 +17,7 @@ import DrugDetailsComponent from "app/Components/DrugDetailsComponent";
 import AddDrugComponent from "app/Components/AddDrugComponent";
 import RegisterDrug from "app/Components/RegisterNewDrug";
 import AdminVerifyPharmacy from "app/Components/AdminVerifyPharmacy";
+import ManageInventoryPage from "app/Pages/ManageInventoryPage";
 
 export const routes: IRoute[] = [
   {
@@ -85,7 +86,7 @@ export const routes: IRoute[] = [
     allowedRole: "pharmacist",
   },
   {
-    element: <ManageInventory />,
+    element: <ManageInventoryPage />,
     exact: true,
     path: "pharmacist/inventory",
     isProtected: true,
