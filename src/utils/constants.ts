@@ -193,3 +193,85 @@ export const drugDetails: IColumn[] = [
     minWidth: 50,
   },
 ];
+
+export const RecentlyAdded: IColumn[] = [
+  {
+    id: "Date",
+    label: "Date",
+    minWidth: 50,
+  },
+
+  {
+    id: "Drug",
+    label: "Drug",
+    minWidth: 50,
+  },
+  {
+    id: "Expairation Date",
+    label: "Expairation Date",
+    minWidth: 50,
+  },
+  {
+    id: "Added_quantity",
+    label: "Added Quantity",
+    minWidth: 50,
+  },
+  {
+    id: "Balance",
+    label: "Balance",
+    minWidth: 50,
+  },
+];
+
+export const LowStockAlertColumn: IColumn[] = [
+  {
+    id: "Drug",
+    label: "Drug",
+    minWidth: 50,
+  },
+  {
+    id: "Expairation Date",
+    label: "Expairation Date",
+    minWidth: 50,
+  },
+
+  {
+    id: "Balance",
+    label: "Balance",
+    minWidth: 50,
+  },
+];
+export const SoonExpiring: IColumn[] = [
+  {
+    id: "Batch Number ",
+    label: "Batch Number",
+    minWidth: 50,
+  },
+  {
+    id: "Drug",
+    label: "Drug",
+    minWidth: 50,
+  },
+  {
+    id: "Balance",
+    label: "Balance",
+    minWidth: 50,
+  },
+  {
+    id: "Expairation Date",
+    label: "Expairation Date",
+    minWidth: 50,
+  },
+];
+
+export const OutOFStock: IColumn[] = [
+  {
+    id: "NO",
+    label: "NO",
+    minWidth: 10,
+  }, {
+    id: "Drug",
+    label: "Drug",
+    minWidth: 50,
+  }
+];
