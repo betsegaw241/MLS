@@ -99,7 +99,6 @@ function ProfilePage() {
         <ProfileComponent
           errorMessage={errorMessage}
           initialValues={profile}
-          ///
           isEditing={isEditing}
           PasswordValidationSchema={changePasswordValidationSchema}
           ischangingPassword={ischangingPassword}

@@ -206,42 +206,42 @@ const ProfileComponent = (props: editProfileComponentProp) => {
                     >
                       <Flex
                         ml={"40%"}
-                        mb={"6%"}
-                        mt={"1%"}
+                        mb={"2%"}
+                        mt={"-6%"}
                         flexDirection={"column"}
                       >
                         <Text
                           fontSize="16px"
-                          fontWeight="bold"
+                          fontFamily="poppins"
                           marginBottom="10px"
-                          color="#333"
+                          color="#181717"
                         >
                           First Name: {"  "}
                           {props.initialValues.firstName}
                         </Text>
                         <Text
                           fontSize="16px"
-                          fontWeight="bold"
+                          fontFamily="poppins"
                           marginBottom="10px"
-                          color="#333"
+                          color="#181717"
                         >
                           Last Name: {"  "}
                           {props.initialValues.lastName}
                         </Text>
                         <Text
                           fontSize="16px"
-                          fontWeight="bold"
+                          fontFamily="poppins"
                           marginBottom="10px"
-                          color="#333"
+                          color="#181717"
                         >
                           Email: {"  "}
                           {props.initialValues.email}
                         </Text>
                         <Text
                           fontSize="16px"
-                          fontWeight="bold"
+                          fontFamily="poppins"
                           marginBottom="10px"
-                          color="#333"
+                          color="#181717"
                         >
                           Phone: {props.initialValues.phone}
                         </Text>

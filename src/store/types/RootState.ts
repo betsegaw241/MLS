@@ -1,3 +1,4 @@
+import { addDrugPageState } from "app/Pages/AddDrugsPage/slice/types";
 import { addPharmacyPageState } from "app/Pages/AddPharmacyPage/slice/types";
 import { homePageState } from "app/Pages/HomePage/slice/types";
 import { LayoutState } from "app/Pages/Layout/slice/types";
@@ -16,6 +17,5 @@ export interface RootState {
   homePage: homePageState;
   verifyAccount: verifyAccountPageState;
   manageInventory: ManageInventorState;
-  addDrug: ManageInventorState;
-  
+  addDrug: addDrugPageState;
 }

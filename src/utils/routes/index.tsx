@@ -18,6 +18,7 @@ import AddDrugComponent from "app/Components/AddDrugComponent";
 import RegisterDrug from "app/Components/RegisterNewDrug";
 import AdminVerifyPharmacy from "app/Components/AdminVerifyPharmacy";
 import ManageInventoryPage from "app/Pages/ManageInventoryPage";
+import AddDrugPage from "app/Pages/AddDrugsPage";
 
 export const routes: IRoute[] = [
   {
@@ -140,20 +141,22 @@ export const routes: IRoute[] = [
     needsLayout: true,
   },
   {
-    element: <AddDrugComponent />,
+    element: <AddDrugPage />,
     exact: true,
     path: "pharmacist/adddrug",
     isProtected: true,
     allowedRole: "pharmacist",
     needsLayout: true,
-  }, {
+  },
+  {
     element: <RegisterDrug />,
     exact: true,
     path: "pharmacist/addnewdrug",
     isProtected: true,
     allowedRole: "pharmacist",
     needsLayout: true,
-  }, {
+  },
+  {
     element: <AdminVerifyPharmacy />,
     exact: true,
     path: "pharmacist/verify",

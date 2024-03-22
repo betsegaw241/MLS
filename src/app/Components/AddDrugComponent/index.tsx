@@ -4,23 +4,13 @@ import { Button, Flex, Grid, Text } from "../ui/Blocks";
 import { InputField } from "../ui/InputComponent";
 import { useNavigate } from "react-router";
 import ReactSelect from "../ui/Blocks/Select/ReactSelect";
-import { addDrugValidationSchema, initialValues } from "./types";
+import { initialValues } from "./types";
+import { addDrugValidationSchema } from "app/Pages/AddDrugsPage/validators";
 
-const AddDrugComponent = () => {
+const AddDrugComponent = (props:any) => {
   const navigate = useNavigate();
-  const options = [
-    { value: "aspirin", label: "Aspirin" },
-    { value: "ibuprofen", label: "Ibuprofen" },
-    { value: "acetaminophen", label: "Acetaminophen" },
-    { value: "naproxen", label: "Naproxen" },
-    { value: "metformin", label: "Metformin" },
-    { value: "amlodipine", label: "Amlodipine" },
-    { value: "atorvastatin", label: "Atorvastatin" },
-    { value: "lisinopril", label: "Lisinopril" },
-    { value: "simvastatin", label: "Simvastatin" },
-    { value: "levothyroxine", label: "Levothyroxine" },
-  ];
-
+  
+console.log(props);
   return (
     <Flex
       m={1}
@@ -49,7 +39,7 @@ const AddDrugComponent = () => {
         <Formik
           initialValues={initialValues}
           onSubmit={(values) => {
-            console.log(values);
+          props.onAddClick(values);
           }}
           validationSchema={addDrugValidationSchema}
         >
@@ -66,10 +56,10 @@ const AddDrugComponent = () => {
                   pt={10}
                 >
                   <Text fontFamily={"poppins"} fontSize={5}>
-                    Selct drug to add
+                    Select drug to add
                   </Text>
                   <ReactSelect
-                    options={options}
+                    options={props.drugs}
                     setSelectedOption={(value: string) =>
                       setFieldValue("drug", value)
                     }
