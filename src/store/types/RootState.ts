@@ -17,5 +17,6 @@ export interface RootState {
   verifyAccount: verifyAccountPageState;
   manageInventory: ManageInventorState;
   addDrug: ManageInventorState;
+  registerDrug:ManageInventorState;
   
 }
