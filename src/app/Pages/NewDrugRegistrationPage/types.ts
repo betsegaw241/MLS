@@ -11,5 +11,14 @@ export interface Drug {
   usage: string;
   dosage: string;
   unitOfIssue: string;
-  sideEffect: string;
+  sideEffects: string;
+  unitPrice: string;
+  // cost;
+  drugPhoto: string;
+  // category;
+  ingredients: string;
+  instruction: string;
+  strength: string;
+  minStockLevel: string;
+  needPrescription: boolean;
 }

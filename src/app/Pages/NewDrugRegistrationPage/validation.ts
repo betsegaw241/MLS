@@ -1,35 +1,41 @@
 import * as Yup from "yup";
-import { FormValues } from "./types";
-export const initialValues: FormValues = {
-  email: "",
-  password: "",
+import { Drug } from "./types";
+export const initialValues: Drug = {
+  name: "",
+  usage: "",
+  dosage: "",
+  unitOfIssue: "",
+  sideEffects: "",
+  unitPrice: "",
+  drugPhoto: "",
+  ingredients: "",
+  instruction: "",
+  strength: "",
+  minStockLevel: "",
+  needPrescription: false,
 };
 
 export const errorValues = {
-  email: {
-    invalid: "Invalid email address",
-    required: "Email is required",
+  name: {
+    invalid: "Invalid drug name",
+    required: "Drug Name is required",
   },
-  password: {
-    min: "Password must be grater than 8",
-    max: "Password is too long",
-    required: "Password is required",
-    combination:
-      "password must contain at least one lowercase, uppercase, digit & special character",
+  sideEffect: {
+    required: "Side effects are required",
+  },
+  usage: {
+    required: "Usage instruction is required",
+  },
+  unitOfIssue: {
+    required: "Usage instruction is required",
   },
 };
 
-export const loginInSchema = Yup.object({
-  email: Yup.string()
-    .email(errorValues.email.invalid)
-    .required(errorValues.email.required),
-  password: Yup.string()
-    .min(8, errorValues.password.min)
-    .max(30, errorValues.password.max)
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,30}$/,
-      errorValues.password.combination
-    )
-    .required(errorValues.password.required),
-  rememberMe: Yup.bool(),
+export const addDrugValidationSchema = Yup.object({
+  drug: Yup.string()
+    .required(errorValues.name.required)
+    .matches(/^[a-zA-Z0-9\s]+$/, errorValues.name.invalid),
+  usage: Yup.string().required(errorValues.usage.required),
+  sideEffect: Yup.string().required(errorValues.sideEffect.required),
+  unitOfIssue: Yup.string().required(errorValues.unitOfIssue.required),
 });

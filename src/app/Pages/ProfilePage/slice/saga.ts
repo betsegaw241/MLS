@@ -5,15 +5,18 @@ import { AxiosResponse } from "axios";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { PayloadType } from "./types";
 
-function* handleEditProfile(action: PayloadAction<string>) {
+function* handleEditProfile(action: PayloadAction<PayloadType>) {
   console.log(action.payload);
 
   try {
     const res: AxiosResponse = yield api({
-      route: `/user/${(action.payload as unknown as PayloadType).id}`,
+      route: `/user/${action.payload.id}`,
       method: "PUT",
       isSecureRoute: true,
-      body: { user: (action.payload as unknown as PayloadType).user },
+      body: {
+        avatar: action.payload.user.avatar,
+        phone: action.payload.user.phone,
+      },
     });
 
     if (res) {

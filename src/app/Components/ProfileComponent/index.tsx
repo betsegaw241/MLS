@@ -14,6 +14,7 @@ import Modal from "../ui/Modal";
 const ProfileComponent = (props: editProfileComponentProp) => {
   const { isFocused, isDragAccept } = useDropzone({ maxFiles: 1 });
   const [edit, setEdit] = useState(false);
+  const [image, setImage] = useState(props.initialValues.avatar);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
 
@@ -103,9 +104,7 @@ const ProfileComponent = (props: editProfileComponentProp) => {
           >
             <img
               src={
-                selectedFile
-                  ? URL.createObjectURL(selectedFile)
-                  : props.initialValues.avatar
+                selectedFile == null ? image : URL.createObjectURL(selectedFile)
               }
               alt=""
               width={"100px"}

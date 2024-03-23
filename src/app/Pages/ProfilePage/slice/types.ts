@@ -11,7 +11,7 @@ export interface editProfilePageState {
 }
 export interface PayloadType {
   id: string;
-  user: string;
+  user: IProfile;
 }
 export interface IProfile {
   firstName: String;

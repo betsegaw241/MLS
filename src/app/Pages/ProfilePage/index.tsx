@@ -34,16 +34,15 @@ function ProfilePage() {
   }, []);
 
   async function onSaveClick(values: IProfile): Promise<void> {
-    console.log("hi save button clicked");
-    setData((prev) => ({ ...prev, ...values }));
     if (selectedFile) {
       const avatar = await handleUpload(selectedFile);
       setImage(avatar);
+
       dispatch(
         actions.editProfile({
           user: {
-            phoneNumber: data.phone,
-            avatar: image ? image : data.avatar,
+            phoneNumber: values.phone,
+            avatar: avatar,
           },
           id: userID,
         })
@@ -52,8 +51,7 @@ function ProfilePage() {
       dispatch(
         actions.editProfile({
           user: {
-            phoneNumber: data.phone,
-            avatar: image ? image : data.avatar,
+            phoneNumber: values.phone,
           },
           id: userID,
         })
