@@ -7,14 +7,12 @@ import AddPharmacyPage from "app/Pages/AddPharmacyPage/index";
 import HomePage from "app/Pages/HomePage";
 import ProfilePage from "app/Pages/ProfilePage";
 import OrderComponent from "app/Components/OrderComponent";
-import ManageInventory from "app/Components/ManageInventory";
 import ManagePharmacyAccount from "app/Components/ManagePharmacyAccount";
 import OrderDetailComponent from "app/Components/OrdersDetailComponent";
 import VerifyEmailComponent from "app/Components/verifyEmail/VerifyEmailComponent";
 import VerifyEmailPage from "app/Pages/VerifyEmailPage";
 import StockComponent from "app/Components/StockComponent";
 import DrugDetailsComponent from "app/Components/DrugDetailsComponent";
-import AddDrugComponent from "app/Components/AddDrugComponent";
 import RegisterDrug from "app/Components/RegisterNewDrug";
 import AdminVerifyPharmacy from "app/Components/AdminVerifyPharmacy";
 import ManageInventoryPage from "app/Pages/ManageInventoryPage";
@@ -24,7 +22,7 @@ export const routes: IRoute[] = [
   {
     element: <></>,
     exact: true,
-    path: "/pharmacist/dashboard",
+    path: "/pharmacist/dashboard/:id",
     isProtected: true,
     allowedRole: "pharmacist",
     needsLayout: true,

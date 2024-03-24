@@ -13,8 +13,7 @@ const HomePage = () => {
   const userId = localStorage.getItem("id");
 
   useEffect(() => {
-     dispatch(actions.getPharmacies(userId));
-    
+    dispatch(actions.getPharmacies(userId));
   }, []);
 
   return (

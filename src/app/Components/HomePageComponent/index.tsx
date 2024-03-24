@@ -61,57 +61,48 @@ const HomePageComponent = (props: HomePageProps) => {
           borderRadius={"5px"}
           flexDirection={"column"}
         >
-          <Flex
-            backgroundColor={"#f5f5f5"}
-            flexDirection={"row"}
-            m={1}
-            p={2}
-            style={{ gap: 20 }}
-            alignItems={"center"}
-            borderRadius={"8px"}
-            onClick={() => navigate("/pharmacist/dashboard")}
-          >
-            <Box
-              backgroundColor={"#ffff"}
-              width={"50px"}
-              height={"50px"}
-              borderRadius={"50%"}
-            ></Box>
-            <Text fontFamily={"poppins"} fontSize={6}>
-              Flex Pharmacy
-            </Text>
-            <Flex>
-              <Text fontFamily={"poppins"} fontSize={4}>
-                last year
-              </Text>
+          {props.pharmacies?.map((pharmacy) => (
+            <Flex
+              key={pharmacy._id}
+              backgroundColor={"#f5f5f5"}
+              flexDirection={"row"}
+              m={1}
+              p={2}
+              style={{ gap: 20 }}
+              alignItems={"center"}
+              justifyContent={"space-around"}
+              borderRadius={"8px"}
+              onClick={() => navigate(`/pharmacist/dashboard/${pharmacy._id}`)}
+            >
+              <Flex alignItems={"center"} style={{ gap: 10 }}>
+                <Box
+                  width={8}
+                  backgroundColor={"#f5f5"}
+                  height={8}
+                  borderRadius={"50%"}
+                >
+                  {" "}
+                </Box>
+                {/* <img
+                 src={pharmacy.logo}
+                ></img> */}
+                <Text fontFamily={"poppins"} fontSize={6}>
+                  {pharmacy.name}
+                </Text>
+              </Flex>
+
+              <Flex>
+                <Text fontFamily={"poppins"} fontSize={3}>
+                  {pharmacy.email}
+                </Text>
+              </Flex>
+              <Flex>
+                <Text fontFamily={"poppins"} fontSize={3}>
+                  {pharmacy.phoneNumber}
+                </Text>
+              </Flex>
             </Flex>
-            <Flex>:</Flex>
-          </Flex>
-          <Flex
-            backgroundColor={"#f5f5f5"}
-            flexDirection={"row"}
-            m={1}
-            p={2}
-            style={{ gap: 20 }}
-            alignItems={"center"}
-            borderRadius={"8px"}
-          >
-            <Box
-              backgroundColor={"#ffff"}
-              width={"50px"}
-              height={"50px"}
-              borderRadius={"50%"}
-            ></Box>
-            <Text fontFamily={"poppins"} fontSize={6}>
-              Flex Pharmacy
-            </Text>
-            <Flex>
-              <Text fontFamily={"poppins"} fontSize={4}>
-                last year
-              </Text>
-            </Flex>
-            <Flex>:</Flex>
-          </Flex>
+          ))}
         </Flex>
       </Flex>
     </>

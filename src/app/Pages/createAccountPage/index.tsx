@@ -12,7 +12,11 @@ import {
   createAccoutSchemaStep3,
 } from "./validators";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsAcountCreated, selectErrorMessage ,selectCreating} from "./slice/selector";
+import {
+  selectIsAcountCreated,
+  selectErrorMessage,
+  selectCreating,
+} from "./slice/selector";
 import { useCreateAccountPageSlice } from "./slice";
 import { useNavigate } from "react-router";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
@@ -20,15 +24,12 @@ import { storage } from "utils/firebaseConfig";
 import { FormValues } from "./types";
 
 const CreateAccountPage = () => {
-  
   const isaccountCreated = useSelector(selectIsAcountCreated);
   const creatatingAccount = useSelector(selectCreating);
   const errorMessage = useSelector(selectErrorMessage);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { actions } = useCreateAccountPageSlice();
-
-  
 
   const [uploadingDocument, setUploadingDocument] = useState(false);
   const [isUploaded, setIsUploaded] = useState(false);
@@ -38,7 +39,6 @@ const CreateAccountPage = () => {
   // const [set3Data, setStep3Data] = useState(null);
   const [currentStep, setCurrentStep] = useState(0);
   const totalSteps = 3;
-  console.log('123456',isaccountCreated,creatatingAccount);
 
   function onSignupClick() {
     dispatch(

@@ -7,12 +7,13 @@ import { PayloadAction } from "@reduxjs/toolkit";
 function* handleGetPharmacies(action: PayloadAction<string>) {
   try {
     const res: AxiosResponse = yield api({
-      route: "/pharmacy/pharmacist/my-pharmacy",
+      route: `/user/${action.payload}`,
       method: "GET",
       isSecureRoute: true,
-      body: { user: action.payload },
     });
-    if (res.status === 200) {
+    console.log(res);
+
+    if (res) {
       yield put(actions.getPharmaciesSuccess(res));
     }
   } catch (error) {

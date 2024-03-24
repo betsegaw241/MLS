@@ -1,12 +1,13 @@
-
 export interface homePageState {
-  pharmcies:pharmacy[];
+  pharmcies: pharmacy[];
   errorMessage: string;
   isLoading: boolean;
 }
 
 export interface pharmacy {
-  name:string;
-  logo:string;
-  
+  _id: string;
+  name: string;
+  logo: string;
+  email: string;
+  phoneNumber: string;
 }

@@ -1,10 +1,12 @@
 export interface HomePageProps {
-    pharmacies:phaarmacy[];
-    errorMessage:string;
+  pharmacies: pharmacy[];
+  errorMessage: string;
 }
 
-export interface phaarmacy {
-    name:string;
-    logo:string;
-    
+export interface pharmacy {
+  _id: string;
+  name: string;
+  logo: string;
+  email: string;
+  phoneNumber: string;
 }
