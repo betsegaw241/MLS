@@ -3,6 +3,25 @@ import { theme } from "../../../styles/theme";
 import { Button, Flex, Grid, Text } from "../ui/Blocks";
 import { InputField } from "../ui/InputComponent";
 import { initialValues } from "app/Pages/Login/constants";
+import {
+  Checkbox,
+  FormControlLabel,
+  ThemeProvider,
+  createTheme,
+} from "@mui/material";
+
+const muitheme = createTheme({
+  components: {
+    MuiFormControlLabel: {
+      styleOverrides: {
+        label: {
+          fontFamily: "Poppins", // Change font family here
+          // You can add other label styles here if needed
+        },
+      },
+    },
+  },
+});
 
 const RegisterDrug = () => {
   return (
@@ -77,7 +96,51 @@ const RegisterDrug = () => {
                       type="textarea"
                       label="Side Effects"
                     />
-
+                    <Grid
+                      borderRadius={0}
+                      gridColumnGap={"40px"}
+                      gridRowGap={"15px"}
+                      gridTemplateColumns={[
+                        "repeat(1, 1fr)",
+                        "repeat(2, 1fr)",
+                        "repeat(3, 1fr)",
+                      ]}
+                    >
+                      <Flex flexDirection={"column"} style={{ gap: 3 }}>
+                        <InputField
+                          name="catagory"
+                          type="text"
+                          label="Catagory"
+                        />
+                      </Flex>
+                      <Flex flexDirection={"column"} style={{ gap: 3 }}>
+                        <InputField
+                          name="price"
+                          type="text"
+                          label="Unit Price"
+                        />
+                      </Flex>
+                      <Flex flexDirection={"column"} style={{ gap: 3 }}>
+                        <InputField
+                          name="minStockLevel"
+                          type=""
+                          label="Minimum stock Level"
+                        />
+                      </Flex>
+                    </Grid>
+                    <Flex>
+                      <ThemeProvider theme={muitheme}>
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              defaultChecked
+                              onChange={() => console.log("yes")}
+                            />
+                          }
+                          label="Need Prescription"
+                        />
+                      </ThemeProvider>
+                    </Flex>
                     <Flex justifyContent="flex-end" alignItems="center">
                       <Button
                         borderRadius={1}
