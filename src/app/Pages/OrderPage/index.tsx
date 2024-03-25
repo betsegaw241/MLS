@@ -1,8 +1,9 @@
-import OrderComponent from "app/Components/OrderComponent";
 import { useEffect, useState } from "react";
+import { Order } from "./types";
+import OrderComponent from "app/Components/OrderComponent";
 
 function OrderPage() {
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState<Order[]>([]);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -18,7 +19,7 @@ function OrderPage() {
     fetchOrders();
   }, []);
 
-  return (
+  return(
     <OrderComponent orders={orders} />
   );
 }

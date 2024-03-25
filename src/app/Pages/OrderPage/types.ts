@@ -1,11 +1,12 @@
-// export interface DefaultLayoutProps {
-//   children: React.ReactNode;
-// }
-
-export interface FileObject {
+export interface Order {
+  id: number;
   name: string;
-  type: string;
-  size: number;
-  path: string;
-  // Add any other properties you need for the file
-}
+  drug: string;
+  phone: string;
+  location: string;
+  time: string;
+  status: string;
+};
+export interface OrderComponentProps {
+  orders: Order[];
+};
