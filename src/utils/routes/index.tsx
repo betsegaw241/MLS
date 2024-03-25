@@ -7,7 +7,7 @@ import AddPharmacyPage from "app/Pages/AddPharmacyPage/index";
 import HomePage from "app/Pages/HomePage";
 import ProfilePage from "app/Pages/ProfilePage";
 import OrderComponent from "app/Components/OrderComponent";
-import ManagePharmacyAccount from "app/Components/ManagePharmacyAccount";
+import PharmacyAccountComponent from "app/Components/PharmacyAccountComponent";
 import OrderDetailComponent from "app/Components/OrdersDetailComponent";
 import VerifyEmailComponent from "app/Components/verifyEmail/VerifyEmailComponent";
 import VerifyEmailPage from "app/Pages/VerifyEmailPage";
@@ -93,7 +93,7 @@ export const routes: IRoute[] = [
     needsLayout: true,
   },
   {
-    element: <ManagePharmacyAccount />,
+    element: <PharmacyAccountComponent />,
     exact: true,
     path: "pharmacist/account",
     isProtected: true,
