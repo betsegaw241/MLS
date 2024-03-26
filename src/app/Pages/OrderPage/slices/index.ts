@@ -1,49 +1,43 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { useInjectReducer, useInjectSaga } from "redux-injectors";
-import { orderPageState } from "./types";
+import { orderPageState, IOrder } from "./types";
 import { OrderPageSaga } from "./saga";
+import { useInjectReducer, useInjectSaga } from "redux-injectors";
 
 export const initialState: orderPageState = {
   isgettingOrder: false,
   isOrderExist: false,
   order: {
-      name: "",
-      drug: "",
-      phone: "",
-      location: "",
-      time: "",
-      status: "",
-      id: 0
+    name: "",
+    drug: "",
+    phone: "",
+    location: "",
+    time: "",
+    status: "",
+    id: 0,
   },
+  orders: [], // to store fetched orders
 };
+
 const slice = createSlice({
   name: "orderSlice",
   initialState,
   reducers: {
-    orderSlice: (state, action: PayloadAction<any>) => {
-      state.isgettingOrder = true;
-    },
+    // Other reducers...
 
-    getOrder: (state, action: PayloadAction<any>) => {
+    fetchOrders: (state) => {
       state.isgettingOrder = true;
     },
-    getOrderSuccess: (state, action: PayloadAction<any>) => {
+    fetchOrdersSuccess: (state, action: PayloadAction<IOrder>) => {
       state.isgettingOrder = false;
       state.isOrderExist = true;
-      state.order.id = action.payload.id;
-      state.order.name = action.payload.name;
-      state.order.phone = action.payload.phone;
-      state.order.drug = action.payload.drug;
-      state.order.location = action.payload.location;
-      state.order.time = action.payload.time;
-      state.order.status = action.payload.status;
+      state.order = action.payload; // Updating orders array with fetched orders
     },
-    getOrderFailed: (state, action: PayloadAction<any>) => {
+    fetchOrdersFailed: (state) => {
       state.isgettingOrder = false;
     },
-    
   },
 });
+
 export const { actions: OrderPageActions } = slice;
 
 export const useOrderPageSlice = () => {

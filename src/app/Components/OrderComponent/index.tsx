@@ -12,86 +12,111 @@ import Search from "../ui/SearchBar";
 import { FiChevronDown } from "react-icons/fi";
 import { Pagination } from "@mui/material";
 import { useState } from "react";
+import { Order, OrderComponentProps } from "./types";
 
-const OrderComponent = () => {
+const OrderComponent = (props: OrderComponentProps) => {
   const navigate = useNavigate();
   const [showSortBy, setShowSortBy] = useState(false);
+  //const [searchTerm, setSearchTerm] = useState("");
 
-  const orders = [
-    {
-      id: 1,
-      name: "Beka",
-      drug: "Advil",
-      phone: "0935354",
-      location: "A.A",
-      time: "4:30 PM",
-      status: "PENDING",
-    },
-    {
-      id: 2,
-      name: "Toltu",
-      drug: "Differin",
-      phone: "092535454",
-      location: "Wolkite",
-      time: "4:30 PM",
-      status: "REJECTED",
-    },
-    {
-      id: 3,
-      name: "Desta",
-      drug: "Orajel",
-      phone: "093535421",
-      location: "Dire",
-      time: "4:30 PM",
-      status: "ACCEPTED",
-    },
-    {
-      id: 4,
-      name: "Damtew",
-      drug: "Advil",
-      phone: "091535488",
-      location: "A.A",
-      time: "4:30 PM",
-      status: "PENDING",
-    },
-    {
-      id: 5,
-      name: "Getu",
-      drug: "Differin",
-      phone: "095535477",
-      location: "Gubrye",
-      time: "4:30 PM",
-      status: "PENDING",
-    },
-    {
-      id: 6,
-      name: "Roba",
-      drug: "Advil",
-      phone: "093535455",
-      location: "Adama",
-      time: "4:30 PM",
-      status: "REJECTED",
-    },
-    {
-      id: 7,
-      name: "Iskindir",
-      drug: "Clifford",
-      phone: "093535433",
-      location: "Bahirdar",
-      time: "4:30 PM",
-      status: "ACCEPTED",
-    },
-    {
-      id: 8,
-      name: "Iskindir",
-      drug: "Clifford",
-      phone: "093535433",
-      location: "Bahirdar",
-      time: "4:30 PM",
-      status: "ACCEPTED",
-    },
-  ];
+  // const orders = [
+  //   {
+  //     id: 1,
+  //     name: "Beka",
+  //     drug: "Advil",
+  //     phone: "0935354",
+  //     location: "A.A",
+  //     time: "4:30 PM",
+  //     status: "PENDING",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Toltu",
+  //     drug: "Differin",
+  //     phone: "092535454",
+  //     location: "Wolkite",
+  //     time: "4:30 PM",
+  //     status: "REJECTED",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Desta",
+  //     drug: "Orajel",
+  //     phone: "093535421",
+  //     location: "Dire",
+  //     time: "4:30 PM",
+  //     status: "ACCEPTED",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Damtew",
+  //     drug: "Advil",
+  //     phone: "091535488",
+  //     location: "A.A",
+  //     time: "4:30 PM",
+  //     status: "PENDING",
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Getu",
+  //     drug: "Differin",
+  //     phone: "095535477",
+  //     location: "Gubrye",
+  //     time: "4:30 PM",
+  //     status: "PENDING",
+  //   },
+  //   {
+  //     id: 6,
+  //     name: "Roba",
+  //     drug: "Advil",
+  //     phone: "093535455",
+  //     location: "Adama",
+  //     time: "4:30 PM",
+  //     status: "REJECTED",
+  //   },
+  //   {
+  //     id: 7,
+  //     name: "Iskindir",
+  //     drug: "Clifford",
+  //     phone: "093535433",
+  //     location: "Bahirdar",
+  //     time: "4:30 PM",
+  //     status: "ACCEPTED",
+  //   },
+  //   {
+  //     id: 8,
+  //     name: "Iskindir",
+  //     drug: "Clifford",
+  //     phone: "093535433",
+  //     location: "Bahirdar",
+  //     time: "4:30 PM",
+  //     status: "ACCEPTED",
+  //   },
+  // ];
 
+  // Filter orders based on search term
+  // const filteredOrders = orders.filter((order) =>
+  //   order.name.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
+
+const formatDate = (dateString:string) => {
+  // Create a Date object from the provided date string
+  const date = new Date(dateString);
+
+  // Extract date components
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // Month starts from 0
+  const day = String(date.getDate()).padStart(2, "0");
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+
+  const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
+
+  return formattedDate;
+};
+
+
+console.log(props.orders);
   return (
     <Box
       width={"100%"}
@@ -117,7 +142,14 @@ const OrderComponent = () => {
           background={"#F9FBFF"}
           height={"40px"}
         >
-          <Search />
+          <Box
+            onClick={() => {
+              console.log("data", props.orders);
+              console.log("search button clicked.");
+            }}
+          >
+            <Search />
+          </Box>
         </Flex>
         <Flex
           borderRadius={"8px"}
@@ -155,22 +187,21 @@ const OrderComponent = () => {
               >
                 <TableHeader columnName={OrderTableColumns} />
                 <TableBody>
-                  {orders?.map((loanOffer) => (
+                  {props.orders?.map((order: Order) => (
                     <TableRow
                       hover
-                      key={loanOffer.id}
+                      key={order.id}
                       sx={{
                         "&:last-child td, &:last-child th": { border: "none" },
                         cursor: "pointer",
                         boxShadow: "none",
                       }}
                       onClick={() => {
-                        navigate(`/pharmacist/orderdetail`);
+
+                        navigate(`/pharmacist/orderdetail/${order._id}`);
                       }}
                     >
-                      <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                        {loanOffer.id}
-                      </TableCell>
+                    
 
                       <TableCell
                         component="th"
@@ -181,32 +212,32 @@ const OrderComponent = () => {
                           fontFamily: "poppins",
                         }}
                       >
-                        {loanOffer.name}
+                        {order.customer.name}
                       </TableCell>
                       <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                        {loanOffer.drug}
+                        {order.drug.name}
                       </TableCell>
                       <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                        {loanOffer.location}
+                        {order.customer.email}
                       </TableCell>
                       <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                        {loanOffer.time}
+                        {order.deliveryAddress.address}
                       </TableCell>
                       <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                        {loanOffer.phone}
+                        {formatDate(order.createdAt)}
                       </TableCell>
                       <TableCell
                         sx={{
                           color:
-                            loanOffer.status === "ACCEPTED"
+                            order.status === "accepted"
                               ? "#12e528"
-                              : loanOffer.status === "REJECTED"
+                              : order.status === "aborted"
                               ? "#F84F4F"
-                              : "#000000",
+                              : "#9b9999",
                           fontFamily: "poppins",
                         }}
                       >
-                        {loanOffer.status}
+                        {order.status}
                       </TableCell>
                     </TableRow>
                   ))}

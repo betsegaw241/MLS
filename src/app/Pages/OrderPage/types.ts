@@ -8,5 +8,7 @@ export interface Order {
   status: string;
 };
 export interface OrderComponentProps {
-  orders: Order[];
+  orders: object;
 };
+
+

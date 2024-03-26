@@ -1,3 +1,11 @@
+export interface orderDetailPageState {
+  isgettingOrder: boolean;
+  isOrderExist: boolean;
+  order:IOrder;
+  
+}
+
+
 export interface Location {
   coordinates: [number, number];
   type: string;
@@ -57,7 +65,4 @@ export interface IOrder {
   pharmacy: Pharmacy;
   drug: Drug;
   transaction: Transaction;
-}
-export interface IorderDetailComponent {
-    order:IOrder;
 }

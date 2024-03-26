@@ -13,6 +13,7 @@ return (
         type={""}
         placeholder="Search..."
         border={"none"}
+        
       />
       <CiSearch />
     </Flex>

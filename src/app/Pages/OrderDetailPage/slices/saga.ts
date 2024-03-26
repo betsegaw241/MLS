@@ -1,28 +1,30 @@
 import { put, takeLatest } from "redux-saga/effects";
-import { OrderPageActions } from ".";
+import { OrderDetailPageActions as actions } from ".";
 import api from "../../../../API/api";
 import { AxiosResponse } from "axios";
 import { PayloadAction } from "@reduxjs/toolkit";
 
-function* handleFetchOrders(
+function* handleFetchOrder(
   action: PayloadAction<any>
 ): Generator<any, void, AxiosResponse<any>> {
   try {
     const res: AxiosResponse<any> = yield api({
-      route: "/order",
+      route: `/order/${action.payload}`,
       method: "GET",
       isSecureRoute: true,
       query: { id: action.payload },
     });
+    
+    
     if (res) {
-      yield put(OrderPageActions.fetchOrdersSuccess(res.data)); // Assuming data is an array of orders
+      yield put(actions.fetchOrderSuccess(res)); // Assuming data is an array of orders
     }
   } catch (error) {
     console.log("error=======", error);
-    yield put(OrderPageActions.fetchOrdersFailed());
+    yield put(actions.fetchOrderFailed());
   }
 }
 
-export function* OrderPageSaga() {
-  yield takeLatest(OrderPageActions.fetchOrders.type, handleFetchOrders);
+export function* OrderDetailPageSaga() {
+  yield takeLatest(actions.fetchOrder.type, handleFetchOrder);
 }

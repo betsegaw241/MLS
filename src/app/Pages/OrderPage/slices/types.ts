@@ -2,10 +2,10 @@ export interface orderPageState {
   isgettingOrder: boolean;
   isOrderExist: boolean;
   order:IOrder;
+  orders:[];
 }
 
 export interface IOrder {
-  [x: string]: any;
   id: number;
   name: string;
   drug: string;
