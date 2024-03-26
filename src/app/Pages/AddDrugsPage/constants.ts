@@ -4,7 +4,7 @@ export const errorValues = {
     invalid: "Invalid drug name",
     required: "Drug Name is required",
   },
-  batch: {
+  batchNumber: {
     invalid: "Invalid batch Number",
     required: "Batch is required",
   },

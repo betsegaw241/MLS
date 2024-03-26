@@ -1,14 +1,18 @@
 export const initialValues: FormValues = {
   drug: "",
-  batch: "",
-  expirationDate: "",
-  quantity: "",
-
+  batchNumber: "",
+  expiredDate: "",
+  quantity: 0,
+  price: "",
+  cost: "",
+  recievedFrom: "",
 };
 export interface FormValues {
   drug: string;
-  batch: string;
-  expirationDate: string;
-  quantity: string;
+  batchNumber: string;
+  expiredDate: string;
+  quantity: number;
+  recievedFrom: string;
+  cost: string;
+  price: string;
 }
-

@@ -34,17 +34,6 @@ const AddDrugPage = () => {
     { value: "levothyroxine", label: "Levothyroxine" },
   ];
 
-  // Make API call to fetch drugs
-  //   fetch("your_backend_api_endpoint_here")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setDrugs(data.drugs); // Assuming your API response contains a 'drugs' key
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching drugs:", error);
-  //     });
-  // }, []);
-
   return (
     <AddDrugComponent
       loading={isAdding}
