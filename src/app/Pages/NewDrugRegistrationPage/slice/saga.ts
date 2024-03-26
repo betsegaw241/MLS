@@ -22,6 +22,6 @@ function* handleRegisterDrugs(action: PayloadAction<any>) {
   }
 }
 
-export function* AddDrugSaga() {
+export function* RegistrDrugSaga() {
   yield takeLatest(actions.registerDrug.type, handleRegisterDrugs);
 }

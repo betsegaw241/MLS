@@ -1,22 +1,25 @@
-import { Form, Formik } from "formik";
+import { ErrorMessage, Form, Formik } from "formik";
 import { theme } from "../../../styles/theme";
 import { Button, Flex, Grid, Text } from "../ui/Blocks";
 import { InputField } from "../ui/InputComponent";
-import { initialValues } from "app/Pages/Login/constants";
+import {
+  initialValues,
+  registerValidationSchema,
+} from "app/Pages/NewDrugRegistrationPage/validation";
 import {
   Checkbox,
   FormControlLabel,
   ThemeProvider,
   createTheme,
 } from "@mui/material";
+import { useState } from "react";
 
 const muitheme = createTheme({
   components: {
     MuiFormControlLabel: {
       styleOverrides: {
         label: {
-          fontFamily: "Poppins", // Change font family here
-          // You can add other label styles here if needed
+          fontFamily: "Poppins",
         },
       },
     },
@@ -24,6 +27,7 @@ const muitheme = createTheme({
 });
 
 const RegisterDrug = () => {
+  const [uploadImage, setUploadImage] = useState(true);
   return (
     <Flex
       borderRadius={1}
@@ -41,7 +45,7 @@ const RegisterDrug = () => {
           onSubmit={(values) => {
             console.log(values);
           }}
-          validationSchema={""}
+          validationSchema={registerValidationSchema}
         >
           {({ handleSubmit, setFieldValue, values }) => {
             return (
@@ -69,7 +73,7 @@ const RegisterDrug = () => {
                     >
                       <Flex flexDirection={"column"} style={{ gap: 3 }}>
                         <InputField
-                          name="stength"
+                          name="strength"
                           type="text"
                           label="Strength"
                         />
@@ -83,52 +87,49 @@ const RegisterDrug = () => {
                       </Flex>
                       <Flex flexDirection={"column"} style={{ gap: 3 }}>
                         <InputField
-                          name="unitOFIssue"
-                          type=""
-                          label="Unit of issue"
-                        />
-                      </Flex>
-                    </Grid>
-
-                    <InputField name="usage" type="textarea" label="Usage" />
-                    <InputField
-                      name="sideEffects"
-                      type="textarea"
-                      label="Side Effects"
-                    />
-                    <Grid
-                      borderRadius={0}
-                      gridColumnGap={"40px"}
-                      gridRowGap={"15px"}
-                      gridTemplateColumns={[
-                        "repeat(1, 1fr)",
-                        "repeat(2, 1fr)",
-                        "repeat(3, 1fr)",
-                      ]}
-                    >
-                      <Flex flexDirection={"column"} style={{ gap: 3 }}>
-                        <InputField
-                          name="catagory"
-                          type="text"
-                          label="Catagory"
-                        />
-                      </Flex>
-                      <Flex flexDirection={"column"} style={{ gap: 3 }}>
-                        <InputField
-                          name="price"
-                          type="text"
-                          label="Unit Price"
-                        />
-                      </Flex>
-                      <Flex flexDirection={"column"} style={{ gap: 3 }}>
-                        <InputField
                           name="minStockLevel"
                           type=""
                           label="Minimum stock Level"
                         />
                       </Flex>
                     </Grid>
-                    <Flex>
+
+                    <InputField
+                      name="instruction"
+                      type="textarea"
+                      label="Usage"
+                    />
+                    {/* <Text
+                      fontFamily={"poppins"}
+                      fontSize={"12px"}
+                      color={"red"}
+                      p={"2px"}
+                    >
+                      <ErrorMessage name="instruction" />
+                    </Text> */}
+                    <InputField
+                      name="sideEffects"
+                      type="textarea"
+                      label="Side Effects"
+                    />
+                    {/* <Text
+                      fontFamily={"poppins"}
+                      fontSize={"12px"}
+                      color={"red"}
+                      p={"2px"}
+                    >
+                      <ErrorMessage name="sideEffects" />
+                    </Text> */}
+
+                    <Flex flexDirection={"column"} style={{ gap: 3 }}>
+                      <InputField
+                        name="catagory"
+                        type="text"
+                        label="Catagory"
+                      />
+                    </Flex>
+
+                    <Flex justifyContent={"space-between"} marginX={1}>
                       <ThemeProvider theme={muitheme}>
                         <FormControlLabel
                           control={
@@ -140,7 +141,17 @@ const RegisterDrug = () => {
                           label="Need Prescription"
                         />
                       </ThemeProvider>
+                      <Button
+                        fontFamily={"poppins"}
+                        fontSize={2}
+                        borderRadius={"5px"}
+                        onClick={() => setUploadImage(!uploadImage)}
+                        type="button"
+                      >
+                        Upload drug photo
+                      </Button>
                     </Flex>
+                    {uploadImage && <Flex>upload</Flex>}
                     <Flex justifyContent="flex-end" alignItems="center">
                       <Button
                         borderRadius={1}
