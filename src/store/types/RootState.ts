@@ -4,8 +4,13 @@ import { homePageState } from "app/Pages/HomePage/slice/types";
 import { LayoutState } from "app/Pages/Layout/slice/types";
 import { LoginState } from "app/Pages/Login/slice/types";
 import { ManageInventorState } from "app/Pages/ManageInventoryPage/types";
+<<<<<<< HEAD
 import { orderDetailPageState } from "app/Pages/OrderDetailPage/slices/types";
+=======
+import { RegisterDrugPageState } from "app/Pages/NewDrugRegistrationPage/types";
+>>>>>>> e147b3481c1987010aba7c22c904f43f5c1e284a
 import { orderPageState } from "app/Pages/OrderPage/slices/types";
+import { pharmacyAccountPageState } from "app/Pages/PharmacyAccountPage/slices/types";
 import { editProfilePageState } from "app/Pages/ProfilePage/slice/types";
 import { verifyAccountPageState } from "app/Pages/VerifyEmailPage/slice/types";
 import { createAccountPageState } from "app/Pages/createAccountPage/slice/types";
@@ -21,5 +26,11 @@ export interface RootState {
   verifyAccount: verifyAccountPageState;
   manageInventory: ManageInventorState;
   addDrug: addDrugPageState;
+<<<<<<< HEAD
   orderDetailSlice:orderDetailPageState;
+=======
+  pharmacyAccount:pharmacyAccountPageState
+  registerDrug:RegisterDrugPageState;
+
+>>>>>>> e147b3481c1987010aba7c22c904f43f5c1e284a
 }

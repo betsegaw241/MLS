@@ -7,10 +7,9 @@ import ReactSelect from "../ui/Blocks/Select/ReactSelect";
 import { initialValues } from "./types";
 import { addDrugValidationSchema } from "app/Pages/AddDrugsPage/validators";
 
-const AddDrugComponent = (props:any) => {
+const AddDrugComponent = (props: any) => {
   const navigate = useNavigate();
-  
-console.log(props);
+
   return (
     <Flex
       m={1}
@@ -39,11 +38,11 @@ console.log(props);
         <Formik
           initialValues={initialValues}
           onSubmit={(values) => {
-          props.onAddClick(values);
+            props.onAddClick(values);
           }}
           validationSchema={addDrugValidationSchema}
         >
-          {({ handleSubmit, setFieldValue }) => {
+          {({ handleSubmit, setFieldValue, values }) => {
             return (
               <Form>
                 <Flex
@@ -84,16 +83,33 @@ console.log(props);
                     mb={2}
                   >
                     <Flex flexDirection={"column"}>
-                      <InputField name="batch" type="" label="Batch Number" />
+                      <InputField
+                        name="batchNumber"
+                        type=""
+                        label="Batch Number"
+                      />
                     </Flex>
                     <Flex flexDirection={"column"}>
                       <InputField name="quantity" type="text" label="Amount" />
                     </Flex>
                     <Flex flexDirection={"column"}>
                       <InputField
-                        name="expirationDate"
+                        name="expiredDate"
                         type="date"
                         label="Expiration Date"
+                      />
+                    </Flex>
+                    <Flex flexDirection={"column"}>
+                      <InputField name="price" type="text" label="Price" />
+                    </Flex>
+                    <Flex flexDirection={"column"}>
+                      <InputField name="cost" type="text" label="Cost" />
+                    </Flex>
+                    <Flex flexDirection={"column"}>
+                      <InputField
+                        name="recievedFrom"
+                        type="text"
+                        label="Recivied From"
                       />
                     </Flex>
                   </Grid>
@@ -106,9 +122,7 @@ console.log(props);
                       fontSize={5}
                       my={5}
                       variant="secondary"
-                      onClick={() => {
-                        handleSubmit();
-                      }}
+                      onClick={() => handleSubmit()}
                       type="button"
                       padding={1}
                       width={"100%"}

@@ -2,17 +2,14 @@ import * as Yup from "yup";
 import { Drug } from "./types";
 export const initialValues: Drug = {
   name: "",
-  usage: "",
   dosage: "",
-  unitOfIssue: "",
   sideEffects: "",
-  unitPrice: "",
-  drugPhoto: "",
-  ingredients: "",
   instruction: "",
   strength: "",
   minStockLevel: "",
-  needPrescription: false,
+  needPrescription: true,
+  drugPhoto: "",
+  category: "",
 };
 
 export const errorValues = {
@@ -23,19 +20,27 @@ export const errorValues = {
   sideEffect: {
     required: "Side effects are required",
   },
-  usage: {
+  instruction: {
     required: "Usage instruction is required",
   },
-  unitOfIssue: {
-    required: "Usage instruction is required",
+  minStockLevel: {
+    required: "Minimum stock level is required",
+  },
+  strength: {
+    required: "Strength is required",
+  },
+  dosage: {
+    required: "Dosage is required",
   },
 };
 
-export const addDrugValidationSchema = Yup.object({
-  drug: Yup.string()
+export const registerValidationSchema = Yup.object({
+  name: Yup.string()
     .required(errorValues.name.required)
     .matches(/^[a-zA-Z0-9\s]+$/, errorValues.name.invalid),
-  usage: Yup.string().required(errorValues.usage.required),
-  sideEffect: Yup.string().required(errorValues.sideEffect.required),
-  unitOfIssue: Yup.string().required(errorValues.unitOfIssue.required),
+  instruction: Yup.string().required(errorValues.instruction.required),
+  sideEffects: Yup.string().required(errorValues.sideEffect.required),
+  dosage: Yup.string().required(errorValues.dosage.required),
+  minStockLevel: Yup.string().required(errorValues.sideEffect.required),
+  strength: Yup.string().required(errorValues.strength.required),
 });

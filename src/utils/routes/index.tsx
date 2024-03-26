@@ -6,7 +6,12 @@ import CreateAccountPage from "app/Pages/createAccountPage/index";
 import AddPharmacyPage from "app/Pages/AddPharmacyPage/index";
 import HomePage from "app/Pages/HomePage";
 import ProfilePage from "app/Pages/ProfilePage";
+<<<<<<< HEAD
 import ManagePharmacyAccount from "app/Components/ManagePharmacyAccount";
+=======
+import OrderComponent from "app/Components/OrderComponent";
+import OrderDetailComponent from "app/Components/OrdersDetailComponent";
+>>>>>>> e147b3481c1987010aba7c22c904f43f5c1e284a
 import VerifyEmailComponent from "app/Components/verifyEmail/VerifyEmailComponent";
 import VerifyEmailPage from "app/Pages/VerifyEmailPage";
 import StockComponent from "app/Components/StockComponent";
@@ -15,8 +20,12 @@ import RegisterDrug from "app/Components/RegisterNewDrug";
 import AdminVerifyPharmacy from "app/Components/AdminVerifyPharmacy";
 import ManageInventoryPage from "app/Pages/ManageInventoryPage";
 import AddDrugPage from "app/Pages/AddDrugsPage";
+<<<<<<< HEAD
 import OrderPage from "app/Pages/OrderPage";
 import OrderDetailPage from "app/Pages/OrderDetailPage";
+=======
+import PharmacyAccountPage from "app/Pages/PharmacyAccountPage";
+>>>>>>> e147b3481c1987010aba7c22c904f43f5c1e284a
 
 export const routes: IRoute[] = [
   {
@@ -93,7 +102,7 @@ export const routes: IRoute[] = [
     needsLayout: true,
   },
   {
-    element: <ManagePharmacyAccount />,
+    element: <PharmacyAccountPage />,
     exact: true,
     path: "pharmacist/account",
     isProtected: true,

@@ -8,7 +8,7 @@ function* handleAddDrugs(action: PayloadAction<any>) {
   try {
     const res: IDrug = yield call(api, {
       method: "POST",
-      route: "/",
+      route: "/drug/stocks/6601c274a85570bc3a883161",
       body: action.payload,
       isSecureRoute: true,
     });

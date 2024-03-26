@@ -11,6 +11,6 @@ const RegisterDrugPage = () => {
     dispatch(actions.registerDrug());
   }, []);
 
-  return <RegisterDrug />;
+  return <RegisterDrug />;  
 };
 export default RegisterDrugPage;

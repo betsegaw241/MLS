@@ -4,13 +4,13 @@ import {
   useInjectReducer,
   useInjectSaga,
 } from "../../../../store/utils/redux-injectors";
-import { data } from "../../../models/user";
-import { AddDrugState } from "../types";
-import { AddDrugSaga } from "./saga";
+import { Drug, RegisterDrugPageState } from "../types";
+import { RegistrDrugSaga } from "./saga";
 
-export const initialState: AddDrugState = {
+export const initialState: RegisterDrugPageState = {
   errorMessage: "",
   loading: false,
+  drug: {} as Drug,
 };
 
 const slice = createSlice({
@@ -20,9 +20,9 @@ const slice = createSlice({
     registerDrug: (state) => {
       state.loading = true;
     },
-    registerDrugSuccess: (state, action: PayloadAction<data>) => {
+    registerDrugSuccess: (state, action: PayloadAction<any>) => {
       state.loading = false;
-      // state.user = action.payload;
+      state.drug = action.payload;
     },
     registerDrugFailed: (state, action: PayloadAction<any>) => {
       state.loading = false;
@@ -35,6 +35,6 @@ export const { actions: addDrugActions } = slice;
 
 export const UseRegisterDrugSlice = () => {
   useInjectReducer({ key: slice.name, reducer: slice.reducer });
-  useInjectSaga({ key: slice.name, saga: AddDrugSaga });
+  useInjectSaga({ key: slice.name, saga: RegistrDrugSaga });
   return { actions: slice.actions };
 };
