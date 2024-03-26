@@ -1,11 +1,13 @@
 import { Form, Formik } from "formik";
 import { Button, Flex, Grid, Text } from "../ui/Blocks";
 import { InputField } from "../ui/InputComponent";
-import { initialValues } from "../AddDrugComponent/types";
-
 import Switch from "@mui/material/Switch";
+import { useState } from "react";
 
 const EditPharmacyOperationsComponent = (props: any) => {
+  const [ischecked, setIsChecked] = useState(
+    props.pharmacy.isDeliveryAvailable
+  );
   return (
     <Flex
       width={"100%"}
@@ -15,13 +17,13 @@ const EditPharmacyOperationsComponent = (props: any) => {
       justifyContent={"center"}
     >
       <Formik
-        initialValues={initialValues}
+        initialValues={props.pharmacy}
         onSubmit={(values) => {
-          console.log(values);
+          props.handleUpdateOperations(values);
         }}
         validationSchema={""}
       >
-        {({ handleSubmit }) => {
+        {({ handleSubmit, setFieldValue }) => {
           return (
             <Flex justifyContent={"center"} alignItems={"center"} p={5}>
               <Form>
@@ -37,7 +39,14 @@ const EditPharmacyOperationsComponent = (props: any) => {
                     <Text fontFamily={"poppins"} fontSize={6}>
                       Enable Delivery
                     </Text>
-                    <Switch defaultChecked size="medium"  onChange={()=>console.log('switch')}/>
+                    <Switch
+                      checked={ischecked}
+                      size="medium"
+                      onChange={() => {
+                        setIsChecked(!ischecked);
+                        setFieldValue("isDeliveryAvailable", !ischecked);
+                      }}
+                    />
                   </Flex>
                   <Grid
                     borderRadius={0}
@@ -83,35 +92,6 @@ const EditPharmacyOperationsComponent = (props: any) => {
                     </Flex>
                   </Grid>
 
-                  <Grid
-                    borderRadius={0}
-                    gridColumnGap={"40px"}
-                    gridRowGap={"15px"}
-                    gridTemplateColumns={[
-                      "repeat(1, 1fr)",
-                      "repeat(2, 1fr)",
-                      "repeat(3, 1fr)",
-                    ]}
-                  >
-                    <Flex flexDirection={"column"} style={{ gap: 3 }}>
-                      <InputField
-                        name="catagory"
-                        type="text"
-                        label="Catagory"
-                      />
-                    </Flex>
-                    <Flex flexDirection={"column"} style={{ gap: 3 }}>
-                      <InputField name="price" type="text" label="Unit Price" />
-                    </Flex>
-                    <Flex flexDirection={"column"} style={{ gap: 3 }}>
-                      <InputField
-                        name="minStockLevel"
-                        type=""
-                        label="Minimum stock Level"
-                      />
-                    </Flex>
-                  </Grid>
-
                   <Flex justifyContent="flex-end" alignItems="center">
                     <Button
                       borderRadius={1}
@@ -123,7 +103,6 @@ const EditPharmacyOperationsComponent = (props: any) => {
                       variant="primary"
                       onClick={() => {
                         handleSubmit();
-                        props.setEdit();
                       }}
                       type="button"
                       padding={1}

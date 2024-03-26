@@ -1,14 +1,10 @@
 import { Form, Formik } from "formik";
 import { Button, Flex, Grid } from "../ui/Blocks";
 import { InputField } from "../ui/InputComponent";
-import { initialValues } from "../AddDrugComponent/types";
-import { IoIosAdd } from "react-icons/io";
 import { useState } from "react";
+import { editPharmacyAccountValidation } from "app/Pages/PharmacyAccountPage/validation";
 
 const EditPharmacyAccountComponent = (props: any) => {
-  const [addPhone, setAddPhone] = useState(false);
-  const [addSocialAccount, setAddSocialAccount] = useState(false);
-
   return (
     <Flex
       width={"100%"}
@@ -18,15 +14,15 @@ const EditPharmacyAccountComponent = (props: any) => {
       justifyContent={"center"}
     >
       <Formik
-        initialValues={initialValues}
+        initialValues={props.pharmacy}
         onSubmit={(values) => {
-          console.log(values);
+          props.handleUpdate(values);
         }}
-        validationSchema={""}
+        validationSchema={editPharmacyAccountValidation}
       >
         {({ handleSubmit }) => {
           return (
-            <Flex justifyContent={"center"} alignItems={"center"} p={5}>
+            <Flex justifyContent={"center"} alignItems={"center"}>
               <Form>
                 <Flex
                   flexDirection="column"
@@ -38,8 +34,8 @@ const EditPharmacyAccountComponent = (props: any) => {
                 >
                   <Grid
                     borderRadius={0}
-                    gridColumnGap={"40px"}
-                    gridRowGap={"15px"}
+                    gridColumnGap={"50px"}
+                    gridRowGap={"20px"}
                     gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]}
                   >
                     <Flex flexDirection={"column"} style={{ gap: 3 }}>
@@ -50,86 +46,44 @@ const EditPharmacyAccountComponent = (props: any) => {
                       />
                     </Flex>
                     <Flex flexDirection={"column"} style={{ gap: 3 }}>
-                      <InputField name="email" type="text" label="email" />
-                    </Flex>
-
-                    <Flex flexDirection={"column"} style={{ gap: 3 }}>
-                      <InputField name="state" type="" label="State" />
-                    </Flex>
-                    <Flex flexDirection={"column"} style={{ gap: 3 }}>
-                      <InputField name="city" type="" label="city" />
-                    </Flex>
-                  </Grid>
-                  <Flex alignItems={"center"} style={{ gap: 40 }}>
-                    <Flex
-                      flexDirection={"column"}
-                      style={{ gap: 3 }}
-                      width={"60%"}
-                    >
-                      <InputField name="phone" type="" label="Phone" />
-                    </Flex>
-                    {addPhone ? (
-                      <Flex
-                        flexDirection={"column"}
-                        style={{ gap: 3 }}
-                        width={"60%"}
-                      >
-                        <InputField name="phone" type="" label="Phone Line 2" />
-                      </Flex>
-                    ) : (
-                      <Flex
-                        border={"1px #B4D4FF solid"}
-                        borderRadius={1}
-                        width={50}
-                        justifyContent={"center"}
-                        onClick={() => setAddPhone(!addPhone)}
-                      >
-                        <IoIosAdd />
-                      </Flex>
-                    )}
-                  </Flex>
-                  {/* // */}
-
-                  {/* // */}
-                  <Flex alignItems={"center"} style={{ gap: 40 }}>
-                    <Flex
-                      flexDirection={"column"}
-                      style={{ gap: 3 }}
-                      width={"60%"}
-                    >
                       <InputField
-                        name="social"
-                        type=""
-                        label="Social Media Account"
+                        name="email"
+                        type="text"
+                        label="Email Address"
                       />
                     </Flex>
+                    <Flex flexDirection={"column"} style={{ gap: 3 }}>
+                      <InputField name="phone" type="" label="Phone Number" />
+                    </Flex>
+                    <Flex flexDirection={"column"} style={{ gap: 3 }}>
+                      <InputField name="state" type="text" label="State" />
+                    </Flex>
+                    <Flex flexDirection={"column"} style={{ gap: 3 }}>
+                      <InputField name="city" type="" label="City" />
+                    </Flex>
+                    <Flex flexDirection={"column"} style={{ gap: 3 }}>
+                      <InputField
+                        name="phoneLine2"
+                        type="text"
+                        label="Phone Line 2"
+                      />
+                    </Flex>
+                    <Flex flexDirection={"column"} style={{ gap: 3 }}>
+                      <InputField
+                        name="email2"
+                        type=""
+                        label="Aditional Email Address"
+                      />
+                    </Flex>
+                    <Flex flexDirection={"column"} style={{ gap: 3 }}>
+                      <InputField
+                        name="operationalHours"
+                        type=""
+                        label="OPerational Hours"
+                      />
+                    </Flex>
+                  </Grid>
 
-                    {addSocialAccount ? (
-                      <Flex
-                        flexDirection={"column"}
-                        style={{ gap: 3 }}
-                        width={"60%"}
-                      >
-                        <InputField
-                          name="social"
-                          type=""
-                          label="Social Media Account"
-                        />
-                      </Flex>
-                    ) : (
-                      <Flex
-                        border={"1px #B4D4FF solid"}
-                        borderRadius={1}
-                        width={50}
-                        justifyContent={"center"}
-                        onClick={() => setAddSocialAccount(!addSocialAccount)}
-                      >
-                        <IoIosAdd />
-                      </Flex>
-                    )}
-                  </Flex>
-                  {/* // */}
-                  {/* <InputField name="sideEffects" type="" label="Side Effects" /> */}
                   <Grid
                     borderRadius={0}
                     gridColumnGap={"40px"}
@@ -142,19 +96,23 @@ const EditPharmacyAccountComponent = (props: any) => {
                   >
                     <Flex flexDirection={"column"} style={{ gap: 3 }}>
                       <InputField
-                        name="catagory"
+                        name="socialMedia.facebook"
                         type="text"
-                        label="Catagory"
+                        label="Facebook"
                       />
                     </Flex>
                     <Flex flexDirection={"column"} style={{ gap: 3 }}>
-                      <InputField name="price" type="text" label="Unit Price" />
+                      <InputField
+                        name="socialMedia.telegram"
+                        type="text"
+                        label="Telegram"
+                      />
                     </Flex>
                     <Flex flexDirection={"column"} style={{ gap: 3 }}>
                       <InputField
-                        name="minStockLevel"
+                        name="socialMedia.linkedin"
                         type=""
-                        label="Minimum stock Level"
+                        label="Linkedin"
                       />
                     </Flex>
                   </Grid>
@@ -170,7 +128,6 @@ const EditPharmacyAccountComponent = (props: any) => {
                       variant="primary"
                       onClick={() => {
                         handleSubmit();
-                        props.setEdit();
                       }}
                       type="button"
                       padding={1}
