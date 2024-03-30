@@ -27,7 +27,7 @@ const slice = createSlice({
       state.loading = false;
       state.errorMessage = action.payload;
     },
-    getDrug: (state) => {
+    getDrug: (state, action: PayloadAction<string | undefined>) => {
       state.loading = true;
     },
     getDrugSuccess: (state, action: PayloadAction<any>) => {

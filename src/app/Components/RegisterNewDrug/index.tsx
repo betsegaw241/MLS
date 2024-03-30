@@ -1,11 +1,8 @@
-import { ErrorMessage, Form, Formik } from "formik";
+import { Form, Formik } from "formik";
 import { theme } from "../../../styles/theme";
 import { Button, Flex, Grid, Text } from "../ui/Blocks";
 import { InputField } from "../ui/InputComponent";
-import {
-  initialValues,
-  registerValidationSchema,
-} from "app/Pages/NewDrugRegistrationPage/validation";
+import { registerValidationSchema } from "app/Pages/NewDrugRegistrationPage/validation";
 import {
   Checkbox,
   FormControlLabel,
@@ -13,6 +10,7 @@ import {
   createTheme,
 } from "@mui/material";
 import { useState } from "react";
+import StyledDropzone from "../ui/ImageUpload/DropArea";
 
 const muitheme = createTheme({
   components: {
@@ -26,8 +24,15 @@ const muitheme = createTheme({
   },
 });
 
-const RegisterDrug = () => {
-  const [uploadImage, setUploadImage] = useState(true);
+const RegisterDrug = (props: any) => {
+  const [selectedImages, setSelectedImages] = useState<File[]>([]);
+  const [ischecked, setIsChecked] = useState(true);
+  props.initialValues.needPrescription;
+  const UploadImages = (file: File[]) => {
+    props.setSelectedImages(file);
+    setSelectedImages(file);
+  };
+
   return (
     <Flex
       borderRadius={1}
@@ -41,13 +46,13 @@ const RegisterDrug = () => {
       </Text>
       <Flex justifyContent={"center"} width={"90%"} alignItems={"center"}>
         <Formik
-          initialValues={initialValues}
+          initialValues={props.initialValues}
           onSubmit={(values) => {
-            console.log(values);
+            props.Register(values);
           }}
           validationSchema={registerValidationSchema}
         >
-          {({ handleSubmit, setFieldValue, values }) => {
+          {({ handleSubmit, setFieldValue }) => {
             return (
               <Flex justifyContent={"center"} alignItems={"center"}>
                 <Form>
@@ -68,7 +73,7 @@ const RegisterDrug = () => {
                       gridTemplateColumns={[
                         "repeat(1, 1fr)",
                         "repeat(2, 1fr)",
-                        "repeat(3, 1fr)",
+                        // "repeat(3, 1fr)",
                       ]}
                     >
                       <Flex flexDirection={"column"} style={{ gap: 3 }}>
@@ -92,6 +97,13 @@ const RegisterDrug = () => {
                           label="Minimum stock Level"
                         />
                       </Flex>
+                      <Flex flexDirection={"column"} style={{ gap: 3 }}>
+                        <InputField
+                          name="catagory"
+                          type="text"
+                          label="Catagory(optional)"
+                        />
+                      </Flex>
                     </Grid>
 
                     <InputField
@@ -99,59 +111,50 @@ const RegisterDrug = () => {
                       type="textarea"
                       label="Usage"
                     />
-                    {/* <Text
-                      fontFamily={"poppins"}
-                      fontSize={"12px"}
-                      color={"red"}
-                      p={"2px"}
-                    >
-                      <ErrorMessage name="instruction" />
-                    </Text> */}
+
                     <InputField
                       name="sideEffects"
                       type="textarea"
                       label="Side Effects"
                     />
-                    {/* <Text
-                      fontFamily={"poppins"}
-                      fontSize={"12px"}
-                      color={"red"}
-                      p={"2px"}
-                    >
-                      <ErrorMessage name="sideEffects" />
-                    </Text> */}
 
-                    <Flex flexDirection={"column"} style={{ gap: 3 }}>
-                      <InputField
-                        name="catagory"
-                        type="text"
-                        label="Catagory"
-                      />
+                    <Flex
+                      width={"100%"}
+                      flexDirection={"column"}
+                      style={{ gap: 1 }}
+                    >
+                      <Text paddingY={1} fontFamily={"poppins"}>
+                        Upload drug photo (optional)
+                      </Text>
+                      <StyledDropzone images={UploadImages} />
+                      <Flex p={1}>
+                        {selectedImages?.map((image, index) => (
+                          <img
+                            key={index}
+                            src={URL.createObjectURL(image)}
+                            alt="images"
+                            height={"50px"}
+                          />
+                        ))}
+                      </Flex>
                     </Flex>
 
-                    <Flex justifyContent={"space-between"} marginX={1}>
+                    <Flex justifyContent={"space-between"}>
                       <ThemeProvider theme={muitheme}>
                         <FormControlLabel
                           control={
                             <Checkbox
                               defaultChecked
-                              onChange={() => console.log("yes")}
+                              onChange={() => {
+                                setIsChecked(!ischecked);
+                                setFieldValue("needPrescription", !ischecked);
+                              }}
                             />
                           }
                           label="Need Prescription"
                         />
                       </ThemeProvider>
-                      <Button
-                        fontFamily={"poppins"}
-                        fontSize={2}
-                        borderRadius={"5px"}
-                        onClick={() => setUploadImage(!uploadImage)}
-                        type="button"
-                      >
-                        Upload drug photo
-                      </Button>
                     </Flex>
-                    {uploadImage && <Flex>upload</Flex>}
                     <Flex justifyContent="flex-end" alignItems="center">
                       <Button
                         borderRadius={1}
@@ -161,9 +164,7 @@ const RegisterDrug = () => {
                         fontSize={5}
                         my={2}
                         variant="primary"
-                        onClick={() => {
-                          handleSubmit();
-                        }}
+                        onClick={() => handleSubmit()}
                         type="button"
                         padding={1}
                         width={"100%"}

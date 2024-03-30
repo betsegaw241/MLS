@@ -7,15 +7,17 @@ import {
   selectIsAdding,
 } from "app/Pages/AddDrugsPage/slice/selector";
 import { IDrug } from "./slice/types";
+import { useParams } from "react-router-dom";
 
 const AddDrugPage = () => {
   const isAdding = useSelector(selectIsAdding);
   const drug = useSelector(selectDrug);
   const { actions } = UseAddDrugSlice();
   const dispatch = useDispatch();
+  const { id } = useParams();
 
   useEffect(() => {
-    dispatch(actions.getDrug());
+    dispatch(actions.getDrug(id));
   }, []);
 
   const onAddClick = (values: IDrug) => {
@@ -39,6 +41,7 @@ const AddDrugPage = () => {
       loading={isAdding}
       drugs={drugs}
       onAddClick={onAddClick}
+      pharmacyId={id}
     />
   );
 };

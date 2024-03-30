@@ -4,24 +4,25 @@ import { SideBarMenuItemProp } from "./types";
 import React, { useState } from "react";
 import "styles/fonts.css";
 import { useSelector } from "react-redux";
-import { selectRole } from "app/Pages/Layout/slice/selectors";
+// import { selectRole } from "app/Pages/Layout/slice/selectors";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
+import { selectpharmacyId } from "app/Pages/DashboardPage/slice/selectors";
 
 const SideBarMenuItem = (props: SideBarMenuItemProp) => {
   const { label, to, icon, subMenuItems } = props.menuItem;
   const { pathname } = useLocation();
   // const role = useSelector(selectRole);
+  const id = useSelector(selectpharmacyId);
   const role = localStorage.getItem("role");
   const [openSubMenu, setOpenSubMenu] = useState(false);
-  const id = "65fed06ebb199d006c78798b";
   return (
     <Link
       style={{
         textDecoration: "none",
         color: "inherit",
       }}
-      to={`/${role}${to}`}
+      to={`/${role}${to}/${id}`}
     >
       <Flex
         // alignItems={"center"}
@@ -72,7 +73,7 @@ const SideBarMenuItem = (props: SideBarMenuItemProp) => {
                 textDecoration: "none",
                 color: "inherit",
               }}
-              to={`/${role}${subMenuItem.to}`}
+              to={`/${role}${subMenuItem.to}/${id}`}
             >
               <Flex
                 alignItems={"center"}
