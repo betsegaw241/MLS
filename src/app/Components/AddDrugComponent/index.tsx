@@ -29,7 +29,7 @@ const AddDrugComponent = (props: any) => {
           fontSize={5}
           borderRadius={"8px"}
           variant="secondary"
-          onClick={() => navigate("/pharmacist/addnewdrug")}
+          onClick={() => navigate(`/pharmacist/addnewdrug/${props.pharmacyId}`)}
         >
           Add New Drug
         </Button>

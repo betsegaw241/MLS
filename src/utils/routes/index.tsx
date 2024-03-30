@@ -19,11 +19,12 @@ import OrderPage from "app/Pages/OrderPage";
 import OrderDetailPage from "app/Pages/OrderDetailPage";
 import PharmacyAccountPage from "app/Pages/PharmacyAccountPage";
 import RegisterDrugPage from "app/Pages/NewDrugRegistrationPage";
+import DashBoardPage from "app/Pages/DashboardPage";
 
 
 export const routes: IRoute[] = [
   {
-    element: <></>,
+    element: <DashBoardPage/>,
     exact: true,
     path: "/pharmacist/dashboard/:id",
     isProtected: true,
@@ -75,7 +76,7 @@ export const routes: IRoute[] = [
   {
     element: <OrderPage />,
     exact: true,
-    path: "pharmacist/request",
+    path: "pharmacist/request/:id",
     allowedRole: "pharmacist",
     needsLayout: true,
     isProtected: true,
@@ -90,7 +91,7 @@ export const routes: IRoute[] = [
   {
     element: <ManageInventoryPage />,
     exact: true,
-    path: "pharmacist/inventory",
+    path: "pharmacist/inventory/:id",
     isProtected: true,
     allowedRole: "pharmacist",
     needsLayout: true,
@@ -98,7 +99,7 @@ export const routes: IRoute[] = [
   {
     element: <PharmacyAccountPage />,
     exact: true,
-    path: "pharmacist/account",
+    path: "pharmacist/account/:id",
     isProtected: true,
     allowedRole: "pharmacist",
     needsLayout: true,
@@ -128,7 +129,7 @@ export const routes: IRoute[] = [
   {
     element: <StockComponent />,
     exact: true,
-    path: "pharmacist/stock",
+    path: "pharmacist/stock/:id",
     isProtected: true,
     allowedRole: "pharmacist",
     needsLayout: true,
@@ -144,7 +145,7 @@ export const routes: IRoute[] = [
   {
     element: <AddDrugPage />,
     exact: true,
-    path: "pharmacist/adddrug",
+    path: "pharmacist/adddrug/:id",
     isProtected: true,
     allowedRole: "pharmacist",
     needsLayout: true,
@@ -152,7 +153,7 @@ export const routes: IRoute[] = [
   {
     element: <RegisterDrugPage />,
     exact: true,
-    path: "pharmacist/addnewdrug",
+    path: "pharmacist/addnewdrug/:id",
     isProtected: true,
     allowedRole: "pharmacist",
     needsLayout: true,

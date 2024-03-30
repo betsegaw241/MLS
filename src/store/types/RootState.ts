@@ -11,6 +11,7 @@ import { pharmacyAccountPageState } from "app/Pages/PharmacyAccountPage/slices/t
 import { editProfilePageState } from "app/Pages/ProfilePage/slice/types";
 import { verifyAccountPageState } from "app/Pages/VerifyEmailPage/slice/types";
 import { createAccountPageState } from "app/Pages/createAccountPage/slice/types";
+import { DashboardPageState } from "app/Pages/DashboardPage/slice/types";
 
 export interface RootState {
   Layout?: LayoutState;
@@ -23,8 +24,8 @@ export interface RootState {
   verifyAccount: verifyAccountPageState;
   manageInventory: ManageInventorState;
   addDrug: addDrugPageState;
-  orderDetailSlice:orderDetailPageState;
-  pharmacyAccount:pharmacyAccountPageState
-  registerDrug:RegisterDrugPageState;
-
+  orderDetailSlice: orderDetailPageState;
+  pharmacyAccount: pharmacyAccountPageState;
+  registerDrug: RegisterDrugPageState;
+  dashboard: DashboardPageState;
 }

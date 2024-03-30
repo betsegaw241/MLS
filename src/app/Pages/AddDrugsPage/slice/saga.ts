@@ -24,10 +24,11 @@ function* handleGetDrugs(action: PayloadAction<any>) {
   try {
     const res: IDrug = yield call(api, {
       method: "GET",
-      route: "/",
+      route: `/drug/stocks/${action.payload}`,
       body: action.payload,
       isSecureRoute: true,
     });
+    console.log(res)
 
     if (res) {
       yield put(actions.getDrugSuccess(res));
