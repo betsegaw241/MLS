@@ -17,7 +17,7 @@ const slice = createSlice({
   name: "registerDrug",
   initialState,
   reducers: {
-    registerDrug: (state) => {
+    registerDrug: (state, action: PayloadAction<any>) => {
       state.loading = true;
     },
     registerDrugSuccess: (state, action: PayloadAction<any>) => {

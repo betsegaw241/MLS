@@ -12,11 +12,11 @@ import VerifyEmailComponent from "app/Components/verifyEmail/VerifyEmailComponen
 import VerifyEmailPage from "app/Pages/VerifyEmailPage";
 import StockComponent from "app/Components/StockComponent";
 import DrugDetailsComponent from "app/Components/DrugDetailsComponent";
-import RegisterDrug from "app/Components/RegisterNewDrug";
 import AdminVerifyPharmacy from "app/Components/AdminVerifyPharmacy";
 import ManageInventoryPage from "app/Pages/ManageInventoryPage";
 import AddDrugPage from "app/Pages/AddDrugsPage";
 import PharmacyAccountPage from "app/Pages/PharmacyAccountPage";
+import RegisterDrugPage from "app/Pages/NewDrugRegistrationPage";
 
 export const routes: IRoute[] = [
   {
@@ -147,7 +147,7 @@ export const routes: IRoute[] = [
     needsLayout: true,
   },
   {
-    element: <RegisterDrug />,
+    element: <RegisterDrugPage />,
     exact: true,
     path: "pharmacist/addnewdrug",
     isProtected: true,
