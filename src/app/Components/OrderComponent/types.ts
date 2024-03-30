@@ -1,8 +1,9 @@
 
 export interface Order {
+  [x: string]: any;
   id: number;
   name: string;
-  drug: string;
+  drug: name;
   phone: string;
   location: string;
   time: string;
@@ -10,7 +11,10 @@ export interface Order {
 }
 
 export interface OrderComponentProps {
-  orders: Order[];
+  orders: Order;
 }
 
 
+export interface name{
+  name:string;
+}

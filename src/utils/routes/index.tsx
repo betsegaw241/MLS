@@ -6,8 +6,7 @@ import CreateAccountPage from "app/Pages/createAccountPage/index";
 import AddPharmacyPage from "app/Pages/AddPharmacyPage/index";
 import HomePage from "app/Pages/HomePage";
 import ProfilePage from "app/Pages/ProfilePage";
-import OrderComponent from "app/Components/OrderComponent";
-import OrderDetailComponent from "app/Components/OrdersDetailComponent";
+
 import VerifyEmailComponent from "app/Components/verifyEmail/VerifyEmailComponent";
 import VerifyEmailPage from "app/Pages/VerifyEmailPage";
 import StockComponent from "app/Components/StockComponent";
@@ -15,8 +14,12 @@ import DrugDetailsComponent from "app/Components/DrugDetailsComponent";
 import AdminVerifyPharmacy from "app/Components/AdminVerifyPharmacy";
 import ManageInventoryPage from "app/Pages/ManageInventoryPage";
 import AddDrugPage from "app/Pages/AddDrugsPage";
+
+import OrderPage from "app/Pages/OrderPage";
+import OrderDetailPage from "app/Pages/OrderDetailPage";
 import PharmacyAccountPage from "app/Pages/PharmacyAccountPage";
 import RegisterDrugPage from "app/Pages/NewDrugRegistrationPage";
+
 
 export const routes: IRoute[] = [
   {
@@ -70,7 +73,7 @@ export const routes: IRoute[] = [
     allowedRole: "pharmacist",
   },
   {
-    element: <OrderComponent />,
+    element: <OrderPage />,
     exact: true,
     path: "pharmacist/request",
     allowedRole: "pharmacist",
@@ -101,9 +104,9 @@ export const routes: IRoute[] = [
     needsLayout: true,
   },
   {
-    element: <OrderDetailComponent />,
+    element: <OrderDetailPage />,
     exact: true,
-    path: "pharmacist/orderdetail",
+    path: "pharmacist/orderdetail/:id",
     isProtected: true,
     allowedRole: "pharmacist",
     needsLayout: true,

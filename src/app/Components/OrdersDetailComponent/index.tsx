@@ -1,10 +1,12 @@
+import { log } from "console";
 import { Box, Button, Flex, Grid, Text } from "../ui/Blocks";
 import { GridBox } from "../ui/Blocks/GridBox";
 import MapComponent from "../ui/MapComponent";
+import { IorderDetailComponent } from "./types";
 export interface IStatus {
   status: "ACCEPTED" | "REJECTED" | "Pending";
 }
-const OrderDetailComponent = () => {
+const OrderDetailComponent = (props: IorderDetailComponent) => {
   const status: IStatus = { status: "Pending" };
   return (
     <Flex
@@ -19,27 +21,7 @@ const OrderDetailComponent = () => {
         <Text fontSize={7} color={"#3d3939"}>
           Order Details
         </Text>
-        {/* <Text
-          backgroundColor={
-            status === "ACCEPTED"
-              ? "#558e010B"
-              : status === "REJECTED"
-              ? "#F84F014F"
-              : "#f5f5f5"
-          }
-          color={
-            status === "ACCEPTED"
-              ? "#558E0B"
-              : status === "REJECTED"
-              ? "#F84F4F"
-              : "#000"
-          }
-          mr={10}
-          p={1}
-          borderRadius={"5px"}
-        >
-          ACCEPTED
-        </Text> */}
+      
       </Flex>
 
       <Box borderRadius={0}>
@@ -62,9 +44,9 @@ const OrderDetailComponent = () => {
             mb={2}
             p={1}
           >
-            <GridBox lable={"Drug"} value={"Advil 1ml"} />
+            <GridBox lable={"Drug"} value={props.order.drug.name} />
             <GridBox lable={"Dosage"} value={"Zuma"} />
-            <GridBox lable={"quantity"} value={"5"} />
+            <GridBox lable={"quantity"} value={props.order.quantity} />
             <GridBox lable={"Drug"} value={"Zuma"} />
           </Grid>
         </Box>
@@ -86,9 +68,12 @@ const OrderDetailComponent = () => {
             mb={2}
             p={1}
           >
-            <GridBox lable={"Name"} value={"Roba James"} />
-            <GridBox lable={"Location"} value={"Adama"} />
-            <GridBox lable={"Phone"} value={"0935354556"} />
+            <GridBox lable={"Name"} value={props.order.customer.name} />
+            <GridBox lable={"Location"} value={props.order.deliveryAddress.address} />
+            <GridBox
+              lable={"Phone"}
+              value={props.order.deliveryAddress.phoneNumber}
+            />
           </Grid>
         </Box>
         <Box>
@@ -110,11 +95,11 @@ const OrderDetailComponent = () => {
             p={1}
           >
             <GridBox lable={"Distance"} value={"5km"} />
-            <GridBox lable={"Due time"} value={"2:05"} />
-            <GridBox lable={"Order Date"} value={"sat 23,2024"} />
-            <GridBox lable={"quantity"} value={"4"} />
-            <GridBox lable={"price per unit"} value={"5$"} />
-            <GridBox lable={"Total Cost"} value={"50$"} />
+            <GridBox lable={"Due time"} value={props.order.deliveryDate} />
+            <GridBox lable={"Order Date"} value={props.order.orderedAt} />
+            <GridBox lable={"quantity"} value={props.order.quantity} />
+            <GridBox lable={"price per unit"} value={props.order.drug.price} />
+            <GridBox lable={"Total Cost"} value={props.order.drug.cost} />
           </Grid>
         </Box>
         <Flex flexDirection={"column"}>

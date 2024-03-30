@@ -92,24 +92,20 @@ export const PharmaciesMenu = [
 ];
 
 export const OrderTableColumns: IColumn[] = [
-  {
-    id: "NO",
-    label: "NO",
-    minWidth: 50,
-  },
+ 
   {
     id: "name",
     label: "Name",
     minWidth: 150,
   },
-  {
-    id: "Phone",
-    label: "Phone",
-    minWidth: 100,
-  },
+ 
   {
     id: "Drug",
     label: "Drug",
+    minWidth: 100,
+  }, {
+    id: "Email",
+    label: "Email",
     minWidth: 100,
   },
   {
