@@ -59,5 +59,5 @@ export interface IOrder {
   transaction: Transaction;
 }
 export interface IorderDetailComponent {
-    order:IOrder;
+  order: IOrder;
 }
