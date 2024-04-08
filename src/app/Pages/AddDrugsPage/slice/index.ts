@@ -10,6 +10,8 @@ import { IDrug, addDrugPageState } from "./types";
 export const initialState: addDrugPageState = {
   errorMessage: "",
   loading: false,
+
+  isDrugAdded: false,
   drug: [],
 };
 
@@ -22,20 +24,17 @@ const slice = createSlice({
     },
     addDrugSuccess: (state, action: PayloadAction<any>) => {
       state.loading = false;
+      state.isDrugAdded = true;
     },
     addDrugFailed: (state, action: PayloadAction<any>) => {
       state.loading = false;
       state.errorMessage = action.payload;
     },
-    getDrug: (state, action: PayloadAction<string | undefined>) => {
-      state.loading = true;
-    },
+    getDrug: (state, action: PayloadAction<string | undefined>) => {},
     getDrugSuccess: (state, action: PayloadAction<any>) => {
-      state.loading = false;
       state.drug = action.payload;
     },
     getDrugFailed: (state, action: PayloadAction<any>) => {
-      state.loading = false;
       state.errorMessage = action.payload;
     },
   },

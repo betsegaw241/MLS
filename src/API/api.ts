@@ -29,13 +29,12 @@ const api = async (config: IAPICallConfig) => {
       onUploadProgress: config.onUploadProgress,
     });
 
-    if (response.status === 200) {
+    if (response.status === 200 || response.status === 201) {
       return response.data;
     } else {
       throw new APIError(response.data?.code, response.data?.message);
     }
   } catch (error: any) {
-    console.log('error-----',error?.response.data)
     if (error?.response) {
       const { response } = error;
       if (response) {

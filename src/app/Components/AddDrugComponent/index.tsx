@@ -6,9 +6,19 @@ import { useNavigate } from "react-router";
 import ReactSelect from "../ui/Blocks/Select/ReactSelect";
 import { initialValues } from "./types";
 import { addDrugValidationSchema } from "app/Pages/AddDrugsPage/validators";
+import { useEffect, useState } from "react";
+import Spinner from "react-activity/dist/Spinner";
+import "react-activity/dist/Spinner.css";
 
 const AddDrugComponent = (props: any) => {
   const navigate = useNavigate();
+  const [reset, setReset] = useState(false);
+
+  useEffect(() => {
+    if (props.isAdded) {
+      setReset(true);
+    }
+  }, [props.isAdded, reset]);
 
   return (
     <Flex
@@ -37,12 +47,15 @@ const AddDrugComponent = (props: any) => {
       <Flex justifyContent={"center"}>
         <Formik
           initialValues={initialValues}
-          onSubmit={(values) => {
+          onSubmit={(values, { resetForm }) => {
             props.onAddClick(values);
+            resetForm();
+            setReset(false);
           }}
           validationSchema={addDrugValidationSchema}
+          enableReinitialize
         >
-          {({ handleSubmit, setFieldValue, values }) => {
+          {({ handleSubmit, setFieldValue }) => {
             return (
               <Form>
                 <Flex
@@ -128,7 +141,11 @@ const AddDrugComponent = (props: any) => {
                       width={"100%"}
                       height={7}
                     >
-                      Add
+                      {props.loading ? (
+                        <Spinner style={{ marginLeft: "45%" }} />
+                      ) : (
+                        "Submit"
+                      )}
                     </Button>
                   </Flex>
                 </Flex>

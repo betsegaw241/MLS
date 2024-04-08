@@ -10,7 +10,7 @@ import { drugTableColumn } from "utils/constants";
 import { TableHeader } from "../ui/Blocks/Table";
 import Search from "../ui/SearchBar";
 import { FiChevronDown } from "react-icons/fi";
-import { Pagination } from "@mui/material";
+import { Pagination, ThemeProvider, createTheme } from "@mui/material";
 import { useState } from "react";
 
 const StockComponent = () => {
@@ -70,6 +70,21 @@ const StockComponent = () => {
       stock_Level: "40",
     },
   ];
+
+  const theme = createTheme({
+    components: {
+      MuiPaginationItem: {
+        styleOverrides: {
+          root: {
+            "&.Mui-selected": {
+              color: "#fff",
+              backgroundColor: "blue",
+            },
+          },
+        },
+      },
+    },
+  });
 
   return (
     <Box
@@ -170,7 +185,8 @@ const StockComponent = () => {
                       </TableCell>
                       <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
                         {item.price_per_unit}
-                      </TableCell><TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
+                      </TableCell>
+                      <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
                         {item.expiration_date}
                       </TableCell>
                       <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
@@ -187,12 +203,15 @@ const StockComponent = () => {
           </Paper>
 
           <Flex justifyContent={"flex-end"} marginRight={15}>
-            <Pagination
-              count={5}
-              // onChange={}
-              page={3}
-              variant="outlined"
-            />
+            <ThemeProvider theme={theme}>
+              <Pagination
+                count={5}
+                // onChange={}
+                page={3}
+                variant="outlined"
+                shape="rounded"
+              />
+            </ThemeProvider>
           </Flex>
         </Flex>
       </>

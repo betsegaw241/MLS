@@ -7,7 +7,7 @@ import { PayloadAction } from "@reduxjs/toolkit";
 function* handleGetPharmacyDetail(action: PayloadAction<string>) {
   try {
     const res: AxiosResponse = yield api({
-      route: "/",
+      route: `/pharmacy/pharmacist/my-pharmacy`,
       method: "GET",
       isSecureRoute: true,
       query: { id: action.payload },
@@ -23,7 +23,7 @@ function* handleGetPharmacyDetail(action: PayloadAction<string>) {
 function* handleUpdatePharmacyDetail(action: PayloadAction<string>) {
   try {
     const res: AxiosResponse = yield api({
-      route: "/",
+      route: `/pharmacy/${action.payload}`,
       method: "GET",
       isSecureRoute: true,
       query: { id: action.payload },

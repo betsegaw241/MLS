@@ -1,13 +1,13 @@
-
 export interface addDrugPageState {
   errorMessage: string;
+  isDrugAdded: boolean;
   loading: boolean;
   drug: IDrug[];
 }
 export interface IDrug {
   name: string;
-  id: string;
-  batch:string;
-  quantity:number;
-  expiredDate:Date
+  _id: string;
+  batch: string;
+  quantity: number;
+  expiredDate: Date;
 }

@@ -5,13 +5,15 @@ import AddDrugComponent from "app/Components/AddDrugComponent";
 import {
   selectDrug,
   selectIsAdding,
+  selectIsAdded
 } from "app/Pages/AddDrugsPage/slice/selector";
 import { IDrug } from "./slice/types";
 import { useParams } from "react-router-dom";
 
 const AddDrugPage = () => {
   const isAdding = useSelector(selectIsAdding);
-  const drug = useSelector(selectDrug);
+  const drugs = useSelector(selectDrug);
+  const isAdded = useSelector(selectIsAdded);
   const { actions } = UseAddDrugSlice();
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -20,26 +22,20 @@ const AddDrugPage = () => {
     dispatch(actions.getDrug(id));
   }, []);
 
-  const onAddClick = (values: IDrug) => {
-    dispatch(actions.addDrug(values));
+  const onAddClick = (values: any) => {
+    dispatch(actions.addDrug({...values,id:id}));
   };
-  const drugs = [
-    { value: "aspirin", label: "Aspirin" },
-    { value: "ibuprofen", label: "Ibuprofen" },
-    { value: "acetaminophen", label: "Acetaminophen" },
-    { value: "naproxen", label: "Naproxen" },
-    { value: "metformin", label: "Metformin" },
-    { value: "amlodipine", label: "Amlodipine" },
-    { value: "atorvastatin", label: "Atorvastatin" },
-    { value: "lisinopril", label: "Lisinopril" },
-    { value: "simvastatin", label: "Simvastatin" },
-    { value: "levothyroxine", label: "Levothyroxine" },
-  ];
+
+  const drugsArray = drugs.map((item) => ({
+    value: item._id,
+    label: item.name.charAt(0).toUpperCase() + item.name.slice(1),
+  }));
 
   return (
     <AddDrugComponent
       loading={isAdding}
-      drugs={drugs}
+      drugs={drugsArray}
+      isAdded={isAdded}
       onAddClick={onAddClick}
       pharmacyId={id}
     />

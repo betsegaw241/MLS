@@ -18,6 +18,10 @@ export const selectIsAdding = createSelector(
   [selectSlice],
   (state) => state.loading
 );
+export const selectIsAdded = createSelector(
+  [selectSlice],
+  (state) => state.isDrugAdded
+);
 
 export const selectErrorMessage = createSelector(
   [selectSlice],

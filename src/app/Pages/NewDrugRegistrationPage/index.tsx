@@ -14,7 +14,7 @@ const RegisterDrugPage = () => {
   const { id } = useParams();
   const Register = (values: Drug) => {
     console.log("values@page", values);
-    dispatch(actions.registerDrug({values,id} ));
+    dispatch(actions.registerDrug({...values,id:id} ));
   };
 
   return (
