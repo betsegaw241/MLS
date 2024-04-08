@@ -1,9 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  OrderPageActions,
-  useOrderPageSlice,
-} from "app/Pages/OrderPage/slices";
+import { useOrderPageSlice } from "app/Pages/OrderPage/slices";
 import OrderComponent from "app/Components/OrderComponent";
 import { selectOrder } from "./slices/selector";
 
@@ -18,7 +15,10 @@ function OrderPage() {
     dispatch(actions.fetchOrders());
   }, []);
 
-  return orders.length > 1 && <OrderComponent orders={orders} />;
+  return(
+   orders.length > 1 && <OrderComponent orders={orders} />
+    
+  );
 }
 
 export default OrderPage;

@@ -8,6 +8,23 @@ export interface IStatus {
 }
 const OrderDetailComponent = (props: IorderDetailComponent) => {
   const status: IStatus = { status: "Pending" };
+
+  const formatDate = (dateString: string) => {
+    // Create a Date object from the provided date string
+    const date = new Date(dateString);
+
+    // Extract date components
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Month starts from 0
+    const day = String(date.getDate()).padStart(2, "0");
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+
+    const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
+
+    return formattedDate;
+  };
+
   return (
     <Flex
       margin={2}
@@ -21,7 +38,6 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
         <Text fontSize={7} color={"#3d3939"}>
           Order Details
         </Text>
-      
       </Flex>
 
       <Box borderRadius={0}>
@@ -69,7 +85,10 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
             p={1}
           >
             <GridBox lable={"Name"} value={props.order.customer.name} />
-            <GridBox lable={"Location"} value={props.order.deliveryAddress.address} />
+            <GridBox
+              lable={"Location"}
+              value={props.order.deliveryAddress.address}
+            />
             <GridBox
               lable={"Phone"}
               value={props.order.deliveryAddress.phoneNumber}
@@ -96,7 +115,10 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
           >
             <GridBox lable={"Distance"} value={"5km"} />
             <GridBox lable={"Due time"} value={props.order.deliveryDate} />
-            <GridBox lable={"Order Date"} value={props.order.orderedAt} />
+            <GridBox
+              lable={"Order Date"}
+              value={formatDate(props.order.orderedAt)}
+            />
             <GridBox lable={"quantity"} value={props.order.quantity} />
             <GridBox lable={"price per unit"} value={props.order.drug.price} />
             <GridBox lable={"Total Cost"} value={props.order.drug.cost} />

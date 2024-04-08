@@ -22,7 +22,6 @@ const slice = createSlice({
   name: "orderSlice",
   initialState,
   reducers: {
-    // Other reducers...
 
     fetchOrders: (state) => {
       state.isgettingOrder = true;

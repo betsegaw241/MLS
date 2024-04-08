@@ -17,106 +17,40 @@ import { Order, OrderComponentProps } from "./types";
 const OrderComponent = (props: OrderComponentProps) => {
   const navigate = useNavigate();
   const [showSortBy, setShowSortBy] = useState(false);
-  //const [searchTerm, setSearchTerm] = useState("");
-
-  // const orders = [
-  //   {
-  //     id: 1,
-  //     name: "Beka",
-  //     drug: "Advil",
-  //     phone: "0935354",
-  //     location: "A.A",
-  //     time: "4:30 PM",
-  //     status: "PENDING",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Toltu",
-  //     drug: "Differin",
-  //     phone: "092535454",
-  //     location: "Wolkite",
-  //     time: "4:30 PM",
-  //     status: "REJECTED",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Desta",
-  //     drug: "Orajel",
-  //     phone: "093535421",
-  //     location: "Dire",
-  //     time: "4:30 PM",
-  //     status: "ACCEPTED",
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "Damtew",
-  //     drug: "Advil",
-  //     phone: "091535488",
-  //     location: "A.A",
-  //     time: "4:30 PM",
-  //     status: "PENDING",
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "Getu",
-  //     drug: "Differin",
-  //     phone: "095535477",
-  //     location: "Gubrye",
-  //     time: "4:30 PM",
-  //     status: "PENDING",
-  //   },
-  //   {
-  //     id: 6,
-  //     name: "Roba",
-  //     drug: "Advil",
-  //     phone: "093535455",
-  //     location: "Adama",
-  //     time: "4:30 PM",
-  //     status: "REJECTED",
-  //   },
-  //   {
-  //     id: 7,
-  //     name: "Iskindir",
-  //     drug: "Clifford",
-  //     phone: "093535433",
-  //     location: "Bahirdar",
-  //     time: "4:30 PM",
-  //     status: "ACCEPTED",
-  //   },
-  //   {
-  //     id: 8,
-  //     name: "Iskindir",
-  //     drug: "Clifford",
-  //     phone: "093535433",
-  //     location: "Bahirdar",
-  //     time: "4:30 PM",
-  //     status: "ACCEPTED",
-  //   },
-  // ];
+  const [searchTerm, setSearchTerm] = useState("");
 
   // Filter orders based on search term
-  // const filteredOrders = orders.filter((order) =>
-  //   order.name.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
+  const filteredOrders = props.orders.filter(
+    (order: Order) =>
+      searchTerm.trim() === "" ||
+      order.drug.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      order.customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      order.deliveryAddress.address
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      order.status.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-const formatDate = (dateString:string) => {
-  // Create a Date object from the provided date string
-  const date = new Date(dateString);
+  const formatDate = (dateString: string) => {
+    // Create a Date object from the provided date string
+    const date = new Date(dateString);
 
-  // Extract date components
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0"); // Month starts from 0
-  const day = String(date.getDate()).padStart(2, "0");
-  const hours = String(date.getHours()).padStart(2, "0");
-  const minutes = String(date.getMinutes()).padStart(2, "0");
+    // Extract date components
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Month starts from 0
+    const day = String(date.getDate()).padStart(2, "0");
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
 
-  const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
+    const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
 
-  return formattedDate;
-};
+    return formattedDate;
+  };
 
+  const handleSearch = () => {
+    // Perform search-related actions here
+  };
 
-console.log(props.orders);
   return (
     <Box
       width={"100%"}
@@ -148,7 +82,10 @@ console.log(props.orders);
               console.log("search button clicked.");
             }}
           >
-            <Search />
+            <Search
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onClick={handleSearch}
+            />
           </Box>
         </Flex>
         <Flex
@@ -178,7 +115,7 @@ console.log(props.orders);
           style={{ gap: "20px" }}
         >
           <Paper sx={{ width: "100%", boxShadow: "none" }}>
-            <TableContainer component={Paper} sx={{ maxHeight: 480 }}>
+            <TableContainer component={Paper} sx={{ maxHeight: 558 }}>
               <Table
                 aria-label="a dense table"
                 size="small"
@@ -187,7 +124,7 @@ console.log(props.orders);
               >
                 <TableHeader columnName={OrderTableColumns} />
                 <TableBody>
-                  {props.orders?.map((order: Order) => (
+                  {filteredOrders.map((order: Order) => (
                     <TableRow
                       hover
                       key={order.id}
@@ -197,12 +134,9 @@ console.log(props.orders);
                         boxShadow: "none",
                       }}
                       onClick={() => {
-
                         navigate(`/pharmacist/orderdetail/${order._id}`);
                       }}
                     >
-                    
-
                       <TableCell
                         component="th"
                         scope="row"
