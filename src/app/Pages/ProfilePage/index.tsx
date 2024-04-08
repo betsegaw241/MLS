@@ -14,6 +14,7 @@ import { useEditProfilePageSlice } from "./slice";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "utils/firebaseConfig";
 import { IProfile } from "./slice/types";
+import LoadingPage from "utils/LoadingPage";
 
 function ProfilePage() {
   const isEditing = useSelector(selectIsEditing);
@@ -93,7 +94,7 @@ function ProfilePage() {
 
   return (
     <>
-      {user && (
+      {user ? (
         <ProfileComponent
           errorMessage={errorMessage}
           initialValues={profile}
@@ -105,7 +106,7 @@ function ProfilePage() {
           profile={handleFileDrop}
           changePassword={handleChangePassword}
         />
-      )}
+      ):(<LoadingPage/>)}
     </>
   );
 }
