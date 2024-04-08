@@ -9,7 +9,7 @@ function* handleRegisterDrugs(action: PayloadAction<any>) {
   try {
     const res: data = yield call(api, {
       method: "POST",
-      route: "/",
+      route: `/drug/${action.payload.id}`,
       body: action.payload,
       isSecureRoute: true,
     });

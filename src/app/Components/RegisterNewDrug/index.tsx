@@ -99,9 +99,9 @@ const RegisterDrug = (props: any) => {
                       </Flex>
                       <Flex flexDirection={"column"} style={{ gap: 3 }}>
                         <InputField
-                          name="catagory"
+                          name="category"
                           type="text"
-                          label="Catagory(optional)"
+                          label="Category(optional)"
                         />
                       </Flex>
                     </Grid>
