@@ -1,5 +1,5 @@
 
-export interface Order {
+export interface Iorder {
   [x: string]: any;
   id: number;
   name: string;
@@ -11,7 +11,7 @@ export interface Order {
 }
 
 export interface OrderComponentProps {
-  orders: Order;
+  orders: Iorder;
 }
 
 

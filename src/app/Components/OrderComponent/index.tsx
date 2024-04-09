@@ -12,7 +12,7 @@ import Search from "../ui/SearchBar";
 import { FiChevronDown } from "react-icons/fi";
 import { Pagination } from "@mui/material";
 import { useState } from "react";
-import { Order, OrderComponentProps } from "./types";
+import { Iorder, OrderComponentProps } from "./types";
 
 const OrderComponent = (props: OrderComponentProps) => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const OrderComponent = (props: OrderComponentProps) => {
 
   // Filter orders based on search term
   const filteredOrders = props.orders.filter(
-    (order: Order) =>
+    (order: Iorder) =>
       searchTerm.trim() === "" ||
       order.drug.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       order.customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -124,7 +124,7 @@ const OrderComponent = (props: OrderComponentProps) => {
               >
                 <TableHeader columnName={OrderTableColumns} />
                 <TableBody>
-                  {filteredOrders.map((order: Order) => (
+                  {filteredOrders.map((order: Iorder) => (
                     <TableRow
                       hover
                       key={order.id}

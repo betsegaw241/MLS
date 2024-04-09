@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useOrderDetailPageSlice } from "./slices";
 import { selectOrder, selectloading } from "./slices/selector";
 import { useEffect } from "react";
+import LoadingPage from "utils/LoadingPage";
 
 const OrderDetailPage = () => {
   const { id } = useParams();
@@ -21,7 +22,13 @@ const OrderDetailPage = () => {
   console.log(loading);
 
   ///////>>>>>>>>>>> instead of "order._id &&" make usestate and when data is loaded change its value and send orders as the following  
-  return order._id && <OrderDetailComponent order={order} />;
+  return (
+   
+      order._id ? (<OrderDetailComponent order={order} />
+      ):(
+      <LoadingPage />)
+
+  );
 };
 
 export default OrderDetailPage;

@@ -1,11 +1,12 @@
 export interface orderPageState {
   isgettingOrder: boolean;
   isOrderExist: boolean;
-  order:IOrder;
+  order:Iorder;
   orders:[];
 }
 
-export interface IOrder {
+export interface Iorder {
+  length: number;
   id: number;
   name: string;
   drug: string;

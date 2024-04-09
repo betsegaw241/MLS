@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useOrderPageSlice } from "app/Pages/OrderPage/slices";
 import OrderComponent from "app/Components/OrderComponent";
 import { selectOrder } from "./slices/selector";
+import LoadingPage from "utils/LoadingPage";
 
 function OrderPage() {
   const dispatch = useDispatch();
@@ -16,7 +17,14 @@ function OrderPage() {
   }, []);
 
   return(
-   orders.length > 1 && <OrderComponent orders={orders} />
+    <>
+    {orders.length > 1 ? (<OrderComponent orders={orders} />)
+    :(
+      <LoadingPage />
+    ) 
+    }
+    </>
+  
     
   );
 }
