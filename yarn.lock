@@ -5850,6 +5850,11 @@ react-file-viewer@^1.2.1:
     three "0.85.2"
     xlsx "^0.10.1"
 
+react-google-charts@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.npmjs.org/react-google-charts/-/react-google-charts-4.0.1.tgz"
+  integrity sha512-V/hcMcNuBgD5w49BYTUDye+bUKaPmsU5vy/9W/Nj2xEeGn+6/AuH9IvBkbDcNBsY00cV9OeexdmgfI5RFHgsXQ==
+
 react-helmet-async@^1.3.0:
   version "1.3.0"
   resolved "https://registry.npmjs.org/react-helmet-async/-/react-helmet-async-1.3.0.tgz"

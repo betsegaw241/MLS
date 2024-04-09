@@ -13,63 +13,63 @@ import { FiChevronDown } from "react-icons/fi";
 import { Pagination, ThemeProvider, createTheme } from "@mui/material";
 import { useState } from "react";
 
-const StockComponent = () => {
+const StockComponent = (props: any) => {
   const navigate = useNavigate();
   const [showSortBy, setShowSortBy] = useState(false);
 
-  const Drug = [
-    {
-      id: 2,
-      name: "Advil",
-      strength: "120mg",
-      dosage: "8ml",
-      price_per_unit: "23",
-      expiration_date: "09/35/33",
-      min_sockLevel: "20",
-      stock_Level: "40",
-    },
+  // const Drug = [
+  //   {
+  //     id: 2,
+  //     name: "Advil",
+  //     strength: "120mg",
+  //     dosage: "8ml",
+  //     price_per_unit: "23",
+  //     expiration_date: "09/35/33",
+  //     min_sockLevel: "20",
+  //     stock_Level: "40",
+  //   },
 
-    {
-      id: 5,
-      name: "Differin",
-      strength: "120mg",
-      dosage: "8ml",
-      price_per_unit: "23",
-      expiration_date: "09/35/33",
-      min_sockLevel: "20",
-      stock_Level: "40",
-    },
-    {
-      id: 6,
-      name: "Orajel",
-      strength: "120mg",
-      dosage: "8ml",
-      price_per_unit: "23",
-      expiration_date: "09/35/33",
-      min_sockLevel: "20",
-      stock_Level: "40",
-    },
-    {
-      id: 7,
-      name: "Clifford",
-      strength: "120mg",
-      dosage: "8ml",
-      price_per_unit: "23",
-      expiration_date: "09/35/33",
-      min_sockLevel: "20",
-      stock_Level: "40",
-    },
-    {
-      id: 8,
-      name: "Clifford",
-      strength: "120mg",
-      dosage: "8ml",
-      price_per_unit: "23",
-      expiration_date: "09/35/33",
-      min_sockLevel: "20",
-      stock_Level: "40",
-    },
-  ];
+  //   {
+  //     id: 5,
+  //     name: "Differin",
+  //     strength: "120mg",
+  //     dosage: "8ml",
+  //     price_per_unit: "23",
+  //     expiration_date: "09/35/33",
+  //     min_sockLevel: "20",
+  //     stock_Level: "40",
+  //   },
+  //   {
+  //     id: 6,
+  //     name: "Orajel",
+  //     strength: "120mg",
+  //     dosage: "8ml",
+  //     price_per_unit: "23",
+  //     expiration_date: "09/35/33",
+  //     min_sockLevel: "20",
+  //     stock_Level: "40",
+  //   },
+  //   {
+  //     id: 7,
+  //     name: "Clifford",
+  //     strength: "120mg",
+  //     dosage: "8ml",
+  //     price_per_unit: "23",
+  //     expiration_date: "09/35/33",
+  //     min_sockLevel: "20",
+  //     stock_Level: "40",
+  //   },
+  //   {
+  //     id: 8,
+  //     name: "Clifford",
+  //     strength: "120mg",
+  //     dosage: "8ml",
+  //     price_per_unit: "23",
+  //     expiration_date: "09/35/33",
+  //     min_sockLevel: "20",
+  //     stock_Level: "40",
+  //   },
+  // ];
 
   const theme = createTheme({
     components: {
@@ -111,7 +111,7 @@ const StockComponent = () => {
           background={"#F9FBFF"}
           height={"40px"}
         >
-          <Search />
+          {/* <Search /> */}
         </Flex>
         <Flex
           borderRadius={"8px"}
@@ -149,7 +149,7 @@ const StockComponent = () => {
               >
                 <TableHeader columnName={drugTableColumn} />
                 <TableBody>
-                  {Drug?.map((item) => (
+                  {props.drugs.data?.map((item) => (
                     <TableRow
                       hover
                       key={item.id}
@@ -178,16 +178,10 @@ const StockComponent = () => {
                         {item.name}
                       </TableCell>
                       <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                        {item.dosage}
+                        {item.category}
                       </TableCell>
                       <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                        {item.strength}
-                      </TableCell>
-                      <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                        {item.price_per_unit}
-                      </TableCell>
-                      <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                        {item.expiration_date}
+                        {item.price}
                       </TableCell>
                       <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
                         {item.stock_Level}

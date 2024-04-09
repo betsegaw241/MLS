@@ -136,13 +136,8 @@ export const drugTableColumn: IColumn[] = [
     minWidth: 100,
   },
   {
-    id: "Dosage",
-    label: "Dosage",
-    minWidth: 50,
-  },
-  {
-    id: "Strength",
-    label: "Strength",
+    id: "Catagory",
+    label: "Catagory",
     minWidth: 50,
   },
   {
@@ -150,11 +145,7 @@ export const drugTableColumn: IColumn[] = [
     label: "Unit Price",
     minWidth: 50,
   },
-  {
-    id: "Expairation Date",
-    label: "Expairation Date",
-    minWidth: 50,
-  },
+ 
   {
     id: "Stock Leve",
     label: "Stock Leve",
