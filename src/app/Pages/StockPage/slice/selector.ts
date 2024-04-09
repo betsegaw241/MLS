@@ -14,7 +14,7 @@ export const selectDrugs = createSelector(
   [selectSlice],
   (state) => state.drugsList
 );
-export const selectIsAdding = createSelector(
+export const selectIsLoading = createSelector(
   [selectSlice],
   (state) => state.loading
 );

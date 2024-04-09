@@ -5,26 +5,29 @@ import {
   useInjectSaga,
 } from "../../../../store/utils/redux-injectors";
 import { GetDrugsListSaga } from "./saga";
-import { PharmacyStockPageState } from "./types";
+import { IDrugdata, PharmacyStockPageState } from "./types";
 
 export const initialState: PharmacyStockPageState = {
   errorMessage: "",
   loading: false,
-
   isDrugAdded: false,
-  drugsList: [],
+  drugsList: {} as IDrugdata,
 };
 
 const slice = createSlice({
   name: "getDrugsList",
   initialState,
   reducers: {
-    getDrugs: (state, action: PayloadAction<string | undefined>) => {},
+    getDrugs: (state, action: PayloadAction<any>) => {
+      state.loading = true;
+    },
     getDrugsSuccess: (state, action: PayloadAction<any>) => {
       state.drugsList = action.payload;
+      state.loading = false;
     },
     getDrugsFailed: (state, action: PayloadAction<any>) => {
       state.errorMessage = action.payload;
+      state.loading = false;
     },
   },
 });

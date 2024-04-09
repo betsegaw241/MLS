@@ -3,7 +3,7 @@ export interface DrugDetailPageState {
   isDrugAdded: boolean;
   loading: boolean;
   drugDetail: IDrug;
-  drugStock:IDrugStock;
+  drugStock: IDrugdata;
 }
 export interface IDrug {
   name: string;
@@ -11,11 +11,17 @@ export interface IDrug {
   batch: string;
   quantity: number;
   expiredDate: Date;
+  category: string;
+  stockLevel: string;
+  instruction: string;
+  sideEffects: string;
 }
 
+export interface IDrugdata {
+  data: IDrugStock[];
+}
 
 export interface IDrugStock {
-  drug: string;
   batchNumber: string;
   expiredDate: string;
   quantity: number;

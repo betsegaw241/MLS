@@ -9,7 +9,8 @@ function* handleGetDrugs(action: PayloadAction<any>) {
     const res: IDrug = yield call(api, {
       method: "GET",
       route: "/drug",
-      body: { id: action.payload },
+      body: { id: action.payload.id },
+      query:{page:action.payload.page,limit:action.payload.limit},
       isSecureRoute: true,
     });
     console.log(res);
