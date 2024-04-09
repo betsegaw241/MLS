@@ -20,6 +20,7 @@ import PharmacyAccountPage from "app/Pages/PharmacyAccountPage";
 import RegisterDrugPage from "app/Pages/NewDrugRegistrationPage";
 import DashBoardPage from "app/Pages/DashboardPage";
 import PharmacyStockPage from "app/Pages/StockPage";
+import DrugDetailPage from "app/Pages/DrugDetailPage";
 
 
 export const routes: IRoute[] = [
@@ -135,9 +136,9 @@ export const routes: IRoute[] = [
     needsLayout: true,
   },
   {
-    element: <DrugDetailsComponent />,
+    element: <DrugDetailPage />,
     exact: true,
-    path: "pharmacist/drugdetails",
+    path: "pharmacist/drugdetails/:id",
     isProtected: true,
     allowedRole: "pharmacist",
     needsLayout: true,

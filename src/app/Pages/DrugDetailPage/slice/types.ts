@@ -1,9 +1,9 @@
-export interface DrugDetailComponent {
+export interface DrugDetailPageState {
   errorMessage: string;
   isDrugAdded: boolean;
   loading: boolean;
-  drug: IDrug;
-  drugStock: IDrugdata;
+  drugDetail: IDrug;
+  drugStock:IDrugStock;
 }
 export interface IDrug {
   name: string;
@@ -11,17 +11,11 @@ export interface IDrug {
   batch: string;
   quantity: number;
   expiredDate: Date;
-  category: string;
-  stockLevel: string;
-  instruction: string;
-  sideEffects: string;
 }
 
-export interface IDrugdata {
-  data: IDrugStock[];
-}
 
 export interface IDrugStock {
+  drug: string;
   batchNumber: string;
   expiredDate: string;
   quantity: number;

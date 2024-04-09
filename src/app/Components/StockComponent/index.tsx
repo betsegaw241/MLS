@@ -159,7 +159,7 @@ const StockComponent = (props: any) => {
                         boxShadow: "none",
                       }}
                       onClick={() => {
-                        navigate(`/pharmacist/drugdetails`);
+                        navigate(`/pharmacist/drugdetails/${item._id}`);
                       }}
                     >
                       <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>

@@ -13,6 +13,7 @@ import { verifyAccountPageState } from "app/Pages/VerifyEmailPage/slice/types";
 import { createAccountPageState } from "app/Pages/createAccountPage/slice/types";
 import { DashboardPageState } from "app/Pages/DashboardPage/slice/types";
 import { PharmacyStockPageState } from "app/Pages/StockPage/slice/types";
+import { DrugDetailPageState } from "app/Pages/DrugDetailPage/slice/types";
 
 export interface RootState {
   Layout?: LayoutState;
@@ -29,5 +30,6 @@ export interface RootState {
   pharmacyAccount: pharmacyAccountPageState;
   registerDrug: RegisterDrugPageState;
   dashboard: DashboardPageState;
-  getDrugsList:PharmacyStockPageState;
+  getDrugsList: PharmacyStockPageState;
+  drugDetail: DrugDetailPageState;
 }
