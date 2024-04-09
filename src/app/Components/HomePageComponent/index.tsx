@@ -3,6 +3,7 @@ import { Box, Button, Flex, Text } from "../ui/Blocks";
 import { HomePageProps } from "./types";
 import Header from "../ui/Header";
 import { useNavigate } from "react-router";
+import LoadingPage from "utils/LoadingPage";
 
 const HomePageComponent = (props: HomePageProps) => {
   const navigate = useNavigate();
@@ -52,58 +53,64 @@ const HomePageComponent = (props: HomePageProps) => {
             </Button>
           </Flex>
         </Flex>
-        {/* second */}
-        <Flex
-          backgroundColor={"#ffff"}
-          width={["100%", "80%"]}
-          height={"500px"}
-          paddingBottom={4}
-          borderRadius={"5px"}
-          flexDirection={"column"}
-        >
-          {props.pharmacies?.map((pharmacy) => (
-            <Flex
-              key={pharmacy._id}
-              backgroundColor={"#f5f5f5"}
-              flexDirection={"row"}
-              m={1}
-              p={2}
-              style={{ gap: 20 }}
-              alignItems={"center"}
-              justifyContent={"space-around"}
-              borderRadius={"8px"}
-              onClick={() => navigate(`/pharmacist/dashboard/${pharmacy._id}`)}
-            >
-              <Flex alignItems={"center"} style={{ gap: 10 }}>
-                <Box
-                  width={8}
-                  backgroundColor={"#f5f5"}
-                  height={8}
-                  borderRadius={"50%"}
-                >
-                  {" "}
-                </Box>
-                {/* <img
+
+        {props.loading ? (
+          <LoadingPage />
+        ) : (
+          <Flex
+            backgroundColor={"#ffff"}
+            width={["100%", "80%"]}
+            height={"500px"}
+            paddingBottom={4}
+            borderRadius={"5px"}
+            flexDirection={"column"}
+          >
+            {props.pharmacies?.map((pharmacy) => (
+              <Flex
+                key={pharmacy._id}
+                backgroundColor={"#f5f5f5"}
+                flexDirection={"row"}
+                m={1}
+                p={2}
+                style={{ gap: 20 }}
+                alignItems={"center"}
+                justifyContent={"space-around"}
+                borderRadius={"8px"}
+                onClick={() =>
+                  navigate(`/pharmacist/dashboard/${pharmacy._id}`)
+                }
+              >
+                <Flex alignItems={"center"} style={{ gap: 10 }}>
+                  <Box
+                    width={8}
+                    backgroundColor={"#f5f5"}
+                    height={8}
+                    borderRadius={"50%"}
+                  >
+                    {" "}
+                  </Box>
+                  {/* <img
                  src={pharmacy.logo}
                 ></img> */}
-                <Text fontFamily={"poppins"} fontSize={6}>
-                  {pharmacy.name}
-                </Text>
-              </Flex>
+                  <Text fontFamily={"poppins"} fontSize={6}>
+                    {pharmacy.name}
+                  </Text>
+                </Flex>
 
-              <Flex>
-                <Text fontFamily={"poppins"} fontSize={3}>
-                  {pharmacy.email}
-                </Text>
+                <Flex>
+                  <Text fontFamily={"poppins"} fontSize={3}>
+                    {pharmacy.email}
+                  </Text>
+                </Flex>
+                <Flex>
+                  <Text fontFamily={"poppins"} fontSize={3}>
+                    {pharmacy.phoneNumber}
+                  </Text>
+                </Flex>
               </Flex>
-              <Flex>
-                <Text fontFamily={"poppins"} fontSize={3}>
-                  {pharmacy.phoneNumber}
-                </Text>
-              </Flex>
-            </Flex>
-          ))}
-        </Flex>
+            ))}
+          </Flex>
+        )}
       </Flex>
     </>
   );

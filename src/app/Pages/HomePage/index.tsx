@@ -1,12 +1,17 @@
 import HomePageComponent from "app/Components/HomePageComponent";
 import { useDispatch, useSelector } from "react-redux";
-import { selectErrorMessage, selectPharmacies } from "./slice/selector";
+import {
+  selectErrorMessage,
+  selectIsLoading,
+  selectPharmacies,
+} from "./slice/selector";
 import { useEffect } from "react";
 import { useHomePageSlice } from "./slice";
 
 const HomePage = () => {
   const pharmacies = useSelector(selectPharmacies);
   const errorMessage = useSelector(selectErrorMessage);
+  const loading = useSelector(selectIsLoading);
 
   const { actions } = useHomePageSlice();
   const dispatch = useDispatch();
@@ -18,7 +23,11 @@ const HomePage = () => {
 
   return (
     <>
-      <HomePageComponent pharmacies={pharmacies} errorMessage={errorMessage} />
+      <HomePageComponent
+        pharmacies={pharmacies}
+        errorMessage={errorMessage}
+        loading={loading}
+      />
     </>
   );
 };

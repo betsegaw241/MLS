@@ -14,6 +14,10 @@ export const selectPharmacies = createSelector(
   [selectSlice],
   (state) => state.pharmcies
 );
+export const selectIsLoading = createSelector(
+  [selectSlice],
+  (state) => state.isLoading
+);
 export const selectErrorMessage = createSelector(
   [selectSlice],
   (state) => state.errorMessage
