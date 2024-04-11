@@ -92,18 +92,18 @@ export const PharmaciesMenu = [
 ];
 
 export const OrderTableColumns: IColumn[] = [
- 
   {
     id: "name",
     label: "Name",
     minWidth: 150,
   },
- 
+
   {
     id: "Drug",
     label: "Drug",
     minWidth: 100,
-  }, {
+  },
+  {
     id: "Email",
     label: "Email",
     minWidth: 100,
@@ -145,7 +145,7 @@ export const drugTableColumn: IColumn[] = [
     label: "Unit Price",
     minWidth: 50,
   },
- 
+
   {
     id: "Stock Leve",
     label: "Stock Leve",
@@ -157,16 +157,20 @@ export const drugTableColumn: IColumn[] = [
     minWidth: 50,
   },
 ];
-export const drugDetails: IColumn[] = [
+export const drugBatch: IColumn[] = [
   {
-    id: "Date",
-    label: "Date",
+    id: "Batch",
+    label: "Batch Number",
     minWidth: 50,
   },
-
   {
-    id: "Recived",
-    label: "Recived",
+    id: "Quantity",
+    label: "Quantity",
+    minWidth: 50,
+  },
+  {
+    id: "Recived From",
+    label: "Recived From",
     minWidth: 50,
   },
   {
@@ -175,8 +179,18 @@ export const drugDetails: IColumn[] = [
     minWidth: 50,
   },
   {
-    id: "Balance",
-    label: "Balance",
+    id: "Price",
+    label: "Price",
+    minWidth: 50,
+  },
+  {
+    id: "Cost",
+    label: "Cost",
+    minWidth: 50,
+  },
+  {
+    id: "Date",
+    label: "Recived   Date",
     minWidth: 50,
   },
 ];
@@ -256,9 +270,10 @@ export const OutOFStock: IColumn[] = [
     id: "NO",
     label: "NO",
     minWidth: 10,
-  }, {
+  },
+  {
     id: "Drug",
     label: "Drug",
     minWidth: 50,
-  }
+  },
 ];

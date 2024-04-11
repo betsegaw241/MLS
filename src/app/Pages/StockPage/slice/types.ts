@@ -17,5 +17,5 @@ export interface IDrug {
 }
 export interface IDrugdata {
   data: IDrug[];
-  totalDocuments: number;
+  totalPages: number;
 }

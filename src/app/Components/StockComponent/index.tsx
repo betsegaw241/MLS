@@ -10,10 +10,10 @@ import { drugTableColumn } from "utils/constants";
 import { TableHeader } from "../ui/Blocks/Table";
 import Search from "../ui/SearchBar";
 import { FiChevronDown } from "react-icons/fi";
-import { Pagination, ThemeProvider, createTheme } from "@mui/material";
 import { useState } from "react";
 import LoadingPage from "utils/LoadingPage";
 import { StockComponentProps } from "./types";
+import Paginate from "../ui/Pagination/Paginate";
 
 const StockComponent = ({
   drugs,
@@ -23,21 +23,6 @@ const StockComponent = ({
 }: StockComponentProps) => {
   const navigate = useNavigate();
   const [showSortBy, setShowSortBy] = useState(false);
-
-  const theme = createTheme({
-    components: {
-      MuiPaginationItem: {
-        styleOverrides: {
-          root: {
-            "&.Mui-selected": {
-              color: "#fff",
-              backgroundColor: "blue",
-            },
-          },
-        },
-      },
-    },
-  });
 
   return (
     <Box
@@ -52,8 +37,13 @@ const StockComponent = ({
         <LoadingPage />
       ) : (
         <>
-          <Flex alignItems={"center"} p={1}>
-            <Flex flexDirection={"column"} paddingY={1}>
+          <Flex
+            alignItems={"center"}
+            p={1}
+            justifyContent={"space-between"}
+            style={{ gap: 10 }}
+          >
+            <Flex alignItems={"center"} paddingY={1}>
               <P
                 margin={"0px"}
                 padding={"0px"}
@@ -62,48 +52,51 @@ const StockComponent = ({
               >
                 Drugs
               </P>
-              <P
-                margin={"0px"}
-                padding={"0px"}
-                fontFamily={"poppins"}
-                fontSize={1}
-              >
-                All Drugs
-              </P>
             </Flex>
-            <Flex
-              borderRadius={"10%"}
-              padding={1}
-              marginLeft={"40%"}
-              background={"#F9FBFF"}
-              height={"40px"}
-            >
-              {/* <Search /> */}
-            </Flex>
-            <Flex
-              borderRadius={"8px"}
-              padding={1}
-              marginLeft={"10%"}
-              background={"#F9FBFF"}
-              onClick={() => {
-                setShowSortBy(!showSortBy);
-              }}
-            >
-              <Flex flexDirection={"row"}>
-                <Text fontFamily={"poppins"} fontSize={2}>
-                  Filter by : Newest
-                </Text>
+            <Flex style={{ gap: 10 }}>
+              <Flex background={"#F9FBFF"} height={"40px"} padding={"4px"}>
+                <Search onChange={() => {}} onClick={() => {}} />
+              </Flex>
 
-                <FiChevronDown fontSize={20} />
+              <Flex
+                borderRadius={"8px"}
+                padding={1}
+                background={"#F9FBFF"}
+                onClick={() => {
+                  setShowSortBy(!showSortBy);
+                }}
+              >
+                <Flex flexDirection={"row"}>
+                  <Text fontFamily={"poppins"} fontSize={4}>
+                    Filter by : Newest
+                  </Text>
+
+                  <FiChevronDown fontSize={20} />
+                </Flex>
+              </Flex>
+              {/* //------ */}
+              <Flex
+                borderRadius={"8px"}
+                padding={1}
+                background={"#F9FBFF"}
+                onClick={() => {
+                  setShowSortBy(!showSortBy);
+                }}
+              >
+                <Flex flexDirection={"row"}>
+                  <Text fontFamily={"poppins"} fontSize={4}>
+                    Order by : Newest
+                  </Text>
+
+                  <FiChevronDown fontSize={20} />
+                </Flex>
               </Flex>
             </Flex>
           </Flex>
           <>
             <Flex
               flexDirection={"column"}
-              height={["400px", "410px", "430px", "300px"]}
               justifyContent={"space-between"}
-              pb={9}
               style={{ gap: "20px" }}
             >
               <Paper sx={{ width: "100%", boxShadow: "none" }}>
@@ -166,15 +159,11 @@ const StockComponent = ({
               </Paper>
 
               <Flex justifyContent={"flex-end"} marginRight={15}>
-                <ThemeProvider theme={theme}>
-                  <Pagination
-                    count={drugs.totalDocuments}
-                    onChange={handlePageChange}
-                    page={page}
-                    variant="outlined"
-                    shape="rounded"
-                  />
-                </ThemeProvider>
+                <Paginate
+                  pages={drugs.totalPages}
+                  handlePageChange={handlePageChange}
+                  page={page}
+                />
               </Flex>
             </Flex>
           </>

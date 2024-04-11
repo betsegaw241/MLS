@@ -5,14 +5,14 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  Pagination,
 } from "@mui/material";
-import { drugDetails } from "utils/constants";
+import { drugBatch } from "utils/constants";
 import { Box, Button, Flex, Grid, P, Text } from "../ui/Blocks";
 import { GridBox } from "../ui/Blocks/GridBox";
 import { TableHeader } from "../ui/Blocks/Table";
 import { DrugDetailComponent } from "./types";
 import LoadingPage from "utils/LoadingPage";
+import Paginate from "../ui/Pagination/Paginate";
 export interface IStatus {
   status: "ACCEPTED" | "REJECTED" | "Pending";
 }
@@ -21,6 +21,8 @@ const DrugDetailsComponent = ({
   drug,
   drugStock,
   loading,
+  page,
+  handlePageChange,
 }: DrugDetailComponent) => {
   return (
     <Flex
@@ -103,9 +105,7 @@ const DrugDetailsComponent = ({
                 <>
                   <Flex
                     flexDirection={"column"}
-                    height={["400px", "410px", "430px", "300px"]}
                     justifyContent={"space-between"}
-                    pb={9}
                     style={{ gap: "20px" }}
                     pt={1}
                   >
@@ -117,7 +117,7 @@ const DrugDetailsComponent = ({
                           stickyHeader
                           sx={{ minWidth: 650 }}
                         >
-                          <TableHeader columnName={drugDetails} />
+                          <TableHeader columnName={drugBatch} />
                           <TableBody>
                             {drugStock.data?.map((item, index) => (
                               <TableRow
@@ -135,12 +135,6 @@ const DrugDetailsComponent = ({
                                 }}
                               >
                                 <TableCell
-                                  sx={{ padding: 1, fontFamily: "poppins" }}
-                                >
-                                  {item.batchNumber}
-                                </TableCell>
-
-                                <TableCell
                                   component="th"
                                   scope="row"
                                   sx={{
@@ -149,12 +143,26 @@ const DrugDetailsComponent = ({
                                     fontFamily: "poppins",
                                   }}
                                 >
+                                  {item.batchNumber}
+                                </TableCell>
+                                <TableCell
+                                  sx={{ padding: 1, fontFamily: "poppins" }}
+                                >
                                   {item.quantity}
                                 </TableCell>
                                 <TableCell
                                   sx={{ padding: 1, fontFamily: "poppins" }}
                                 >
-                                  {item.cost}
+                                  {item.recievedFrom}
+                                </TableCell>
+                                <TableCell
+                                  sx={{ padding: 1, fontFamily: "poppins" }}
+                                >
+                                  {new Date(
+                                    item.expiredDate
+                                  ).toLocaleDateString("en-US", {
+                                    timeZone: "UTC",
+                                  })}
                                 </TableCell>
                                 <TableCell
                                   sx={{ padding: 1, fontFamily: "poppins" }}
@@ -164,7 +172,15 @@ const DrugDetailsComponent = ({
                                 <TableCell
                                   sx={{ padding: 1, fontFamily: "poppins" }}
                                 >
-                                  {item.expiredDate}
+                                  {item.cost}
+                                </TableCell>
+                                <TableCell
+                                  sx={{ padding: 1, fontFamily: "poppins" }}
+                                >
+                                  {new Date(item.createdAt).toLocaleDateString(
+                                    "en-US",
+                                    { timeZone: "UTC" }
+                                  )}
                                 </TableCell>
                               </TableRow>
                             ))}
@@ -174,11 +190,10 @@ const DrugDetailsComponent = ({
                     </Paper>
 
                     <Flex justifyContent={"flex-end"} marginRight={15}>
-                      <Pagination
-                        count={5}
-                        // onChange={}
-                        page={3}
-                        variant="outlined"
+                      <Paginate
+                        pages={drugStock.totalPages}
+                        handlePageChange={handlePageChange}
+                        page={page}
                       />
                     </Flex>
                   </Flex>

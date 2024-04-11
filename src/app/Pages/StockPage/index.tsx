@@ -13,7 +13,6 @@ const PharmacyStockPage = () => {
   const { id } = useParams();
   const [currentPage, setCurrentPage] = useState(1);
 
-  
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
     page: number
@@ -24,8 +23,6 @@ const PharmacyStockPage = () => {
   useEffect(() => {
     dispatch(actions.getDrugs({ id: id, page: currentPage, limit: 10 }));
   }, [currentPage]);
-
-  
 
   return (
     <StockComponent

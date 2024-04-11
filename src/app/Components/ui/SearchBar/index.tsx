@@ -13,6 +13,7 @@ const Search: React.FC<SearchProps> = ({ onChange, onClick }) => {
       <Flex backgroundColor={"#ffff"} p={1} borderRadius={"8px"}>
         <Input
           name={"search"}
+          fontFamily={'poppins'}
           type={""}
           placeholder="Search..."
           border={"none"}
@@ -21,7 +22,7 @@ const Search: React.FC<SearchProps> = ({ onChange, onClick }) => {
         />
         <CiSearch />
       </Flex>
-      <Button backgroundColor={"#ebeff5"} p={1} ml={1} borderRadius={"8px"}>
+      <Button  p={1} ml={1} borderRadius={"8px"} fontSize={4} color={'#485C75'} fontFamily={'poppins'}>
         search
       </Button>
     </Flex>

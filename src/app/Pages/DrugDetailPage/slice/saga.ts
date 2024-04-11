@@ -25,8 +25,9 @@ function* handleGetDrugStock(action: PayloadAction<any>) {
   try {
     const res: IDrug = yield call(api, {
       method: "GET",
-      route: `/drug/stocks/${action.payload}`,
+      route: `/drug/stocks/${action.payload.id}`,
       isSecureRoute: true,
+      query: { page: action.payload.page, limit: action.payload.limit },
     });
     console.log(res);
 

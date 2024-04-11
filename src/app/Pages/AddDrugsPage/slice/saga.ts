@@ -8,7 +8,7 @@ function* handleAddDrugs(action: PayloadAction<any>) {
   try {
     const res: IDrug = yield call(api, {
       method: "POST",
-      route: `/drug/stocks/${action.payload.id}`,
+      route: `/drug/stocks/${action.payload.drug}`,
       body: action.payload,
       isSecureRoute: true,
     });
@@ -28,8 +28,7 @@ function* handleGetDrugs(action: PayloadAction<any>) {
       body: action.payload,
       isSecureRoute: true,
     });
-    console.log(res);
-
+    
     if (res) {
       yield put(actions.getDrugSuccess(res));
     }

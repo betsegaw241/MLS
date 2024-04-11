@@ -30,6 +30,7 @@ const slice = createSlice({
       state.loading = false;
       state.errorMessage = action.payload;
     },
+
     getDrug: (state, action: PayloadAction<string | undefined>) => {},
     getDrugSuccess: (state, action: PayloadAction<any>) => {
       state.drug = action.payload;

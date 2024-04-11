@@ -22,7 +22,8 @@ const AddDrugPage = () => {
   }, []);
 
   const onAddClick = (values: any) => {
-    dispatch(actions.addDrug({...values,id:id}));
+    console.log('val id--',values)
+    dispatch(actions.addDrug({...values}));
   };
 
   const drugsArray = drugs.map((item) => ({

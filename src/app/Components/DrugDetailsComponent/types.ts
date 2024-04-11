@@ -3,6 +3,8 @@ export interface DrugDetailComponent {
   drug: IDrug;
   drugStock: IDrugdata;
   loading: boolean;
+  page: number;
+  handlePageChange: (event: React.ChangeEvent<unknown>, page: number) => void;
 }
 export interface IDrug {
   name: string;
@@ -14,9 +16,11 @@ export interface IDrug {
   stockLevel: string;
   instruction: string;
   sideEffects: string;
+  createdAt: Date;
 }
 export interface IDrugdata {
   data: IDrugStock[];
+  totalPages: number;
 }
 
 export interface IDrugStock {
@@ -26,4 +30,5 @@ export interface IDrugStock {
   recievedFrom: string;
   cost: string;
   price: string;
+  createdAt: Date;
 }
