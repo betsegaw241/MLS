@@ -43,6 +43,7 @@ const slice = createSlice({
       state.user = undefined;
       localStorage.removeItem("token");
       localStorage.removeItem("id");
+      localStorage.removeItem("avatar");
       localStorage.removeItem("email");
       localStorage.removeItem("role");
       localStorage.removeItem("name");

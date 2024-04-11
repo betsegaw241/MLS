@@ -18,6 +18,7 @@ function* handleLogin(action: PayloadAction<FormValues>) {
     if (res) {
       localStorage.setItem("token", `${res.accessToken}`);
       localStorage.setItem("id", `${res._id}`);
+      localStorage.setItem("avatar", `${res.avatar}`);
       localStorage.setItem("email", `${res.email}`);
       localStorage.setItem("name", `${res.name}`);
       localStorage.setItem("role", `${res.role}`);

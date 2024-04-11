@@ -8,7 +8,7 @@ import { data } from "../../../models/user";
 function* handleEditDrugs(action: PayloadAction<any>) {
   try {
     const res: data = yield call(api, {
-      method: "POST",
+      method: "PUT",
       route: `/drug/${action.payload.id}`,
       body: action.payload,
       isSecureRoute: true,

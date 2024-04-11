@@ -11,4 +11,5 @@ export interface data {
     role:string;
     accessToken?:string;
     _id:string;   
+    avatar:string;
 }
