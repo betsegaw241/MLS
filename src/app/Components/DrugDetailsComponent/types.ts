@@ -9,14 +9,10 @@ export interface DrugDetailComponent {
 export interface IDrug {
   name: string;
   _id: string;
-  batch: string;
-  quantity: number;
-  expiredDate: Date;
   category: string;
   stockLevel: string;
   instruction: string;
   sideEffects: string;
-  createdAt: Date;
 }
 export interface IDrugdata {
   data: IDrugStock[];
@@ -30,5 +26,5 @@ export interface IDrugStock {
   recievedFrom: string;
   cost: string;
   price: string;
-  createdAt: Date;
+  createdAt: string;
 }

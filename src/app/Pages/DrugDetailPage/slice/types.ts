@@ -8,17 +8,20 @@ export interface DrugDetailPageState {
 export interface IDrug {
   name: string;
   _id: string;
-  batch: string;
-  quantity: number;
-  expiredDate: Date;
   category: string;
   stockLevel: string;
   instruction: string;
   sideEffects: string;
+  minStockLevel: string;
+  drugPhoto: string[];
+  needPrescription: boolean;
+  dosage: string;
+  strength: string;
 }
 
 export interface IDrugdata {
   data: IDrugStock[];
+  totalPages: number;
 }
 
 export interface IDrugStock {
@@ -28,4 +31,5 @@ export interface IDrugStock {
   recievedFrom: string;
   cost: string;
   price: string;
+  createdAt: string;
 }

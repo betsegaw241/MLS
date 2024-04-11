@@ -22,7 +22,6 @@ const DrugDetailPage = () => {
     setCurrentPage(page);
   };
 
-
   useEffect(() => {
     dispatch(actions.getDrugDetail(id));
   }, []);

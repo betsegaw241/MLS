@@ -7,12 +7,14 @@ import {
   TableCell,
 } from "@mui/material";
 import { drugBatch } from "utils/constants";
-import { Box, Button, Flex, Grid, P, Text } from "../ui/Blocks";
+import { Box, Flex, Grid, P, Text } from "../ui/Blocks";
 import { GridBox } from "../ui/Blocks/GridBox";
 import { TableHeader } from "../ui/Blocks/Table";
 import { DrugDetailComponent } from "./types";
 import LoadingPage from "utils/LoadingPage";
 import Paginate from "../ui/Pagination/Paginate";
+import { MdEdit } from "react-icons/md";
+import { useNavigate } from "react-router";
 export interface IStatus {
   status: "ACCEPTED" | "REJECTED" | "Pending";
 }
@@ -24,6 +26,8 @@ const DrugDetailsComponent = ({
   page,
   handlePageChange,
 }: DrugDetailComponent) => {
+  const navigate = useNavigate();
+
   return (
     <Flex
       margin={2}
@@ -41,6 +45,30 @@ const DrugDetailsComponent = ({
             <Text fontSize={7} color={"#3d3939"} p={1}>
               Drug Details
             </Text>
+            <Flex
+              style={{ gap: 5 }}
+              border={"1px #B4D4FF solid"}
+              justifyContent={"center"}
+              alignItems={"center"}
+              p={"5px"}
+              mr={5}
+              width={80}
+              borderRadius={5}
+              onClick={() => {
+                navigate(`/pharmacist/drug/edit/${drug._id}`);
+              }}
+            >
+              <P
+                fontFamily={"poppins"}
+                padding={"0px"}
+                margin={"0px"}
+                fontSize={3}
+              >
+                Edit
+              </P>
+
+              <MdEdit color="#B4D4FF" />
+            </Flex>
           </Flex>
 
           <Box borderRadius={0}>
@@ -200,32 +228,6 @@ const DrugDetailsComponent = ({
                 </>
               </>
             ) : null}
-
-            <Flex
-              justifyContent={"flex-end"}
-              padding={5}
-              paddingRight={15}
-              style={{ gap: 15 }}
-            >
-              <Button
-                variant="secondary"
-                p={1}
-                fontSize={5}
-                width={"100px"}
-                borderRadius={1}
-              >
-                Edit
-              </Button>
-              <Button
-                variant="warning"
-                p={1}
-                fontSize={5}
-                width={"100px"}
-                borderRadius={1}
-              >
-                Remove
-              </Button>
-            </Flex>
           </Box>
         </>
       )}

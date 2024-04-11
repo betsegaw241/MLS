@@ -9,7 +9,6 @@ import ProfilePage from "app/Pages/ProfilePage";
 
 import VerifyEmailComponent from "app/Components/verifyEmail/VerifyEmailComponent";
 import VerifyEmailPage from "app/Pages/VerifyEmailPage";
-import DrugDetailsComponent from "app/Components/DrugDetailsComponent";
 import AdminVerifyPharmacy from "app/Components/AdminVerifyPharmacy";
 import ManageInventoryPage from "app/Pages/ManageInventoryPage";
 import AddDrugPage from "app/Pages/AddDrugsPage";
@@ -21,11 +20,11 @@ import RegisterDrugPage from "app/Pages/NewDrugRegistrationPage";
 import DashBoardPage from "app/Pages/DashboardPage";
 import PharmacyStockPage from "app/Pages/StockPage";
 import DrugDetailPage from "app/Pages/DrugDetailPage";
-
+import EditDrugDetailsPage from "app/Pages/EditDrugDetailsPages";
 
 export const routes: IRoute[] = [
   {
-    element: <DashBoardPage/>,
+    element: <DashBoardPage />,
     exact: true,
     path: "/pharmacist/dashboard/:id",
     isProtected: true,
@@ -163,6 +162,14 @@ export const routes: IRoute[] = [
     element: <AdminVerifyPharmacy />,
     exact: true,
     path: "pharmacist/verify",
+    isProtected: true,
+    allowedRole: "Admin",
+    needsLayout: true,
+  },
+  {
+    element: <EditDrugDetailsPage />,
+    exact: true,
+    path: "pharmacist/drug/edit/:id",
     isProtected: true,
     allowedRole: "pharmacist",
     needsLayout: true,
