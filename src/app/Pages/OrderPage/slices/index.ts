@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { orderPageState, IOrder } from "./types";
+import { orderPageState, Iorder } from "./types";
 import { OrderPageSaga } from "./saga";
 import { useInjectReducer, useInjectSaga } from "redux-injectors";
 
@@ -14,8 +14,11 @@ export const initialState: orderPageState = {
     time: "",
     status: "",
     id: 0,
+    length: 0,
+    data: undefined,
+    totalPages: 0
   },
-  orders: [], // to store fetched orders
+  orders: [], // to store fetched ordersz
 };
 
 const slice = createSlice({
@@ -23,10 +26,10 @@ const slice = createSlice({
   initialState,
   reducers: {
 
-    fetchOrders: (state) => {
+    fetchOrders: (state ,action: PayloadAction<any>) => {
       state.isgettingOrder = true;
     },
-    fetchOrdersSuccess: (state, action: PayloadAction<IOrder>) => {
+    fetchOrdersSuccess: (state, action: PayloadAction<Iorder>) => {
       state.isgettingOrder = false;
       state.isOrderExist = true;
       state.order = action.payload; // Updating orders array with fetched orders

@@ -10,18 +10,31 @@ import { OrderTableColumns } from "utils/constants";
 import { TableHeader } from "../ui/Blocks/Table";
 import Search from "../ui/SearchBar";
 import { FiChevronDown } from "react-icons/fi";
-import { Pagination } from "@mui/material";
+import { Pagination, ThemeProvider, createTheme } from "@mui/material";
 import { useState } from "react";
-import { Iorder, OrderComponentProps } from "./types";
-
+import { Order, OrderComponentProps} from "./types";
 const OrderComponent = (props: OrderComponentProps) => {
   const navigate = useNavigate();
+  const { onPageChange, currentPage ,pages,orders} = props;
   const [showSortBy, setShowSortBy] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-
   // Filter orders based on search term
-  const filteredOrders = props.orders.filter(
-    (order: Iorder) =>
+  const theme = createTheme({
+    components: {
+      MuiPaginationItem: {
+        styleOverrides: {
+          root: {
+            "&.Mui-selected": {
+              color: "#fff",
+              backgroundColor: "blue",
+            },
+          },
+        },
+      },
+    },
+  });
+  const filteredOrders = orders.data.filter(
+    (order) =>
       searchTerm.trim() === "" ||
       order.drug.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       order.customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -41,7 +54,6 @@ const OrderComponent = (props: OrderComponentProps) => {
     const day = String(date.getDate()).padStart(2, "0");
     const hours = String(date.getHours()).padStart(2, "0");
     const minutes = String(date.getMinutes()).padStart(2, "0");
-
     const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
 
     return formattedDate;
@@ -124,10 +136,10 @@ const OrderComponent = (props: OrderComponentProps) => {
               >
                 <TableHeader columnName={OrderTableColumns} />
                 <TableBody>
-                  {filteredOrders.map((order: Iorder) => (
+                  {filteredOrders.map((order: Order) => (
                     <TableRow
                       hover
-                      key={order.id}
+                      key={order._id}
                       sx={{
                         "&:last-child td, &:last-child th": { border: "none" },
                         cursor: "pointer",
@@ -181,12 +193,15 @@ const OrderComponent = (props: OrderComponentProps) => {
           </Paper>
 
           <Flex justifyContent={"flex-end"} marginRight={15}>
-            <Pagination
-              count={5}
-              // onChange={}
-              page={3}
-              variant="outlined"
-            />
+            <ThemeProvider theme={theme}>
+              <Pagination
+                count={pages}
+                onChange={onPageChange}
+                page={currentPage}
+                variant="outlined"
+                shape="rounded"
+              />
+            </ThemeProvider>
           </Flex>
         </Flex>
       </>

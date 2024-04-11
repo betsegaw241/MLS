@@ -12,10 +12,10 @@ function* handleFetchOrders(
       route: "/order",
       method: "GET",
       isSecureRoute: true,
-      query: { id: action.payload },
+      query:  action.payload ,
     });
     if (res) {
-      yield put(OrderPageActions.fetchOrdersSuccess(res.data)); // Assuming data is an array of orders
+      yield put(OrderPageActions.fetchOrdersSuccess(res)); // Assuming data is an array of orders
     }
   } catch (error) {
     console.log("error=======", error);

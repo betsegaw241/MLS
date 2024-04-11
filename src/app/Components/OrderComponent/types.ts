@@ -1,20 +1,53 @@
 
-export interface Iorder {
-  [x: string]: any;
-  id: number;
-  name: string;
-  drug: name;
-  phone: string;
-  location: string;
-  time: string;
-  status: string;
-}
 
 export interface OrderComponentProps {
-  orders: Iorder;
+  orders: OrderData;
+  onPageChange: any;
+  currentPage: number;
+  pages: number;
 }
 
+interface Pharmacy {
+  name: string;
+  email: string;
+}
 
-export interface name{
-  name:string;
+interface Drug {
+  name: string;
+  price: number;
+  cost: number;
+}
+
+interface DeliveryAddress {
+  location: {
+    coordinates: [number, number];
+    type: string;
+  };
+  address: string;
+  phoneNumber: string;
+}
+
+interface Customer {
+  name: string;
+  email: string;
+}
+
+export interface Order {
+  _id: string;
+  deliveryAddress: DeliveryAddress;
+  status: string;
+  orderedTo: string;
+  orderedBy: string;
+  drugId: string;
+  quantity: number;
+  deliveryDate: string;
+  createdAt: string;
+  customer: Customer;
+  pharmacy: Pharmacy;
+  drug: Drug;
+  profit: number;
+}
+
+interface OrderData {
+  data: Order[];
 }

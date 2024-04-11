@@ -6,6 +6,7 @@ export interface orderPageState {
 }
 
 export interface Iorder {
+  data: any;
   length: number;
   id: number;
   name: string;
@@ -14,4 +15,5 @@ export interface Iorder {
   location: string;
   time: string;
   status: string;
+  totalPages:number;
 }
