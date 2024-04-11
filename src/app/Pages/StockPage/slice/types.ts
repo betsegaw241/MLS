@@ -1,8 +1,8 @@
-export interface StockComponentProps {
+export interface PharmacyStockPageState {
+  errorMessage: string;
+  isDrugAdded: boolean;
   loading: boolean;
-  page: number;
-  drugs: IDrugdata;
-  handlePageChange: (event: React.ChangeEvent<unknown>, page: number) => void;
+  drugsList: IDrugdata;
 }
 export interface IDrug {
   name: string;

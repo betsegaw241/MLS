@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import { useDashboardSlice } from "./slice";
+import DashboardComponent from "app/Components/DashboardComponent";
 
 const DashBoardPage = () => {
   const { actions } = useDashboardSlice();
@@ -13,6 +14,6 @@ const DashBoardPage = () => {
     dispatch(actions.GetPharmacy(id));
   }, []);
 
-  return <></>;
+  return <DashboardComponent />;
 };
 export default DashBoardPage;

@@ -7,7 +7,6 @@ import {
   selectIsAdding,
   selectIsAdded
 } from "app/Pages/AddDrugsPage/slice/selector";
-import { IDrug } from "./slice/types";
 import { useParams } from "react-router-dom";
 
 const AddDrugPage = () => {

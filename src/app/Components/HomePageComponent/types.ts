@@ -1,6 +1,7 @@
 export interface HomePageProps {
   pharmacies: pharmacy[];
   errorMessage: string;
+  loading:boolean;
 }
 
 export interface pharmacy {

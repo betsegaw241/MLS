@@ -9,7 +9,6 @@ import ProfilePage from "app/Pages/ProfilePage";
 
 import VerifyEmailComponent from "app/Components/verifyEmail/VerifyEmailComponent";
 import VerifyEmailPage from "app/Pages/VerifyEmailPage";
-import StockComponent from "app/Components/StockComponent";
 import DrugDetailsComponent from "app/Components/DrugDetailsComponent";
 import AdminVerifyPharmacy from "app/Components/AdminVerifyPharmacy";
 import ManageInventoryPage from "app/Pages/ManageInventoryPage";
@@ -20,6 +19,8 @@ import OrderDetailPage from "app/Pages/OrderDetailPage";
 import PharmacyAccountPage from "app/Pages/PharmacyAccountPage";
 import RegisterDrugPage from "app/Pages/NewDrugRegistrationPage";
 import DashBoardPage from "app/Pages/DashboardPage";
+import PharmacyStockPage from "app/Pages/StockPage";
+import DrugDetailPage from "app/Pages/DrugDetailPage";
 
 
 export const routes: IRoute[] = [
@@ -127,7 +128,7 @@ export const routes: IRoute[] = [
     allowedRole: "*",
   },
   {
-    element: <StockComponent />,
+    element: <PharmacyStockPage />,
     exact: true,
     path: "pharmacist/stock/:id",
     isProtected: true,
@@ -135,9 +136,9 @@ export const routes: IRoute[] = [
     needsLayout: true,
   },
   {
-    element: <DrugDetailsComponent />,
+    element: <DrugDetailPage />,
     exact: true,
-    path: "pharmacist/drugdetails",
+    path: "pharmacist/drugdetails/:id",
     isProtected: true,
     allowedRole: "pharmacist",
     needsLayout: true,
