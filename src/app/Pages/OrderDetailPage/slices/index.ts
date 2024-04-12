@@ -15,14 +15,23 @@ const slice = createSlice({
   reducers: {
     // Other reducers...
 
-    fetchOrder: (state, action: PayloadAction<string | undefined>) => {
+    updateStatus: (state, action: PayloadAction<any>) => {
+      return {
+        ...state,
+        order: {
+          ...state.order,
+          status: action.payload.status,
+        },
+      };
+    },
+
+    fetchOrder: (state, action: PayloadAction<any>) => {
       state.isgettingOrder = true;
     },
     fetchOrderSuccess: (state, action: PayloadAction<any>) => {
       state.isgettingOrder = false;
       state.isOrderExist = true;
       state.order = action.payload;
-    
     },
     fetchOrderFailed: (state) => {
       state.isgettingOrder = false;

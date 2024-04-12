@@ -36,7 +36,7 @@ const ProfileComponent = (props: editProfileComponentProp) => {
         <Box
           marginY={"35px"}
           border={"1px  #d8cfcf solid"}
-          width={["100%", "320px"]}
+          width={["90%", "64%", "70%", "320px"]}
           borderRadius={"4%"}
           backgroundColor={"#fff"}
           marginLeft={"20px"}
@@ -87,12 +87,13 @@ const ProfileComponent = (props: editProfileComponentProp) => {
         </Box>
 
         <Box
-          width={["100%", "62%"]}
+          width={["90%", "64%", "70%", "60%"]}
           backgroundColor={"#fff"}
-          marginY={"35px"}
+          marginY={["6px", "35px"]}
           border={"1px  #d8cfcf solid"}
           borderRadius={"4%"}
-          marginLeft={"20px"}
+          marginLeft={["20px"]}
+          marginRight={["14px", "18px", "22px", "30px"]}
         >
           <Flex
             justifyContent={["center", "center", "center", "center"]}
@@ -125,17 +126,21 @@ const ProfileComponent = (props: editProfileComponentProp) => {
                   {edit ? (
                     <Flex
                       flexDirection={"column"}
-                      marginLeft={["20px", "40px", "50px", "74px"]}
-                      marginRight={["20px", "40px", "50px", "74px"]}
-                      width={["50%", "60%", "65%", "70%"]}
-                      padding={"4%"}
-                      pt={10}
+                      marginLeft={["5%", "8%", "10%", "15%"]}
+                      marginRight={["5%", "8%", "10%", "15%"]}
+                      width={["90%", "80%", "75%", "70%"]}
+                      padding={["4%", "3%", "2%", "2%"]}
+                      pt={[6, 8, 10, 12]}
                       borderRadius={"10%"}
                       marginTop={"10px"}
                       marginBottom={"2px"}
                       style={{ gap: "2px" }}
                     >
-                      <Flex justifyContent={"center"} mt={"-40px"} mb={"20px"}>
+                      <Flex
+                        justifyContent={"center"}
+                        mt={[-4, -6, -8, -10]}
+                        mb={["10px", "15px", "20px", "25px"]}
+                      >
                         <Dropzone
                           onDrop={(files) => {
                             props.profile(files[0]);
@@ -147,11 +152,12 @@ const ProfileComponent = (props: editProfileComponentProp) => {
                               backgroundColor={isFocused ? "green" : "#fff"}
                               width={"140px"}
                               height={"40px"}
-                              marginLeft={["-30px", "-30px", "-30px", "-10px"]}
+                              marginLeft={["5%", "4%", "6%", "-14%"]}
                               borderColor={isDragAccept ? "red" : null}
                               border={"1px #d8cfcf solid"}
                               justifyContent={"center"}
                               alignItems={"center"}
+                              display={"flex"}
                               borderRadius={"8px"}
                               {...getRootProps({
                                 className: "dropzone",
@@ -159,28 +165,33 @@ const ProfileComponent = (props: editProfileComponentProp) => {
                               })}
                             >
                               <input {...getInputProps()} />
-                              <H2 fontFamily={"poppins"} fontSize={[2, 1]}>
+                              <H2 fontFamily={"poppins"} fontSize={[1, 0]}>
                                 Choose File
                               </H2>
                             </Flex>
                           )}
                         </Dropzone>
                       </Flex>
-                      <InputField
-                        label="Phone"
-                        name={"phone"}
-                        type={"text"}
-                      ></InputField>
+                      <Box
+                        marginLeft={["10%", "8%", "6%", "15%"]}
+                        marginRight={["4%"]}
+                      >
+                        <InputField
+                          label="Phone"
+                          name={"phone"}
+                          type={"text"}
+                        />
+                      </Box>
                       <Button
                         backgroundColor="#399bdd"
                         color={"#fff"}
                         type="button"
                         borderRadius={"8%"}
                         height={"40px"}
-                        width={["50px", "80px", "100px", "130px"]}
-                        marginLeft={["30%", "38%"]}
+                        width={["70px", "80px", "100px", "130px"]} // Adjusted width values for better responsiveness
+                        marginLeft={["30%", "8%", "30%", "34%"]} // Adjusted margin values for better responsiveness
                         fontWeight={"bold"}
-                        mt={"30px"}
+                        mt={["20px", "25px", "30px", "35px"]} // Adjusted margin top values for better responsiveness
                         onClick={() => handleSubmit()}
                       >
                         {props.isEditing ? (
@@ -228,10 +239,11 @@ const ProfileComponent = (props: editProfileComponentProp) => {
                           {props.initialValues.lastName}
                         </Text>
                         <Text
-                          fontSize="16px"
+                          fontSize={["14px", "16px"]}
                           fontFamily="poppins"
-                          marginBottom="10px"
+                          marginBottom={["5px", "10px"]}
                           color="#181717"
+                          style={{ wordWrap: "break-word" }}
                         >
                           Email: {"  "}
                           {props.initialValues.email}

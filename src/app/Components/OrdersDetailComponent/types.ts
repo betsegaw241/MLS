@@ -45,6 +45,7 @@ export interface Transaction {
 }
 
 export interface IOrder {
+  [x: string]: any;
   _id: string;
   deliveryAddress: DeliveryAddress;
   status: string;
@@ -60,4 +61,5 @@ export interface IOrder {
 }
 export interface IorderDetailComponent {
   order: IOrder;
+  onReject:any;
 }

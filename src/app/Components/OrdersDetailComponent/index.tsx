@@ -1,13 +1,14 @@
-import { log } from "console";
+import { order } from "styled-system";
 import { Box, Button, Flex, Grid, Text } from "../ui/Blocks";
 import { GridBox } from "../ui/Blocks/GridBox";
 import MapComponent from "../ui/MapComponent";
-import { IorderDetailComponent } from "./types";
-export interface IStatus {
+import { IorderDetailComponent } from "./types";export interface IStatus {
   status: "ACCEPTED" | "REJECTED" | "Pending";
 }
 const OrderDetailComponent = (props: IorderDetailComponent) => {
   const status: IStatus = { status: "Pending" };
+    const { onReject } = props;
+
 
   const formatDate = (dateString: string) => {
     // Create a Date object from the provided date string
@@ -24,7 +25,7 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
 
     return formattedDate;
   };
-
+  
   return (
     <Flex
       margin={2}
@@ -158,6 +159,7 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
             fontSize={5}
             width={"100px"}
             borderRadius={1}
+            onClick={onReject}
           >
             Reject
           </Button>

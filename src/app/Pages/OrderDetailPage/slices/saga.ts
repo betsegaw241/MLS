@@ -14,8 +14,7 @@ function* handleFetchOrder(
       isSecureRoute: true,
       query: { id: action.payload },
     });
-    
-    
+     
     if (res) {
       yield put(actions.fetchOrderSuccess(res)); // Assuming data is an array of orders
     }
@@ -24,7 +23,27 @@ function* handleFetchOrder(
     yield put(actions.fetchOrderFailed());
   }
 }
+function* handleReject(action: PayloadAction<any>) {
+  try {
+    const res: AxiosResponse = yield api({
+      route: `/order/${action.payload.id}`,
+      method: "PUT",
+      isSecureRoute: true,
+      body: {
+        status: "REJECTED", 
+      },
+    });
+
+    if (res && res.data) {
+      yield put(actions.updateStatus(res.data)); // Assuming res.data contains the updated order
+    }
+  } catch (error) {
+    console.error("Error updating order status:", error);
+  }
+}
 
 export function* OrderDetailPageSaga() {
   yield takeLatest(actions.fetchOrder.type, handleFetchOrder);
+yield takeLatest(actions.updateStatus.type, handleReject);
+
 }
