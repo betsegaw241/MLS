@@ -1,9 +1,11 @@
 import { useEffect } from "react";
-import { Box, Button, Flex, Text } from "../ui/Blocks";
+import { Box, Button, Flex, Grid, Text } from "../ui/Blocks";
 import { HomePageProps } from "./types";
 import Header from "../ui/Header";
 import { useNavigate } from "react-router";
 import LoadingPage from "utils/LoadingPage";
+import cover from "assets/images/cover.jpeg";
+import { IoIosCall, IoIosMail } from "react-icons/io";
 
 const HomePageComponent = (props: HomePageProps) => {
   const navigate = useNavigate();
@@ -17,30 +19,30 @@ const HomePageComponent = (props: HomePageProps) => {
     <>
       <Header />
       <Flex
-        backgroundColor={"#f5f5f5"}
+        backgroundColor={"#ffff"}
+        // backgroundColor={"#f5f5f5"}
         width={"100vw"}
         height={"100vh"}
         justifyContent={"flex-start"}
         alignItems={"center"}
         margin={"0px"}
         flexDirection={"column"}
-        style={{ gap: 5 }}
+        // style={{ gap: 3 }}
       >
         <Flex
-          backgroundColor={"#ffff"}
-          width={["100%", "80%"]}
-          marginTop={"80px"}
+          width={"90%"}
+          marginTop={"70px"}
           alignItems={"center"}
           justifyContent={"space-between"}
           borderRadius={"5px"}
           paddingY={3}
         >
-          <Flex ml={1}>
+          <Flex>
             <Text fontFamily={"poppins"} fontSize={6}>
               My pharmacy
             </Text>
           </Flex>
-          <Flex mr={1}>
+          <Flex>
             <Button
               variant="primary"
               borderRadius={"8px"}
@@ -59,56 +61,99 @@ const HomePageComponent = (props: HomePageProps) => {
         ) : (
           <Flex
             backgroundColor={"#ffff"}
-            width={["100%", "80%"]}
-            height={"500px"}
+            width={"80%"}
             paddingBottom={4}
             borderRadius={"5px"}
             flexDirection={"column"}
           >
-            {props.pharmacies?.map((pharmacy) => (
-              <Flex
-                key={pharmacy._id}
-                backgroundColor={"#f5f5f5"}
-                flexDirection={"row"}
-                m={1}
-                p={2}
-                style={{ gap: 20 }}
-                alignItems={"center"}
-                justifyContent={"space-around"}
-                borderRadius={"8px"}
-                onClick={() =>
-                  navigate(`/pharmacist/dashboard/${pharmacy._id}`)
-                }
-              >
-                <Flex alignItems={"center"} style={{ gap: 10 }}>
+            <Grid
+              // border={"1px solid #f5f5f5f5"}
+              borderRadius={0}
+              gridColumnGap={"40px"}
+              gridRowGap={"15px"}
+              gridTemplateColumns={[
+                "repeat(1, 1fr)",
+                "repeat(2, 1fr)",
+                "repeat(3, 1fr)",
+                // "repeat(4, 1fr)",
+              ]}
+              mb={2}
+              p={1}
+            >
+              {props.pharmacies?.map((pharmacy) => (
+                <Flex
+                  key={pharmacy._id}
+                  border={"1px solid #f5f5f5f5"}
+                  flexDirection={"column"}
+                  m={1}
+                  alignItems={"center"}
+                  justifyContent={"flex-start"}
+                  borderRadius={1}
+                  boxShadow={"1px 10px 50px -35px rgba(38,36,38,0.56)"}
+                  height={300}
+                >
                   <Box
-                    width={8}
-                    backgroundColor={"#f5f5"}
-                    height={8}
-                    borderRadius={"50%"}
+                    width={"100%"}
+                    backgroundColor={"#0000"}
+                    height={100}
+                    borderRadius={1}
                   >
-                    {" "}
+                    <img
+                      src={cover}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        borderTopLeftRadius: "10px",
+                        borderTopRightRadius: "10px",
+                      }}
+                    />
                   </Box>
-                  {/* <img
-                 src={pharmacy.logo}
-                ></img> */}
-                  <Text fontFamily={"poppins"} fontSize={6}>
-                    {pharmacy.name}
-                  </Text>
+                  <Flex
+                    style={{ gap: 10 }}
+                    flexDirection={"column"}
+                    width={"90%"}
+                    height={"100%"}
+                    p={1}
+                  >
+                 
+                    <Text fontFamily={"poppins"} fontSize={6}>
+                      {pharmacy.name}
+                    </Text>
+                    <Flex alignItems={"center"} style={{ gap: 10 }}>
+                      <IoIosMail color="#B4D4FF" size={21} />
+                      <Text fontFamily={"poppins"} fontSize={5}>
+                        {pharmacy.email}
+                      </Text>
+                    </Flex>
+                    <Flex alignItems={"center"} style={{ gap: 10 }}>
+                      <IoIosCall color="#B4D4FF" size={21} />
+                      <Text fontFamily={"poppins"} fontSize={5}>
+                        {pharmacy.phoneNumber}
+                      </Text>
+                    </Flex>
+                    <Flex
+                      width={"100%"}
+                      justifyContent={"flex-end"}
+                      mt={"auto"}
+                    >
+                      <Text
+                        p={1}
+                        borderRadius={1}
+                        onClick={() =>
+                          navigate(`/pharmacist/dashboard/${pharmacy._id}`)
+                        }
+                        border={"1px #B4D4FF solid"}
+                        fontFamily={"poppins"}
+                        style={{ cursor: "pointer" }}
+                      >
+                        Go to Dashboard
+                      </Text>
+                    </Flex>
+                  </Flex>
                 </Flex>
-
-                <Flex>
-                  <Text fontFamily={"poppins"} fontSize={3}>
-                    {pharmacy.email}
-                  </Text>
-                </Flex>
-                <Flex>
-                  <Text fontFamily={"poppins"} fontSize={3}>
-                    {pharmacy.phoneNumber}
-                  </Text>
-                </Flex>
-              </Flex>
-            ))}
+              ))}
+            </Grid>
           </Flex>
         )}
       </Flex>
