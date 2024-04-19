@@ -5,6 +5,9 @@ export interface OrderComponentProps {
   onPageChange: any;
   currentPage: number;
   pages: number;
+  onSearch: () => void;
+  onFilter: () => void;
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface Pharmacy {

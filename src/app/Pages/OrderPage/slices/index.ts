@@ -29,7 +29,7 @@ const slice = createSlice({
     fetchOrders: (state ,action: PayloadAction<any>) => {
       state.isgettingOrder = true;
     },
-    fetchOrdersSuccess: (state, action: PayloadAction<Iorder>) => {
+    fetchOrdersSuccess: (state, action: PayloadAction<any>) => {
       state.isgettingOrder = false;
       state.isOrderExist = true;
       state.order = action.payload; // Updating orders array with fetched orders

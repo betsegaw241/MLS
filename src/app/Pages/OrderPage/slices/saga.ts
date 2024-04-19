@@ -12,7 +12,11 @@ function* handleFetchOrders(
       route: "/order",
       method: "GET",
       isSecureRoute: true,
-      query:  action.payload ,
+      query: {
+        page: action.payload.page,
+        limit: action.payload.limit,
+        orderName: action.payload.orderName,
+      },
     });
     if (res) {
       yield put(OrderPageActions.fetchOrdersSuccess(res)); // Assuming data is an array of orders

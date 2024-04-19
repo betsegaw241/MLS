@@ -74,6 +74,13 @@ export const routes: IRoute[] = [
     allowedRole: "pharmacist",
   },
   {
+    element: <HomePage />,
+    exact: true,
+    path: "/admin/home",
+    isProtected: true,
+    allowedRole: "pharmacist",
+  },
+  {
     element: <OrderPage />,
     exact: true,
     path: "pharmacist/request/:id",

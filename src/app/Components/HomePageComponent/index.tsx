@@ -4,7 +4,7 @@ import { HomePageProps } from "./types";
 import Header from "../ui/Header";
 import { useNavigate } from "react-router";
 import LoadingPage from "utils/LoadingPage";
-import cover from "assets/images/cover.jpeg";
+import cover from "../../../assets/images/cover.jpeg";
 import { IoIosCall, IoIosMail } from "react-icons/io";
 
 const HomePageComponent = (props: HomePageProps) => {

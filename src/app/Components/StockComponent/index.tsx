@@ -249,7 +249,7 @@ const StockComponent = ({
                   p={1}
                   width={"100%"}
                   borderRadius={"8px"}
-                  fontFamily={"poppons"}
+                  fontFamily={"poppins"}
                   onClick={() => onFilter()}
                 >
                   submit

@@ -16,10 +16,10 @@ import { TableHeader } from "../ui/Blocks/Table";
 import { Pagination } from "@mui/material";
 import { useRef } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import soldout from "assets/images/sold.png";
-import solddrug from "assets/images/drugs.png";
-import expired from "assets/images/schedule.png";
-import sonexp from "assets/images/time.png";
+import soldout from "../../../assets/images/sold.png";
+import solddrug from "../../../assets/images/drugs.png";
+import expired from "../../../assets/images/schedule.png";
+import sonexp from "../../../assets/images/time.png";
 
 const theme = createTheme({
   components: {

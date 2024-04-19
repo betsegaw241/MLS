@@ -12,13 +12,20 @@ import Search from "../ui/SearchBar";
 import { FiChevronDown } from "react-icons/fi";
 import { Pagination, ThemeProvider, createTheme } from "@mui/material";
 import { useState } from "react";
-import { Order, OrderComponentProps} from "./types";
-const OrderComponent = (props: OrderComponentProps) => {
+import { Order, OrderComponentProps } from "./types";
+
+const OrderComponent = ({
+  onPageChange,
+  currentPage,
+  pages,
+  orders,
+  onFilter,
+  setQuery,
+  onSearch,
+}: OrderComponentProps) => {
   const navigate = useNavigate();
-  const { onPageChange, currentPage ,pages,orders} = props;
   const [showSortBy, setShowSortBy] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  // Filter orders based on search term
+  //const [ShowFilter, setShowFilter] = useState(false);
   const theme = createTheme({
     components: {
       MuiPaginationItem: {
@@ -33,21 +40,9 @@ const OrderComponent = (props: OrderComponentProps) => {
       },
     },
   });
-  const filteredOrders = orders.data.filter(
-    (order) =>
-      searchTerm.trim() === "" ||
-      order.drug.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      order.customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      order.deliveryAddress.address
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) ||
-      order.status.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
   const formatDate = (dateString: string) => {
     // Create a Date object from the provided date string
     const date = new Date(dateString);
-
     // Extract date components
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0"); // Month starts from 0
@@ -57,10 +52,6 @@ const OrderComponent = (props: OrderComponentProps) => {
     const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
 
     return formattedDate;
-  };
-
-  const handleSearch = () => {
-    // Perform search-related actions here
   };
 
   return (
@@ -88,15 +79,12 @@ const OrderComponent = (props: OrderComponentProps) => {
           background={"#F9FBFF"}
           height={"40px"}
         >
-          <Box
-            onClick={() => {
-              console.log("data", props.orders);
-              console.log("search button clicked.");
-            }}
-          >
+          <Box onClick={() => onFilter()}>
             <Search
-              onChange={(e) => setSearchTerm(e.target.value)}
-              onClick={handleSearch}
+              onChange={(e) => {
+                setQuery(e.target.value);
+              }}
+              onClick={() => onSearch()}
             />
           </Box>
         </Flex>
@@ -136,7 +124,7 @@ const OrderComponent = (props: OrderComponentProps) => {
               >
                 <TableHeader columnName={OrderTableColumns} />
                 <TableBody>
-                  {filteredOrders.map((order: Order) => (
+                  {orders.data.map((order: Order) => (
                     <TableRow
                       hover
                       key={order._id}

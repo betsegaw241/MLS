@@ -11,6 +11,7 @@ function OrderPage() {
   const { actions } = useOrderPageSlice();
   const orders = useSelector(selectOrder);
   const [currentPage, setCurrentPage] = useState(1);
+  const [query, setQuery] = useState("");
   const { id } = useParams();
 
   
@@ -21,9 +22,33 @@ function OrderPage() {
     ) => {
       setCurrentPage(page); // Update currentPage state
     };
+    const onSearch = () => {
+      if (query.length > 0) {
+        dispatch(
+          actions.fetchOrders({
+            id: id,
+            page: currentPage,
+            limit: 10,
+            orderName: query,
+          })
+        );
+      }
+    };
+    const onFilter = () => {
+        dispatch(
+          actions.fetchOrders({
+            id: id,
+            page: currentPage,
+            limit: 10,
+            orderName: query,
+           
+          })
+        );
+        setCurrentPage(1);
+      
+    };
     
   useEffect(() => {
-    // Dispatch action to fetch orders when component mounts
     dispatch(actions.fetchOrders({id:id, page:currentPage, limit:10}));
   }, [currentPage]);
 console.log(orders)
@@ -37,6 +62,9 @@ console.log(orders)
           currentPage={currentPage}
           pages={orders.totalPages}
           onPageChange={handlePageChange}
+          onFilter={onFilter}
+          setQuery={setQuery}
+          onSearch={onSearch}
         />
       ) : (
         <LoadingPage />
