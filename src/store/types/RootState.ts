@@ -16,6 +16,7 @@ import { DashboardPageState } from "app/Pages/DashboardPage/slice/types";
 import { PharmacyStockPageState } from "app/Pages/StockPage/slice/types";
 import { DrugDetailPageState } from "app/Pages/DrugDetailPage/slice/types";
 import { EditDrugDetailsPageState } from "app/Pages/EditDrugDetailsPages/types";
+import { AdminUsersPageState } from "app/Pages/AdminUsersPage/slice/types";
 
 export interface RootState {
   Layout?: LayoutState;
@@ -36,4 +37,5 @@ export interface RootState {
   getDrugsList: PharmacyStockPageState;
   drugDetail: DrugDetailPageState;
   editDrugDetail: EditDrugDetailsPageState;
+  getUsersList:AdminUsersPageState;
 }

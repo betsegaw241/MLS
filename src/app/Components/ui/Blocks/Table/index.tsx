@@ -4,10 +4,13 @@ import TableRow from "@mui/material/TableRow";
 import { IColumn } from "utils/types";
 import { TableHeadProp } from "./types";
 import { TableHead } from "@mui/material";
+import ReactSelect from "../Select/ReactSelect";
+import { Flex } from "../Basics";
+import Dropdown from "../Dropdown";
 
 export const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: '#F9FAFB',
+    backgroundColor: "#F9FAFB",
     fontSize: 16,
     fontFamily: "poppins",
     paddingBottom: "15px",
@@ -34,7 +37,9 @@ export const TableHeader = (props: TableHeadProp) => {
             key={column.id}
             style={{ minWidth: column.minWidth }}
           >
-            {column.label}
+            <Flex alignItems={"center"} style={{ gap: 5 }}>
+              {column.options ? <Dropdown options={column.options} label={column.label} handleChange={props.handleChange}/> : column.label}
+            </Flex>
           </StyledTableCell>
         );
       })}

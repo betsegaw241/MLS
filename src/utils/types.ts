@@ -17,4 +17,10 @@ export interface IColumn {
   id: string;
   label: string;
   minWidth?: number;
+  options?:Option[]
+}
+
+interface Option {
+  label: string;
+  value: string;
 }

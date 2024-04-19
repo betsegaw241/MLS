@@ -277,3 +277,32 @@ export const OutOFStock: IColumn[] = [
     minWidth: 50,
   },
 ];
+
+export const UsersList: IColumn[] = [
+  {
+    id: "Name",
+    label: "Name",
+    minWidth: 50,
+  },
+  {
+    id: "Email",
+    label: "Email",
+    minWidth: 50,
+  },
+  {
+    id: "Phone Number",
+    label: "Phone Number",
+    minWidth: 50,
+  },
+  {
+    id: "Role",
+    label: "Role",
+    minWidth: 50,
+    options:[
+      {label:'Admin',value:'admin'},
+      {label:'Pharmacist',value:'pharmacist'},
+      {label:'Coustomer',value:'customer'}
+    ]
+   
+  },
+];
