@@ -21,6 +21,7 @@ import DashBoardPage from "app/Pages/DashboardPage";
 import PharmacyStockPage from "app/Pages/StockPage";
 import DrugDetailPage from "app/Pages/DrugDetailPage";
 import EditDrugDetailsPage from "app/Pages/EditDrugDetailsPages";
+import AddAdminPage from "app/Pages/AddAdminPage";
 
 export const routes: IRoute[] = [
   {
@@ -64,6 +65,14 @@ export const routes: IRoute[] = [
     exact: true,
     path: "/addpharmacy",
     isProtected: false,
+    allowedRole: "*",
+  },
+  {
+    element: <AddAdminPage />,
+    exact: true,
+    path: "/addAdmin",
+    needsLayout: true,
+    isProtected: true,
     allowedRole: "*",
   },
   {

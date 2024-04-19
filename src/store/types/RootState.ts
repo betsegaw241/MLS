@@ -1,5 +1,6 @@
 import { addDrugPageState } from "app/Pages/AddDrugsPage/slice/types";
 import { addPharmacyPageState } from "app/Pages/AddPharmacyPage/slice/types";
+import { addAdminPageState } from "app/Pages/AddAdminPage/slice/types";
 import { homePageState } from "app/Pages/HomePage/slice/types";
 import { LayoutState } from "app/Pages/Layout/slice/types";
 import { LoginState } from "app/Pages/Login/slice/types";
@@ -23,6 +24,7 @@ export interface RootState {
   orderSlice: orderPageState;
   login: LoginState;
   addPharmacy: addPharmacyPageState;
+  addAdmin: addAdminPageState;
   homePage: homePageState;
   verifyAccount: verifyAccountPageState;
   manageInventory: ManageInventorState;
