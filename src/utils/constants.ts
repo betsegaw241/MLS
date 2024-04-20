@@ -306,3 +306,21 @@ export const UsersList: IColumn[] = [
    
   },
 ];
+export const pharmaciesList: IColumn[] = [
+  {
+    id: "Name",
+    label: "Name",
+    minWidth: 50,
+  },
+  {
+    id: "Email",
+    label: "Email",
+    minWidth: 50,
+  },
+  {
+    id: "Phone Number",
+    label: "Phone Number",
+    minWidth: 50,
+  },
+  
+];
