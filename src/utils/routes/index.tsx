@@ -24,6 +24,7 @@ import EditDrugDetailsPage from "app/Pages/EditDrugDetailsPages";
 import AdminUsersPage from "app/Pages/AdminUsersPage";
 import AddAdminPage from "app/Pages/AddAdminPage";
 import AdminPharmaciesPage from "app/Pages/AdminPharmaciesPage";
+import AdminProfilePage from "app/Pages/AdminProfilePage";
 
 export const routes: IRoute[] = [
   {
@@ -208,4 +209,14 @@ export const routes: IRoute[] = [
     allowedRole: "admin",
     needsLayout: true,
   },
+  {
+    element: <AdminProfilePage />,
+    exact: true,
+    path: "admin/profile",
+    isProtected: true,
+    allowedRole: "admin",
+    needsLayout: true,
+  },
 ];
+
+    

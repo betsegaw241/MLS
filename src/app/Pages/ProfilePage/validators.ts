@@ -16,11 +16,20 @@ export const EditSchema = Yup.object({
 export const changePasswordValidationSchema = Yup.object({
   newPassword: Yup.string()
     .required(errorValues.newPassword.required)
-    .min(6, errorValues.newPassword.min),
+    .min(8, "Your password must be at least 8 characters long")
+    .matches(
+      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+      "Your password must contain at least one letter, one number, and one special character"
+    ),
   currentPassword: Yup.string()
     .required(errorValues.currentPassword.required)
     .min(6, errorValues.currentPassword.min),
   confirmPassword: Yup.string()
     .required(errorValues.confirmPassword.required)
-    .min(6, errorValues.confirmPassword.min),
+    .oneOf([Yup.ref("newPassword"), null], "Passwords must match")
+    .min(8, "Your password must be at least 8 characters long")
+    .matches(
+      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+      "Your password must contain at least one letter, one number, and one special character"
+    ),
 });
