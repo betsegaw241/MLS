@@ -26,10 +26,19 @@ function LoginPage() {
   }
   useEffect(() => {
     if (isAuthenticated && localStorage.getItem("token")) {
-      navigate(`/${role}/home`);
+      if (role === "superAdmin") {
+        navigate(`/superAdmindashboard`);
+      } else if (role === "admin") {
+        navigate(`/${role}/home`);
+      } else if (role === "customer") {
+        navigate(`/${role}/home`);
+      }
+      if (role == "Pharmacist") {
+        navigate(`/${role}/home`);
+      }
     }
   }, [isAuthenticated]);
-
+  console.log(isAuthenticated, role);
   return (
     <>
       <LoginComponent

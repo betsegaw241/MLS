@@ -22,13 +22,13 @@ const SideBarMenuItem = (props: SideBarMenuItemProp) => {
         textDecoration: "none",
         color: "inherit",
       }}
-      to={`/${role}${to}/${id}`}
+      to={role == "pharmacist" ? `/${role}${to}/${id}` : `${to}`}
     >
       <Flex
         // alignItems={"center"}
         justifyContent={"flex-start"}
         backgroundColor={pathname.includes(to) ? "#0C07FF" : ""}
-        // borderRadius={0}
+        borderRadius={"4px"}
         color={location.pathname.includes(to) ? "#fff" : ""}
         p={"5px"}
         style={{ gap: "10px", cursor: "pointer" }}
@@ -73,7 +73,11 @@ const SideBarMenuItem = (props: SideBarMenuItemProp) => {
                 textDecoration: "none",
                 color: "inherit",
               }}
-              to={`/${role}${subMenuItem.to}/${id}`}
+              to={
+                role == "pharmacist"
+                  ? `/${role}${subMenuItem.to}/${id}`
+                  : `${subMenuItem.to}`
+              }
             >
               <Flex
                 alignItems={"center"}

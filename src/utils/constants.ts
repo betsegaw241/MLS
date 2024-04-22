@@ -1,13 +1,13 @@
 import { IColumn, ISideBarMenu } from "./types";
 import { RxDashboard } from "react-icons/rx";
-import { FaUserSecret } from "react-icons/fa";
-import { AiOutlineBank } from "react-icons/ai";
 import { MdOutlineFeedback } from "react-icons/md";
 import { VscRequestChanges } from "react-icons/vsc";
 import { AiOutlineTransaction } from "react-icons/ai";
 import { MdOutlineInventory2 } from "react-icons/md";
-import { MdOutlineAccountBalance } from "react-icons/md";
 import { IoIosAdd } from "react-icons/io";
+import { PiUsersThin } from "react-icons/pi";
+import { MdOutlineLocalPharmacy } from "react-icons/md";
+import { CiUser } from "react-icons/ci";
 
 //import DataTable from "app/Components/layouts/Main";
 
@@ -30,9 +30,28 @@ export const adminMenu: ISideBarMenu[] = [
     icon: RxDashboard,
   },
   {
+    label: "users",
+    to: "/users",
+    icon: PiUsersThin,
+    subMenuItems: [
+      {
+        label: "Add Admin",
+        to: "/addAdmin",
+        icon: IoIosAdd,
+      },
+    ],
+  },
+  {
     label: "Pharmacies",
-    to: "/map",
-    icon: FaUserSecret,
+    to: "/pharmacies",
+    icon: MdOutlineLocalPharmacy,
+    subMenuItems: [
+      {
+        label: "Verify Pharmacy",
+        to: "/verifyPharmacy",
+        icon: IoIosAdd,
+      },
+    ],
   },
   {
     label: "Feedback",
@@ -40,19 +59,15 @@ export const adminMenu: ISideBarMenu[] = [
     icon: MdOutlineFeedback,
   },
   {
-    label: "users",
-    to: "/users",
-    icon: AiOutlineBank,
-  },
-  {
-    label: "Account",
-    to: "/account",
-    icon: VscRequestChanges,
-  },
-  {
     label: "Transactions",
     to: "/transactions",
     icon: AiOutlineTransaction,
+  },
+
+  {
+    label: "Account",
+    to: "/account",
+    icon: CiUser,
   },
 ];
 export const PharmaciesMenu = [
@@ -87,7 +102,7 @@ export const PharmaciesMenu = [
   {
     label: "Account",
     to: "/account",
-    icon: MdOutlineAccountBalance,
+    icon: CiUser,
   },
 ];
 
@@ -298,12 +313,11 @@ export const UsersList: IColumn[] = [
     id: "Role",
     label: "Role",
     minWidth: 50,
-    options:[
-      {label:'Admin',value:'admin'},
-      {label:'Pharmacist',value:'pharmacist'},
-      {label:'Coustomer',value:'customer'}
-    ]
-   
+    options: [
+      { label: "Admin", value: "admin" },
+      { label: "Pharmacist", value: "pharmacist" },
+      { label: "Coustomer", value: "customer" },
+    ],
   },
 ];
 export const pharmaciesList: IColumn[] = [
@@ -322,5 +336,4 @@ export const pharmaciesList: IColumn[] = [
     label: "Phone Number",
     minWidth: 50,
   },
-  
 ];
