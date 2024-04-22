@@ -18,12 +18,14 @@ import { DrugDetailPageState } from "app/Pages/DrugDetailPage/slice/types";
 import { EditDrugDetailsPageState } from "app/Pages/EditDrugDetailsPages/types";
 import { AdminUsersPageState } from "app/Pages/AdminUsersPage/slice/types";
 import { AdminPharmaciesPageState } from "app/Pages/AdminPharmaciesPage/slice/types";
+import { notificationPageState } from "app/Pages/Notification/slices/types";
 
 export interface RootState {
   Layout?: LayoutState;
   createAccountPage: createAccountPageState;
   editProfile: editProfilePageState;
   orderSlice: orderPageState;
+  notificationSlice: notificationPageState;
   login: LoginState;
   addPharmacy: addPharmacyPageState;
   addAdmin: addAdminPageState;

@@ -2,10 +2,16 @@ import Badge from "@mui/material/Badge";
 import { Box, Flex, Text } from "../Blocks";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import UserInfo from "../../layouts/Header/userInfo";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import Modal from "../Modal";
+import { NotificationProps } from "app/Pages/Notification/types";
+import NotificationComponent from "./notification";
 
-const Header = () => {
+const Header = (props: NotificationProps) => {
   const navigate = useNavigate();
+  const { notifications } = props;
+const [showNotification, setShowNotification] = useState(false);
   return (
     <>
       <Flex
@@ -40,8 +46,12 @@ const Header = () => {
             style={{ gap: 50 }}
             marginLeft={"auto"}
           >
-            <Box>
-              <Badge badgeContent={4} color="error">
+            <Box
+              onClick={() => {
+               setShowNotification(!showNotification)
+              }}
+            >
+              <Badge badgeContent={2} color="error">
                 <IoMdNotificationsOutline
                   color="action"
                   style={{ fontSize: 28 }}
@@ -54,6 +64,14 @@ const Header = () => {
           </Flex>
         </Flex>
       </Flex>
+      <Modal
+        open={showNotification}
+        setOpen={() => {
+          setShowNotification(!showNotification);
+        }}
+      >
+        <NotificationComponent />
+      </Modal>
     </>
   );
 };

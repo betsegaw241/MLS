@@ -24,6 +24,7 @@ import EditDrugDetailsPage from "app/Pages/EditDrugDetailsPages";
 import AdminUsersPage from "app/Pages/AdminUsersPage";
 import AddAdminPage from "app/Pages/AddAdminPage";
 import AdminPharmaciesPage from "app/Pages/AdminPharmaciesPage";
+import NotificationPage from "app/Pages/Notification";
 
 export const routes: IRoute[] = [
   {
@@ -199,7 +200,7 @@ export const routes: IRoute[] = [
     isProtected: true,
     allowedRole: "admin",
     needsLayout: true,
-  },  
+  },
   {
     element: <AdminPharmaciesPage />,
     exact: true,
@@ -207,5 +208,12 @@ export const routes: IRoute[] = [
     isProtected: true,
     allowedRole: "admin",
     needsLayout: true,
+  },
+  {
+    element: <NotificationPage />,
+    exact: true,
+    path: "pharmacist/notification",
+    isProtected: false,
+    allowedRole: "*",
   },
 ];
