@@ -18,7 +18,9 @@ const PharmacyAccountComponent = (props: IPharmacyAccountComponent) => {
   };
 
   function truncateString(str: string, maxLength: number) {
-    return str.length > maxLength ? str.slice(0, maxLength) + "..." : str;
+    if (str) {
+      return str.length > maxLength ? str.slice(0, maxLength) + "..." : str;
+    }
   }
 
   return (
@@ -183,7 +185,7 @@ const PharmacyAccountComponent = (props: IPharmacyAccountComponent) => {
               >
                 <GridBox lable={"Name"} value={props.pharmacy.name} />
                 <GridBox lable={"Email"} value={props.pharmacy.email} />
-                <GridBox lable={"Phone"} value={props.pharmacy.phone} />
+                <GridBox lable={"Phone"} value={props.pharmacy.phoneNumber} />
                 <GridBox lable={"State"} value={props.pharmacy.state} />
                 <GridBox lable={"city"} value={props.pharmacy.city} />
                 <GridBox
@@ -193,21 +195,21 @@ const PharmacyAccountComponent = (props: IPharmacyAccountComponent) => {
                 <GridBox
                   lable={"Facebook"}
                   value={truncateString(
-                    props.pharmacy.socialMedia.facebook,
+                    props.pharmacy.socialMedia?.facebook,
                     20
                   )}
                 />
                 <GridBox
                   lable={"Telegram"}
                   value={truncateString(
-                    props.pharmacy.socialMedia.telegram,
+                    props.pharmacy.socialMedia?.telegram,
                     20
                   )}
                 />{" "}
                 <GridBox
                   lable={"Linkedin"}
                   value={truncateString(
-                    props.pharmacy.socialMedia.linkedin,
+                    props.pharmacy.socialMedia?.linkedin,
                     20
                   )}
                 />

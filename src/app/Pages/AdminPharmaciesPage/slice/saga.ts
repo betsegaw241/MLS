@@ -8,7 +8,7 @@ function* handleGetPharmacies(action: PayloadAction<any>) {
   try {
     const res: pharmacy = yield call(api, {
       method: "GET",
-      route: "/pharmacy/",
+      route: "/pharmacy",
       query: { page: action.payload.page },
       isSecureRoute: true,
     });

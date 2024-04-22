@@ -2,7 +2,7 @@ export interface Ipharmacy {
   _id: string;
   name: string;
   email: string;
-  phone: string;
+  phoneNumber: string;
   phoneline2?: string;
   state: string;
   city: string;

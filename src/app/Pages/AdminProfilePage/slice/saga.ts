@@ -6,8 +6,6 @@ import { PayloadAction } from "@reduxjs/toolkit";
 import { PayloadType } from "./types";
 
 function* handleEditProfile(action: PayloadAction<PayloadType>) {
-  console.log(action.payload);
-
   try {
     const res: AxiosResponse = yield api({
       route: `/user/${action.payload.id}`,

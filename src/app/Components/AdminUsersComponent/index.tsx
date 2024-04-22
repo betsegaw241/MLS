@@ -64,12 +64,12 @@ StockComponentProps) => {
             </Flex>
             <Flex style={{ gap: 10 }}>
               <Flex background={"#F9FBFF"} height={"40px"} padding={"4px"}>
-                {/* <Search
+                <Search
                   onChange={(e) => {
-                    setQuery(e.target.value);
+                    console.log(e.target.value);
                   }}
-                  onClick={() => onSearch()}
-                /> */}
+                  onClick={() => console.log('pop')}
+                />
               </Flex>
 
               <Flex

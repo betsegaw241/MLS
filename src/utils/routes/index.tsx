@@ -36,6 +36,14 @@ export const routes: IRoute[] = [
     needsLayout: true,
   },
   {
+    element: <></>,
+    exact: true,
+    path: "superAdmindashboard",
+    isProtected: true,
+    allowedRole: "superAdmin",
+    needsLayout: true,
+  },
+  {
     element: <Header />,
     exact: true,
     path: "/",
@@ -76,7 +84,7 @@ export const routes: IRoute[] = [
     path: "/addAdmin",
     needsLayout: true,
     isProtected: true,
-    allowedRole: "*",
+    allowedRole: "superAdmin",
   },
   {
     element: <HomePage />,
@@ -180,9 +188,9 @@ export const routes: IRoute[] = [
   {
     element: <AdminVerifyPharmacy />,
     exact: true,
-    path: "pharmacist/verify",
+    path: "verifyPharmacy",
     isProtected: true,
-    allowedRole: "Admin",
+    allowedRole: ["admin" , "superAdmin"],
     needsLayout: true,
   },
   {
@@ -196,27 +204,25 @@ export const routes: IRoute[] = [
   {
     element: <AdminUsersPage />,
     exact: true,
-    path: "admin/users",
+    path: "users",
     isProtected: true,
-    allowedRole: "admin",
+    allowedRole: "superAdmin",
     needsLayout: true,
-  },  
+  },
   {
     element: <AdminPharmaciesPage />,
     exact: true,
-    path: "admin/pharmacies",
+    path: "pharmacies",
     isProtected: true,
-    allowedRole: "admin",
+    allowedRole: "superAdmin",
     needsLayout: true,
   },
   {
     element: <AdminProfilePage />,
     exact: true,
-    path: "admin/profile",
+    path: "account",
     isProtected: true,
-    allowedRole: "admin",
+    allowedRole: "superAdmin",
     needsLayout: true,
   },
 ];
-
-    

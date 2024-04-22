@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 // import { AccessControl } from 'accesscontrol';
 
 interface IUseAllowedRole {
-  allowedRole: string | undefined;
+  allowedRole: string ;
 }
 
 export function useAllowedRole(props: IUseAllowedRole) {
@@ -12,8 +12,8 @@ export function useAllowedRole(props: IUseAllowedRole) {
   const role = localStorage.getItem('role');
 
   const navigate = useNavigate();
-
-  if (role !== props.allowedRole) {
+console.log(role,props.allowedRole,"yay")
+  if (!role || !props.allowedRole.includes(role)) {
     navigate("/login");
   }
 }

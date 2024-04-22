@@ -4,6 +4,7 @@ export interface ISideBarMenu {
   label: string;
   to: string;
   icon: IconType;
+  subMenuItems?: ISideBarMenu[];
 
   onClick?: () => void;
 }
@@ -17,7 +18,7 @@ export interface IColumn {
   id: string;
   label: string;
   minWidth?: number;
-  options?:Option[]
+  options?: Option[];
 }
 
 interface Option {
