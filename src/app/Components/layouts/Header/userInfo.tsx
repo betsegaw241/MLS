@@ -19,6 +19,7 @@ const UserInfo = () => {
   const navigate = useNavigate();
   const profilePicture: any = localStorage.getItem("avatar");
   const name = localStorage.getItem("name");
+  const role = localStorage.getItem("role");
   return (
     <>
       <Flex
@@ -100,7 +101,11 @@ const UserInfo = () => {
                   }}
                   p={1}
                   style={{ cursor: "pointer" }}
-                  onClick={() => navigate("/pharmacist/profile")}
+                  onClick={() => {
+                    role && role == "pharmacist"
+                      ? navigate("/pharmacist/profile")
+                      : navigate("/acount");
+                  }}
                 >
                   <CgProfile />
                   <Text

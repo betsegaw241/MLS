@@ -26,16 +26,13 @@ function LoginPage() {
   }
   useEffect(() => {
     if (isAuthenticated && localStorage.getItem("token")) {
-      if (role === "superAdmin") {
-        navigate(`/superAdmindashboard`);
-      } else if (role === "admin") {
-        navigate(`/${role}/home`);
-      } else if (role === "customer") {
-        navigate(`/${role}/home`);
-      }
-      if (role == "Pharmacist") {
-        navigate(`/${role}/home`);
-      }
+      role && role === "superAdmin"
+        ? navigate(`/superAdmindashboard`)
+        : role === "admin"
+        ? navigate(`/${role}/home`)
+        : role == "pharmacist"
+        ? navigate(`/${role}/home`)
+        : null;
     }
   }, [isAuthenticated]);
   console.log(isAuthenticated, role);
