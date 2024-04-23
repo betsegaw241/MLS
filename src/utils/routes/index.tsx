@@ -54,7 +54,7 @@ export const routes: IRoute[] = [
   {
     element: <LoginPage />,
     exact: true,
-    path: "/login",
+    path: "/loginPage",
     isProtected: false,
     allowedRole: "*",
   },
