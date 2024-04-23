@@ -27,11 +27,11 @@ function LoginPage() {
   useEffect(() => {
     if (isAuthenticated && localStorage.getItem("token")) {
       role && role === "superAdmin"
-        ? navigate('/superAdmindashboard')
+        ? navigate(`/superAdmindashboard`)
         : role === "admin"
         ? navigate(`/${role}/home`)
         : role == "pharmacist"
-        ? navigate(`/${role}/home`) 
+        ? navigate(`/${role}/home`)
         : null;
     }
   }, [isAuthenticated]);

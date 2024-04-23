@@ -371,3 +371,10 @@ export const TransactionTableColumns: IColumn[] = [
     minWidth: 100,
   },
 ];
+export const LoginDesplayText = [
+  "Effortlessly manage your pharmacy with ease.",
+  "Facilitates tracking of drug stock levels and enables tracking of expiration dates for inventory management",
+  "Enables tracking of purchases, sales, losses, and profits.",
+  'Enables you to efficiently manage and facilitate order deliveries.',
+  "Seamless and accessible payment integration",
+];

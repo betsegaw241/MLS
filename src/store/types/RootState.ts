@@ -18,13 +18,9 @@ import { DrugDetailPageState } from "app/Pages/DrugDetailPage/slice/types";
 import { EditDrugDetailsPageState } from "app/Pages/EditDrugDetailsPages/types";
 import { AdminUsersPageState } from "app/Pages/AdminUsersPage/slice/types";
 import { AdminPharmaciesPageState } from "app/Pages/AdminPharmaciesPage/slice/types";
-<<<<<<< HEAD
 import { notificationPageState } from "app/Pages/Notification/slices/types";
 import { transactionPageState } from "app/Pages/TransactionPage/slices/types";
-
-=======
 import { FeedbackPageState } from "app/Pages/FeedbacksPage/slice/types";
->>>>>>> 4bb1ba3 (admin Feedback page added)
 
 export interface RootState {
   Layout?: LayoutState;
@@ -48,9 +44,6 @@ export interface RootState {
   editDrugDetail: EditDrugDetailsPageState;
   getUsersList: AdminUsersPageState;
   getPharmaciesList: AdminPharmaciesPageState;
-<<<<<<< HEAD
   transactionSlice: transactionPageState;
-=======
-  feedbacks:FeedbackPageState;
->>>>>>> 4bb1ba3 (admin Feedback page added)
+  feedbacks: FeedbackPageState;
 }
