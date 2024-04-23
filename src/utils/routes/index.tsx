@@ -6,13 +6,11 @@ import CreateAccountPage from "app/Pages/createAccountPage/index";
 import AddPharmacyPage from "app/Pages/AddPharmacyPage/index";
 import HomePage from "app/Pages/HomePage";
 import ProfilePage from "app/Pages/ProfilePage";
-
 import VerifyEmailComponent from "app/Components/verifyEmail/VerifyEmailComponent";
 import VerifyEmailPage from "app/Pages/VerifyEmailPage";
 import AdminVerifyPharmacy from "app/Components/AdminVerifyPharmacy";
 import ManageInventoryPage from "app/Pages/ManageInventoryPage";
 import AddDrugPage from "app/Pages/AddDrugsPage";
-
 import OrderPage from "app/Pages/OrderPage";
 import OrderDetailPage from "app/Pages/OrderDetailPage";
 import PharmacyAccountPage from "app/Pages/PharmacyAccountPage";
@@ -25,6 +23,8 @@ import AdminUsersPage from "app/Pages/AdminUsersPage";
 import AddAdminPage from "app/Pages/AddAdminPage";
 import AdminPharmaciesPage from "app/Pages/AdminPharmaciesPage";
 import AdminProfilePage from "app/Pages/AdminProfilePage";
+import NotificationPage from "app/Pages/Notification";
+import TransactionPage from "app/Pages/TransactionPage";
 
 export const routes: IRoute[] = [
   {
@@ -190,7 +190,7 @@ export const routes: IRoute[] = [
     exact: true,
     path: "verifyPharmacy",
     isProtected: true,
-    allowedRole: ["admin" , "superAdmin"],
+    allowedRole: ["admin", "superAdmin"],
     needsLayout: true,
   },
   {
@@ -230,6 +230,14 @@ export const routes: IRoute[] = [
     exact: true,
     path: "pharmacist/notification",
     isProtected: false,
+    allowedRole: "*",
+  },
+  {
+    element: <TransactionPage />,
+    exact: true,
+    path: "superadmin/transaction",
+    isProtected: true,
+    needsLayout: true,
     allowedRole: "*",
   },
 ];

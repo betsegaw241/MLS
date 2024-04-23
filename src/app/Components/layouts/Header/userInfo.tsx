@@ -100,7 +100,11 @@ const UserInfo = () => {
                   }}
                   p={1}
                   style={{ cursor: "pointer" }}
-                  onClick={() => navigate("/pharmacist/profile")}
+                  onClick={() => {
+                    role && role == "pharmacist"
+                      ? navigate("/pharmacist/profile")
+                      : navigate("/account");
+                  }}
                 >
                   <CgProfile />
                   <Text

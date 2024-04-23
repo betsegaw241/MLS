@@ -337,3 +337,37 @@ export const pharmaciesList: IColumn[] = [
     minWidth: 50,
   },
 ];
+
+export const TransactionTableColumns: IColumn[] = [
+  {
+    id: "sender",
+    label: "Sender",
+    minWidth: 120,
+  },
+
+  {
+    id: "receiver",
+    label: "Receiver",
+    minWidth: 100,
+  },
+  {
+    id: "senderAccount",
+    label: "Sender Account",
+    minWidth: 100,
+  },
+  {
+    id: "receiverAccount",
+    label: "Receiver Account",
+    minWidth: 100,
+  },
+  {
+    id: "reason",
+    label: "Reason",
+    minWidth: 100,
+  },
+  {
+    id: "createdAt",
+    label: "Created At",
+    minWidth: 100,
+  },
+];
