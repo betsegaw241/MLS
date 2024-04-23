@@ -1,26 +1,17 @@
 import { Box, Button, Flex, Grid, Text } from "../ui/Blocks";
 import { GridBox } from "../ui/Blocks/GridBox";
-import MapComponent from "../ui/MapComponent";
-import { IorderDetailComponent } from "./types";export interface IStatus {
-  status: "ACCEPTED" | "REJECTED" | "Pending";
-}
-const OrderDetailComponent = (props: IorderDetailComponent) => {
-  const status: IStatus = { status: "Pending" };
-    const { onReject } = props;
+import { ItransactionDetailComponent } from "./types";
 
-
+const TransactionDetailComponent = (props: ItransactionDetailComponent) => {
+ 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-
-    // Extract date components
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0"); // Month starts from 0
+    const month = String(date.getMonth() + 1).padStart(2, "0"); 
     const day = String(date.getDate()).padStart(2, "0");
     const hours = String(date.getHours()).padStart(2, "0");
     const minutes = String(date.getMinutes()).padStart(2, "0");
-
     const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
-
     return formattedDate;
   };
   
@@ -35,7 +26,7 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
     >
       <Flex justifyContent={"space-between"} alignItems={"center"}>
         <Text fontSize={7} color={"#3d3939"}>
-          Order Details
+          Transaction Details
         </Text>
       </Flex>
 
@@ -43,7 +34,7 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
         {/*  */}
         <Box>
           <Text fontFamily={"poppins"} fontSize={2}>
-            Drug Information
+            Sender Information
           </Text>
           <Grid
             border={"1px solid #f5f5f5f5"}
@@ -59,44 +50,31 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
             mb={2}
             p={1}
           >
-            <GridBox lable={"Drug"} value={props.order.drug.name} />
-            <GridBox lable={"Dosage"} value={"Zuma"} />
-            <GridBox lable={"quantity"} value={props.order.quantity} />
-            <GridBox lable={"Drug"} value={"Zuma"} />
-          </Grid>
-        </Box>
-        <Box>
-          <Text fontFamily={"poppins"} fontSize={2}>
-            Client Information
-          </Text>
-          <Grid
-            border={"1px solid #f5f5f5f5"}
-            borderRadius={0}
-            gridColumnGap={"40px"}
-            gridRowGap={"15px"}
-            gridTemplateColumns={[
-              "repeat(1, 1fr)",
-              "repeat(2, 1fr)",
-              "repeat(3, 1fr)",
-              "repeat(4, 1fr)",
-            ]}
-            mb={2}
-            p={1}
-          >
-            <GridBox lable={"Name"} value={props.order.customer.name} />
             <GridBox
-              lable={"Location"}
-              value={props.order.deliveryAddress.address}
+              lable={"Sender Name"}
+              value={props.transaction.sender.name}
             />
             <GridBox
-              lable={"Phone"}
-              value={props.order.deliveryAddress.phoneNumber}
+              lable={"Sender Email"}
+              value={props.transaction.sender.email}
+            />
+            <GridBox
+              lable={"Sender Account"}
+              value={props.transaction.senderAccount.accountNumber}
+            />
+            <GridBox
+              lable={"Account type"}
+              value={props.transaction.senderAccount.accountType}
+            />
+            <GridBox
+              lable={"Bank"}
+              value={props.transaction.senderAccount.bankName}
             />
           </Grid>
         </Box>
         <Box>
           <Text fontFamily={"poppins"} fontSize={2}>
-            Delivery Information
+            Reciever Information
           </Text>
           <Grid
             border={"1px solid #f5f5f5f5"}
@@ -112,31 +90,58 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
             mb={2}
             p={1}
           >
-            <GridBox lable={"Distance"} value={"5km"} />
-            <GridBox lable={"Due time"} value={props.order.deliveryDate} />
             <GridBox
-              lable={"Order Date"}
-              value={formatDate(props.order.orderedAt)}
+              lable={"Reciever Name"}
+              value={props.transaction.receiver.name}
             />
-            <GridBox lable={"quantity"} value={props.order.quantity} />
-            <GridBox lable={"price per unit"} value={props.order.drug.price} />
-            <GridBox lable={"Total Cost"} value={props.order.drug.cost} />
+            <GridBox
+              lable={"Reciever Email"}
+              value={props.transaction.receiver.email}
+            />
+            <GridBox
+              lable={"Receiver Account"}
+              value={props.transaction.receiverAccount.accountNumber}
+            />
+            <GridBox
+              lable={"Account type"}
+              value={props.transaction.receiverAccount.accountType}
+            />
+            <GridBox
+              lable={"Bank"}
+              value={props.transaction.receiverAccount.bankName}
+            />
           </Grid>
         </Box>
-        <Flex flexDirection={"column"}>
+
+        <Box>
           <Text fontFamily={"poppins"} fontSize={2}>
-            Delivery Location
+            Transaction Information
           </Text>
-          <Box
-            width={"100%"}
-            height={"300px"}
-            backgroundColor={"#f5f5f5f5"}
-            borderRadius={1}
+          <Grid
+            border={"1px solid #f5f5f5f5"}
+            borderRadius={0}
+            gridColumnGap={"40px"}
+            gridRowGap={"15px"}
+            gridTemplateColumns={[
+              "repeat(1, 1fr)",
+              "repeat(2, 1fr)",
+              "repeat(3, 1fr)",
+              "repeat(4, 1fr)",
+            ]}
+            mb={2}
+            p={1}
           >
-            <MapComponent />
-          </Box>
-        </Flex>
-        <Flex
+            <GridBox
+              lable={"Reason"}
+              value={props.transaction.reason}
+            />
+            <GridBox
+              lable={"Created At"}
+              value={formatDate(props.transaction.createdAt)}
+            />
+          </Grid>
+        </Box>
+        {/* <Flex
           justifyContent={"flex-end"}
           padding={5}
           paddingRight={15}
@@ -157,14 +162,14 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
             fontSize={5}
             width={"100px"}
             borderRadius={1}
-            onClick={onReject}
+            //onClick={onReject}
           >
             Reject
           </Button>
-        </Flex>
+        </Flex> */}
       </Box>
     </Flex>
   );
 };
 
-export default OrderDetailComponent;
+export default TransactionDetailComponent;

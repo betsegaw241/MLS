@@ -20,6 +20,7 @@ import { AdminUsersPageState } from "app/Pages/AdminUsersPage/slice/types";
 import { AdminPharmaciesPageState } from "app/Pages/AdminPharmaciesPage/slice/types";
 import { notificationPageState } from "app/Pages/Notification/slices/types";
 import { transactionPageState } from "app/Pages/TransactionPage/slices/types";
+import { transactionDetailPageState } from "app/Pages/TransactionDetailPage/slices/types";
 
 
 export interface RootState {
@@ -45,4 +46,5 @@ export interface RootState {
   getUsersList: AdminUsersPageState;
   getPharmaciesList: AdminPharmaciesPageState;
   transactionSlice: transactionPageState;
+  transactionDetailSlice: transactionDetailPageState;
 }
