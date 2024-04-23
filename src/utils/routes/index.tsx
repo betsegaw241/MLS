@@ -23,9 +23,11 @@ import AdminUsersPage from "app/Pages/AdminUsersPage";
 import AddAdminPage from "app/Pages/AddAdminPage";
 import AdminPharmaciesPage from "app/Pages/AdminPharmaciesPage";
 import AdminProfilePage from "app/Pages/AdminProfilePage";
+
 import NotificationPage from "app/Pages/Notification";
 import TransactionPage from "app/Pages/TransactionPage";
-import TransactionDetailPage from "app/Pages/TransactionDetailPage";
+
+import FeedbacksPage from "app/Pages/FeedbacksPage";
 
 export const routes: IRoute[] = [
   {
@@ -54,7 +56,7 @@ export const routes: IRoute[] = [
   {
     element: <LoginPage />,
     exact: true,
-    path: "/login",
+    path: "/loginPage",
     isProtected: false,
     allowedRole: "*",
   },
@@ -242,11 +244,11 @@ export const routes: IRoute[] = [
     allowedRole: "superAdmin",
   },
   {
-    element: <TransactionDetailPage />,
+    element: <FeedbacksPage />,
     exact: true,
-    path: "superadmin/transactiondetail/:id",
+    path: "feedbacks",
     isProtected: true,
+    allowedRole: ["superAdmin", "admin"],
     needsLayout: true,
-    allowedRole: "superAdmin",
   },
 ];

@@ -9,5 +9,5 @@ export interface IRoute {
 }
 export interface IProtectedRoute {
   children: React.ReactNode;
-  allowedRole: string;
+  allowedRole: string | string[];
 }
