@@ -23,11 +23,10 @@ import AdminUsersPage from "app/Pages/AdminUsersPage";
 import AddAdminPage from "app/Pages/AddAdminPage";
 import AdminPharmaciesPage from "app/Pages/AdminPharmaciesPage";
 import AdminProfilePage from "app/Pages/AdminProfilePage";
-
 import NotificationPage from "app/Pages/Notification";
 import TransactionPage from "app/Pages/TransactionPage";
-
 import FeedbacksPage from "app/Pages/FeedbacksPage";
+import TransactionDetailPage from "app/Pages/TransactionDetailPage";
 
 export const routes: IRoute[] = [
   {
@@ -239,6 +238,14 @@ export const routes: IRoute[] = [
     element: <TransactionPage />,
     exact: true,
     path: "transactions",
+    isProtected: true,
+    needsLayout: true,
+    allowedRole: "superAdmin",
+  },
+  {
+    element: <TransactionDetailPage />,
+    exact: true,
+    path: "superadmin/transactiondetail/:id",
     isProtected: true,
     needsLayout: true,
     allowedRole: "superAdmin",
