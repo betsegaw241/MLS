@@ -19,6 +19,7 @@ const UserInfo = () => {
   const navigate = useNavigate();
   const profilePicture: any = localStorage.getItem("avatar");
   const name = localStorage.getItem("name");
+  const role = localStorage.getItem("role");
   return (
     <>
       <Flex
