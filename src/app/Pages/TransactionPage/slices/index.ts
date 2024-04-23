@@ -30,9 +30,9 @@ export const initialState: transactionPageState = {
     data: undefined,
     totalPages: 0,
     _id: "",
-    createdAt: ""
+    createdAt: "",
   },
-  transactions: [], 
+  transactions: [],
 };
 
 const slice = createSlice({

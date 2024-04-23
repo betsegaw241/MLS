@@ -235,9 +235,9 @@ export const routes: IRoute[] = [
   {
     element: <TransactionPage />,
     exact: true,
-    path: "superadmin/transaction",
+    path: "transactions",
     isProtected: true,
     needsLayout: true,
-    allowedRole: "*",
+    allowedRole: "superAdmin",
   },
 ];
