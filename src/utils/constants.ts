@@ -338,6 +338,7 @@ export const pharmaciesList: IColumn[] = [
   },
 ];
 
+
 export const TransactionTableColumns: IColumn[] = [
   {
     id: "sender",
@@ -377,4 +378,5 @@ export const LoginDesplayText = [
   "Enables tracking of purchases, sales, losses, and profits.",
   'Enables you to efficiently manage and facilitate order deliveries.',
   "Seamless and accessible payment integration",
+
 ];
