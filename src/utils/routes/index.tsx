@@ -25,6 +25,7 @@ import AdminUsersPage from "app/Pages/AdminUsersPage";
 import AddAdminPage from "app/Pages/AddAdminPage";
 import AdminPharmaciesPage from "app/Pages/AdminPharmaciesPage";
 import AdminProfilePage from "app/Pages/AdminProfilePage";
+import FeedbacksPage from "app/Pages/FeedbacksPage";
 
 export const routes: IRoute[] = [
   {
@@ -190,7 +191,7 @@ export const routes: IRoute[] = [
     exact: true,
     path: "verifyPharmacy",
     isProtected: true,
-    allowedRole: ["admin" , "superAdmin"],
+    allowedRole: ["admin", "superAdmin"],
     needsLayout: true,
   },
   {
@@ -223,6 +224,14 @@ export const routes: IRoute[] = [
     path: "account",
     isProtected: true,
     allowedRole: "superAdmin",
+    needsLayout: true,
+  },
+  {
+    element: <FeedbacksPage />,
+    exact: true,
+    path: "feedbacks",
+    isProtected: true,
+    allowedRole: ["superAdmin", "admin"],
     needsLayout: true,
   },
 ];

@@ -104,7 +104,7 @@ const UserInfo = () => {
                   onClick={() => {
                     role && role == "pharmacist"
                       ? navigate("/pharmacist/profile")
-                      : navigate("/acount");
+                      : navigate("/account");
                   }}
                 >
                   <CgProfile />

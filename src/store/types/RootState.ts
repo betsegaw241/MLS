@@ -18,6 +18,7 @@ import { DrugDetailPageState } from "app/Pages/DrugDetailPage/slice/types";
 import { EditDrugDetailsPageState } from "app/Pages/EditDrugDetailsPages/types";
 import { AdminUsersPageState } from "app/Pages/AdminUsersPage/slice/types";
 import { AdminPharmaciesPageState } from "app/Pages/AdminPharmaciesPage/slice/types";
+import { FeedbackPageState } from "app/Pages/FeedbacksPage/slice/types";
 
 export interface RootState {
   Layout?: LayoutState;
@@ -40,4 +41,5 @@ export interface RootState {
   editDrugDetail: EditDrugDetailsPageState;
   getUsersList: AdminUsersPageState;
   getPharmaciesList: AdminPharmaciesPageState;
+  feedbacks:FeedbackPageState;
 }
