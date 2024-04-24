@@ -20,7 +20,7 @@ const ProfileComponent = (props: editProfileComponentProp) => {
 
   return (
     <>
-      <Header />
+      <Header notifications={[]} />
       <Flex
         flexDirection={["column", "row"]}
         width={"100%"}
@@ -92,7 +92,7 @@ const ProfileComponent = (props: editProfileComponentProp) => {
           marginY={["6px", "35px"]}
           border={"1px  #d8cfcf solid"}
           borderRadius={"4%"}
-          marginLeft={["20px"]}
+          marginLeft={["8px"]}
           marginRight={["14px", "18px", "22px", "30px"]}
         >
           <Flex
@@ -110,7 +110,7 @@ const ProfileComponent = (props: editProfileComponentProp) => {
               alt=""
               width={"100px"}
               height={"100px"}
-              style={{ borderRadius: "50%" }}
+              style={{ borderRadius: "50%", border: "0.5px solid #ced3d6" }}
             />
           </Flex>
           <Formik
@@ -183,15 +183,17 @@ const ProfileComponent = (props: editProfileComponentProp) => {
                         />
                       </Box>
                       <Button
-                        backgroundColor="#399bdd"
-                        color={"#fff"}
-                        type="button"
-                        borderRadius={"8%"}
-                        height={"40px"}
-                        width={["70px", "80px", "100px", "130px"]} // Adjusted width values for better responsiveness
-                        marginLeft={["30%", "8%", "30%", "34%"]} // Adjusted margin values for better responsiveness
+                        borderRadius={40}
                         fontWeight={"bold"}
-                        mt={["20px", "25px", "30px", "35px"]} // Adjusted margin top values for better responsiveness
+                        fontFamily={"poppins"}
+                        color={"white"}
+                        fontSize={5}
+                        my={2}
+                        marginLeft={["2%", "3%", "3%", "6%"]}
+                        variant="primary"
+                        padding={1}
+                        width={"100%"}
+                        textAlign={"center"}
                         onClick={() => handleSubmit()}
                       >
                         {props.isEditing ? (
@@ -215,7 +217,7 @@ const ProfileComponent = (props: editProfileComponentProp) => {
                       style={{ gap: "2px" }}
                     >
                       <Flex
-                        ml={"40%"}
+                        ml={"35%"}
                         mb={"2%"}
                         mt={"-6%"}
                         flexDirection={"column"}
@@ -259,14 +261,16 @@ const ProfileComponent = (props: editProfileComponentProp) => {
                       </Flex>
 
                       <Button
-                        backgroundColor="#399bdd"
-                        color={"#fff"}
-                        type="button"
-                        borderRadius={"8%"}
-                        height={"40px"}
-                        width={["50px", "80px", "100px", "130px"]}
-                        marginLeft={["30%", "40%"]}
+                        borderRadius={40}
                         fontWeight={"bold"}
+                        fontFamily={"poppins"}
+                        color={"white"}
+                        fontSize={5}
+                        my={2}
+                        variant="primary"
+                        padding={1}
+                        width={"100%"}
+                        textAlign={"center"}
                         onClick={() => setEdit(true)}
                       >
                         Edit

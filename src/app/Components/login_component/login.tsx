@@ -11,12 +11,12 @@ import "styles/fonts.css";
 import Spinner from "react-activity/dist/Spinner";
 import "react-activity/dist/Spinner.css";
 import Modal from "../ui/Modal";
-import delivery from "assets/SVG/delivery.svg";
-import easymngmt from "assets/SVG/easymanegment.svg";
+import delivery from "../../../assets/SVG/delivery.svg";
+import easymngmt from "../../../assets/SVG/easymanegment.svg";
 import manage from "assets/SVG/manage.svg";
-import market from "assets/SVG/market.svg";
-import payment from "assets/SVG/payment.svg";
-import pharmacy from "assets/SVG/pharmacy.svg";
+import market from "../../../assets/SVG/market.svg";
+import payment from "../../../assets/SVG/payment.svg";
+import pharmacy from "../../../assets/SVG/pharmacy.svg";
 import { LoginDesplayText } from "utils/constants";
 
 const LoginComponent = (props: LoginInComponentProp) => {

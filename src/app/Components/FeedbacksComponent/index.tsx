@@ -1,8 +1,8 @@
 import { Button, Flex, Text } from "../ui/Blocks";
-import complaint from "assets/icons/complaint.png";
-import idea from "assets/icons/idea.png";
-import question from "assets/icons/question.png";
-import deleteicon from "assets/icons/delete.png";
+import complaint from "../../../assets/icons/complaint.png";
+import idea from "../../../assets/icons/idea.png";
+import question from "../../../assets/icons/question.png";
+import deleteicon from "../../../assets/icons/delete.png";
 import Paginate from "../ui/Pagination/Paginate";
 import Dropdown from "../ui/Blocks/Dropdown";
 import Modal from "../ui/Modal";

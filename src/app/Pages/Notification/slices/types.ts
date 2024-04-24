@@ -6,11 +6,12 @@ export interface notificationPageState {
 }
 
 export interface Inotification {
+  [x: string]: any;
   userId: string;
   title: string;
   message: string;
   isRead?: boolean;
   type: "info" | "warning" | "error" | "success";
-  createdAt: Date;
+  createdAt: any;
   updatedAt: Date;
 }
