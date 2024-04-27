@@ -54,6 +54,8 @@ function InputField(props: InputProps) {
                   height="93px"
                   id={props.name}
                   type="text"
+                  fontFamily={"poppins"}
+                  fontSize={"13px"}
                   width="100%"
                 />
               </>

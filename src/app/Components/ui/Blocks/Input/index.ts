@@ -39,7 +39,7 @@ export const Input = styled.input<InputProps>`
 `;
 
 export const TextAreaInput = styled.textarea<TextAreaProps>`
-  box-sizing: border-box;
+  box-sizing: border-box;z
   :focus {
     outline: none;
     background-color: transparent;

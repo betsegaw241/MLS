@@ -8,6 +8,7 @@ import { IPharmacyAccountComponent } from "./types";
 import { IoMdCloudUpload } from "react-icons/io";
 import EditPharmacyProfileComponent from "./EditPharmacyProfileComponent";
 import EditPharmacyAccountDetailComponent from "./EditPharmacyAccountDetailComponent";
+import { Rating } from "react-simple-star-rating";
 
 const PharmacyAccountComponent = (props: IPharmacyAccountComponent) => {
   const [selectCover, setSelectCover] = useState<File[]>([]);
@@ -128,7 +129,7 @@ const PharmacyAccountComponent = (props: IPharmacyAccountComponent) => {
                 height: "100%",
                 objectFit: "cover",
                 borderRadius: "50%",
-                border:'5px solid #f5f5f5'
+                border: "5px solid #f5f5f5",
               }}
             />
           </Box>
@@ -173,12 +174,22 @@ const PharmacyAccountComponent = (props: IPharmacyAccountComponent) => {
           justifyContent={"center"}
           marginLeft={"5%"}
         >
-          <Text fontFamily={"poppins"} fontSize={5}>
+          <Text fontFamily={"poppins"} fontSize={6}>
             {props.pharmacy.name}
           </Text>
-          <Text fontFamily={"poppins"} fontSize={5}>
+          <Text fontFamily={"poppins"} fontSize={4}>
             {props.pharmacy.email}
           </Text>
+          <Flex alignItems={"center"} style={{ gap: 10 }}>
+            <Rating
+              readonly
+              allowFraction
+              initialValue={props.pharmacy?.avgRating}
+            />
+            <Text fontFamily={"poppins"} fontSize={1}>
+              {props.pharmacy?.avgRating}
+            </Text>
+          </Flex>
         </Flex>
       </Flex>
 

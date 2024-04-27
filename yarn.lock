@@ -398,6 +398,11 @@
   resolved "https://registry.npmjs.org/@emotion/weak-memoize/-/weak-memoize-0.3.1.tgz"
   integrity sha512-EsBwpc7hBUJWAsNPBmJy4hxWx12v6bshQsldrVmjxJoc3isbxhOrF2IcCpaXxfvq03NwkI7sbsOLXbYuqF/8Ww==
 
+"@esbuild/linux-x64@0.18.20":
+  version "0.18.20"
+  resolved "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.18.20.tgz"
+  integrity sha512-UYqiqemphJcNsFEskc73jQ7B9jgwjWrSayxawS6UVFZGWrAAtkzjxSqnoclCXxWtfwLdzU+vTpcNYhpn43uP1w==
+
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
   resolved "https://registry.npmjs.org/@eslint-community/eslint-utils/-/eslint-utils-4.4.0.tgz"
@@ -6706,6 +6711,11 @@ react-select@^5.8.0:
     prop-types "^15.6.0"
     react-transition-group "^4.3.0"
     use-isomorphic-layout-effect "^1.1.2"
+
+react-simple-star-rating@^5.1.7:
+  version "5.1.7"
+  resolved "https://registry.npmjs.org/react-simple-star-rating/-/react-simple-star-rating-5.1.7.tgz"
+  integrity sha512-NTFkW8W3uwvI82Fv7JW5i7gmDjEZKxJmj+Z9vn+BjYIXT6ILdnU9qnSUP2cWrWN/WAUlue81f9SgM4CQcenltQ==
 
 react-spinners@^0.13.8:
   version "0.13.8"
