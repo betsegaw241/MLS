@@ -1,10 +1,10 @@
 import { Form, Formik } from "formik";
-import { Button, Flex, Grid } from "../ui/Blocks";
+import { Button, Flex, Grid, Text } from "../ui/Blocks";
 import { InputField } from "../ui/InputComponent";
 import { useState } from "react";
 import { editPharmacyAccountValidation } from "app/Pages/PharmacyAccountPage/validation";
 
-const EditPharmacyAccountComponent = (props: any) => {
+const EditPharmacyProfileComponent = (props: any) => {
   return (
     <Flex
       width={"100%"}
@@ -36,7 +36,11 @@ const EditPharmacyAccountComponent = (props: any) => {
                     borderRadius={0}
                     gridColumnGap={"50px"}
                     gridRowGap={"20px"}
-                    gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]}
+                    gridTemplateColumns={[
+                      "repeat(1, 1fr)",
+                      "repeat(2, 1fr)",
+                      "repeat(3, 1fr)",
+                    ]}
                   >
                     <Flex flexDirection={"column"} style={{ gap: 3 }}>
                       <InputField
@@ -53,47 +57,24 @@ const EditPharmacyAccountComponent = (props: any) => {
                       />
                     </Flex>
                     <Flex flexDirection={"column"} style={{ gap: 3 }}>
-                      <InputField name="phone" type="" label="Phone Number" />
-                    </Flex>
-                    <Flex flexDirection={"column"} style={{ gap: 3 }}>
-                      <InputField name="state" type="text" label="State" />
-                    </Flex>
-                    <Flex flexDirection={"column"} style={{ gap: 3 }}>
-                      <InputField name="city" type="" label="City" />
-                    </Flex>
-                    <Flex flexDirection={"column"} style={{ gap: 3 }}>
                       <InputField
-                        name="phoneLine2"
-                        type="text"
-                        label="Phone Line 2"
-                      />
-                    </Flex>
-                    <Flex flexDirection={"column"} style={{ gap: 3 }}>
-                      <InputField
-                        name="email2"
+                        name="phoneNumber"
                         type=""
-                        label="Aditional Email Address"
+                        label="Phone Number"
                       />
                     </Flex>
                     <Flex flexDirection={"column"} style={{ gap: 3 }}>
-                      <InputField
-                        name="operationalHours"
-                        type=""
-                        label="OPerational Hours"
-                      />
+                      <InputField name="address" type="" label="Adress" />
                     </Flex>
-                  </Grid>
 
-                  <Grid
-                    borderRadius={0}
-                    gridColumnGap={"40px"}
-                    gridRowGap={"15px"}
-                    gridTemplateColumns={[
-                      "repeat(1, 1fr)",
-                      "repeat(2, 1fr)",
-                      "repeat(3, 1fr)",
-                    ]}
-                  >
+                    <Flex flexDirection={"column"} style={{ gap: 3 }}>
+                      <InputField
+                        name="workingHours"
+                        type=""
+                        label="Working hours"
+                      />
+                    </Flex>
+
                     <Flex flexDirection={"column"} style={{ gap: 3 }}>
                       <InputField
                         name="socialMedia.facebook"
@@ -110,12 +91,16 @@ const EditPharmacyAccountComponent = (props: any) => {
                     </Flex>
                     <Flex flexDirection={"column"} style={{ gap: 3 }}>
                       <InputField
-                        name="socialMedia.linkedin"
+                        name="socialMedia.linkedIn"
                         type=""
                         label="Linkedin"
                       />
                     </Flex>
                   </Grid>
+                  <Flex flexDirection={"column"}>
+                    <Text fontFamily={"poppins"}>About</Text>
+                    <InputField name={"about"} type={"textarea"} />
+                  </Flex>
 
                   <Flex justifyContent="flex-end" alignItems="center">
                     <Button
@@ -146,4 +131,4 @@ const EditPharmacyAccountComponent = (props: any) => {
     </Flex>
   );
 };
-export default EditPharmacyAccountComponent;
+export default EditPharmacyProfileComponent;

@@ -17,7 +17,7 @@ const AddParmacyComponent = (props: AddPharmacyComponentProps) => {
 
   return (
     <>
-      <Header />
+      <Header notifications={[]} />
       <Flex justifyContent={"center"} alignItems={"center"}>
         <Formik
           initialValues={props.initialValues}

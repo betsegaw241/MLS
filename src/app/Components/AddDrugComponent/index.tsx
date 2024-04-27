@@ -46,7 +46,11 @@ const AddDrugComponent = (props: any) => {
       </Flex>
       <Flex justifyContent={"center"}>
         <Formik
-          initialValues={initialValues}
+          initialValues={{
+            ...props.pharmacy,
+            minWaitingTimeUnit: "", // Initialize minWaitingTimeUnit
+            maxWaitingTimeUnit: "", // Initialize maxWaitingTimeUnit
+          }}
           onSubmit={(values, { resetForm }) => {
             props.onAddClick(values);
             resetForm();

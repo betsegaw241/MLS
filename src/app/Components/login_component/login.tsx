@@ -130,7 +130,7 @@ const LoginComponent = (props: LoginInComponentProp) => {
             >
               {({ handleSubmit }) => {
                 return (
-                  <Form style={{ width: "70%" }}>
+                  <Form style={{ width: "60%" }}>
                     <Flex
                       flexDirection={"column"}
                       width={"100%"}

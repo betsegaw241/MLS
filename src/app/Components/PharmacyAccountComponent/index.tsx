@@ -2,26 +2,44 @@ import { Box, Flex, Grid, P, Text } from "../ui/Blocks";
 import { GridBox } from "../ui/Blocks/GridBox";
 import { MdEdit } from "react-icons/md";
 import { useState } from "react";
-import EditPharmacyAccountComponent from "./EditPharmacyAccountComponent";
 import UploadImage from "../ui/ImageUpload";
 import EditPharmacyOperationsComponent from "./EditPharmacyOperationComponent";
 import { IPharmacyAccountComponent } from "./types";
+import { IoMdCloudUpload } from "react-icons/io";
+import EditPharmacyProfileComponent from "./EditPharmacyProfileComponent";
+import EditPharmacyAccountDetailComponent from "./EditPharmacyAccountDetailComponent";
 
 const PharmacyAccountComponent = (props: IPharmacyAccountComponent) => {
   const [selectCover, setSelectCover] = useState<File[]>([]);
   const [selectLogo, setSelectLogo] = useState<File[]>([]);
+  const [coverSaved, setCoverSaved] = useState(true);
+  const [logoSaved, setLogoSaved] = useState(true);
   const uploadCoverPhoto = (file: File[]) => {
     setSelectCover(file);
+    setCoverSaved(false);
+
+    // props.handleUploadCover(file);
   };
-  const uploadLogo = (file: File[]) => {
-    setSelectLogo(file);
+  const handleUpdateCover = () => {
+    props.handleUploadCover(selectCover);
+    setCoverSaved(true);
   };
 
-  function truncateString(str: string, maxLength: number) {
-    if (str) {
-      return str.length > maxLength ? str.slice(0, maxLength) + "..." : str;
-    }
-  }
+  const uploadLogo = (file: File[]) => {
+    setSelectLogo(file);
+    // props.setSelectLogoPhoto(file);
+    setLogoSaved(false);
+  };
+  const handleUpdateLogo = () => {
+    props.handleUploadLogo(selectLogo);
+    setLogoSaved(true);
+  };
+
+  // function truncateString(str: string, maxLength: number) {
+  //   if (str) {
+  //     return str.length > maxLength ? str.slice(0, maxLength) + "..." : str;
+  //   }
+  // }
 
   return (
     <Flex
@@ -33,13 +51,18 @@ const PharmacyAccountComponent = (props: IPharmacyAccountComponent) => {
       justifyContent={"center"}
       pb={200}
     >
-      <Flex>
-        <Box width={"100%"} backgroundColor={"#f5f5f5"} height={150}>
+      <Flex flexDirection={"column"} borderRadius={1}>
+        <Box
+          width={"100%"}
+          backgroundColor={"#f5f5f5"}
+          height={150}
+          borderRadius={1}
+        >
           <img
             src={
               selectCover.length > 0
                 ? URL.createObjectURL(selectCover[0])
-                : props.pharmacy.coverPhoto
+                : props.pharmacy.cover
             }
             alt=""
             style={{
@@ -52,31 +75,52 @@ const PharmacyAccountComponent = (props: IPharmacyAccountComponent) => {
           />
         </Box>
         {props.editPharmacyData && (
-          <UploadImage image={uploadCoverPhoto}>
-            <Flex
-              justifySelf={"flex-end"}
-              alignSelf={"flex-end"}
-              border={"1px #B4D4FF solid"}
-              marginLeft={-100}
-              mb={1}
-              justifyContent={"center"}
-              width={50}
-              borderRadius={3}
-            >
-              <MdEdit color="#B4D4FF" size={20} />
-            </Flex>
-          </UploadImage>
+          <Flex justifyContent={"flex-end"} p={1} style={{ gap: 10 }}>
+            <UploadImage image={uploadCoverPhoto}>
+              <Flex
+                border={"1px #B4D4FF solid"}
+                style={{ cursor: "pointer" }}
+                justifyContent={"center"}
+                alignItems={"center"}
+                width={50}
+                borderRadius={1}
+                p={1}
+              >
+                <IoMdCloudUpload size={20} />
+              </Flex>
+            </UploadImage>
+
+            {selectCover && !coverSaved && (
+              <Text
+                fontFamily={"poppins"}
+                border={"1px solid #B4D4FF"}
+                borderRadius={1}
+                p={1}
+                fontSize={4}
+                style={{ cursor: "pointer" }}
+                onClick={() => handleUpdateCover()}
+              >
+                save
+              </Text>
+            )}
+          </Flex>
         )}
       </Flex>
 
-      <Flex height={100} p={1}>
-        <Flex>
-          <Box width={150} height={150} borderRadius={"50%"} marginTop={-50}>
+      <Flex p={1}>
+        <Flex flexDirection={"column"} style={{ gap: 10 }}>
+          <Box
+            width={150}
+            height={150}
+            borderRadius={"50%"}
+            marginTop={-50}
+            background={"#f5f5f5"}
+          >
             <img
               src={
                 selectLogo.length > 0
                   ? URL.createObjectURL(selectLogo[0])
-                  : props.pharmacy.pharmacyLogo
+                  : props.pharmacy.logo
               }
               alt="pharmacy logo"
               style={{
@@ -84,23 +128,43 @@ const PharmacyAccountComponent = (props: IPharmacyAccountComponent) => {
                 height: "100%",
                 objectFit: "cover",
                 borderRadius: "50%",
+                border:'5px solid #f5f5f5'
               }}
             />
           </Box>
           {props.editPharmacyData && (
-            <UploadImage image={uploadLogo}>
-              <Flex
-                justifySelf={"flex-end"}
-                alignSelf={"flex-end"}
-                border={"1px #B4D4FF solid"}
-                //   p={1}
-                justifyContent={"center"}
-                width={50}
-                borderRadius={3}
-              >
-                <MdEdit color="#B4D4FF" size={20} />
-              </Flex>
-            </UploadImage>
+            <Flex
+              justifySelf={"flex-end"}
+              alignSelf={"flex-end"}
+              style={{ gap: 20 }}
+            >
+              <UploadImage image={uploadLogo}>
+                <Flex
+                  border={"1px #B4D4FF solid"}
+                  style={{ cursor: "pointer" }}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                  width={50}
+                  borderRadius={1}
+                  p={1}
+                >
+                  <IoMdCloudUpload size={20} />
+                </Flex>
+              </UploadImage>
+              {selectLogo && !logoSaved && (
+                <Text
+                  fontFamily={"poppins"}
+                  border={"1px solid #B4D4FF"}
+                  borderRadius={1}
+                  p={1}
+                  fontSize={4}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleUpdateLogo()}
+                >
+                  save
+                </Text>
+              )}
+            </Flex>
           )}
         </Flex>
 
@@ -128,7 +192,7 @@ const PharmacyAccountComponent = (props: IPharmacyAccountComponent) => {
           borderRadius={1}
         >
           {props.editPharmacyData ? (
-            <EditPharmacyAccountComponent
+            <EditPharmacyProfileComponent
               pharmacy={props.pharmacy}
               setEdit={props.setEditPharmacyData}
               handleUpdate={props.handleUpdate}
@@ -136,8 +200,17 @@ const PharmacyAccountComponent = (props: IPharmacyAccountComponent) => {
           ) : props.editPharmacyOPerationalData ? (
             <EditPharmacyOperationsComponent
               pharmacy={props.pharmacy}
+              initialValues={props.pharmacy}
               setEdit={props.seteditPharmacyOPerationalData}
               handleUpdateOperations={props.handleUpdateOperations}
+            />
+          ) : props.editPharmacyAccountDetail ? (
+            <EditPharmacyAccountDetailComponent
+              pharmacy={props.pharmacy?.account}
+              setEdit={props.SetEditPharmacyAccountDetail}
+              handleUpdateOperations={props.handleUpdateAccountDetail}
+              banksName={props.banksName}
+              // banksCode={props.banksCode}
             />
           ) : (
             <>
@@ -170,50 +243,53 @@ const PharmacyAccountComponent = (props: IPharmacyAccountComponent) => {
                   <MdEdit color="#B4D4FF" />
                 </Flex>
               </Flex>
-              <Grid
-                border={"1px solid #f5f5f5f5"}
+              <Flex
+                width={"100%"}
+                flexDirection={"column"}
+                // border={"1px solid #f5f5f5f5"}
                 borderRadius={0}
-                gridColumnGap={"40px"}
-                gridRowGap={"15px"}
-                gridTemplateColumns={[
-                  "repeat(1, 1fr)",
-                  "repeat(2, 1fr)",
-                  "repeat(3, 1fr)",
-                ]}
-                mb={2}
-                p={1}
               >
-                <GridBox lable={"Name"} value={props.pharmacy.name} />
-                <GridBox lable={"Email"} value={props.pharmacy.email} />
-                <GridBox lable={"Phone"} value={props.pharmacy.phoneNumber} />
-                <GridBox lable={"State"} value={props.pharmacy.state} />
-                <GridBox lable={"city"} value={props.pharmacy.city} />
-                <GridBox
-                  lable={"Opretional Hours"}
-                  value={props.pharmacy.operationalHours}
-                />
-                <GridBox
-                  lable={"Facebook"}
-                  value={truncateString(
-                    props.pharmacy.socialMedia?.facebook,
-                    20
-                  )}
-                />
-                <GridBox
-                  lable={"Telegram"}
-                  value={truncateString(
-                    props.pharmacy.socialMedia?.telegram,
-                    20
-                  )}
-                />{" "}
-                <GridBox
-                  lable={"Linkedin"}
-                  value={truncateString(
-                    props.pharmacy.socialMedia?.linkedin,
-                    20
-                  )}
-                />
-              </Grid>
+                <Grid
+                  borderRadius={0}
+                  gridColumnGap={"40px"}
+                  gridRowGap={"15px"}
+                  width={"100%"}
+                  gridTemplateColumns={[
+                    "repeat(1, 1fr)",
+                    "repeat(2, 1fr)",
+                    "repeat(3, 1fr)",
+                  ]}
+                  p={1}
+                >
+                  <GridBox lable={"Name"} value={props.pharmacy.name} />
+                  <GridBox lable={"Email"} value={props.pharmacy.email} />
+                  <GridBox lable={"Phone"} value={props.pharmacy.phoneNumber} />
+                  <GridBox lable={"adress"} value={props.pharmacy.address} />
+                  <GridBox
+                    lable={"Working Hours"}
+                    value={props.pharmacy.workingHours}
+                  />
+                  <GridBox
+                    lable={"Facebook"}
+                    value={props.pharmacy.socialMedia?.facebook}
+                  />
+                  <GridBox
+                    lable={"Telegram"}
+                    value={props.pharmacy.socialMedia?.telegram}
+                  />{" "}
+                  <GridBox
+                    lable={"Linkedin"}
+                    value={props.pharmacy.socialMedia?.linkedIn}
+                  />
+                </Grid>
+                <Flex flexDirection={"column"} p={1} width={"100%"}>
+                  <Text fontFamily={"poppins"}>About</Text>
+                  <Text fontFamily={"poppins"} fontSize={4}>
+                    {" "}
+                    {props.pharmacy.about}
+                  </Text>
+                </Flex>
+              </Flex>
               <Flex width={"100%"} justifyContent={"space-between"} p={1}>
                 <Flex alignItems={"center"} style={{ gap: 10 }}>
                   <Text fontFamily={"poppins"} fontSize={5}>
@@ -223,14 +299,12 @@ const PharmacyAccountComponent = (props: IPharmacyAccountComponent) => {
                     fontSize={3}
                     fontFamily={"poppins"}
                     backgroundColor={
-                      props.pharmacy.isDeliveryAvailable ? "#B4D4FF" : "#f5f5f5"
+                      props.pharmacy.hasDeliveryService ? "#B4D4FF" : "#f5f5f5"
                     }
                     borderRadius={1}
-                    padding={"2px"}
+                    padding={"5px"}
                   >
-                    {props.pharmacy.isDeliveryAvailable
-                      ? "Enabled"
-                      : "Disabled"}
+                    {props.pharmacy.hasDeliveryService ? "Enabled" : "Disabled"}
                   </Text>
                 </Flex>
 
@@ -275,24 +349,80 @@ const PharmacyAccountComponent = (props: IPharmacyAccountComponent) => {
                 p={1}
               >
                 <GridBox
-                  lable={"Delivery Waiting Time"}
-                  value={props.pharmacy.deliveryWaitingTime}
-                />
-                <GridBox
-                  lable={"Delivery Times"}
-                  value={props.pharmacy.deliveryTimes}
-                />
-                <GridBox
-                  lable={"Delivery Area"}
-                  value={props.pharmacy.deliveryArea}
+                  lable={"Delivery Coverage"}
+                  value={props.pharmacy.deliveryCoverage}
                 />
                 <GridBox
                   lable={"Delivery Fee in km"}
-                  value={props.pharmacy.deliveryFeeinKm}
+                  value={props.pharmacy.deliveryPricePerKm}
                 />
                 <GridBox
-                  lable={"Fast Delivery Fee"}
-                  value={props.pharmacy.fastDeliveryFee}
+                  lable={"Minimum delivery time"}
+                  value={props.pharmacy.minDeliveryTime}
+                />
+                <GridBox
+                  lable={"Maximum delivery time"}
+                  value={props.pharmacy.maxDeliveryTime}
+                />
+              </Grid>
+              <Flex width={"100%"} justifyContent={"space-between"} p={1}>
+                <Flex alignItems={"center"} style={{ gap: 10 }}>
+                  <Text fontFamily={"poppins"} fontSize={5}>
+                    Account Detail
+                  </Text>
+                </Flex>
+
+                <Flex
+                  style={{ gap: 5 }}
+                  border={"1px #B4D4FF solid"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                  p={"5px"}
+                  mr={5}
+                  width={80}
+                  borderRadius={5}
+                  onClick={() =>
+                    props.SetEditPharmacyAccountDetail(
+                      !props.editPharmacyAccountDetail
+                    )
+                  }
+                >
+                  <P
+                    fontFamily={"poppins"}
+                    padding={"0px"}
+                    margin={"0px"}
+                    fontSize={3}
+                  >
+                    Edit
+                  </P>
+
+                  <MdEdit color="#B4D4FF" />
+                </Flex>
+              </Flex>
+              <Grid
+                border={"1px solid #f5f5f5f5"}
+                borderRadius={0}
+                gridColumnGap={"40px"}
+                gridRowGap={"15px"}
+                gridTemplateColumns={[
+                  "repeat(1, 1fr)",
+                  "repeat(2, 1fr)",
+                  "repeat(3, 1fr)",
+                ]}
+                mb={2}
+                p={1}
+              >
+                <GridBox
+                  lable={"Bank Name"}
+                  value={props.pharmacy.account?.bankName}
+                />
+                <GridBox
+                  lable={"Account Holder Name"}
+                  value={props.pharmacy.account?.accountHolderName}
+                />
+                <GridBox
+                  lable={"Account Number"}
+                  value={props.pharmacy.account?.accountNumber}
                 />
               </Grid>
             </>
