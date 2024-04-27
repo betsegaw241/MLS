@@ -6,38 +6,38 @@ import { Inotification } from "app/Pages/Notification/slices/types";
 import { MdMessage } from "react-icons/md";
 
 const NotificationComponent = (props: any) => {
-  //const [notifications, setNotifications] = useState<any[]>([]);
+  const [notifications, setNotifications] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<any>(null);
   const navigate = useNavigate();
-  const notifications: Inotification[] = [
-    {
-      userId: "user1",
-      title: "New Message",
-      message: "You have a new message in your inbox.",
-      isRead: false,
-      type: "info",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-    {
-      userId: "user2",
-      title: "Payment Received",
-      message: "You've received a payment of $100.",
-      isRead: true,
-      type: "success",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-    {
-      userId: "user3",
-      title: "Error",
-      message: "An unexpected error occurred.",
-      type: "error",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-  ];
+  // const notifications: Inotification[] = [
+  //   {
+  //     userId: "user1",
+  //     title: "New Message",
+  //     message: "You have a new message in your inbox.",
+  //     isRead: false,
+  //     type: "info",
+  //     createdAt: new Date(),
+  //     updatedAt: new Date(),
+  //   },
+  //   {
+  //     userId: "user2",
+  //     title: "Payment Received",
+  //     message: "You've received a payment of $100.",
+  //     isRead: true,
+  //     type: "success",
+  //     createdAt: new Date(),
+  //     updatedAt: new Date(),
+  //   },
+  //   {
+  //     userId: "user3",
+  //     title: "Error",
+  //     message: "An unexpected error occurred.",
+  //     type: "error",
+  //     createdAt: new Date(),
+  //     updatedAt: new Date(),
+  //   },
+  // ];
 
   const formatDate = (dateString: string) => {
     // Create a Date object from the provided date string
@@ -54,13 +54,13 @@ const NotificationComponent = (props: any) => {
   };
 
   useEffect(() => {
-    //setLoading(true);
+    setLoading(true);
     try {
-      const eventSource = new EventSource("http://localhost:3000/new");
+      const eventSource = new EventSource("http://localhost:3000/notification/new");
 
       eventSource.onmessage = (event) => {
         const data = JSON.parse(event.data);
-        //setNotifications(data);
+        setNotifications(data);
       };
 
       return () => {
@@ -69,9 +69,9 @@ const NotificationComponent = (props: any) => {
     } catch (error) {
       setError(error);
     }
-    //  finally {
-    //    setLoading(false);
-    //  }
+     finally {
+       setLoading(false);
+     }
   }, []);
 
   // useEffect(() => {

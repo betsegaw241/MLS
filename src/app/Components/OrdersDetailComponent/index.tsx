@@ -1,12 +1,12 @@
 import { Box, Button, Flex, Grid, Text } from "../ui/Blocks";
 import { GridBox } from "../ui/Blocks/GridBox";
 import MapComponent from "../ui/MapComponent";
-import { IorderDetailComponent } from "./types";export interface IStatus {
+import { IOrder, IorderDetailComponent } from "./types";export interface IStatus {
   status: "ACCEPTED" | "REJECTED" | "Pending";
 }
 const OrderDetailComponent = (props: IorderDetailComponent) => {
   const status: IStatus = { status: "Pending" };
-    const { onReject } = props;
+    //const { onReject } = props;
 
 
   const formatDate = (dateString: string) => {
@@ -24,6 +24,14 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
     return formattedDate;
   };
   
+  const handleSubmit = (values: IOrder | any) => {
+ props.onRejectClick(values);  
+}
+ const handleAccept = (values: IOrder | any) => {
+   props.onAcceptClick(values);
+ };
+ 
+
   return (
     <Flex
       margin={2}
@@ -148,6 +156,7 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
             fontSize={5}
             width={"100px"}
             borderRadius={1}
+            onClick={() => handleAccept(props.order)}
           >
             Accept
           </Button>
@@ -157,7 +166,7 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
             fontSize={5}
             width={"100px"}
             borderRadius={1}
-            onClick={onReject}
+            onClick={() => handleSubmit(props.order)}
           >
             Reject
           </Button>

@@ -6,7 +6,9 @@ import { useInjectReducer, useInjectSaga } from "redux-injectors";
 export const initialState: orderDetailPageState = {
   isgettingOrder: false,
   isOrderExist: false,
-  order: {} as IOrder, //
+  order: {} as IOrder,
+  isUpdating: false,
+  
 };
 
 const slice = createSlice({
@@ -16,13 +18,14 @@ const slice = createSlice({
     // Other reducers...
 
     updateStatus: (state, action: PayloadAction<any>) => {
-      return {
-        ...state,
-        order: {
-          ...state.order,
-          status: action.payload.status,
-        },
-      };
+      state.isUpdating = true;
+    },
+    updateStatusSuccess: (state, action: PayloadAction<any>) => {
+      state.isUpdating = false;
+      state.order.status = action.payload.status;
+    },
+    updateStatusFailed: (state, action: PayloadAction<any>) => {
+      state.isUpdating = false;
     },
 
     fetchOrder: (state, action: PayloadAction<any>) => {

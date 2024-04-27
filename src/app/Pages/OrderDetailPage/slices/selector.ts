@@ -19,3 +19,8 @@ export const selectloading = createSelector(
   [selectSlice],
   (state) => state.isgettingOrder
 );
+export const selectIsUpdating = createSelector(
+  [selectSlice],
+  (state) => state.isUpdating
+);
+

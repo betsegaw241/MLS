@@ -1,8 +1,8 @@
 export interface orderDetailPageState {
   isgettingOrder: boolean;
   isOrderExist: boolean;
-  order:IOrder;
-  
+  order: IOrder;
+  isUpdating: boolean;
 }
 
 
