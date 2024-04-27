@@ -14,13 +14,14 @@ export interface StockComponentProps {
 export interface IDrug {
   name: string;
   _id: string;
-  min_sockLevel: string;
+  minStockLevel: string;
   quantity: number;
   expiredDate: Date;
   category: string;
   stockLevel: string;
   stock_Level: string;
   price: string;
+  needPrescription:boolean;
 }
 export interface IDrugdata {
   data: IDrug[];

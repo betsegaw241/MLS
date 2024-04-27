@@ -140,11 +140,11 @@ export const OrderTableColumns: IColumn[] = [
   },
 ];
 export const drugTableColumn: IColumn[] = [
-  {
-    id: "NO",
-    label: "NO",
-    minWidth: 10,
-  },
+  // {
+  //   id: "NO",
+  //   label: "NO",
+  //   minWidth: 10,
+  // },
   {
     id: "Drug",
     label: "Drug",
@@ -169,6 +169,12 @@ export const drugTableColumn: IColumn[] = [
   {
     id: "Minimum Stock Level",
     label: "Minimum Stock Level",
+    minWidth: 50,
+  },
+
+  {
+    id: "prescreption",
+    label: "prescription",
     minWidth: 50,
   },
 ];
@@ -338,7 +344,6 @@ export const pharmaciesList: IColumn[] = [
   },
 ];
 
-
 export const TransactionTableColumns: IColumn[] = [
   {
     id: "sender",
@@ -376,7 +381,6 @@ export const LoginDesplayText = [
   "Effortlessly manage your pharmacy with ease.",
   "Facilitates tracking of drug stock levels and enables tracking of expiration dates for inventory management",
   "Enables tracking of purchases, sales, losses, and profits.",
-  'Enables you to efficiently manage and facilitate order deliveries.',
+  "Enables you to efficiently manage and facilitate order deliveries.",
   "Seamless and accessible payment integration",
-
 ];
