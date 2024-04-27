@@ -10,26 +10,13 @@ import {
 
 export interface CreateAccountComponentProp {
   createAccountSchemaStep1: object;
-  createAccountSchemaStep2?: object;
-  createAccountSchemaStep3?: object;
   currentStep: number;
-
   initialValues: FormValues;
-  // signupSchema: object;
-  isUploading: boolean;
-  isUploaded: boolean;
   creatingAccount: boolean;
   errorMessage: string;
-  UploadingDocument: boolean;
-
   userItialValues: UserFormValues;
   set1Data: UserFormValues | null;
-  set2Data: ParmacyFormValues | null;
   documentItialValues: DocumentFormValues;
   pharmacyItialValues: ParmacyFormValues;
-  handleStep1: (values: UserFormValues) => void;
-  handleStep2: (values: ParmacyFormValues) => void;
-  handleStep3: (values: DocumentFormValues) => void;
-  onSignupClick: (values: DocumentFormValues) => void;
-  back: () => void;
+  handleSignUp: (values: UserFormValues) => void;
 }

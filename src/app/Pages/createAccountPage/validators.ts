@@ -8,25 +8,23 @@ export const createAccoutSchemaStep1 = Yup.object({
   email: Yup.string()
     .email(errorValues.email.invalid)
     .required(errorValues.email.required),
-  password: Yup.string()
-    // .min(8, errorValues.password.min)
-    // .max(255, errorValues.password.max)
-    // .matches(
-    //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
-    //   errorValues.password.combination
-    // )
-    // .required(errorValues.password.required)
-    ,
-  confirmPassword: Yup.string()
-    // .min(8, errorValues.password.min)
-    // .max(255, errorValues.password.max)
-    // .matches(
-    //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
-    //   errorValues.password.combination
-    // )
-    // .oneOf([Yup.ref("password")], errorValues.confirmPassword.match)
-    // .required("Confirm Password is required")
-    ,
+  password: Yup.string(),
+  // .min(8, errorValues.password.min)
+  // .max(255, errorValues.password.max)
+  // .matches(
+  //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
+  //   errorValues.password.combination
+  // )
+  // .required(errorValues.password.required)
+  confirmPassword: Yup.string(),
+  // .min(8, errorValues.password.min)
+  // .max(255, errorValues.password.max)
+  // .matches(
+  //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
+  //   errorValues.password.combination
+  // )
+  // .oneOf([Yup.ref("password")], errorValues.confirmPassword.match)
+  // .required("Confirm Password is required")
   phoneNumber: Yup.string()
     .matches(
       /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})/,
@@ -36,6 +34,19 @@ export const createAccoutSchemaStep1 = Yup.object({
     .required(errorValues.phoneNumber.required)
 
     .min(1, errorValues.phoneNumber.min),
+  pharmacistLicense: Yup.mixed()
+    .required(errorValues.pharmacistLicense.required)
+
+    .test("fileType", errorValues.pharmacistLicense.fileType, (value) => {
+      if (!value) return true; // Allow empty field, assuming it's optional
+      const supportedFileTypes = ["application/pdf", "image/jpeg", "image/png"];
+      return supportedFileTypes.includes((value as FileObject)?.type); // Use type assertion
+    })
+    .test("fileSize", errorValues.pharmacistLicense.fileSize, (value) => {
+      if (!value) return true; // Allow empty field, assuming it's optional
+      const maxSize = 5 * 1024 * 1024; // 5MB
+      return (value as FileObject)?.size <= maxSize; // Use type assertion
+    }),
 });
 
 export const createAccoutSchemaStep2 = Yup.object({
