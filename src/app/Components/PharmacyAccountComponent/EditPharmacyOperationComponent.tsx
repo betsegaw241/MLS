@@ -1,13 +1,22 @@
-import { Form, Formik } from "formik";
+import { ErrorMessage, Form, Formik } from "formik";
 import { Button, Flex, Grid, Text } from "../ui/Blocks";
 import { InputField } from "../ui/InputComponent";
 import Switch from "@mui/material/Switch";
 import { useState } from "react";
+import Dropdown from "../ui/Blocks/Dropdown";
+import {
+  editDeliveryInformationValidation,
+  editPharmacyIntialValues,
+} from "app/Pages/PharmacyAccountPage/validation";
 
 const EditPharmacyOperationsComponent = (props: any) => {
-  const [ischecked, setIsChecked] = useState(
-    props.pharmacy.isDeliveryAvailable
-  );
+  const [ischecked, setIsChecked] = useState(props.pharmacy.hasDeliveryService);
+
+  const units = [
+    { label: "minute", value: "minute" },
+    { label: "hour", value: "hour" },
+    { label: "day", value: "day" },
+  ];
   return (
     <Flex
       width={"100%"}
@@ -17,15 +26,20 @@ const EditPharmacyOperationsComponent = (props: any) => {
       justifyContent={"center"}
     >
       <Formik
-        initialValues={props.pharmacy}
+        initialValues={props.initialValues}
         onSubmit={(values) => {
           props.handleUpdateOperations(values);
         }}
-        validationSchema={""}
+        validationSchema={editDeliveryInformationValidation}
       >
-        {({ handleSubmit, setFieldValue }) => {
+        {({ handleSubmit, setFieldValue, initialValues }) => {
           return (
-            <Flex justifyContent={"center"} alignItems={"center"} p={5}>
+            <Flex
+              justifyContent={"center"}
+              alignItems={"center"}
+              p={5}
+              width={"100%"}
+            >
               <Form>
                 <Flex
                   flexDirection="column"
@@ -35,7 +49,7 @@ const EditPharmacyOperationsComponent = (props: any) => {
                   justifyContent={"center"}
                   style={{ gap: 10 }}
                 >
-                  <Flex style={{ gap: 20 }}>
+                  <Flex style={{ gap: 20, width: "100%" }}>
                     <Text fontFamily={"poppins"} fontSize={6}>
                       Enable Delivery
                     </Text>
@@ -44,7 +58,7 @@ const EditPharmacyOperationsComponent = (props: any) => {
                       size="medium"
                       onChange={() => {
                         setIsChecked(!ischecked);
-                        setFieldValue("isDeliveryAvailable", !ischecked);
+                        setFieldValue("hasDeliveryService", !ischecked);
                       }}
                     />
                   </Flex>
@@ -52,45 +66,76 @@ const EditPharmacyOperationsComponent = (props: any) => {
                     borderRadius={0}
                     gridColumnGap={"40px"}
                     gridRowGap={"15px"}
-                    gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]}
+                    gridTemplateColumns={[
+                      "repeat(1, 1fr)",
+                      "repeat(2, 1fr)",
+                      "repeat(3, 1fr)",
+                    ]}
                   >
                     {" "}
                     <Flex flexDirection={"column"} style={{ gap: 3 }}>
                       <InputField
-                        name="deliveryWaitingTime"
-                        type="text"
-                        label="Deliver Waiting Time"
+                        name="deliveryCoverage"
+                        type="number"
+                        label="Delivery Area in km"
                       />
                     </Flex>
                     <Flex flexDirection={"column"} style={{ gap: 3 }}>
                       <InputField
-                        name="deliveryTimes"
-                        type="text"
-                        label="Delivery Times"
-                      />
-                    </Flex>
-                    <Flex flexDirection={"column"} style={{ gap: 3 }}>
-                      <InputField
-                        name="deliveryArea"
-                        type=""
-                        label="Delivery Area"
-                      />
-                    </Flex>
-                    <Flex flexDirection={"column"} style={{ gap: 3 }}>
-                      <InputField
-                        name="deliveryFeeinKm"
-                        type=""
-                        label="Delivery Fee in KM"
-                      />
-                    </Flex>
-                    <Flex flexDirection={"column"} style={{ gap: 3 }}>
-                      <InputField
-                        name="fastDeliveryFee"
-                        type=""
-                        label="Fast Delivery Fee"
+                        name="deliveryPricePerKm"
+                        type="number"
+                        label="Delivery Price in KM"
                       />
                     </Flex>
                   </Grid>
+                  <Flex>
+                    <Flex alignItems={"center"} width={"100%"}>
+                      <Flex
+                        flexDirection={"column"}
+                        style={{ gap: 3 }}
+                        width={"50%"}
+                      >
+                        <InputField
+                          name="minDeliveryTime"
+                          type="number"
+                          label="Minimum Delivery time"
+                        />
+                        <Text fontFamily={"poppins"} fontSize={2} color={"red"}>
+                          <ErrorMessage name="minWaitingTimeUnit" />
+                        </Text>
+                      </Flex>
+                      <Dropdown
+                        options={units}
+                        label={"select unit"}
+                        handleChange={(value: string) =>
+                          setFieldValue("minWaitingTimeUnit", value)
+                        }
+                      />
+                    </Flex>
+                    <Flex alignItems={"center"} width={"100%"}>
+                      <Flex
+                        flexDirection={"column"}
+                        style={{ gap: 3 }}
+                        width={"50%"}
+                      >
+                        <InputField
+                          name="maxDeliveryTime"
+                          type="number"
+                          label="Maximum Delivery time"
+                        />
+                        <Text fontFamily={"poppins"} fontSize={2} color={"red"}>
+                          <ErrorMessage name="maxWaitingTimeUnit" />
+                        </Text>
+                      </Flex>
+                      <Dropdown
+                        options={units}
+                        label={"select unit"}
+                        handleChange={(value: string) =>
+                          setFieldValue("maxWaitingTimeUnit", value)
+                        }
+                      />
+                    </Flex>
+                  </Flex>
 
                   <Flex justifyContent="flex-end" alignItems="center">
                     <Button

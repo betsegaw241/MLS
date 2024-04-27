@@ -14,7 +14,15 @@ export const selectLoading = createSelector(
   [selectSlice],
   (state) => state.isLoading
 );
-export const selectUpdationg = createSelector(
+export const selectUpdated = createSelector(
   [selectSlice],
-  (state) => state.isUpdating
+  (state) => state.isUpdated
+);
+export const selectLink = createSelector(
+  [selectSlice],
+  (state) => state.link
+);
+export const selectBanks = createSelector(
+  [selectSlice],
+  (state) => state.banks
 );

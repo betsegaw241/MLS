@@ -1,29 +1,26 @@
+import { IPharmacy } from "../types";
+
 export interface pharmacyAccountPageState {
   isLoading: boolean;
   isUpdating: boolean;
   pharmacy: IPharmacy;
+  link: string;
+  isUpdated:boolean;
+  banks:IbankData;
 }
 
-export interface IPharmacy {
-  _id: string;
-  name: string;
-  email: string;
-  phoneNumber: string;
-  phoneline2?: string;
-  state: string;
-  city: string;
-  operationalHours: string;
-  coverPhoto?: string;
-  pharmacyLogo?: string;
-  deliveryWaitingTime: string;
-  deliveryTimes: string;
-  deliveryArea: string;
-  fastDeliveryFee: string;
-  deliveryFeeinKm: string;
-  isDeliveryAvailable: boolean;
-  socialMedia: {
-    facebook: string;
-    telegram: string;
-    linkedin: string;
-  };
+
+export interface IbankData{
+  data:Account[];
+
+}
+interface Account {
+  accountHolderName: string;
+  accountNumber: string;
+  bankName: string;
+  branchName: string;
+  accountType: string;
+  bankCode: string;
+  name:string;
+  id:string;
 }

@@ -6,4 +6,4 @@ export const getMenu = (role?: string | null) => {
     : role === "pharmacist"
     ? PharmaciesMenu
     : null;
-};
+}
