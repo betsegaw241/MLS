@@ -5,52 +5,43 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "utils/firebaseConfig";
 import { useDispatch } from "react-redux";
 import { useAddPharmacyPageSlice } from "./slice";
+import api from "../../../API/api";
+import { useState } from "react";
 
 const AddPharmacyPage = () => {
   const { actions } = useAddPharmacyPageSlice();
   const dispatch = useDispatch();
+  const [pharmacyLisense, setPharmacyLisense] = useState("");
+  const formData = new FormData();
 
-  const handleUpload = (file: any) => {
-    return new Promise((resolve, reject) => {
-      if (file) {
-        const storageRef = ref(storage, file.name);
+  const handleAddPharmacy = async (values: any) => {
+    formData.append("file", values.pharmacyLicense);
+    await uploadFileAndUpdateState(formData, setPharmacyLisense);
+    formData.delete("file");
 
-        uploadBytes(storageRef, file)
-          .then((snapshot) => {
-            getDownloadURL(storageRef)
-              .then((downloadURL) => {
-                resolve(downloadURL);
-              })
-              .catch((error) => {
-                console.error("Error getting download URL:", error);
-                reject(error);
-              });
-          })
-          .catch((error) => {
-            console.error("Error uploading file:", error);
-            reject(error);
-          });
-      } else {
-        console.error("No file selected.");
-        reject(new Error("No file selected."));
-      }
-    });
+    dispatch(
+      actions.addPharmacy({ ...values, pharmacyLicense: pharmacyLisense })
+    );
   };
 
-  const handleAddPharmacy = async (values: FormValues) => {
+  async function uploadFileAndUpdateState(
+    data: any,
+    setState: (res: any) => void
+  ) {
     try {
-      const nigdFikadURL = await handleUpload(values.nigdFikad);
-      const pharmacyLicenseURL = await handleUpload(values.pharmacyLicense);
-      const updatedData = {
-        ...values,
-        nigdFikad: nigdFikadURL,
-        pharmacyLicense: pharmacyLicenseURL,
-      };
-      console.log("handleAddPharmacy", updatedData);
+      const res = await api({
+        route: `/file/upload`,
+        method: "POST",
+        isSecureRoute: true,
+        body: data,
+      });
+      if (res) {
+        setState(res);
+      }
     } catch (error) {
-      console.log("handleAddPharmacy--error", error);
+      console.log(error);
     }
-  };
+  }
 
   return (
     <>
@@ -59,7 +50,6 @@ const AddPharmacyPage = () => {
         errorMessage={""}
         handleAddpharmacy={handleAddPharmacy}
       />
-      ;
     </>
   );
 };

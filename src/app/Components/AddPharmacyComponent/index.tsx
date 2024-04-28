@@ -16,9 +16,10 @@ const AddParmacyComponent = (props: AddPharmacyComponentProps) => {
   }, []);
 
   return (
-    <>
-      <Header notifications={[]} />
-      <Flex justifyContent={"center"} alignItems={"center"}>
+    <Flex pt={70} width={"100%"}>
+      <Header notifications={[]}  />
+
+      <Flex width={"100%"} justifyContent={"center"}>
         <Formik
           initialValues={props.initialValues}
           onSubmit={(values) => {
@@ -29,119 +30,109 @@ const AddParmacyComponent = (props: AddPharmacyComponentProps) => {
           {({ handleSubmit, setFieldValue, values }) => {
             const handleMapClick = (position: any[]) => {
               const locationString = `${position[0]},${position[1]}`;
-              setFieldValue("pharmacyLocation", locationString);
+              setFieldValue("location", locationString);
             };
-            const nigdFikad = values.nigdFikad?.name;
             const pharmacyLicense = values.pharmacyLicense?.name;
 
             return (
-              <Form>
+              <Form style={{ display: "flex", width: "90%" }}>
                 <Flex
-                  flexDirection="column"
                   mt={5}
-                  width={["100%", "100%", "600px"]}
+                  width={"100%"}
                   borderRadius={"8px"}
                   p={2}
-                  marginTop={"70px"}
+                  flexDirection={["column", "column", "row"]}
+                  style={{ gap: 50 }}
                 >
-                  <Flex justifyContent={'center'} p={1} >
-                    <Text fontFamily={'poppins'} fontSize={6}>Add New Pharmacy</Text>
+                  <Flex flexDirection={"column"} flex={1} style={{ gap: 5 }}>
+                    <Flex py={1}>
+                      <Text fontFamily={"poppins"} fontSize={6}>
+                        Register Pharmacy
+                      </Text>
+                    </Flex>
+
+                    <InputField
+                      name="name"
+                      type="text"
+                      label="Pharmacy Name"
+                    />
+                    <Flex width={"100%"} style={{ gap: 20 }}>
+                      <Flex flexDirection={"column"} flex={1}>
+                        <InputField
+                          name="email"
+                          type="text"
+                          label="Pharmacy Email"
+                        />
+                      </Flex>
+                      <Flex flexDirection={"column"} flex={1}>
+                        <InputField
+                          name="phoneNumber"
+                          type=""
+                          label="Phone Number"
+                        />
+                      </Flex>
+                    </Flex>
+
+                    <Flex flexDirection={"column"} width={"100%"}>
+                      <Text fontFamily={"poppins"} fontSize={5} paddingY={1}>
+                        Pharmacy Lisence
+                      </Text>
+                      <FileUpload
+                        file={(file: FileObject) =>
+                          setFieldValue("pharmacyLicense", file)
+                        }
+                      />
+                      <Flex>
+                        <Text fontFamily={"poppins"} color={"green"}>
+                          {pharmacyLicense}
+                        </Text>
+                      </Flex>
+                      <Text
+                        fontFamily={"poppins"}
+                        fontSize={"12px"}
+                        color={"red"}
+                        p={"2px"}
+                      >
+                        <ErrorMessage name="pharmacyLicense" />
+                      </Text>
+                    </Flex>
                   </Flex>
 
-                  <InputField
-                    name="pharmacyName"
-                    type="text"
-                    label="Pharmacy Name"
-                  />
-                  <InputField
-                    name="pharmacyEmailAddress"
-                    type="text"
-                    label="Pharmacy Email"
-                  />
-                  <InputField
-                    name="pharmacyPhoneNumber"
-                    type=""
-                    label="Pharmacy Phone Number"
-                  />
-                  <Flex flexDirection={"column"} width={"100%"}>
-                    <Text fontFamily={"poppins"} fontSize={"12px"} paddingY={1}>
-                      Pharmacy Lisence
+                  <Flex flexDirection={"column"} flex={1}>
+                    <Text fontFamily={"poppins"} fontSize={5}>
+                      Pharmacy Location
                     </Text>
-                    <FileUpload
-                      file={(file: FileObject) =>
-                        setFieldValue("pharmacyLicense", file)
-                      }
-                    />
-                    <Flex>
-                      <Text fontFamily={"poppins"} color={"green"}>
-                        {pharmacyLicense}
-                      </Text>
+                    <Flex padding={"0px"} paddingTop={"5px"}  >
+                      <MapComponent onMapClick={handleMapClick} />
                     </Flex>
                     <Text
+                      color={"red"}
                       fontFamily={"poppins"}
                       fontSize={"12px"}
-                      color={"red"}
-                      p={"2px"}
+                      p={1}
                     >
-                      <ErrorMessage name="pharmacyLicense" />
+                      <ErrorMessage name="location" />
                     </Text>
-                  </Flex>
-                  <Flex flexDirection={"column"} width={"100%"}>
-                    <Text fontFamily={"poppins"} fontSize={"12px"} paddingY={1}>
-                      Nigd Fikad
-                    </Text>
-                    <FileUpload
-                      file={(file: FileObject) =>
-                        setFieldValue("nigdFikad", file)
-                      }
-                    />
-                    <Flex>
-                      <Text fontFamily={"poppins"} color={"green"}>
-                        {nigdFikad}
-                      </Text>
+                    <Flex justifyContent="space-between" alignItems="center">
+                      <Button
+                        borderRadius={1}
+                        border={"1px solod #000"}
+                        fontFamily="poppins"
+                        color="white"
+                        height={50}
+                        fontSize={5}
+                        my={2}
+                        variant="primary"
+                        onClick={() => {
+                          handleSubmit();
+                        }}
+                        type="button"
+                        padding={1}
+                        width={"100%"}
+                      >
+                        Submit
+                      </Button>
                     </Flex>
-                    <Text
-                      fontFamily={"poppins"}
-                      fontSize={"12px"}
-                      color={"red"}
-                      p={"2px"}
-                    >
-                      <ErrorMessage name="nigdFikad" />
-                    </Text>
-                  </Flex>
-                  <Text fontFamily={"poppins"} fontSize={"12px"}>
-                    Select Pharmacy Location
-                  </Text>
-                  <Flex padding={"0px"} paddingTop={"5px"}>
-                    <MapComponent onMapClick={handleMapClick} />
-                  </Flex>
-                  <Text
-                    color={"red"}
-                    fontFamily={"poppins"}
-                    fontSize={"12px"}
-                    p={1}
-                  >
-                    <ErrorMessage name="pharmacyLocation" />
-                  </Text>
-                  <Flex justifyContent="space-between" alignItems="center">
-                    <Button
-                      borderRadius={40}
-                      fontWeight="bold"
-                      border={"1px solod #000"}
-                      fontFamily="poppins"
-                      color="white"
-                      fontSize={2}
-                      my={2}
-                      variant="primary"
-                      onClick={() => {
-                        handleSubmit();
-                      }}
-                      type="button"
-                      padding={1}
-                      width={"100%"}
-                    >
-                      Next
-                    </Button>
                   </Flex>
                 </Flex>
               </Form>
@@ -149,7 +140,7 @@ const AddParmacyComponent = (props: AddPharmacyComponentProps) => {
           }}
         </Formik>
       </Flex>
-    </>
+    </Flex>
   );
 };
 

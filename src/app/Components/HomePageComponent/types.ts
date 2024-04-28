@@ -1,7 +1,7 @@
 export interface HomePageProps {
   pharmacies: pharmacy[];
   errorMessage: string;
-  loading:boolean;
+  loading: boolean;
 }
 
 export interface pharmacy {
@@ -10,4 +10,5 @@ export interface pharmacy {
   logo: string;
   email: string;
   phoneNumber: string;
+  status: string;
 }

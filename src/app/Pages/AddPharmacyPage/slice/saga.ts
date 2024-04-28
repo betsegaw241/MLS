@@ -4,13 +4,13 @@ import api from "../../../../API/api";
 import { AxiosResponse } from "axios";
 import { PayloadAction } from "@reduxjs/toolkit";
 
-function* handleAddPharmacy(action: PayloadAction<string>) {
+function* handleAddPharmacy(action: PayloadAction<any>) {
   try {
     const res: AxiosResponse = yield api({
-      route: "/pharmacy/add",
+      route: "/pharmacy/pharmacist",
       method: "POST",
       isSecureRoute: true,
-      body: { user: action.payload },
+      body:  action.payload ,
     });
     if (res.status === 200) {
       yield put(actions.addPharmacySuccess(res));

@@ -35,6 +35,7 @@ const [showNotification, setShowNotification] = useState(false);
             fontFamily={"poppins"}
             fontSize={6}
             fontWeight={"bold"}
+            style={{cursor:'pointer'}}
             onClick={() => navigate("/pharmacist/home")}
           >
             Medicine Locator

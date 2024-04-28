@@ -26,7 +26,6 @@ import NotificationPage from "app/Pages/Notification";
 import TransactionPage from "app/Pages/TransactionPage";
 import FeedbacksPage from "app/Pages/FeedbacksPage";
 import TransactionDetailPage from "app/Pages/TransactionDetailPage";
-import VerifiedEmail from "app/Components/verifyEmail";
 
 export const routes: IRoute[] = [
   {

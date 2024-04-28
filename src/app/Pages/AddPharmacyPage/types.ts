@@ -1,15 +1,13 @@
 export interface FormValues {
-  pharmacyName: string;
-  pharmacyEmailAddress: string;
-  pharmacyPhoneNumber: string;
-  pharmacyLocation: string;
+  name: string;
+  email: string;
+  phoneNumber: string;
+  location: string;
   pharmacyLicense: FileObject | null;
-  nigdFikad: FileObject | null;
 }
 export interface FileObject {
-    name: string;
-    type: string;
-    size: number;
-    path: string;
-  }
-  
+  name: string;
+  type: string;
+  size: number;
+  path: string;
+}

@@ -3,23 +3,23 @@ import { errorValues } from "./constants";
 import { FileObject } from "./types";
 
 export const addPharmacyValidationSchema = Yup.object({
-  pharmacyName: Yup.string().trim().required(errorValues.pharmacyName.required),
-  pharmacyEmailAddress: Yup.string()
+  name: Yup.string().trim().required(errorValues.name.required),
+  email: Yup.string()
     .email(errorValues.email.invalid)
     .required(errorValues.email.required),
 
-  pharmacyPhoneNumber: Yup.string()
+    phoneNumber: Yup.string()
     .matches(
       /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})/,
-      errorValues.pharmacyPhoneNumber.invalid
+      errorValues.phoneNumber.invalid
     )
-    .max(10, errorValues.pharmacyPhoneNumber.max)
-    .required(errorValues.pharmacyPhoneNumber.required)
+    .max(10, errorValues.phoneNumber.max)
+    .required(errorValues.phoneNumber.required)
 
-    .min(1, errorValues.pharmacyPhoneNumber.min),
-  pharmacyLocation: Yup.string()
+    .min(1, errorValues.phoneNumber.min),
+    location: Yup.string()
     .trim()
-    .required(errorValues.pharmacyLocation.required),
+    .required(errorValues.location.required),
 
   pharmacyLicense: Yup.mixed()
     .required(errorValues.pharmacyLicense.required)
@@ -33,18 +33,4 @@ export const addPharmacyValidationSchema = Yup.object({
       const maxSize = 5 * 1024 * 1024; // 5MB
       return (value as FileObject)?.size <= maxSize; // Use type assertion
     }),
-  nigdFikad: Yup.mixed()
-    .required(errorValues.nigdFikad.required)
-
-    .test("fileType", errorValues.nigdFikad.fileType, (value) => {
-      if (!value) return true; // Allow empty field, assuming it's optional
-      const supportedFileTypes = ["application/pdf", "image/jpeg", "image/png"];
-      return supportedFileTypes.includes((value as FileObject)?.type); // Use type assertion
-    })
-    .test("fileSize", errorValues.nigdFikad.fileSize, (value) => {
-      if (!value) return true; // Allow empty field, assuming it's optional
-      const maxSize = 5 * 1024 * 1024; // 5MB
-      return (value as FileObject)?.size <= maxSize; // Use type assertion
-    }),
 });
-

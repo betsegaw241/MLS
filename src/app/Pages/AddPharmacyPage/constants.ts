@@ -1,12 +1,11 @@
 import { FormValues } from "./types";
 
 export const initialValues: FormValues = {
-  pharmacyName: "",
-  pharmacyEmailAddress: "",
-  pharmacyPhoneNumber: "",
-  pharmacyLocation: "",
-  pharmacyLicense: null,
-  nigdFikad: null,
+  name: "",
+  email: "",
+  phoneNumber: "",
+  location: "",
+  pharmacyLicense: null
 };
 export const errorValues = {
   email: {
@@ -14,18 +13,18 @@ export const errorValues = {
     required: "Email is required",
   },
 
-  pharmacyPhoneNumber: {
+  phoneNumber: {
     invalid: "Invalid phone number",
     required: "Phone Number is required",
     min: "Phone Number must be at least 10 digits",
     max: "Phone Number is too long",
   },
 
-  pharmacyLocation: {
+  location: {
     // invalid: "Invalid last name",
     required: "Location is required",
   },
-  pharmacyName: {
+  name: {
     // invalid: "Invalid first name",
     required: "Pharmacy Name is required",
   },
