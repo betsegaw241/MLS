@@ -39,6 +39,7 @@ export interface IPharmacy {
   bankName: string;
   accountHolderName: string;
   accountNumber: string;
+  avgRating: number;
 }
 export interface pharmacyInformation {
   _id: string;

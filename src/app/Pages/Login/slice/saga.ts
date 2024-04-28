@@ -3,12 +3,12 @@ import { loginActions as actions } from ".";
 import { PayloadAction } from "@reduxjs/toolkit";
 
 import api from "../../../../API/api";
-import { data } from "../../../models/user";
+import { IUser, data } from "../../../models/user";
 import { FormValues } from "../types";
 
 function* handleLogin(action: PayloadAction<FormValues>) {
   try {
-    const res: data = yield call(api, {
+    const res: IUser = yield call(api, {
       method: "POST",
       route: "/user/login",
       body: action.payload,

@@ -28,6 +28,8 @@ export const userItialValues: UserFormValues = {
   password: "",
   phoneNumber: "",
   confirmPassword: "",
+  pharmacistLicense: null,
+
 };
 export const pharmacyItialValues: ParmacyFormValues = {
   pharmacyName: "",
@@ -38,8 +40,9 @@ export const pharmacyItialValues: ParmacyFormValues = {
 
 export const documentItialValues: DocumentFormValues = {
   pharmacyLicense: null,
-  pharmacistLicense: null,
   nigdFikad: null,
+  pharmacistLicense: null,
+
 };
 
 export const errorValues = {
@@ -92,8 +95,7 @@ export const errorValues = {
     fileSize: "File size is too large. Maximum size is 5MB.",
   },
   pharmacistLicense: {
-    required: "Pharmacis License cannot be empty",
-
+    required: "Pharmacist License cannot be empty",
     fileType: "Invalid file type. Only PDF or Image files allowed.",
     fileSize: "File size is too large. Maximum size is 5MB.",
   },

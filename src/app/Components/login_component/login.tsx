@@ -56,7 +56,7 @@ const LoginComponent = (props: LoginInComponentProp) => {
         <Flex
           width={"40%"}
           display={["none", "none", "flex"]}
-          // background={"blue"}
+          background={"#3C6DEF"}
           height={"100vh"}
           justifyContent={"center"}
           alignItems={"center"}
@@ -74,7 +74,12 @@ const LoginComponent = (props: LoginInComponentProp) => {
             justifyContent={"center"}
             alignItems={"center"}
           >
-            <Text fontFamily={"poppins"} fontSize={3} textAlign={"center"}>
+            <Text
+              fontFamily={"poppins"}
+              fontSize={5}
+              color={"#fff"}
+              textAlign={"center"}
+            >
               {LoginDesplayText[currentIndex]}
             </Text>
           </Flex>
@@ -86,7 +91,7 @@ const LoginComponent = (props: LoginInComponentProp) => {
                   width: "10px",
                   height: "10px",
                   borderRadius: "50%",
-                  background: index === currentIndex ? "blue" : "gray",
+                  background: index === currentIndex ? "#fff" : "gray",
                   margin: "0 5px",
                   cursor: "pointer",
                 }}
@@ -130,10 +135,18 @@ const LoginComponent = (props: LoginInComponentProp) => {
             >
               {({ handleSubmit }) => {
                 return (
-                  <Form style={{ width: "60%" }}>
+                  <Form
+                    style={{
+                      width: "90%",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
                     <Flex
                       flexDirection={"column"}
-                      width={"100%"}
+                      justifyContent={"center"}
+                      width={["100%",'100%','100%', "60%"]}
                       style={{ gap: 5 }}
                     >
                       <InputField name="email" type={"text"} label={"Email"} />
@@ -162,12 +175,12 @@ const LoginComponent = (props: LoginInComponentProp) => {
                         </Text>
                       </Flex>
                       <Button
-                        borderRadius={40}
-                        fontWeight={"bold"}
+                        borderRadius={1}
+                        // fontWeight={"bold"}
                         fontFamily={"poppins"}
                         color={"white"}
                         disabled={props.isLogging}
-                        fontSize={5}
+                        fontSize={6}
                         my={2}
                         variant="primary"
                         onClick={() => {

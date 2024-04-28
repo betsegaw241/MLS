@@ -6,11 +6,12 @@ import {
 } from "../../../../store/utils/redux-injectors";
 import { LoginSaga } from "./saga";
 import { LoginState } from "./types";
-import { data } from "../../../models/user";
+import { IUser, data } from "../../../models/user";
+import { IuserData } from "app/Pages/AdminUsersPage/slice/types";
 
 export const initialState: LoginState = {
   isAuthenticated: false,
-  user: undefined,
+  user: {} as IUser,
   role: "",
   mode: "light",
   isLogging: false,
@@ -27,10 +28,11 @@ const slice = createSlice({
     login: (state: LoginState, action: PayloadAction<any>) => {
       state.isLogging = true;
     },
-    loginSuccess: (state: LoginState, action: PayloadAction<data>) => {
+    loginSuccess: (state: LoginState, action: PayloadAction<IUser>) => {
       state.isLogging = false;
       state.isAuthenticated = true;
       state.role = action.payload.role;
+      state.user = action.payload;
     },
     loginFailed: (state: LoginState, action: PayloadAction<any>) => {
       state.isLogging = false;

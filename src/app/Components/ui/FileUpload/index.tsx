@@ -13,10 +13,11 @@ const FileUpload = (props: any) => {
             width={"100%"}
             height={"80px"}
             borderColor={isDragAccept ? "red" : null}
-            border={"1px  dashed"}
+            border={"2px  dashed  #B4D4FF"}
             justifyContent={"center"}
             alignItems={"center"}
             borderRadius={"8px"}
+            style={{ cursor: "pointer" }}
             {...getRootProps({
               className: "dropzone",
               onDrop: (event) => event.stopPropagation(),

@@ -13,3 +13,14 @@ export interface data {
     _id:string;   
     avatar:string;
 }
+
+export interface IUser{
+  name?:string;
+  email:string;
+  isFirstTime:boolean;
+  role:string;
+  accessToken?:string;
+  _id:string;   
+  avatar:string;
+  status:string;
+}

@@ -37,7 +37,8 @@ const StockComponent = ({
       backgroundColor={"#ffff"}
       m={1}
       borderRadius={1}
-      height={"100vh"}
+      // height={"100vh"}
+      minHeight={"100vh"}
       p={1}
     >
       {loading ? (
@@ -124,9 +125,9 @@ const StockComponent = ({
                             navigate(`/pharmacist/drugdetails/${item._id}`);
                           }}
                         >
-                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
+                          {/* <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
                             {index}
-                          </TableCell>
+                          </TableCell> */}
 
                           <TableCell
                             component="th"
@@ -146,10 +147,13 @@ const StockComponent = ({
                             {item.price}
                           </TableCell>
                           <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {item.stock_Level}
+                            {item.stockLevel}
                           </TableCell>
                           <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {item.min_sockLevel}
+                            {item.minStockLevel}
+                          </TableCell>
+                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
+                            {item.needPrescription}
                           </TableCell>
                         </TableRow>
                       ))}

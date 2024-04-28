@@ -54,6 +54,7 @@ export interface Ipharmacy {
   bankName: string;
   accountHolderName: string;
   accountNumber: string;
+  avgRating:number;
 }
 
 export interface IoperatioData {

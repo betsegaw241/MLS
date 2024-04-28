@@ -28,6 +28,7 @@ export interface UserFormValues {
   phoneNumber: string;
   password: string;
   confirmPassword: string;
+  pharmacistLicense: FileObject | null;
 }
 export interface ParmacyFormValues {
   pharmacyName: string;
@@ -39,4 +40,11 @@ export interface DocumentFormValues {
   pharmacyLicense: FileObject | null;
   pharmacistLicense: FileObject | null;
   nigdFikad: FileObject | null;
+}
+export interface Ipharmacist {
+  pharmacistLicense: File | null;
+  name: string;
+  phoneNumber: string;
+  email: string;
+  password: string;
 }

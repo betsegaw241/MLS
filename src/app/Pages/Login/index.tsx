@@ -8,6 +8,7 @@ import {
   selectIsAuthenticated,
   selectIsLogging,
   selectRole,
+  selectUser,
 } from "./slice/selectors";
 import { useNavigate } from "react-router";
 import { FormValues } from "./types";
@@ -20,12 +21,16 @@ function LoginPage() {
   const isLogging = useSelector(selectIsLogging);
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const errorMessage = useSelector(selectErrorMessage);
+  const user = useSelector(selectUser);
 
   function onLoginClick(values: FormValues) {
     dispatch(actions.login(values));
   }
+
   useEffect(() => {
-    if (isAuthenticated && localStorage.getItem("token")) {
+    if (isAuthenticated && user?.status !== "active") {
+      navigate(`/verifyemail`, { state: { email: user?.email } });
+    } else if (isAuthenticated && localStorage.getItem("token")) {
       role && role === "superAdmin"
         ? navigate(`/superAdmindashboard`)
         : role === "admin"
@@ -35,6 +40,7 @@ function LoginPage() {
         : null;
     }
   }, [isAuthenticated]);
+
   console.log(isAuthenticated, role);
   return (
     <>
