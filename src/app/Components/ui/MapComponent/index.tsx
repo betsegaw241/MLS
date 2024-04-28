@@ -9,22 +9,18 @@ import {
 import { Flex } from "../Blocks";
 
 const MapComponent = (props: any) => {
-  const coordinateStrings = props.position ? props.position.split(",") : null;
-
-  const coordinatesArray = coordinateStrings?.map((coord: string) =>
-    parseFloat(coord)
-  );
   const newpos = props.position
     ? {
-        latitude: coordinatesArray[0],
-        longitude: coordinatesArray[1],
+        latitude: props.position[0],
+        longitude: props.position[1],
       }
     : null;
 
   const [position, setPosition] = useState(
-    props.position ? coordinatesArray : [51.505, -0.09]
+    props.position ? props.position : [51.505, -0.09]
   );
-  const [location, setLocation] = useState(coordinatesArray ? newpos : null);
+
+  const [location, setLocation] = useState(props.position ? newpos : null);
 
   useEffect(() => {
     const handleGetLocation = () => {

@@ -1,7 +1,7 @@
 export interface orderDetailPageState {
   isgettingOrder: boolean;
   isOrderExist: boolean;
-  order: IOrder;
+  order: IOrder[];
   isUpdating: boolean;
 }
 
@@ -27,12 +27,6 @@ export interface Pharmacy {
   email: string;
 }
 
-export interface Drug {
-  name: string;
-  price: number;
-  cost: number;
-  expiredDate: string; // You might want to use Date type here instead of string
-}
 
 export interface SenderAccount {
   accountNumber: string;
@@ -52,17 +46,31 @@ export interface Transaction {
   reason: string;
 }
 
+export interface PayloadType {
+  id: string;
+  order: IOrder[];
+}
+
 export interface IOrder {
   _id: string;
   deliveryAddress: DeliveryAddress;
   status: string;
   drugId: string;
   quantity: number;
-  deliveryDate: string; // You might want to use Date type here instead of string
+  deliveryDate: string; 
   transactionId: string;
-  orderedAt: string; // You might want to use Date type here instead of string
+  orderedAt: string; 
   customer: Customer;
   pharmacy: Pharmacy;
-  drug: Drug;
+  drugs: Drug[];
   transaction: Transaction;
+}
+
+interface Drug {
+  drugId: string;
+  stockId: string;
+  quantity?: number;
+  price?: number;
+  drugName?: string;
+  expiredDate: string;
 }

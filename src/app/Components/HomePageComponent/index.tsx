@@ -17,7 +17,7 @@ const HomePageComponent = (props: HomePageProps) => {
 
   return (
     <>
-      <Header />
+      <Header notifications={[]} />
       <Flex
         backgroundColor={"#ffff"}
         // backgroundColor={"#f5f5f5"}

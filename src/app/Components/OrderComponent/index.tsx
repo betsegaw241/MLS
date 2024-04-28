@@ -4,7 +4,7 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
-import { Box, Flex, P, Text } from "../ui/Blocks";
+import { Box, Button, Flex, P, Text } from "../ui/Blocks";
 import { useNavigate } from "react-router";
 import { OrderTableColumns } from "utils/constants";
 import { TableHeader } from "../ui/Blocks/Table";
@@ -13,6 +13,8 @@ import { FiChevronDown } from "react-icons/fi";
 import { Pagination, ThemeProvider, createTheme } from "@mui/material";
 import { useState } from "react";
 import { Order, OrderComponentProps } from "./types";
+import { IoFilter } from "react-icons/io5";
+import Modal from "../ui/Modal";
 
 const OrderComponent = ({
   onPageChange,
@@ -25,7 +27,7 @@ const OrderComponent = ({
 }: OrderComponentProps) => {
   const navigate = useNavigate();
   const [showSortBy, setShowSortBy] = useState(false);
-  //const [ShowFilter, setShowFilter] = useState(false);
+  const [ShowFilter, setShowFilter] = useState(false);
   const theme = createTheme({
     components: {
       MuiPaginationItem: {
@@ -90,32 +92,35 @@ const OrderComponent = ({
         </Flex>
         <Flex
           borderRadius={"8px"}
-          padding={1}
-          marginLeft={"10%"}
+          paddingX={1}
           background={"#F9FBFF"}
           onClick={() => {
             setShowSortBy(!showSortBy);
           }}
         >
-          <Flex flexDirection={"row"}>
-            <Text fontFamily={"poppins"} fontSize={2}>
-              Filter by : Newest
+          <Flex
+            flexDirection={"row"}
+            alignItems={"center"}
+            style={{ gap: 3 }}
+            onClick={() => setShowFilter(!ShowFilter)}
+          >
+            <IoFilter size={20} color="blue" />
+            <Text fontFamily={"poppins"} fontSize={4}>
+              Filter
             </Text>
-
-            <FiChevronDown fontSize={20} />
           </Flex>
         </Flex>
       </Flex>
       <>
         <Flex
           flexDirection={"column"}
-          height={["400px", "410px", "430px", "300px"]}
+          height={["400px", "410px", "430px", "550px"]}
           justifyContent={"space-between"}
           pb={9}
           style={{ gap: "20px" }}
         >
           <Paper sx={{ width: "100%", boxShadow: "none" }}>
-            <TableContainer component={Paper} sx={{ maxHeight: 558 }}>
+            <TableContainer component={Paper} sx={{ maxHeight: 600 }}>
               <Table
                 aria-label="a dense table"
                 size="small"
@@ -141,17 +146,19 @@ const OrderComponent = ({
                         component="th"
                         scope="row"
                         sx={{
-                          padding: "10px",
-                          height: "0px",
+                          padding: "2px",
+                          height: "2px",
                           fontFamily: "poppins",
                         }}
                       >
                         {order.customer.name}
                       </TableCell>
-                      <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                        {order.drug.name}
-                      </TableCell>
-                      <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
+                      {/* <TableCell sx={{ padding: 0, fontFamily: "poppins" }}>
+                        {order.drugs?.map((drug, index) => (
+                          <span key={index}>{drug.drugName}</span>
+                        ))}
+                      </TableCell> */}
+                      <TableCell sx={{ padding: 1.8, fontFamily: "poppins" }}>
                         {order.customer.email}
                       </TableCell>
                       <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
@@ -193,6 +200,96 @@ const OrderComponent = ({
           </Flex>
         </Flex>
       </>
+      {/* {ShowFilter && (
+        <Box>
+          <Modal
+            open={ShowFilter}
+            setOpen={() => setShowFilter(!ShowFilter)}
+            background="transparent"
+          >
+            <Box
+              backgroundColor={"#fff"}
+              border={"1px solid #dbdbdb"}
+              borderRadius={"8px"}
+              position={"fixed"}
+              right={"200px"}
+              top={"150px"}
+              margin={"4px"}
+              boxShadow={"-1px 5px 6px -5px rgba(0,0,0,0.75)"}
+              width={["30%", "30%", "15%"]}
+              p={1}
+            >
+              <Flex flexWrap={"wrap"} style={{ gap: 8 }}>
+                <Flex flexDirection={"column"} width={"100%"}>
+                  <Text fontFamily={"poppins"} fontSize={2}>
+                   Customer Name
+                  </Text>
+                  <input
+                    name="customerName"
+                    type={"text"}
+                    onChange={(e) => setName(e.target.value)}
+                    style={{
+                      fontFamily: "poppins",
+                      borderRadius: "4px",
+                      border: "1px solid #C7C7C7",
+                      outline: "none",
+                      padding: "4px",
+                    }}
+                  />
+                </Flex>
+
+                <Flex flexDirection={"column"} width={"100%"}>
+                  <Text fontFamily={"poppins"} fontSize={2}>
+                    Drug Name
+                  </Text>
+                  <input
+                    name="drugName"
+                    type={"text"}
+                    onChange={(e) => setDrug(e.target.value)}
+                    style={{
+                      fontFamily: "poppins",
+                      borderRadius: "4px",
+                      border: "1px solid #C7C7C7",
+                      outline: "none",
+                      padding: "4px",
+                    }}
+                  />
+                </Flex>
+
+                <Flex flexDirection={"column"} width={"100%"}>
+                  <Text fontFamily={"poppins"} fontSize={2}>
+                    Email
+                  </Text>
+                  <input
+                    name="email"
+                    type={"text"}
+                    onChange={(e) => setEmail(e.target.value)}
+                    style={{
+                      fontFamily: "poppins",
+                      borderRadius: "4px",
+                      border: "1px solid #C7C7C7",
+                      outline: "none",
+                      padding: "4px",
+                    }}
+                  />
+                </Flex>
+
+                <Button
+                  type="button"
+                  variant="secondary"
+                  p={1}
+                  width={"100%"}
+                  borderRadius={"8px"}
+                  fontFamily={"poppins"}
+                  onClick={() => onFilter()}
+                >
+                  submit
+                </Button>
+              </Flex>
+            </Box>
+          </Modal>
+        </Box>
+      )} */}
     </Box>
   );
 };

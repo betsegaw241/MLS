@@ -78,6 +78,7 @@ const StockComponent = ({
                   setShowSortBy(!showSortBy);
                 }}
               >
+                
                 <Flex
                   flexDirection={"row"}
                   alignItems={"center"}

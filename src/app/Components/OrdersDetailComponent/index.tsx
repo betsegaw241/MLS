@@ -67,7 +67,10 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
             mb={2}
             p={1}
           >
-            <GridBox lable={"Drug"} value={props.order.drug.name} />
+            <GridBox
+              lable={"Drugs"}
+              value={props.order.drugs?.map((drug) => drug.drugName).join(", ")}
+            />
             <GridBox lable={"Dosage"} value={"Zuma"} />
             <GridBox lable={"quantity"} value={props.order.quantity} />
             <GridBox lable={"Drug"} value={"Zuma"} />
@@ -91,14 +94,14 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
             mb={2}
             p={1}
           >
-            <GridBox lable={"Name"} value={props.order.customer.name} />
+            <GridBox lable={"Name"} value={props.order.customer?.name} />
             <GridBox
               lable={"Location"}
-              value={props.order.deliveryAddress.address}
+              value={props.order.deliveryAddress?.address}
             />
             <GridBox
               lable={"Phone"}
-              value={props.order.deliveryAddress.phoneNumber}
+              value={props.order.deliveryAddress?.phoneNumber}
             />
           </Grid>
         </Box>
@@ -127,8 +130,8 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
               value={formatDate(props.order.orderedAt)}
             />
             <GridBox lable={"quantity"} value={props.order.quantity} />
-            <GridBox lable={"price per unit"} value={props.order.drug.price} />
-            <GridBox lable={"Total Cost"} value={props.order.drug.cost} />
+            <GridBox lable={"price per unit"} value={props.order.drug?.price} />
+            <GridBox lable={"Total Cost"} value={props.order.drug?.cost} />
           </Grid>
         </Box>
         <Flex flexDirection={"column"}>
@@ -141,7 +144,9 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
             backgroundColor={"#f5f5f5f5"}
             borderRadius={1}
           >
-            <MapComponent />
+            <MapComponent
+              position={props.order.deliveryAddress?.location.coordinates}
+            />
           </Box>
         </Flex>
         <Flex

@@ -1,7 +1,7 @@
 export interface Order {
   id: number;
   name: string;
-  drug: string;
+  drugs: Drug[];
   phone: string;
   location: string;
   time: string;
@@ -11,4 +11,10 @@ export interface OrderComponentProps {
   orders: object;
 };
 
-
+interface Drug {
+  drugId: string;
+  stockId: string;
+  quantity?: number;
+  price?: number;
+  drugName?: string;
+}

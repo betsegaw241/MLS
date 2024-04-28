@@ -19,13 +19,6 @@ export interface Pharmacy {
   email: string;
 }
 
-export interface Drug {
-  name: string;
-  price: number;
-  cost: number;
-  expiredDate: string; // You might want to use Date type here instead of string
-}
-
 export interface SenderAccount {
   accountNumber: string;
   bankName: string;
@@ -56,13 +49,22 @@ export interface IOrder {
   orderedAt: string; // You might want to use Date type here instead of string
   customer: Customer;
   pharmacy: Pharmacy;
-  drug: Drug;
+  drugs: Drug[];
   transaction: Transaction;
 }
 export interface IorderDetailComponent {
   order: IOrder;
-  onRejectClick: (values: IOrder) => void;
-  onAcceptClick: (values: IOrder) => void;
+  onRejectClick: (values: IOrder[]) => void;
+  onAcceptClick: (values: IOrder[]) => void;
 
   isUpdating: boolean;
+}
+
+interface Drug {
+  drugId: string;
+  stockId: string;
+  quantity?: number;
+  price?: number;
+  drugName?: string;
+  expiredDate: string;
 }

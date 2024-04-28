@@ -1,21 +1,25 @@
-import OrderDetailComponent, { IStatus } from "app/Components/OrdersDetailComponent";
+import OrderDetailComponent, {
+  IStatus,
+} from "app/Components/OrdersDetailComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useOrderDetailPageSlice } from "./slices";
-import { selectOrder, selectIsUpdating, selectloading } from "./slices/selector";
+import {
+  selectOrder,
+  selectIsUpdating,
+  selectloading,
+} from "./slices/selector";
 import { useEffect, useState } from "react";
 import LoadingPage from "utils/LoadingPage";
-import { IOrder } from "./slices/types";
 
 const OrderDetailPage = () => {
   const { id } = useParams();
-const [status, setStatus] = useState<IStatus>({ status: "Pending" });
+  const [status, setStatus] = useState<IStatus>({ status: "Pending" });
   const dispatch = useDispatch();
   const { actions } = useOrderDetailPageSlice();
   const order = useSelector(selectOrder);
   const loading = useSelector(selectloading);
   const isUpdating = useSelector(selectIsUpdating);
-
 
   useEffect(() => {
     // Dispatch action to fetch orders when component mounts
@@ -23,37 +27,45 @@ const [status, setStatus] = useState<IStatus>({ status: "Pending" });
   }, []);
   console.log(loading);
 
-useEffect(() => {
-  dispatch(actions.updateStatus(id));
-}, []);
+  useEffect(() => {
+    if (isUpdating && localStorage.getItem("token")) {
+      dispatch(actions.updateStatus(id));
+    }
+  }, [isUpdating, dispatch, actions, id]);
 
- 
-  async function onRejectClick(values: IOrder): Promise<void> {
-   
+  async function onRejectClick(): Promise<void> {
+    try {
       dispatch(
         actions.updateStatus({
-          order: {
-            status: values.status,
-          },
           id: id,
+          order: {
+            status: "rejected",
+          },
         })
       );
-    
-  }
-  async function onAcceptClick(values: IOrder): Promise<void> {
-    dispatch(
-      actions.updateStatus({
-        order: {
-          status: values.status,
-        },
-        id: id,
-      })
-    );
+    } catch (error) {
+      console.error("Error rejecting order:", error);
+    }
   }
 
-  return order._id ? (
+  async function onAcceptClick(): Promise<void> {
+    try {
+      dispatch(
+        actions.updateStatus({
+          id: id,
+          order: {
+            status: "inprogress",
+          },
+        })
+      );
+    } catch (error) {
+      console.error("Error accepting order:", error);
+    }
+  }
+
+  return order[0]?._id ? (
     <OrderDetailComponent
-      order={order}
+      order={order[0]}
       isUpdating={isUpdating}
       onRejectClick={onRejectClick}
       onAcceptClick={onAcceptClick}

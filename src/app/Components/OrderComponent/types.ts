@@ -16,10 +16,13 @@ interface Pharmacy {
 }
 
 interface Drug {
-  name: string;
-  price: number;
-  cost: number;
+  drugId: string;
+  stockId: string;
+  quantity?: number;
+  price?: number;
+  drugName?: string;
 }
+
 
 interface DeliveryAddress {
   location: {
@@ -41,14 +44,14 @@ export interface Order {
   status: string;
   orderedTo: string;
   orderedBy: string;
-  drugId: string;
   quantity: number;
   deliveryDate: string;
   createdAt: string;
   customer: Customer;
   pharmacy: Pharmacy;
-  drug: Drug;
+  drugs: Drug[];
   profit: number;
+  
 }
 
 interface OrderData {

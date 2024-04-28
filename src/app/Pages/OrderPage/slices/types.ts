@@ -10,10 +10,18 @@ export interface Iorder {
   length: number;
   id: number;
   name: string;
-  drug: string;
+  drugs: Drug[];
   phone: string;
   location: string;
   time: string;
   status: string;
-  totalPages:number;
+  totalPages: number;
+}
+
+interface Drug {
+  drugId: string;
+  stockId: string;
+  quantity?: number;
+  price?: number;
+  drugName?: string;
 }

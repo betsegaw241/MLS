@@ -25,13 +25,12 @@ function* handleFetchOrder(
 }
 function* handleReject(action: PayloadAction<any>) {
   try {
+    const { orderId } = action.payload;
+
     const res: AxiosResponse = yield api({
-      route: `/order/${action.payload.id}/reject`,
+      route: `/order/${orderId}/reject`,
       method: "PUT",
       isSecureRoute: true,
-      body: {
-        status: action.payload.order.status,
-      },
     });
 
     if (res) {
@@ -41,28 +40,29 @@ function* handleReject(action: PayloadAction<any>) {
     console.error("Error updating order status:", error);
   }
 }
-// function* handleAccept(action: PayloadAction<any>) {
-//   try {
-//     const res: AxiosResponse = yield api({
-//       route: `/order/:${action.payload.id}/accept`,
-//       method: "PUT",
-//       isSecureRoute: true,
-//       body: {
-//         status: action.payload.order.status,
-//       },
-//     });
 
-//     if (res) {
-//       yield put(actions.updateStatus(res.data)); // Assuming res.data contains the updated order
-//     }
-//   } catch (error) {
-//     console.error("Error updating order status:", error);
-//   }
-// }
+function* handleAccept(action: PayloadAction<any>) {
+  try {
+    const { _id } = action.payload;
+
+    const res: AxiosResponse = yield api({
+      route: `/order/${_id}/accept`,
+      method: "PUT",
+      isSecureRoute: true,
+    });
+
+    if (res) {
+      yield put(actions.updateStatus(res)); 
+    }
+  } catch (error) {
+    console.error("Error updating order status:", error);
+
+  }
+}
 
 export function* OrderDetailPageSaga() {
-  yield takeLatest(actions.fetchOrder.type, handleFetchOrder);
+yield takeLatest(actions.fetchOrder.type, handleFetchOrder);
 yield takeLatest(actions.updateStatus.type, handleReject);
-//yield takeLatest(actions.updateStatus.type, handleAccept);
+yield takeLatest(actions.updateStatus.type, handleAccept);
 
 }

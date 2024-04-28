@@ -114,11 +114,6 @@ export const OrderTableColumns: IColumn[] = [
   },
 
   {
-    id: "Drug",
-    label: "Drug",
-    minWidth: 100,
-  },
-  {
     id: "Email",
     label: "Email",
     minWidth: 100,
