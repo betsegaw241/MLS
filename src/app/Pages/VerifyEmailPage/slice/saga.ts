@@ -7,7 +7,7 @@ import { PayloadAction } from "@reduxjs/toolkit";
 function* handleVerifyAccount(action: PayloadAction<any>) {
   try {
     const res: AxiosResponse = yield api({
-      route: "/user/activate-account",
+      route: "/user/verify-otp",
       method: "POST",
       isSecureRoute: true,
       body: action.payload,

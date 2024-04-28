@@ -1,6 +1,6 @@
 /* --- STATE --- */
 
-import { IUserModel } from "app/models/user";
+import { IUser, IUserModel } from "app/models/user";
 
 export interface IRedirectAction {
   path: string | null;
@@ -12,7 +12,7 @@ export interface LoginState {
   redirectTo: IRedirectAction;
   mode: string;
   role: string;
-  user?: IUserModel;
+  user?: IUser;
   isLogging: boolean;
   isAuthenticated: boolean;
   errorMessage: string;

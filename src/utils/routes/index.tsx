@@ -6,7 +6,6 @@ import CreateAccountPage from "app/Pages/createAccountPage/index";
 import AddPharmacyPage from "app/Pages/AddPharmacyPage/index";
 import HomePage from "app/Pages/HomePage";
 import ProfilePage from "app/Pages/ProfilePage";
-import VerifyEmailComponent from "app/Components/verifyEmail/VerifyEmailComponent";
 import VerifyEmailPage from "app/Pages/VerifyEmailPage";
 import AdminVerifyPharmacy from "app/Components/AdminVerifyPharmacy";
 import ManageInventoryPage from "app/Pages/ManageInventoryPage";
@@ -27,6 +26,7 @@ import NotificationPage from "app/Pages/Notification";
 import TransactionPage from "app/Pages/TransactionPage";
 import FeedbacksPage from "app/Pages/FeedbacksPage";
 import TransactionDetailPage from "app/Pages/TransactionDetailPage";
+import VerifiedEmail from "app/Components/verifyEmail";
 
 export const routes: IRoute[] = [
   {
@@ -142,19 +142,13 @@ export const routes: IRoute[] = [
     needsLayout: true,
   },
   {
-    element: <VerifyEmailComponent />,
+    element: <VerifyEmailPage />,
     exact: true,
     path: "/verifyemail",
     isProtected: false,
     allowedRole: "*",
   },
-  {
-    element: <VerifyEmailPage />,
-    exact: true,
-    path: "/verifiedemail/activate",
-    isProtected: false,
-    allowedRole: "*",
-  },
+
   {
     element: <PharmacyStockPage />,
     exact: true,

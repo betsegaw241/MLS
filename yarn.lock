@@ -6641,6 +6641,11 @@ react-only-when@^1.0.2:
   resolved "https://registry.npmjs.org/react-only-when/-/react-only-when-1.0.2.tgz"
   integrity sha512-agE6l3L6bqaVuwNtjihTQ36M+VBfPS63KOzcNL4ZTmlwSxQPvhzIqmBWfiol0/wLYmKxCcBqgXkEJpvj5Kob8Q==
 
+react-otp-input@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.npmjs.org/react-otp-input/-/react-otp-input-3.1.1.tgz"
+  integrity sha512-bjPavgJ0/Zmf/AYi4onj8FbH93IjeD+e8pWwxIJreDEWsU1ILR5fs8jEJmMGWSBe/yyvPP6X/W6Mk9UkOCkTPw==
+
 react-pdf@7.5.0:
   version "7.5.0"
   resolved "https://registry.npmjs.org/react-pdf/-/react-pdf-7.5.0.tgz"

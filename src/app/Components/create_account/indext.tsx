@@ -48,7 +48,7 @@ const CreateAccount = (props: CreateAccountComponentProp) => {
       </Flex>
       <Flex
         backgroundColor={theme.colors.light.white[0]}
-        justifyContent={"flex-start"}
+        justifyContent={"center"}
         alignItems={"center"}
         flexDirection={"column"}
         width={["100%", "65%"]}
@@ -98,10 +98,10 @@ const CreateAccount = (props: CreateAccountComponentProp) => {
                       />
                     </Flex>
                   </Flex>
-                  <InputField name="email" type={"text"} label={"Email"} />
+                  <InputField name="email" type={"email"} label={"Email"} />
                   <InputField
                     name={"phoneNumber"}
-                    type={"phone"}
+                    type={""}
                     label="Phone Number"
                   />
                   <Flex style={{ gap: "20px" }}>

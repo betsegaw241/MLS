@@ -39,12 +39,13 @@ const CreateAccountPage = () => {
   const [set2Data, setStep2Data] = useState(null);
   // const [set3Data, setStep3Data] = useState(null);
   const [currentStep, setCurrentStep] = useState(0);
-  const [lisense, setLisense] = useState("");
+  const [email, setemail] = useState("");
 
   const totalSteps = 3;
   const formData = new FormData();
 
   const onSignupClick = (values: any) => {
+    setemail(values.email);
     formData.append("file", values.pharmacistLicense);
     formData.append("name", `${values.firstName} ${values.lastName}`);
     formData.append("phoneNumber", values.phoneNumber);
@@ -56,7 +57,7 @@ const CreateAccountPage = () => {
 
   useEffect(() => {
     if (isaccountCreated) {
-      navigate(`/verifyemail`);
+      navigate(`/verifyemail`, { state: { email: email } });
     }
   }, [isaccountCreated]);
 
