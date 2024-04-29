@@ -28,19 +28,19 @@ function LoginPage() {
   }
 
   useEffect(() => {
-    if (isAuthenticated && user?.emailVerified == false) {
+    if (isAuthenticated && user?.emailVerified === false) {
       navigate(`/verifyemail`, { state: { email: user?.email } });
     } else if (isAuthenticated && localStorage.getItem("token")) {
-      role && role === "superAdmin"
-        ? navigate(`/superAdmindashboard`)
-        : role === "admin"
-        ? navigate(`/${role}/home`)
-        : role == "pharmacist"
-        ? navigate(`/${role}/home`)
-        : null;
+      if (role) {
+        if (role === "superAdmin") {
+          navigate(`/superAdmindashboard`);
+        } else if (role === "admin" || role === "pharmacist") {
+          navigate(`/${role}/home`);
+        }
+      }
     }
-  }, [isAuthenticated]);
-
+  }, [isAuthenticated, user, role]);
+  
   return (
     <>
       <LoginComponent

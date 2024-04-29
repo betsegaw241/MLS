@@ -37,7 +37,7 @@ const VerifyEmailComponent = (props: any) => {
         backgroundColor={"#ffff"}
         borderRadius={"8px"}
       >
-        {true ? (
+        {props.verified ? (
           <Flex
             flexDirection={"column"}
             justifyContent={"center"}
