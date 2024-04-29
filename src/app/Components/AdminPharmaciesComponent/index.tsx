@@ -57,7 +57,7 @@ StockComponentProps) => {
                 fontFamily={"poppins"}
                 fontSize={6}
               >
-                Users
+                Pharmacies
               </P>
             </Flex>
             <Flex style={{ gap: 10 }}>
@@ -106,7 +106,10 @@ StockComponentProps) => {
                     stickyHeader
                     sx={{ minWidth: 650 }}
                   >
-                    <TableHeader columnName={pharmaciesList} />
+                    <TableHeader
+                      columnName={pharmaciesList}
+                      handleChange={handleFilterUser}
+                    />
                     <TableBody>
                       {pharmacies.data?.map((item, index) => (
                         <TableRow
@@ -120,7 +123,13 @@ StockComponentProps) => {
                             boxShadow: "none",
                           }}
                           onClick={() => {
-                            navigate(`/pharmacist/drugdetails/${item._id}`);
+                            navigate(`/verifyPharmacy`, {
+                              state: {
+                                phaarmacyID: item._id,
+                                pharmacistId: item.pharmacistId,
+                              },
+                            });
+                            // navigate(`/pharmacist/drugdetails/${item._id}`);
                           }}
                         >
                           {/* <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
@@ -144,9 +153,9 @@ StockComponentProps) => {
                           <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
                             {item.phone}
                           </TableCell>
-                          {/* <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {item.}
-                          </TableCell> */}
+                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
+                            {item.status}
+                          </TableCell>
                         </TableRow>
                       ))}
                     </TableBody>

@@ -1,4 +1,4 @@
-export interface AdminPharmaciesPageState {
+export interface VerifyPharmaciesPageState {
   errorMessage: string;
   loading: boolean;
   pharmaciesList: IpharmacyData;
@@ -15,7 +15,6 @@ export interface pharmacy {
   phone: string;
   state: string;
   city: string;
-  status:string;
   operationalHours: string;
   coverPhoto: string;
   pharmacyLogo: string;

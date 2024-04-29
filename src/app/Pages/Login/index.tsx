@@ -41,7 +41,6 @@ function LoginPage() {
     }
   }, [isAuthenticated]);
 
-  console.log(isAuthenticated, role);
   return (
     <>
       <LoginComponent

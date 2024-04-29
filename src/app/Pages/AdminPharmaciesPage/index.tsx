@@ -1,4 +1,4 @@
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoading, selectPharmacies } from "./slice/selector";
 import { UseGetPharmaciesSlice } from "./slice";
@@ -10,7 +10,7 @@ const AdminPharmaciesPage = () => {
   const pharmacies = useSelector(selectPharmacies);
   const loading = useSelector(selectIsLoading);
   const [currentPage, setCurrentPage] = useState(1);
-  const [role, setRole] = useState("");
+  const [status, setStatus] = useState("");
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
@@ -19,14 +19,14 @@ const AdminPharmaciesPage = () => {
     setCurrentPage(page);
   };
 
-  useEffect(() => {
-    dispatch(actions.getpharmacies({ page: currentPage, role: role }));
-  }, [currentPage, role]);
-
   const handleFilterUser = (value: string) => {
-    setRole(value);
+    setStatus(value);
     setCurrentPage(1);
   };
+
+  useEffect(() => {
+    dispatch(actions.getpharmacies({ page: currentPage, status: status }));
+  }, [currentPage, status]);
 
   return (
     <AdminPharmaciesComponent

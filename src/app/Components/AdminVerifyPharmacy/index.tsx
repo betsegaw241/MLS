@@ -13,7 +13,7 @@ import { MdOutlineZoomOut } from "react-icons/md";
 import { MdZoomInMap } from "react-icons/md";
 import { SlCloudDownload } from "react-icons/sl";
 
-const AdminVerifyPharmacy = () => {
+const AdminVerifyPharmacyComponent = (props: any) => {
   const [currentImage, setCurrentImage] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
 
@@ -144,19 +144,20 @@ const AdminVerifyPharmacy = () => {
       width={"100%"}
       flexDirection={"column"}
     >
-      <Flex alignItems={"center"} style={{ gap: 20 }}>
+      <Flex alignItems={"center"} style={{gap:50}}>
         <Text fontFamily={"poppins"} fontSize={6}>
           Verify Pharmacy
         </Text>
         <Text
           fontFamily={"poppins"}
-          fontSize={2}
+          fontSize={3}
           backgroundColor={"#f5f5f5f5"}
           color={"#282E34"}
-          p={"5px"}
+          
           borderRadius={"4px"}
+         
         >
-          pennding
+          pending
         </Text>
       </Flex>
       <Text fontFamily={"poppins"} fontSize={5} p={1}>
@@ -211,14 +212,8 @@ const AdminVerifyPharmacy = () => {
       <Text fontFamily={"poppins"} fontSize={5} p={1}>
         Pharmacist Lisense
       </Text>
-      <Flex flexDirection="column" alignItems="center" >
-        {renderViewer(docs[1])}
-      </Flex>
-      <Text fontFamily={"poppins"} fontSize={5} p={1}>
-        Nigd Fikad
-      </Text>
       <Flex flexDirection="column" alignItems="center">
-        {renderViewer(docs[0])}
+        {renderViewer(docs[1])}
       </Flex>
 
       <Flex
@@ -233,7 +228,8 @@ const AdminVerifyPharmacy = () => {
           borderRadius={1}
           fontFamily={"poppins"}
           fontSize={5}
-          width={100}
+          width={200}
+          onClick={() => props.handleVerify("approve")}
         >
           Approve
         </Button>
@@ -243,7 +239,8 @@ const AdminVerifyPharmacy = () => {
           borderRadius={1}
           fontFamily={"poppins"}
           fontSize={5}
-          width={100}
+          width={200}
+          onClick={() => props.handleVerify("reject")}
         >
           Reject
         </Button>
@@ -251,4 +248,4 @@ const AdminVerifyPharmacy = () => {
     </Flex>
   );
 };
-export default AdminVerifyPharmacy;
+export default AdminVerifyPharmacyComponent;

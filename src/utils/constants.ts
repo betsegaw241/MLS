@@ -337,6 +337,16 @@ export const pharmaciesList: IColumn[] = [
     label: "Phone Number",
     minWidth: 50,
   },
+  {
+    id: "Status",
+    label: "Status",
+    minWidth: 50,
+    options: [
+      { label: "Approved", value: "approved" },
+      { label: "Rejected", value: "rejected" },
+      { label: "Pending", value: "pending" },
+    ],
+  },
 ];
 
 export const TransactionTableColumns: IColumn[] = [

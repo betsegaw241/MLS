@@ -7,7 +7,7 @@ import AddPharmacyPage from "app/Pages/AddPharmacyPage/index";
 import HomePage from "app/Pages/HomePage";
 import ProfilePage from "app/Pages/ProfilePage";
 import VerifyEmailPage from "app/Pages/VerifyEmailPage";
-import AdminVerifyPharmacy from "app/Components/AdminVerifyPharmacy";
+import AdminVerifyPharmacy from "app/Pages/AdminVerifyPharmacy";
 import ManageInventoryPage from "app/Pages/ManageInventoryPage";
 import AddDrugPage from "app/Pages/AddDrugsPage";
 import OrderPage from "app/Pages/OrderPage";
