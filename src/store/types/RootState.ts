@@ -23,6 +23,7 @@ import { transactionPageState } from "app/Pages/TransactionPage/slices/types";
 import { FeedbackPageState } from "app/Pages/FeedbacksPage/slice/types";
 import { VerifyPharmaciesPageState } from "app/Pages/AdminVerifyPharmacy/slice/types";
 import { transactionDetailPageState } from "app/Pages/TransactionDetailPage/slices/types";
+import { FeedbackDetailPageState } from "app/Pages/FeedbackDetail/slice/types";
 
 export interface RootState {
   Layout?: LayoutState;
@@ -50,4 +51,5 @@ export interface RootState {
   feedbacks: FeedbackPageState;
   transactionDetailSlice: transactionDetailPageState;
   verifyPharmacy: VerifyPharmaciesPageState;
+  feedbacksDetail: FeedbackDetailPageState;
 }

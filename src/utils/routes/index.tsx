@@ -26,6 +26,7 @@ import NotificationPage from "app/Pages/Notification";
 import TransactionPage from "app/Pages/TransactionPage";
 import FeedbacksPage from "app/Pages/FeedbacksPage";
 import TransactionDetailPage from "app/Pages/TransactionDetailPage";
+import FeedbackDetailPage from "app/Pages/FeedbackDetail";
 
 export const routes: IRoute[] = [
   {
@@ -247,6 +248,14 @@ export const routes: IRoute[] = [
     element: <FeedbacksPage />,
     exact: true,
     path: "feedbacks",
+    isProtected: true,
+    allowedRole: ["superAdmin", "admin"],
+    needsLayout: true,
+  },
+  {
+    element: <FeedbackDetailPage />,
+    exact: true,
+    path: "feedbackdetail/:id",
     isProtected: true,
     allowedRole: ["superAdmin", "admin"],
     needsLayout: true,
