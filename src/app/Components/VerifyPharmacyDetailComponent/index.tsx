@@ -13,7 +13,7 @@ import { MdOutlineZoomOut } from "react-icons/md";
 import { MdZoomInMap } from "react-icons/md";
 import { SlCloudDownload } from "react-icons/sl";
 
-const AdminVerifyPharmacyComponent = (props: any) => {
+const VerifyPharmacyDetailComponent = (props: any) => {
   const [currentImage, setCurrentImage] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
 
@@ -144,7 +144,7 @@ const AdminVerifyPharmacyComponent = (props: any) => {
       width={"100%"}
       flexDirection={"column"}
     >
-      <Flex alignItems={"center"} style={{gap:50}}>
+      <Flex alignItems={"center"} style={{ gap: 50 }}>
         <Text fontFamily={"poppins"} fontSize={6}>
           Verify Pharmacy
         </Text>
@@ -153,9 +153,7 @@ const AdminVerifyPharmacyComponent = (props: any) => {
           fontSize={3}
           backgroundColor={"#f5f5f5f5"}
           color={"#282E34"}
-          
           borderRadius={"4px"}
-         
         >
           pending
         </Text>
@@ -248,4 +246,4 @@ const AdminVerifyPharmacyComponent = (props: any) => {
     </Flex>
   );
 };
-export default AdminVerifyPharmacyComponent;
+export default VerifyPharmacyDetailComponent;

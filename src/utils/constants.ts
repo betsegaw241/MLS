@@ -23,7 +23,7 @@ export const routeConstants = {
 export const cookieKeys = {
   authToken: "au-few92",
 };
-export const adminMenu: ISideBarMenu[] = [
+export const superAdminMenu: ISideBarMenu[] = [
   {
     label: "Dashboard",
     to: "/dashboard",
@@ -64,6 +64,24 @@ export const adminMenu: ISideBarMenu[] = [
     icon: AiOutlineTransaction,
   },
 
+  {
+    label: "Account",
+    to: "/account",
+    icon: CiUser,
+  },
+];
+
+export const adminMenu: ISideBarMenu[] = [
+  {
+    label: "Dashboard",
+    to: "/dashboard",
+    icon: RxDashboard,
+  },
+  {
+    label: "Pharmacies",
+    to: "/verifyPharmacy",
+    icon: MdOutlineLocalPharmacy,
+  },
   {
     label: "Account",
     to: "/account",
@@ -350,6 +368,28 @@ export const pharmaciesList: IColumn[] = [
   },
 ];
 
+export const VerifypharmaciesList: IColumn[] = [
+  {
+    id: "Name",
+    label: "Name",
+    minWidth: 50,
+  },
+  {
+    id: "Email",
+    label: "Email",
+    minWidth: 50,
+  },
+  {
+    id: "Phone",
+    label: "Phone",
+    minWidth: 50,
+  },
+  {
+    id: "Status",
+    label: "Status",
+    minWidth: 50,
+  },
+];
 export const TransactionTableColumns: IColumn[] = [
   {
     id: "sender",

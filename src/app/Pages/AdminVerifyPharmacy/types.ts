@@ -1,13 +1,22 @@
-export interface FormValues {
+export interface IpharmacyData {
+  data: pharmacy[];
+  totalPages: number;
+}
+export interface pharmacy {
+  _id: string;
   name: string;
   email: string;
-  phoneNumber: string;
-  location: string;
-  pharmacyLicense: FileObject | null;
-}
-export interface FileObject {
-  name: string;
-  type: string;
-  size: number;
-  path: string;
+  phone: string;
+  state: string;
+  city: string;
+  status: string;
+  operationalHours: string;
+  coverPhoto: string;
+  pharmacyLogo: string;
+  deliveryWaitingTime: string;
+  deliveryTimes: string;
+  deliveryArea: string;
+  fastDeliveryFee: string;
+  deliveryFeeinKm: string;
+  isDeliveryAvailable: boolean;
 }

@@ -1,12 +1,10 @@
-import { SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoading, selectPharmacies } from "./slice/selector";
 import { UseGetPharmaciesSlice } from "./slice";
 import AdminPharmaciesComponent from "app/Components/AdminPharmaciesComponent";
 import { UseGetUsersSlice } from "../AdminUsersPage/slice";
 import { selectUsers } from "../AdminUsersPage/slice/selector";
-import { intialValues } from "./constants";
-import { IntialValues } from "app/Components/AdminPharmaciesComponent/types";
 
 const AdminPharmaciesPage = () => {
   const dispatch = useDispatch();
@@ -18,9 +16,6 @@ const AdminPharmaciesPage = () => {
   const [status, setStatus] = useState("");
   const admins = useSelector(selectUsers);
   const [query, setQuery] = useState("");
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
-  const [catagory, setCatagory] = useState("");
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
@@ -47,22 +42,17 @@ const AdminPharmaciesPage = () => {
     label: item.name.charAt(0).toUpperCase() + item.name.slice(1),
   }));
 
-  const handleAssign = (values: IntialValues) => {
-    console.log("$$$$$$$$$$", values);
-  };
   const onSearch = () => {};
+
   return (
     <AdminPharmaciesComponent
       loading={false}
       page={currentPage}
       pharmacies={pharmacies}
-      intialValues={intialValues}
-      admins={adminsArray}
       handlePageChange={handlePageChange}
       handleFilterUser={handleFilterUser}
       setQuery={setQuery}
       onSearch={onSearch}
-      handleAssign={handleAssign}
     />
   );
 };

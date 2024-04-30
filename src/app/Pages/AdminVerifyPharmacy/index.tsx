@@ -1,33 +1,67 @@
 import { useDispatch, useSelector } from "react-redux";
 import { UseVerifyPharmaciesSlice } from "./slice";
-import { useEffect, useState } from "react";
-import { selectPharmacies } from "./slice/selector";
-import AdminVerifyPharmacyComponent from "app/Components/AdminVerifyPharmacy";
+import { ChangeEvent, SetStateAction, useEffect, useState } from "react";
+import { selectIsLoading, selectPharmacies } from "./slice/selector";
 import { useLocation } from "react-router-dom";
+import { UseGetUsersSlice } from "../AdminUsersPage/slice";
+import { selectUsers } from "../AdminUsersPage/slice/selector";
+import VerifyPharmacyComponent from "app/Components/VerifyPharmacyComponent";
+import { intialValues } from "./constants";
+import { IntialValues } from "app/Components/VerifyPharmacyComponent/types";
 
 const AdminVerifyPharmacy = () => {
-  const { actions } = UseVerifyPharmaciesSlice();
   const dispatch = useDispatch();
-  const [pharmacyLisense, setPharmacyLisense] = useState("");
+  const { actions } = UseVerifyPharmaciesSlice();
+  const userActions = UseGetUsersSlice();
   const pharmacies = useSelector(selectPharmacies);
+  const loading = useSelector(selectIsLoading);
   const [currentPage, setCurrentPage] = useState(1);
-  const [role, setRole] = useState("");
+  const [status, setStatus] = useState("");
+  const admins = useSelector(selectUsers);
+  const [query, setQuery] = useState("");
+
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    page: number
+  ) => {
+    setCurrentPage(page);
+  };
+
+  const handleFilterUser = (value: string) => {
+    setStatus(value);
+    setCurrentPage(1);
+  };
 
   useEffect(() => {
-    dispatch(actions.getpharmacies({ page: currentPage, role: role }));
-  }, [currentPage, role]);
-  const location = useLocation();
-  const data = location.state;
+    dispatch(actions.getpharmacies({ page: currentPage, status: "pending" }));
+  }, [currentPage, status]);
 
-  const handleVerify = (values: any) => {
-    console.log(values);
+  useEffect(() => {
+    dispatch(userActions.actions.getUsers({ role: "admin" }));
+  }, []);
+
+  const adminsArray = admins.data.map((item) => ({
+    value: item._id,
+    label: item.name.charAt(0).toUpperCase() + item.name.slice(1),
+  }));
+
+  const handleAssign = (values: IntialValues) => {
+    console.log("$$$$$$$$$$", values);
   };
+  const onSearch = () => {};
   return (
     <>
-      <AdminVerifyPharmacyComponent
-        loading={false}
+      <VerifyPharmacyComponent
+        loading={loading}
+        setQuery={setQuery}
+        onSearch={onSearch}
+        intialValues={intialValues}
+        page={0}
+        admins={adminsArray}
         pharmacies={pharmacies}
-        handleVerify={handleVerify}
+        handlePageChange={handlePageChange}
+        handleFilterUser={handleFilterUser}
+        handleAssign={handleAssign}
       />
     </>
   );

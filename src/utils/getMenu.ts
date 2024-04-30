@@ -1,9 +1,11 @@
-import { PharmaciesMenu, adminMenu } from "./constants";
+import { PharmaciesMenu, adminMenu, superAdminMenu } from "./constants";
 
 export const getMenu = (role?: string | null) => {
-  return role === "admin" || role === "superAdmin"
+  return role === "admin"
     ? adminMenu
     : role === "pharmacist"
     ? PharmaciesMenu
+    : role === "superAdmin"
+    ? superAdminMenu
     : null;
-}
+};

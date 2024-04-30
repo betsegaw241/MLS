@@ -12,7 +12,6 @@ const AddAdminPage = () => {
     try {
       const updatedData = {
         ...values,
-        
       };
       console.log("handleAddAdmin", updatedData);
     } catch (error) {
@@ -27,7 +26,6 @@ const AddAdminPage = () => {
         errorMessage={""}
         handleAddAdmin={handleAddAdmin}
       />
-      ;
     </>
   );
 };

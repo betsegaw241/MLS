@@ -6,32 +6,37 @@ import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import { Box, Button, Flex, P, Text } from "../ui/Blocks";
 import { useNavigate } from "react-router";
-import { UsersList, pharmaciesList } from "utils/constants";
+import { UsersList, VerifypharmaciesList } from "utils/constants";
 import { TableHeader } from "../ui/Blocks/Table";
 import { useState } from "react";
 import LoadingPage from "utils/LoadingPage";
-import { pharmaciesComponentProps } from "./types";
 import Paginate from "../ui/Pagination/Paginate";
 import { IoFilter } from "react-icons/io5";
+import { VerifypharmaciesComponentProps } from "./types";
+import AdminVerifyPharmacyComponent from ".";
 import Modal from "../ui/Modal";
 import { ErrorMessage, Form, Formik } from "formik";
+import { AssignPharmaciesValidationSchema } from "app/Pages/AdminVerifyPharmacy/validation";
 import ReactSelect from "../ui/Blocks/Select/ReactSelect";
 import { InputField } from "../ui/InputComponent";
-import Search from "../ui/SearchBar";
-import { AssignPharmaciesValidationSchema } from "app/Pages/AdminVerifyPharmacy/validation";
 
-const AdminPharmaciesComponent = ({
+const VerifyPharmacyComponent = ({
   pharmacies,
   loading,
+  admins,
   setQuery,
   onSearch,
   page,
   handlePageChange,
   handleFilterUser,
-}: pharmaciesComponentProps) => {
+  handleAssign,
+  intialValues,
+}: VerifypharmaciesComponentProps) => {
   const navigate = useNavigate();
   const [showSortBy, setShowSortBy] = useState(false);
   const [ShowFilter, setShowFilter] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <Box
       width={"100%"}
@@ -58,17 +63,17 @@ const AdminPharmaciesComponent = ({
                 fontFamily={"poppins"}
                 fontSize={6}
               >
-                Pharmacies
+                Users
               </P>
             </Flex>
-            <Flex style={{ gap: 10 }} alignItems={"center"}>
+            <Flex style={{ gap: 10 }}>
               <Flex background={"#F9FBFF"} height={"40px"} padding={"4px"}>
-                <Search
+                {/* <Search
                   onChange={(e) => {
                     setQuery(e.target.value);
                   }}
                   onClick={() => onSearch()}
-                />
+                /> */}
               </Flex>
 
               <Flex
@@ -91,6 +96,15 @@ const AdminPharmaciesComponent = ({
                   </Text>
                 </Flex>
               </Flex>
+              <Text
+                backgroundColor={"#F9FBFF"}
+                p={1}
+                fontFamily={"poppins"}
+                borderRadius={1}
+                onClick={() => setShowModal(true)}
+              >
+                Assign Pharmacies
+              </Text>
             </Flex>
           </Flex>
           <>
@@ -107,10 +121,7 @@ const AdminPharmaciesComponent = ({
                     stickyHeader
                     sx={{ minWidth: 650 }}
                   >
-                    <TableHeader
-                      columnName={pharmaciesList}
-                      handleChange={handleFilterUser}
-                    />
+                    <TableHeader columnName={VerifypharmaciesList} />
                     <TableBody>
                       {pharmacies.data?.map((item, index) => (
                         <TableRow
@@ -123,18 +134,9 @@ const AdminPharmaciesComponent = ({
                             cursor: "pointer",
                             boxShadow: "none",
                           }}
-                          onClick={() => {
-                            navigate(`/verifyPharmacy`, {
-                              state: {
-                                phaarmacyID: item._id,
-                                // pharmacistId: item.pharmacistId,
-                              },
-                            });
-                            // navigate(`/pharmacist/drugdetails/${item._id}`);
-                          }}
                         >
                           {/* <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {index}
+                      {index}
                           </TableCell> */}
 
                           <TableCell
@@ -154,9 +156,9 @@ const AdminPharmaciesComponent = ({
                           <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
                             {item.phone}
                           </TableCell>
-                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {item.status}
-                          </TableCell>
+                          {/* <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
+                            {item.}
+                          </TableCell> */}
                         </TableRow>
                       ))}
                     </TableBody>
@@ -175,8 +177,94 @@ const AdminPharmaciesComponent = ({
           </>
         </>
       )}
+      {showModal && (
+        <Modal
+          open={showModal}
+          setOpen={() => {
+            setShowModal(false);
+          }}
+        >
+          <Flex
+            alignItems={"center"}
+            justifyContent={"center"}
+            position={"relative"}
+            flexDirection={"column"}
+            backgroundColor={"#fff"}
+            p={1}
+            borderRadius={1}
+            width={"40%"}
+          >
+            <Text fontFamily={"poppins"} fontSize={6} p={1}>
+              Assign Pharmacies
+            </Text>
+            <Formik
+              initialValues={intialValues}
+              onSubmit={(values) => {
+                handleAssign(values);
+                setShowModal(false);
+              }}
+              validationSchema={AssignPharmaciesValidationSchema}
+            >
+              {({ handleSubmit, setFieldValue }) => {
+                return (
+                  <Form style={{ width: "90%" }}>
+                    <Flex
+                      width={"100%"}
+                      flexDirection={"column"}
+                      py={1}
+                      style={{ gap: 5 }}
+                    >
+                      <Text fontFamily={"poppins"}>Select Admin</Text>
+                      <ReactSelect
+                        options={admins}
+                        setSelectedOption={(value: string) =>
+                          setFieldValue("admin", value)
+                        }
+                      ></ReactSelect>
+                      <Text fontFamily={"poppins"} fontSize={2} color={"red"}>
+                        <ErrorMessage name="admin" />
+                      </Text>
+                      <Text fontFamily={"poppins"}>
+                        Number of Pharmacies assigned
+                      </Text>
+                      <InputField name={"quantity"} type={"number"} />
+                      <Flex width={"100%"} style={{ gap: 5 }}>
+                        <Button
+                          fontFamily={"poppins"}
+                          variant="secondary"
+                          p={1}
+                          borderRadius={1}
+                          my={1}
+                          fontSize={5}
+                          type="button"
+                          width={"100%"}
+                          onClick={() => handleSubmit()}
+                        >
+                          Assign
+                        </Button>
+                        <Button
+                          fontFamily={"poppins"}
+                          p={1}
+                          borderRadius={1}
+                          my={1}
+                          fontSize={5}
+                          type="button"
+                          width={"100%"}
+                          onClick={() => setShowModal(false)}
+                        >
+                          Cancel
+                        </Button>
+                      </Flex>
+                    </Flex>
+                  </Form>
+                );
+              }}
+            </Formik>
+          </Flex>
+        </Modal>
+      )}
     </Box>
   );
 };
 
-export default AdminPharmaciesComponent;
+export default VerifyPharmacyComponent;
