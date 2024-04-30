@@ -24,12 +24,7 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
     return formattedDate;
   };
   
-  const handleSubmit = (values: IOrder | any) => {
- props.onRejectClick(values);  
-}
- const handleAccept = (values: IOrder | any) => {
-   props.onAcceptClick(values);
- };
+
  
 
   return (
@@ -144,9 +139,10 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
             backgroundColor={"#f5f5f5f5"}
             borderRadius={1}
           >
+          {  props.order.deliveryAddress?.location.coordinates.length > 0 &&
             <MapComponent
               position={props.order.deliveryAddress?.location.coordinates}
-            />
+            />}
           </Box>
         </Flex>
         <Flex
@@ -161,7 +157,7 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
             fontSize={5}
             width={"100px"}
             borderRadius={1}
-            onClick={() => handleAccept(props.order)}
+            onClick={() => props.onAcceptClick()}
           >
             Accept
           </Button>
@@ -171,7 +167,7 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
             fontSize={5}
             width={"100px"}
             borderRadius={1}
-            onClick={() => handleSubmit(props.order)}
+            onClick={() => props.onRejectClick()}
           >
             Reject
           </Button>

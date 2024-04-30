@@ -8,6 +8,9 @@ function* handleFetchOrders(
   action: PayloadAction<any>
 ): Generator<any, void, AxiosResponse<any>> {
   try {
+    console.log('====================================');
+    console.log(action.payload.id);
+    console.log('====================================');
     const res: AxiosResponse<any> = yield api({
       route: "/order",
       method: "GET",
@@ -15,7 +18,7 @@ function* handleFetchOrders(
       query: {
         page: action.payload.page,
         limit: action.payload.limit,
-        orderName: action.payload.orderName,
+        pharmacyId: action.payload.id,
       },
     });
     if (res) {

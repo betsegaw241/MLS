@@ -379,3 +379,16 @@ export const LoginDesplayText = [
   "Enables you to efficiently manage and facilitate order deliveries.",
   "Seamless and accessible payment integration",
 ];
+
+export const feedbackList: IColumn[] = [
+  {
+    id: "Feedback",
+    label: "Feedback",
+    minWidth: 50,
+    options: [
+      { label: "Complaint", value: "complaint" },
+      { label: "Suggestion", value: "suggestion" },
+      { label: "Question", value: "question" },
+    ],
+  },
+];

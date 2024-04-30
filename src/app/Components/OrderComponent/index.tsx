@@ -9,7 +9,6 @@ import { useNavigate } from "react-router";
 import { OrderTableColumns } from "utils/constants";
 import { TableHeader } from "../ui/Blocks/Table";
 import Search from "../ui/SearchBar";
-import { FiChevronDown } from "react-icons/fi";
 import { Pagination, ThemeProvider, createTheme } from "@mui/material";
 import { useState } from "react";
 import { Order, OrderComponentProps } from "./types";
@@ -28,6 +27,9 @@ const OrderComponent = ({
   const navigate = useNavigate();
   const [showSortBy, setShowSortBy] = useState(false);
   const [ShowFilter, setShowFilter] = useState(false);
+  const [customerId, setCustomerId] = useState("");
+  const [pharmacyId, setPharmacyId] = useState("");
+  const [status, setStatus] = useState("");
   const theme = createTheme({
     components: {
       MuiPaginationItem: {
@@ -55,6 +57,7 @@ const OrderComponent = ({
 
     return formattedDate;
   };
+
 
   return (
     <Box
@@ -200,7 +203,7 @@ const OrderComponent = ({
           </Flex>
         </Flex>
       </>
-      {/* {ShowFilter && (
+      {ShowFilter && (
         <Box>
           <Modal
             open={ShowFilter}
@@ -222,12 +225,12 @@ const OrderComponent = ({
               <Flex flexWrap={"wrap"} style={{ gap: 8 }}>
                 <Flex flexDirection={"column"} width={"100%"}>
                   <Text fontFamily={"poppins"} fontSize={2}>
-                   Customer Name
+                    customerId
                   </Text>
                   <input
-                    name="customerName"
+                    name="customerId"
                     type={"text"}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e) => setCustomerId(e.target.value)}
                     style={{
                       fontFamily: "poppins",
                       borderRadius: "4px",
@@ -240,12 +243,12 @@ const OrderComponent = ({
 
                 <Flex flexDirection={"column"} width={"100%"}>
                   <Text fontFamily={"poppins"} fontSize={2}>
-                    Drug Name
+                    pharmacyId
                   </Text>
                   <input
-                    name="drugName"
+                    name="pharmacyId"
                     type={"text"}
-                    onChange={(e) => setDrug(e.target.value)}
+                    onChange={(e) => setPharmacyId(e.target.value)}
                     style={{
                       fontFamily: "poppins",
                       borderRadius: "4px",
@@ -258,12 +261,12 @@ const OrderComponent = ({
 
                 <Flex flexDirection={"column"} width={"100%"}>
                   <Text fontFamily={"poppins"} fontSize={2}>
-                    Email
+                    status
                   </Text>
                   <input
-                    name="email"
+                    name="status"
                     type={"text"}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => setStatus(e.target.value)}
                     style={{
                       fontFamily: "poppins",
                       borderRadius: "4px",
@@ -289,7 +292,7 @@ const OrderComponent = ({
             </Box>
           </Modal>
         </Box>
-      )} */}
+      )}
     </Box>
   );
 };

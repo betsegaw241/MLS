@@ -1,4 +1,4 @@
-import { Box, Button, Flex, P, Text } from "../ui/Blocks";
+import { Box, Button, Flex, Grid, P, Text } from "../ui/Blocks";
 import { InputField } from "../ui/InputComponent";
 import { Form, Formik } from "formik";
 import { editProfileComponentProp } from "./types";
@@ -10,6 +10,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import Header from "../ui/Header";
 import Spinner from "react-activity/dist/Spinner";
 import Modal from "../ui/Modal";
+import { CiMail, CiPhone, CiUser } from "react-icons/ci";
 
 const ProfileComponent = (props: editProfileComponentProp) => {
   const { isFocused, isDragAccept } = useDropzone({ maxFiles: 1 });
@@ -206,7 +207,7 @@ const ProfileComponent = (props: editProfileComponentProp) => {
                   ) : (
                     <Flex
                       flexDirection={"column"}
-                      marginLeft={["20px", "40px", "50px", "74px"]}
+                      marginLeft={["20px", "40px", "50px", "150px"]}
                       marginRight={["20px", "40px", "50px", "74px"]}
                       width={["50%", "60%", "65%", "70%"]}
                       padding={"4%"}
@@ -216,65 +217,91 @@ const ProfileComponent = (props: editProfileComponentProp) => {
                       marginBottom={"2px"}
                       style={{ gap: "2px" }}
                     >
-                      <Flex
-                        ml={"35%"}
-                        mb={"2%"}
-                        mt={"-6%"}
-                        flexDirection={"column"}
+                      <Grid
+                        borderRadius={0}
+                        gridColumnGap={50}
+                        gridRowGap={"15px"}
+                        gridTemplateColumns={[
+                          "repeat(1, 1fr)",
+                          "repeat(2, 1fr)",
+                        ]}
+                        p={1}
                       >
-                        <Text
-                          fontSize="16px"
-                          fontFamily="poppins"
-                          marginBottom="10px"
-                          color="#181717"
-                        >
-                          First Name: {"  "}
+                        <Flex style={{ gap: 10 }}>
+                          <CiUser size={25} color="#B4D4FF" />
+                          <Text fontFamily={"poppins"} fontSize={5}>
+                            First Name:
+                          </Text>
+                        </Flex>
+                        <Text fontFamily={"poppins"} fontSize={5}>
                           {props.initialValues.firstName}
                         </Text>
-                        <Text
-                          fontSize="16px"
-                          fontFamily="poppins"
-                          marginBottom="10px"
-                          color="#181717"
-                        >
-                          Last Name: {"  "}
+                        <Flex style={{ gap: 10 }}>
+                          <CiUser size={25} color="#B4D4FF" />
+                          <Text fontFamily={"poppins"} fontSize={5}>
+                            Last Name:
+                          </Text>
+                        </Flex>
+                        <Text fontFamily={"poppins"} fontSize={5}>
                           {props.initialValues.lastName}
                         </Text>
-                        <Text
-                          fontSize={["14px", "16px"]}
-                          fontFamily="poppins"
-                          marginBottom={["5px", "10px"]}
-                          color="#181717"
-                          style={{ wordWrap: "break-word" }}
-                        >
-                          Email: {"  "}
+                      </Grid>
+                      <Grid
+                        borderRadius={0}
+                        gridColumnGap={50}
+                        gridRowGap={"15px"}
+                        gridTemplateColumns={[
+                          "repeat(1, 1fr)",
+                          "repeat(2, 1fr)",
+                        ]}
+                        p={1}
+                      >
+                        <Flex style={{ gap: 10 }}>
+                          <CiMail size={25} color="#B4D4FF" />
+                          <Text fontFamily={"poppins"} fontSize={5}>
+                            Email:
+                          </Text>
+                        </Flex>
+                        <Text fontFamily={"poppins"} fontSize={5}>
                           {props.initialValues.email}
                         </Text>
-                        <Text
-                          fontSize="16px"
-                          fontFamily="poppins"
-                          marginBottom="10px"
-                          color="#181717"
-                        >
-                          Phone: {props.initialValues.phone}
-                        </Text>
-                      </Flex>
-
-                      <Button
-                        borderRadius={40}
-                        fontWeight={"bold"}
-                        fontFamily={"poppins"}
-                        color={"white"}
-                        fontSize={5}
-                        my={2}
-                        variant="primary"
-                        padding={1}
-                        width={"100%"}
-                        textAlign={"center"}
-                        onClick={() => setEdit(true)}
+                      </Grid>
+                      <Grid
+                        borderRadius={0}
+                        gridColumnGap={50}
+                        gridRowGap={"15px"}
+                        gridTemplateColumns={[
+                          "repeat(1, 1fr)",
+                          "repeat(2, 1fr)",
+                        ]}
+                        p={1}
                       >
-                        Edit
-                      </Button>
+                        <Flex style={{ gap: 10 }}>
+                          <CiPhone size={25} color="#B4D4FF" />
+                          <Text fontFamily={"poppins"} fontSize={5}>
+                            Phone:
+                          </Text>
+                        </Flex>
+                        <Text fontFamily={"poppins"} fontSize={5}>
+                          {props.initialValues.phone}
+                        </Text>
+                        <Button
+                          marginLeft={"90px"}
+                          borderRadius={40}
+                          fontWeight={"bold"}
+                          fontFamily={"poppins"}
+                          color={"white"}
+                          fontSize={5}
+                          my={2}
+                          variant="primary"
+                          padding={1}
+                          width={"100%"}
+                          textAlign={"center"}
+                          onClick={() => setEdit(true)}
+                        >
+                          Edit
+                        </Button>
+                      </Grid>
                     </Flex>
                   )}
                 </Form>

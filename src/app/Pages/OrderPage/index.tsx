@@ -14,45 +14,37 @@ function OrderPage() {
   const [query, setQuery] = useState("");
   const { id } = useParams();
 
-  
-    // Function to handle pagination change
-    const handlePageChange = (
-      event: React.ChangeEvent<unknown>,
-      page: number
-    ) => {
-      setCurrentPage(page); // Update currentPage state
-    };
-    const onSearch = () => {
-      if (query.length > 0) {
-        dispatch(
-          actions.fetchOrders({
-            id: id,
-            page: currentPage,
-            limit: 10,
-            orderName: query,
-          })
-        );
-      }
-    };
-    const onFilter = () => {
-        dispatch(
-          actions.fetchOrders({
-            id: id,
-            page: currentPage,
-            limit: 10,
-            orderName: query,
-           
-          })
-        );
-        setCurrentPage(1);
-      
-    };
-    
-  useEffect(() => {
-    dispatch(actions.fetchOrders({id:id, page:currentPage, limit:10}));
-  }, [currentPage]);
-console.log(orders)
+  const fetchOrders = () => {
+    dispatch(
+      actions.fetchOrders({
+        id: id,
+        page: currentPage,
+        limit: 10,
+        searchQuery: query,
+      })
+    );
+  };
 
+  // Function to handle pagination change
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    page: number
+  ) => {
+    setCurrentPage(page); // Update currentPage state
+  };
+
+  const onSearch = () => {
+    fetchOrders();
+  };
+
+  const onFilter = () => {
+    setCurrentPage(1);
+    fetchOrders();
+  };
+
+  useEffect(() => {
+    fetchOrders();
+  }, [currentPage, query]);
 
   return (
     <>

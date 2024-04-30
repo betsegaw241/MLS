@@ -54,8 +54,8 @@ export interface IOrder {
 }
 export interface IorderDetailComponent {
   order: IOrder;
-  onRejectClick: (values: IOrder[]) => void;
-  onAcceptClick: (values: IOrder[]) => void;
+  onRejectClick: () => void;
+  onAcceptClick: () => void;
 
   isUpdating: boolean;
 }

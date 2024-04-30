@@ -22,45 +22,29 @@ const OrderDetailPage = () => {
   const isUpdating = useSelector(selectIsUpdating);
 
   useEffect(() => {
-    // Dispatch action to fetch orders when component mounts
     dispatch(actions.fetchOrder(id));
   }, []);
-  console.log(loading);
 
-  useEffect(() => {
-    if (isUpdating && localStorage.getItem("token")) {
-      dispatch(actions.updateStatus(id));
-    }
-  }, [isUpdating, dispatch, actions, id]);
-
-  async function onRejectClick(): Promise<void> {
-    try {
-      dispatch(
-        actions.updateStatus({
-          id: id,
-          order: {
-            status: "rejected",
-          },
-        })
-      );
-    } catch (error) {
-      console.error("Error rejecting order:", error);
-    }
+  function onRejectClick() {
+    dispatch(
+      actions.rejectOrder({
+        id: id,
+        order: {
+          status: "rejected",
+        },
+      })
+    );
   }
 
-  async function onAcceptClick(): Promise<void> {
-    try {
-      dispatch(
-        actions.updateStatus({
-          id: id,
-          order: {
-            status: "inprogress",
-          },
-        })
-      );
-    } catch (error) {
-      console.error("Error accepting order:", error);
-    }
+  function onAcceptClick() {
+    dispatch(
+      actions.acceptOrder({
+        id: id,
+        order: {
+          status: "inprogress",
+        },
+      })
+    );
   }
 
   return order[0]?._id ? (

@@ -14,55 +14,56 @@ function* handleFetchOrder(
       isSecureRoute: true,
       query: { id: action.payload },
     });
-     
+
     if (res) {
-      yield put(actions.fetchOrderSuccess(res)); // Assuming data is an array of orders
+      yield put(actions.fetchOrderSuccess(res)); 
     }
   } catch (error) {
     console.log("error=======", error);
     yield put(actions.fetchOrderFailed());
   }
 }
+
 function* handleReject(action: PayloadAction<any>) {
   try {
-    const { orderId } = action.payload;
-
-    const res: AxiosResponse = yield api({
-      route: `/order/${orderId}/reject`,
+    const res: AxiosResponse<any> = yield api({
+      route: `/order/${action.payload}/reject`,
       method: "PUT",
       isSecureRoute: true,
     });
 
     if (res) {
-      yield put(actions.updateStatus(res.data)); // Assuming res.data contains the updated order
+      yield put(actions.rejectOrderSuccess(res));
     }
   } catch (error) {
+    yield put(actions.rejectOrderFailed(error));
+
     console.error("Error updating order status:", error);
   }
 }
 
 function* handleAccept(action: PayloadAction<any>) {
   try {
-    const { _id } = action.payload;
-
     const res: AxiosResponse = yield api({
-      route: `/order/${_id}/accept`,
+      route: `/order/${action.payload}/accept`,
       method: "PUT",
       isSecureRoute: true,
+      query: {
+        pharmacyId: action.payload.pharmacyId,
+      },
     });
 
     if (res) {
-      yield put(actions.updateStatus(res)); 
+      yield put(actions.acceptOrderSuccess(res));
     }
   } catch (error) {
     console.error("Error updating order status:", error);
-
+    yield put(actions.acceptOrderFailed(error));
   }
 }
 
 export function* OrderDetailPageSaga() {
-yield takeLatest(actions.fetchOrder.type, handleFetchOrder);
-yield takeLatest(actions.updateStatus.type, handleReject);
-yield takeLatest(actions.updateStatus.type, handleAccept);
-
+  yield takeLatest(actions.fetchOrder.type, handleFetchOrder);
+  yield takeLatest(actions.rejectOrder.type, handleReject);
+  yield takeLatest(actions.acceptOrder.type, handleAccept);
 }

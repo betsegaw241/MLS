@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, Flex, Text } from "../../ui/Blocks";
+import { Box, Button, Flex, Input, Text } from "../../ui/Blocks";
 import Modal from "../../ui/Modal";
 // import { Cross2Icon } from "@radix-ui/react-icons";
 // import useLocalStorage from "use-local-storage";
@@ -10,11 +10,21 @@ import { useNavigate } from "react-router";
 import { IoMdSettings } from "react-icons/io";
 import { GrPowerShutdown } from "react-icons/gr";
 import { CgProfile } from "react-icons/cg";
+import { MdFeedback } from "react-icons/md";
+import { FaQuestionCircle } from "react-icons/fa";
+import { MdOutlineSettingsSuggest } from "react-icons/md";
+import { GrStatusCritical } from "react-icons/gr";
+import { InputField } from "../../ui/InputComponent";
+import { Form, Formik } from "formik";
+import { feedbackComponentProp } from "./types";
 
-const UserInfo = () => {
+const UserInfo = (props: feedbackComponentProp) => {
   const [showUserInfo, setShowUserInfo] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [showIfeedback, setShowIfeedback] = useState(false);
   const { actions } = useLoginSlice();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const profilePicture: any = localStorage.getItem("avatar");
@@ -78,7 +88,7 @@ const UserInfo = () => {
                   p={1}
                   style={{ cursor: "pointer" }}
                 >
-                  <IoMdSettings />
+                  <IoMdSettings color="blue" />
                   <Text
                     color={"#363636"}
                     fontFamily={"Poppins"}
@@ -107,7 +117,7 @@ const UserInfo = () => {
                       : navigate("/account");
                   }}
                 >
-                  <CgProfile />
+                  <CgProfile color="blue" />
                   <Text
                     color={"#363636"}
                     fontFamily={"Poppins"}
@@ -117,6 +127,32 @@ const UserInfo = () => {
                     lineHeight={0}
                   >
                     Profile
+                  </Text>
+                </Flex>
+
+                <Flex
+                  alignItems={"center"}
+                  hover={{
+                    backgroundColor: "#E5D4FF",
+                  }}
+                  p={1}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    role && role == "pharmacist"
+                      ? setShowFeedback(!showFeedback)
+                      : "";
+                  }}
+                >
+                  <MdFeedback color="blue" />
+                  <Text
+                    color={"#363636"}
+                    fontFamily={"Poppins"}
+                    fontSize={5}
+                    padding={1}
+                    fontWeight={3}
+                    lineHeight={0}
+                  >
+                    Feedback
                   </Text>
                 </Flex>
               </Flex>
@@ -132,7 +168,7 @@ const UserInfo = () => {
                   setShowLogout(true);
                 }}
               >
-                <GrPowerShutdown />
+                <GrPowerShutdown color="blue" />
 
                 <Text
                   color={"#303030"}
@@ -149,6 +185,167 @@ const UserInfo = () => {
           </Modal>
         </Box>
       )}
+      {showFeedback && (
+        <Modal
+          open={showFeedback}
+          setOpen={() => {
+            setShowFeedback(false);
+          }}
+          background="transparent"
+        >
+          <Box
+            backgroundColor={"#fff"}
+            border={"1px solid #dbdbdb"}
+            borderRadius={"8px"}
+            position={"fixed"}
+            right={"10px"}
+            top={"70px"}
+            margin={"4px"}
+            width={["200px", "200px", "200px"]}
+          >
+            <Flex flexDirection={"column"}>
+              <Flex
+                alignItems={"center"}
+                hover={{
+                  backgroundColor: "#E5D4FF",
+                }}
+                p={1}
+                style={{ cursor: "pointer" }}
+              >
+                <GrStatusCritical color="blue" />
+                <Text
+                  color={"#363636"}
+                  fontFamily={"Poppins"}
+                  fontSize={5}
+                  padding={1}
+                  fontWeight={3}
+                  lineHeight={0}
+                  onClick={() => {
+                    setShowIfeedback(true);
+                  }}
+                >
+                  Complaint
+                </Text>
+              </Flex>
+              <Flex
+                alignItems={"center"}
+                hover={{
+                  backgroundColor: "#E5D4FF",
+                }}
+                p={1}
+                style={{ cursor: "pointer" }}
+              >
+                <MdOutlineSettingsSuggest color="blue" />
+                <Text
+                  color={"#363636"}
+                  fontFamily={"Poppins"}
+                  fontSize={5}
+                  padding={1}
+                  fontWeight={3}
+                  lineHeight={0}
+                  onClick={() => {
+                    setShowIfeedback(true);
+                  }}
+                >
+                  Suggestion
+                </Text>
+              </Flex>{" "}
+              <Flex
+                alignItems={"center"}
+                hover={{
+                  backgroundColor: "#E5D4FF",
+                }}
+                p={1}
+                style={{ cursor: "pointer" }}
+              >
+                <FaQuestionCircle color="blue" />
+                <Text
+                  color={"#363636"}
+                  fontFamily={"Poppins"}
+                  fontSize={5}
+                  padding={1}
+                  fontWeight={3}
+                  lineHeight={0}
+                  onClick={() => {
+                    setShowIfeedback(true);
+                  }}
+                >
+                  Question
+                </Text>
+              </Flex>{" "}
+            </Flex>
+          </Box>
+        </Modal>
+      )}
+
+      <Formik
+        initialValues={props.initialValues}
+        onSubmit={(values) => {
+          props.onSaveClick(values);
+        }}
+        validationSchema={props.feedbackSchema}
+      >
+        {({ handleSubmit }) => {
+          return (
+            <Form>
+              {showIfeedback && (
+                <Modal
+                  open={showIfeedback}
+                  setOpen={() => {
+                    setShowIfeedback(false);
+                  }}
+                >
+                  <Flex
+                    flexDirection={"column"}
+                    alignItems={"center"}
+                    height={"40%"}
+                    width={"30%"}
+                    justifyContent={"center"}
+                    position={"relative"}
+                    backgroundColor={"#ffffff"}
+                  >
+                    <Flex
+                      width={"70%"}
+                      flexDirection={"column"}
+                      alignItems={"space-between"}
+                    >
+                      <InputField
+                        name="title"
+                        type={"text"}
+                        label={"Title"}
+                        placeholder="Enter title"
+                      />
+
+                      <InputField
+                        name="message"
+                        type={"textarea"}
+                        label={"Message"}
+                        placeholder="Enter Message"
+                      />
+                      <Button
+                        borderRadius={40}
+                        fontWeight={"bold"}
+                        fontFamily={"poppins"}
+                        color={"white"}
+                        fontSize={5}
+                        my={2}
+                        marginLeft={["2%", "3%", "3%", "2%"]}
+                        variant="primary"
+                        padding={1}
+                        width={"100%"}
+                        textAlign={"center"}
+                        onClick={() => handleSubmit()}
+                      >
+                        Submit
+                      </Button>
+                    </Flex>
+                  </Flex>
+                </Modal>
+              )}
+            </Form>
+          );
+        }}
+      </Formik>
 
       <Modal
         open={showLogout}

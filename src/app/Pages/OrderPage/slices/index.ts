@@ -8,7 +8,7 @@ export const initialState: orderPageState = {
   isOrderExist: false,
   order: {
     name: "",
-    drug: "",
+    drugs: [],
     phone: "",
     location: "",
     time: "",
@@ -16,7 +16,8 @@ export const initialState: orderPageState = {
     id: 0,
     length: 0,
     data: undefined,
-    totalPages: 0
+    totalPages: 0,
+    pharmacyId: ""
   },
   orders: [], // to store fetched ordersz
 };
@@ -32,7 +33,8 @@ const slice = createSlice({
     fetchOrdersSuccess: (state, action: PayloadAction<any>) => {
       state.isgettingOrder = false;
       state.isOrderExist = true;
-      state.order = action.payload; // Updating orders array with fetched orders
+      state.order = action.payload; 
+      console.log("actiiion", action.payload)
     },
     fetchOrdersFailed: (state) => {
       state.isgettingOrder = false;

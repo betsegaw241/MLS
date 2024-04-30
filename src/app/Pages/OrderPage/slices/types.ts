@@ -16,6 +16,7 @@ export interface Iorder {
   time: string;
   status: string;
   totalPages: number;
+  pharmacyId:string;
 }
 
 interface Drug {

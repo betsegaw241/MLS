@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {  IOrder, orderDetailPageState } from "./types";
+import {orderDetailPageState } from "./types";
 import { OrderDetailPageSaga } from "./saga";
 import { useInjectReducer, useInjectSaga } from "redux-injectors";
 
@@ -7,7 +7,7 @@ export const initialState: orderDetailPageState = {
   isgettingOrder: false,
   isOrderExist: false,
   isUpdating: false,
-  order: []
+  order: [],
 };
 
 const slice = createSlice({
@@ -16,24 +16,24 @@ const slice = createSlice({
   reducers: {
     // Other reducers...
 
-    updateStatus: (state, action: PayloadAction<any>) => {
+    acceptOrder: (state, action: PayloadAction<any>) => {
       state.isUpdating = true;
     },
-    updateStatusSuccess: (
-      state,
-      action: PayloadAction<{ orderId: string; status: string }>
-    ) => {
-      state.isUpdating = false;
-const orderIndex = state.order.findIndex(
-  (order) => order._id === action.payload.orderId
-);
-if (orderIndex !== -1) {
-  state.order[orderIndex].status = action.payload.status;
-}    },
-    updateStatusFailed: (state, action: PayloadAction<any>) => {
+    acceptOrderSuccess: (state, action: PayloadAction<any>) => {
       state.isUpdating = false;
     },
-
+    acceptOrderFailed: (state, action: PayloadAction<any>) => {
+      state.isUpdating = false;
+    },
+    rejectOrder: (state, action: PayloadAction<any>) => {
+      state.isUpdating = true;
+    },
+    rejectOrderSuccess: (state, action: PayloadAction<any>) => {
+      state.isUpdating = false;
+    },
+    rejectOrderFailed: (state, action: PayloadAction<any>) => {
+      state.isUpdating = false;
+    },
     fetchOrder: (state, action: PayloadAction<any>) => {
       state.isgettingOrder = true;
     },

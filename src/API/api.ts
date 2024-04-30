@@ -8,7 +8,6 @@ import Cookies from "js-cookie";
 
 const api = async (config: IAPICallConfig) => {
   let authToken;
-
   try {
     const fullURL = `${API_ROUTE}${config.route}`;
     const header: HeaderObj = config.header || {};
