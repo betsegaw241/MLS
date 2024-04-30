@@ -15,6 +15,7 @@ const HomePageComponent = (props: HomePageProps) => {
     document.body.style.padding = "0";
   }, []);
 
+  console.log(props.pharmacies);
   return (
     <>
       <Header notifications={[]} />
@@ -29,7 +30,7 @@ const HomePageComponent = (props: HomePageProps) => {
         flexDirection={"column"}
         // style={{ gap: 3 }}
       >
-        {props.pharmacies.length > 0 ? (
+        {props.pharmacies?.length > 0 ? (
           <Flex
             width={"90%"}
             marginTop={"70px"}
@@ -150,7 +151,13 @@ const HomePageComponent = (props: HomePageProps) => {
                       mt={"auto"}
                     >
                       {pharmacy.status == "pending" ? (
-                        <Text fontFamily={'poppins'} p={1} backgroundColor={'#f5f5f5'}>pending</Text>
+                        <Text
+                          fontFamily={"poppins"}
+                          p={1}
+                          backgroundColor={"#f5f5f5"}
+                        >
+                          pending
+                        </Text>
                       ) : (
                         <Text
                           p={1}

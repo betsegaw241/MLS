@@ -19,7 +19,7 @@ const slice = createSlice({
     },
     getPharmaciesSuccess: (state, action: PayloadAction<any>) => {
       state.isLoading = false;
-      state.pharmcies = action.payload.pharmacies;
+      state.pharmcies = action.payload;
       // state.isAccountCreated = true;
     },
     getPharmaciesFailed: (state, action: PayloadAction<any>) => {

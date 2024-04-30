@@ -20,6 +20,7 @@ const HomePage = () => {
   useEffect(() => {
     dispatch(actions.getPharmacies(userId));
   }, []);
+  console.log('----',pharmacies)
 
   return (
     <>

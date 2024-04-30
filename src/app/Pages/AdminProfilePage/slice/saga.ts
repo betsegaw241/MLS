@@ -40,13 +40,13 @@ function* handleGetUser(action: PayloadAction<string>) {
     yield put(actions.getUserFailed(error));
   }
 }
-function* handleChangePassword(action: PayloadAction<string>) {
+function* handleChangePassword(action: PayloadAction<any>) {
   try {
     const res: AxiosResponse = yield api({
-      route: "/user/:userId",
-      method: "POST",
+      route: `/user/${action.payload.id}`,
+      method: "PUT",
       isSecureRoute: true,
-      query: { id: action.payload },
+      body: action.payload,
     });
     if (res) {
       yield put(actions.changePasswordSuccess(res));

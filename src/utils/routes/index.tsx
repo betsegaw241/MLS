@@ -27,6 +27,7 @@ import TransactionPage from "app/Pages/TransactionPage";
 import FeedbacksPage from "app/Pages/FeedbacksPage";
 import TransactionDetailPage from "app/Pages/TransactionDetailPage";
 import FeedbackDetailPage from "app/Pages/FeedbackDetail";
+import VerifyPharmacyDetailPage from "app/Pages/VerifyPharmacyDetailPage";
 
 export const routes: IRoute[] = [
   {
@@ -60,13 +61,6 @@ export const routes: IRoute[] = [
     allowedRole: "*",
   },
   {
-    element: <MapComponent />,
-    exact: true,
-    path: "null/map",
-    isProtected: false,
-    allowedRole: "*",
-  },
-  {
     element: <CreateAccountPage />,
     exact: true,
     path: "/signup",
@@ -78,7 +72,7 @@ export const routes: IRoute[] = [
     exact: true,
     path: "/addpharmacy",
     isProtected: false,
-    allowedRole: "*",
+    allowedRole: "pharmacist",
   },
   {
     element: <AddAdminPage />,
@@ -92,13 +86,6 @@ export const routes: IRoute[] = [
     element: <HomePage />,
     exact: true,
     path: "/pharmacist/home",
-    isProtected: true,
-    allowedRole: "pharmacist",
-  },
-  {
-    element: <HomePage />,
-    exact: true,
-    path: "/admin/home",
     isProtected: true,
     allowedRole: "pharmacist",
   },
@@ -218,7 +205,7 @@ export const routes: IRoute[] = [
     exact: true,
     path: "account",
     isProtected: true,
-    allowedRole: "superAdmin",
+    allowedRole: ["superAdmin", "admin"],
     needsLayout: true,
   },
   {
@@ -258,6 +245,22 @@ export const routes: IRoute[] = [
     path: "feedbackdetail/:id",
     isProtected: true,
     allowedRole: ["superAdmin", "admin"],
+    needsLayout: true,
+  },
+  {
+    element: <VerifyPharmacyDetailPage />,
+    exact: true,
+    path: "verifyPharmacy/:id",
+    isProtected: true,
+    allowedRole: ["superAdmin", "admin"],
+    needsLayout: true,
+  },
+  {
+    element: <></>,
+    exact: true,
+    path: "admin/home",
+    isProtected: true,
+    allowedRole: "admin",
     needsLayout: true,
   },
 ];

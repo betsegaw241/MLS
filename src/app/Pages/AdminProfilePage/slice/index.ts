@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AdminProfilePageState } from "./types";
+import { AdminProfilePageState, IProfile } from "./types";
 import { useInjectReducer, useInjectSaga } from "redux-injectors";
 import { AdminProfilePageSaga } from "./saga";
 
@@ -9,20 +9,11 @@ export const initialState: AdminProfilePageState = {
   isgettingUser: false,
   isUserExist: false,
   ischangingPassword: false,
-  profile: {
-    phone: "",
-    avatar: "",
-    confirmPassword: "",
-    currentPassword: "",
-    newPassword: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-  },
+  profile: {} as IProfile,
   passwordChanged: false,
 };
 const slice = createSlice({
-  name: "editProfile",
+  name: "adminProfile",
   initialState,
   reducers: {
     editProfile: (state, action: PayloadAction<any>) => {
@@ -42,13 +33,7 @@ const slice = createSlice({
     },
     getUserSuccess: (state, action: PayloadAction<any>) => {
       state.isgettingUser = false;
-      state.isUserExist = true;
-      const nameParts = action.payload.name.split(" ");
-      state.profile.firstName = nameParts[0];
-      state.profile.lastName = nameParts[1];
-      state.profile.email = action.payload.email;
-      state.profile.avatar = action.payload.avatar;
-      state.profile.phone = action.payload.phoneNumber;
+      state.profile = action.payload;
     },
     getUserFailed: (state, action: PayloadAction<any>) => {
       state.isgettingUser = false;

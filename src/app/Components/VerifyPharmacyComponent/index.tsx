@@ -19,6 +19,7 @@ import { ErrorMessage, Form, Formik } from "formik";
 import { AssignPharmaciesValidationSchema } from "app/Pages/AdminVerifyPharmacy/validation";
 import ReactSelect from "../ui/Blocks/Select/ReactSelect";
 import { InputField } from "../ui/InputComponent";
+import Search from "../ui/SearchBar";
 
 const VerifyPharmacyComponent = ({
   pharmacies,
@@ -68,12 +69,12 @@ const VerifyPharmacyComponent = ({
             </Flex>
             <Flex style={{ gap: 10 }}>
               <Flex background={"#F9FBFF"} height={"40px"} padding={"4px"}>
-                {/* <Search
+                <Search
                   onChange={(e) => {
                     setQuery(e.target.value);
                   }}
                   onClick={() => onSearch()}
-                /> */}
+                />
               </Flex>
 
               <Flex
@@ -96,15 +97,17 @@ const VerifyPharmacyComponent = ({
                   </Text>
                 </Flex>
               </Flex>
-              <Text
-                backgroundColor={"#F9FBFF"}
-                p={1}
-                fontFamily={"poppins"}
-                borderRadius={1}
-                onClick={() => setShowModal(true)}
-              >
-                Assign Pharmacies
-              </Text>
+              {localStorage.getItem("role") === "superAdmin" && (
+                <Text
+                  backgroundColor={"#F9FBFF"}
+                  p={1}
+                  fontFamily={"poppins"}
+                  borderRadius={1}
+                  onClick={() => setShowModal(true)}
+                >
+                  Assign Pharmacies
+                </Text>
+              )}
             </Flex>
           </Flex>
           <>

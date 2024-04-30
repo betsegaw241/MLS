@@ -35,12 +35,12 @@ const AdminVerifyPharmacy = () => {
   useEffect(() => {
     dispatch(actions.getpharmacies({ page: currentPage, status: "pending" }));
   }, [currentPage, status]);
+  if (localStorage.getItem("role") === "superAdmin")
+    useEffect(() => {
+      dispatch(userActions.actions.getUsers({ role: "admin" }));
+    }, []);
 
-  useEffect(() => {
-    dispatch(userActions.actions.getUsers({ role: "admin" }));
-  }, []);
-
-  const adminsArray = admins.data.map((item) => ({
+  const adminsArray = admins.data?.map((item) => ({
     value: item._id,
     label: item.name.charAt(0).toUpperCase() + item.name.slice(1),
   }));
