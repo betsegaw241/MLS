@@ -1,10 +1,33 @@
-export interface Location {
-  coordinates: [number, number];
-  type: string;
+export interface IorderDetailComponent {
+  order: IOrder;
+  onRejectClick: () => void;
+  onAcceptClick: () => void;
+
+  isUpdating: boolean;
+}
+export interface IOrder {
+  _id: string;
+  deliveryAddress: DeliveryAddress;
+  hasDelivery: boolean;
+  status: string;
+  drugs: Drug[];
+  quantity: number;
+  totalAmount: number;
+  profit: number;
+  totalCost: number;
+  deliveryDistance: number;
+  deliveryFee: number;
+  deliveryExpireDate: string;
+  deliveryPricePerKm: number;
+  customer: Customer;
+  pharmacy: Pharmacy;
 }
 
-export interface DeliveryAddress {
-  location: Location;
+interface DeliveryAddress {
+  location: {
+    coordinates: [number, number];
+    type: string;
+  };
   address: string;
   phoneNumber: string;
 }
@@ -37,34 +60,11 @@ export interface Transaction {
   reason: string;
 }
 
-export interface IOrder {
-  [x: string]: any;
-  _id: string;
-  deliveryAddress: DeliveryAddress;
-  status: string;
-  drugId: string;
-  quantity: number;
-  deliveryDate: string; // You might want to use Date type here instead of string
-  transactionId: string;
-  orderedAt: string; // You might want to use Date type here instead of string
-  customer: Customer;
-  pharmacy: Pharmacy;
-  drugs: Drug[];
-  transaction: Transaction;
-}
-export interface IorderDetailComponent {
-  order: IOrder;
-  onRejectClick: () => void;
-  onAcceptClick: () => void;
-
-  isUpdating: boolean;
-}
-
 interface Drug {
+  quantity: number;
+  _id: string;
   drugId: string;
   stockId: string;
-  quantity?: number;
-  price?: number;
-  drugName?: string;
-  expiredDate: string;
+  price: number;
+  drugName: string;
 }

@@ -1,5 +1,5 @@
 import { put, takeLatest } from "redux-saga/effects";
-import { OrderDetailPageActions as actions } from ".";
+import { OrderDetailPageActions, OrderDetailPageActions as actions } from ".";
 import api from "../../../../API/api";
 import { AxiosResponse } from "axios";
 import { PayloadAction } from "@reduxjs/toolkit";
@@ -16,18 +16,18 @@ function* handleFetchOrder(
     });
 
     if (res) {
-      yield put(actions.fetchOrderSuccess(res)); 
+      yield put(OrderDetailPageActions.fetchOrderSuccess(res)); 
     }
   } catch (error) {
     console.log("error=======", error);
-    yield put(actions.fetchOrderFailed());
+    yield put(OrderDetailPageActions.fetchOrderFailed());
   }
 }
 
 function* handleReject(action: PayloadAction<any>) {
   try {
     const res: AxiosResponse<any> = yield api({
-      route: `/order/${action.payload}/reject`,
+      route: `/order/${action.payload.id}/reject`,
       method: "PUT",
       isSecureRoute: true,
     });
@@ -43,9 +43,10 @@ function* handleReject(action: PayloadAction<any>) {
 }
 
 function* handleAccept(action: PayloadAction<any>) {
+  console.log('action', action.payload)
   try {
     const res: AxiosResponse = yield api({
-      route: `/order/${action.payload}/accept`,
+      route: `/order/${action.payload.id}/accept`,
       method: "PUT",
       isSecureRoute: true,
       query: {

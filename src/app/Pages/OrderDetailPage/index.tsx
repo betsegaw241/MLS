@@ -47,9 +47,9 @@ const OrderDetailPage = () => {
     );
   }
 
-  return order[0]?._id ? (
+  return order._id ? (
     <OrderDetailComponent
-      order={order[0]}
+      order={order}
       isUpdating={isUpdating}
       onRejectClick={onRejectClick}
       onAcceptClick={onAcceptClick}

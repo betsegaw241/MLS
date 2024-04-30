@@ -1,31 +1,26 @@
 import { Box, Button, Flex, Grid, Text } from "../ui/Blocks";
 import { GridBox } from "../ui/Blocks/GridBox";
 import MapComponent from "../ui/MapComponent";
-import { IOrder, IorderDetailComponent } from "./types";export interface IStatus {
+import { IOrder, IorderDetailComponent } from "./types";
+export interface IStatus {
   status: "ACCEPTED" | "REJECTED" | "Pending";
 }
 const OrderDetailComponent = (props: IorderDetailComponent) => {
   const status: IStatus = { status: "Pending" };
-    //const { onReject } = props;
 
-
+  const coord = props.order.deliveryAddress.location.coordinates;
+  const newCoord = [coord[1], coord[0]];
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-
-    // Extract date components
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0"); // Month starts from 0
     const day = String(date.getDate()).padStart(2, "0");
     const hours = String(date.getHours()).padStart(2, "0");
     const minutes = String(date.getMinutes()).padStart(2, "0");
-
     const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
 
     return formattedDate;
   };
-  
-
- 
 
   return (
     <Flex
@@ -69,11 +64,16 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
             <GridBox lable={"Dosage"} value={"Zuma"} />
             <GridBox lable={"quantity"} value={props.order.quantity} />
             <GridBox lable={"Drug"} value={"Zuma"} />
+            <GridBox lable={"Status"} value={props.order.status} />
+            <GridBox
+              lable={"Pharmacy Name"}
+              value={props.order.pharmacy.name}
+            />
           </Grid>
         </Box>
         <Box>
           <Text fontFamily={"poppins"} fontSize={2}>
-            Client Information
+            Customer Information
           </Text>
           <Grid
             border={"1px solid #f5f5f5f5"}
@@ -89,7 +89,11 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
             mb={2}
             p={1}
           >
-            <GridBox lable={"Name"} value={props.order.customer?.name} />
+            <GridBox
+              lable={"Customer Name"}
+              value={props.order.customer.name}
+            />
+
             <GridBox
               lable={"Location"}
               value={props.order.deliveryAddress?.address}
@@ -98,6 +102,7 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
               lable={"Phone"}
               value={props.order.deliveryAddress?.phoneNumber}
             />
+            <GridBox lable={"Email"} value={props.order.customer.email} />
           </Grid>
         </Box>
         <Box>
@@ -119,14 +124,34 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
             p={1}
           >
             <GridBox lable={"Distance"} value={"5km"} />
-            <GridBox lable={"Due time"} value={props.order.deliveryDate} />
             <GridBox
-              lable={"Order Date"}
-              value={formatDate(props.order.orderedAt)}
+              lable={"DeliveryExpireDate"}
+              value={formatDate(props.order.deliveryExpireDate)}
             />
-            <GridBox lable={"quantity"} value={props.order.quantity} />
-            <GridBox lable={"price per unit"} value={props.order.drug?.price} />
-            <GridBox lable={"Total Cost"} value={props.order.drug?.cost} />
+            <GridBox
+              lable={"Has Delivery"}
+              value={props.order.hasDelivery == true ? "Yes" : "No"}
+            />
+            <GridBox
+              lable={"Delivery Fee"}
+              value={Math.round(props.order.deliveryFee) + " ETB"}
+            />
+            <GridBox
+              lable={"Total Cost"}
+              value={props.order.totalCost + " ETB"}
+            />
+            <GridBox
+              lable={"Total Amount"}
+              value={Math.round(props.order.totalAmount) + " ETB"}
+            />{" "}
+            <GridBox
+              lable={"Profit"}
+              value={Math.round(props.order.profit) + " ETB"}
+            />
+            <GridBox
+              lable={"Delivery Price Per Km"}
+              value={Math.round(props.order.deliveryPricePerKm) + " ETB"}
+            />
           </Grid>
         </Box>
         <Flex flexDirection={"column"}>
@@ -139,10 +164,9 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
             backgroundColor={"#f5f5f5f5"}
             borderRadius={1}
           >
-          {  props.order.deliveryAddress?.location.coordinates.length > 0 &&
-            <MapComponent
-              position={props.order.deliveryAddress?.location.coordinates}
-            />}
+            {props.order.deliveryAddress?.location.coordinates.length > 0 && (
+              <MapComponent position={newCoord} />
+            )}
           </Box>
         </Flex>
         <Flex
@@ -151,26 +175,30 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
           paddingRight={15}
           style={{ gap: 15 }}
         >
-          <Button
-            variant="secondary"
-            p={1}
-            fontSize={5}
-            width={"100px"}
-            borderRadius={1}
-            onClick={() => props.onAcceptClick()}
-          >
-            Accept
-          </Button>
-          <Button
-            variant="warning"
-            p={1}
-            fontSize={5}
-            width={"100px"}
-            borderRadius={1}
-            onClick={() => props.onRejectClick()}
-          >
-            Reject
-          </Button>
+          {props.order.status === ("pending" || "Pending" || "PENDING") && (
+            <Button
+              variant="secondary"
+              p={1}
+              fontSize={5}
+              width={"100px"}
+              borderRadius={1}
+              onClick={() => props.onAcceptClick()}
+            >
+              Accept
+            </Button>
+          )}
+          {props.order.status === ("pending" || "Pending" || "PENDING") && (
+            <Button
+              variant="warning"
+              p={1}
+              fontSize={5}
+              width={"100px"}
+              borderRadius={1}
+              onClick={() => props.onRejectClick()}
+            >
+              Reject
+            </Button>
+          )}
         </Flex>
       </Box>
     </Flex>
