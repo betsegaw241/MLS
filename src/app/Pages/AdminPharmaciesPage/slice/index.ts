@@ -28,6 +28,17 @@ const slice = createSlice({
       state.errorMessage = action.payload;
       state.loading = false;
     },
+    assignpharmacies: (state, action: PayloadAction<any>) => {
+      state.loading = true;
+    },
+    assignpharmaciesSuccess: (state, action: PayloadAction<any>) => {
+      state.pharmaciesList = action.payload;
+      state.loading = false;
+    },
+    assignpharmaciesFailed: (state, action: PayloadAction<any>) => {
+      state.errorMessage = action.payload;
+      state.loading = false;
+    },
   },
 });
 

@@ -5,6 +5,7 @@ import { UseGetPharmaciesSlice } from "./slice";
 import AdminPharmaciesComponent from "app/Components/AdminPharmaciesComponent";
 import { UseGetUsersSlice } from "../AdminUsersPage/slice";
 import { selectUsers } from "../AdminUsersPage/slice/selector";
+import { IntialValues } from "app/Components/AdminPharmaciesComponent/types";
 
 const AdminPharmaciesPage = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,10 @@ const AdminPharmaciesPage = () => {
   const [status, setStatus] = useState("");
   const admins = useSelector(selectUsers);
   const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    dispatch(actions.getpharmacies({ page: currentPage, status: status }));
+  }, [currentPage, status]);
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
@@ -30,20 +35,19 @@ const AdminPharmaciesPage = () => {
   };
 
   useEffect(() => {
-    dispatch(actions.getpharmacies({ page: currentPage, status: status }));
-  }, [currentPage, status]);
-
-  useEffect(() => {
     dispatch(userActions.actions.getUsers({ role: "admin" }));
   }, []);
 
-  const adminsArray = admins.data.map((item) => ({
+  const adminsArray = admins?.data?.map((item) => ({
     value: item._id,
     label: item.name.charAt(0).toUpperCase() + item.name.slice(1),
   }));
 
   const onSearch = () => {};
-
+  const handleAssign = (values: IntialValues) => {
+    console.log(values)
+    dispatch(actions.assignpharmacies(values));
+  };
   return (
     <AdminPharmaciesComponent
       loading={false}
@@ -53,6 +57,8 @@ const AdminPharmaciesPage = () => {
       handleFilterUser={handleFilterUser}
       setQuery={setQuery}
       onSearch={onSearch}
+      admins={adminsArray}
+      handleAssign={handleAssign}
     />
   );
 };

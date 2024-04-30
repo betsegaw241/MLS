@@ -20,6 +20,24 @@ function* handleGetPharmacies(action: PayloadAction<any>) {
     yield put(actions.getpharmaciesFailed(error));
   }
 }
+
+function* handleAssignPharmacies(action: PayloadAction<any>) {
+  try {
+    const res: pharmacy = yield call(api, {
+      method: "PUT",
+      route: `/pharmacy/assign/${action.payload.admin}`,
+      body: { numberofPharmacies: action.payload.quantity },
+      isSecureRoute: true,
+    });
+
+    if (res) {
+      yield put(actions.assignpharmaciesSuccess(res));
+    }
+  } catch (error) {
+    yield put(actions.assignpharmaciesFailed(error));
+  }
+}
 export function* GetPharmaciesListSaga() {
   yield takeLatest(actions.getpharmacies.type, handleGetPharmacies);
+  yield takeLatest(actions.assignpharmacies.type, handleAssignPharmacies);
 }

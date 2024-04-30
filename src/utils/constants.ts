@@ -45,13 +45,6 @@ export const superAdminMenu: ISideBarMenu[] = [
     label: "Pharmacies",
     to: "/pharmacies",
     icon: MdOutlineLocalPharmacy,
-    subMenuItems: [
-      {
-        label: "Verify Pharmacy",
-        to: "/verifyPharmacy",
-        icon: IoIosAdd,
-      },
-    ],
   },
   {
     label: "Feedback",
@@ -74,7 +67,7 @@ export const superAdminMenu: ISideBarMenu[] = [
 export const adminMenu: ISideBarMenu[] = [
   {
     label: "Dashboard",
-    to: "/dashboard",
+    to: "/admin/home",
     icon: RxDashboard,
   },
   {
@@ -351,11 +344,6 @@ export const pharmaciesList: IColumn[] = [
     minWidth: 50,
   },
   {
-    id: "Phone",
-    label: "Phone",
-    minWidth: 50,
-  },
-  {
     id: "Status",
     label: "Status",
     minWidth: 50,
@@ -364,6 +352,7 @@ export const pharmaciesList: IColumn[] = [
       { label: "Rejected", value: "rejected" },
       { label: "Pending", value: "pending" },
       { label: "Deactivated", value: "deactivated" },
+      { label: "Unassigned", value: "unassigned" },
     ],
   },
 ];
@@ -377,11 +366,6 @@ export const VerifypharmaciesList: IColumn[] = [
   {
     id: "Email",
     label: "Email",
-    minWidth: 50,
-  },
-  {
-    id: "Phone",
-    label: "Phone",
     minWidth: 50,
   },
   {

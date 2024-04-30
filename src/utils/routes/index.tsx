@@ -244,7 +244,7 @@ export const routes: IRoute[] = [
     exact: true,
     path: "feedbackdetail/:id",
     isProtected: true,
-    allowedRole: ["superAdmin", "admin"],
+    allowedRole: "superAdmin",
     needsLayout: true,
   },
   {

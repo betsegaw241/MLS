@@ -12,28 +12,16 @@ import { MdOutlineZoomIn } from "react-icons/md";
 import { MdOutlineZoomOut } from "react-icons/md";
 import { MdZoomInMap } from "react-icons/md";
 import { SlCloudDownload } from "react-icons/sl";
+import { VerifyPharmacyDetailComponentProps } from "./types";
 
-const VerifyPharmacyDetailComponent = (props: any) => {
+const VerifyPharmacyDetailComponent = (
+  props: VerifyPharmacyDetailComponentProps
+) => {
   const [currentImage, setCurrentImage] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
 
   const getFileExtension = (url: any) => {
     return url.split(".").pop().toLowerCase();
-  };
-  const determineDocumentType = (url: string) => {
-    const extension = getFileExtension(url);
-    if (extension === "pdf") {
-      return "pdf";
-    } else if (
-      extension === "jpeg" ||
-      extension === "jpg" ||
-      extension === "png" ||
-      extension === "gif"
-    ) {
-      return "image";
-    } else {
-      return "unknown";
-    }
   };
 
   const docs = [{ uri: report }, { uri: id }];
@@ -55,9 +43,27 @@ const VerifyPharmacyDetailComponent = (props: any) => {
         }
       });
   };
+  const getFileTypeFromMIME = async (uri) => {
+    try {
+      const response = await fetch(uri);
+      const contentType = response.headers.get("content-type");
+      console.log(contentType);
+      if (contentType.includes("application/pdf")) {
+        return "pdf";
+      } else if (contentType.includes("image")) {
+        return "image";
+      } else {
+        return "unknown";
+      }
+    } catch (error) {
+      console.error("Error fetching MIME type:", error);
+      return "unknown";
+    }
+  };
 
   const renderViewer = (document: any) => {
-    const type = determineDocumentType(document.uri);
+    console.log("-----------", getFileTypeFromMIME(document));
+    const type = getFileTypeFromMIME(document);
     if (type === "pdf") {
       return (
         <DocViewer
@@ -80,58 +86,58 @@ const VerifyPharmacyDetailComponent = (props: any) => {
           style={{ border: "1px solid #4444" }}
         />
       );
-    } else if (type === "image") {
-      return (
-        <Flex
-          border={"1px solid #4444"}
-          justifyContent={"center"}
-          alignItems={"center"}
-          width={"100%"}
-          flexDirection={"column"}
-        >
-          <TransformWrapper>
-            {({ zoomIn, zoomOut, resetTransform }) => (
-              <React.Fragment>
-                <Flex
-                  marginBottom={1}
-                  borderBottom={"1px solid #4444"}
-                  width={"100%"}
-                  justifyContent={"flex-end"}
-                >
-                  <Flex p={1} onClick={() => handleDownload(document.uri)}>
-                    <SlCloudDownload size={20} />
+    }else if (type === "image") {
+    return (
+      <Flex
+        border={"1px solid #4444"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        width={"100%"}
+        flexDirection={"column"}
+      >
+        <TransformWrapper>
+          {({ zoomIn, zoomOut, resetTransform }) => (
+            <React.Fragment>
+              <Flex
+                marginBottom={1}
+                borderBottom={"1px solid #4444"}
+                width={"100%"}
+                justifyContent={"flex-end"}
+              >
+                <Flex p={1} onClick={() => handleDownload(document)}>
+                  <SlCloudDownload size={20} />
+                </Flex>
+                <Flex marginRight={10}>
+                  <Flex p={1} onClick={() => zoomIn()}>
+                    <MdOutlineZoomIn size={20} />
                   </Flex>
-                  <Flex marginRight={10}>
-                    <Flex p={1} onClick={() => zoomIn()}>
-                      <MdOutlineZoomIn size={20} />
-                    </Flex>
-                    <Flex p={1} onClick={() => zoomOut()}>
-                      <MdOutlineZoomOut size={20} />
-                    </Flex>
-                    <Flex p={1} onClick={() => resetTransform()}>
-                      <MdZoomInMap size={20} />
-                    </Flex>
+                  <Flex p={1} onClick={() => zoomOut()}>
+                    <MdOutlineZoomOut size={20} />
+                  </Flex>
+                  <Flex p={1} onClick={() => resetTransform()}>
+                    <MdZoomInMap size={20} />
                   </Flex>
                 </Flex>
+              </Flex>
 
-                <TransformComponent>
-                  <Flex width={[300, 500, 700]}>
-                    <img
-                      src={document.uri}
-                      alt="Image"
-                      style={{
-                        width: "100%",
-                      }}
-                    />
-                  </Flex>
-                </TransformComponent>
-              </React.Fragment>
-            )}
-          </TransformWrapper>
-        </Flex>
-      );
+              <TransformComponent>
+                <Flex width={[300, 500, 700]}>
+                  <img
+                    src={document}
+                    alt="Image"
+                    style={{
+                      width: "100%",
+                    }}
+                  />
+                </Flex>
+              </TransformComponent>
+            </React.Fragment>
+          )}
+        </TransformWrapper>
+      </Flex>
+    );
     } else {
-      return <div>Unsupported file format</div>;
+      return <Text fontFamily={'poppins'}>Unsupported file format</Text>;
     }
   };
 
@@ -175,9 +181,9 @@ const VerifyPharmacyDetailComponent = (props: any) => {
         mb={2}
         p={1}
       >
-        <GridBox lable={"Name"} value={"Luis Manuel"} />
-        <GridBox lable={"Phone"} value={"+251912321123"} />
-        <GridBox lable={"Email"} value={"Pharmacist@gmail.com"} />
+        <GridBox lable={"Name"} value={props.pharmacy?.pharmacist?.name} />
+        <GridBox lable={"Phone"} value={props.pharmacy?.pharmacist?.name} />
+        <GridBox lable={"Email"} value={props.pharmacy?.pharmacist?.email} />
       </Grid>
       <Text fontFamily={"poppins"} fontSize={5} p={1}>
         Pharmacy Information
@@ -196,16 +202,17 @@ const VerifyPharmacyDetailComponent = (props: any) => {
         mb={2}
         p={1}
       >
-        <GridBox lable={"Pharmacy Name"} value={"Luis Manuel"} />
-        <GridBox lable={"Pharmacy Phone"} value={"+251912321123"} />
-        <GridBox lable={"Pharmacy Email"} value={"Pharmacist@gmail.com"} />
+        <GridBox lable={"Pharmacy Name"} value={props.pharmacy.name} />
+        <GridBox lable={"Pharmacy Phone"} value={props.pharmacy.phoneNumber} />
+        <GridBox lable={"Pharmacy Email"} value={props.pharmacy.email} />
+        <GridBox lable={"Pharmacy Email"} value={props.pharmacy.address} />
       </Grid>
 
       <Text fontFamily={"poppins"} fontSize={5} p={1}>
         Pharmacy Lisense
       </Text>
       <Flex flexDirection="column" alignItems="center">
-        {renderViewer(docs[0])}
+        {renderViewer(props.pharmacy.pharmacistLicense)}
       </Flex>
       <Text fontFamily={"poppins"} fontSize={5} p={1}>
         Pharmacist Lisense
@@ -227,7 +234,7 @@ const VerifyPharmacyDetailComponent = (props: any) => {
           fontFamily={"poppins"}
           fontSize={5}
           width={200}
-          onClick={() => props.handleVerify("approve")}
+          onClick={() => props.handleVerify("approved")}
         >
           Approve
         </Button>
@@ -238,7 +245,7 @@ const VerifyPharmacyDetailComponent = (props: any) => {
           fontFamily={"poppins"}
           fontSize={5}
           width={200}
-          onClick={() => props.handleVerify("reject")}
+          onClick={() => props.handleVerify("rejected")}
         >
           Reject
         </Button>
