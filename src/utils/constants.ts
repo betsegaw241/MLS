@@ -333,8 +333,8 @@ export const pharmaciesList: IColumn[] = [
     minWidth: 50,
   },
   {
-    id: "Phone Number",
-    label: "Phone Number",
+    id: "Phone",
+    label: "Phone",
     minWidth: 50,
   },
   {
@@ -345,6 +345,7 @@ export const pharmaciesList: IColumn[] = [
       { label: "Approved", value: "approved" },
       { label: "Rejected", value: "rejected" },
       { label: "Pending", value: "pending" },
+      { label: "Deactivated", value: "deactivated" },
     ],
   },
 ];
