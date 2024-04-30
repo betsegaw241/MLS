@@ -1,16 +1,21 @@
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoading, selectPharmacies } from "./slice/selector";
 import { UseGetPharmaciesSlice } from "./slice";
 import AdminPharmaciesComponent from "app/Components/AdminPharmaciesComponent";
+import { UseGetUsersSlice } from "../AdminUsersPage/slice";
+import { selectUsers } from "../AdminUsersPage/slice/selector";
 
 const AdminPharmaciesPage = () => {
   const dispatch = useDispatch();
   const { actions } = UseGetPharmaciesSlice();
+  const userActions = UseGetUsersSlice();
   const pharmacies = useSelector(selectPharmacies);
   const loading = useSelector(selectIsLoading);
   const [currentPage, setCurrentPage] = useState(1);
-  const [role, setRole] = useState("");
+  const [status, setStatus] = useState("");
+  const admins = useSelector(selectUsers);
+  const [query, setQuery] = useState("");
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
@@ -19,14 +24,25 @@ const AdminPharmaciesPage = () => {
     setCurrentPage(page);
   };
 
-  useEffect(() => {
-    dispatch(actions.getpharmacies({ page: currentPage, role: role }));
-  }, [currentPage, role]);
-
   const handleFilterUser = (value: string) => {
-    setRole(value);
+    setStatus(value);
     setCurrentPage(1);
   };
+
+  useEffect(() => {
+    dispatch(actions.getpharmacies({ page: currentPage, status: status }));
+  }, [currentPage, status]);
+
+  useEffect(() => {
+    dispatch(userActions.actions.getUsers({ role: "admin" }));
+  }, []);
+
+  const adminsArray = admins.data.map((item) => ({
+    value: item._id,
+    label: item.name.charAt(0).toUpperCase() + item.name.slice(1),
+  }));
+
+  const onSearch = () => {};
 
   return (
     <AdminPharmaciesComponent
@@ -35,6 +51,8 @@ const AdminPharmaciesPage = () => {
       pharmacies={pharmacies}
       handlePageChange={handlePageChange}
       handleFilterUser={handleFilterUser}
+      setQuery={setQuery}
+      onSearch={onSearch}
     />
   );
 };

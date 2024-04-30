@@ -21,7 +21,7 @@ const VerifyEmailPage = () => {
 
   const onHandleVerify = (value: any) => {
     console.log("otp--", value);
-    dispatch(actions.verifyAccount({ otp: Number(value), email: data.email }));
+    dispatch(actions.verifyAccount({ code: value, email: data.email }));
   };
 
   return (

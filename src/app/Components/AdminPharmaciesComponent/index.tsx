@@ -4,30 +4,31 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
-import { Box, Flex, P, Text } from "../ui/Blocks";
+import { Box, Button, Flex, P, Text } from "../ui/Blocks";
 import { useNavigate } from "react-router";
 import { UsersList, pharmaciesList } from "utils/constants";
 import { TableHeader } from "../ui/Blocks/Table";
 import { useState } from "react";
 import LoadingPage from "utils/LoadingPage";
-import { StockComponentProps } from "./types";
+import { pharmaciesComponentProps } from "./types";
 import Paginate from "../ui/Pagination/Paginate";
 import { IoFilter } from "react-icons/io5";
+import Modal from "../ui/Modal";
+import { ErrorMessage, Form, Formik } from "formik";
+import ReactSelect from "../ui/Blocks/Select/ReactSelect";
+import { InputField } from "../ui/InputComponent";
+import Search from "../ui/SearchBar";
+import { AssignPharmaciesValidationSchema } from "app/Pages/AdminVerifyPharmacy/validation";
 
 const AdminPharmaciesComponent = ({
   pharmacies,
   loading,
-  //   setQuery,
-  //   onSearch,
+  setQuery,
+  onSearch,
   page,
   handlePageChange,
   handleFilterUser,
-}: //   setMinPrice,
-//   setMaxPrice,
-//   setCatagory,
-//  onFilter,
-
-StockComponentProps) => {
+}: pharmaciesComponentProps) => {
   const navigate = useNavigate();
   const [showSortBy, setShowSortBy] = useState(false);
   const [ShowFilter, setShowFilter] = useState(false);
@@ -57,17 +58,17 @@ StockComponentProps) => {
                 fontFamily={"poppins"}
                 fontSize={6}
               >
-                Users
+                Pharmacies
               </P>
             </Flex>
-            <Flex style={{ gap: 10 }}>
+            <Flex style={{ gap: 10 }} alignItems={"center"}>
               <Flex background={"#F9FBFF"} height={"40px"} padding={"4px"}>
-                {/* <Search
+                <Search
                   onChange={(e) => {
                     setQuery(e.target.value);
                   }}
                   onClick={() => onSearch()}
-                /> */}
+                />
               </Flex>
 
               <Flex
@@ -106,7 +107,10 @@ StockComponentProps) => {
                     stickyHeader
                     sx={{ minWidth: 650 }}
                   >
-                    <TableHeader columnName={pharmaciesList} />
+                    <TableHeader
+                      columnName={pharmaciesList}
+                      handleChange={handleFilterUser}
+                    />
                     <TableBody>
                       {pharmacies.data?.map((item, index) => (
                         <TableRow
@@ -120,7 +124,13 @@ StockComponentProps) => {
                             boxShadow: "none",
                           }}
                           onClick={() => {
-                            navigate(`/pharmacist/drugdetails/${item._id}`);
+                            navigate(`/verifyPharmacy`, {
+                              state: {
+                                phaarmacyID: item._id,
+                                // pharmacistId: item.pharmacistId,
+                              },
+                            });
+                            // navigate(`/pharmacist/drugdetails/${item._id}`);
                           }}
                         >
                           {/* <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
@@ -144,9 +154,9 @@ StockComponentProps) => {
                           <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
                             {item.phone}
                           </TableCell>
-                          {/* <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {item.}
-                          </TableCell> */}
+                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
+                            {item.status}
+                          </TableCell>
                         </TableRow>
                       ))}
                     </TableBody>

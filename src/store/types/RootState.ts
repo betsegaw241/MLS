@@ -21,7 +21,10 @@ import { AdminPharmaciesPageState } from "app/Pages/AdminPharmaciesPage/slice/ty
 import { notificationPageState } from "app/Pages/Notification/slices/types";
 import { transactionPageState } from "app/Pages/TransactionPage/slices/types";
 import { FeedbackPageState } from "app/Pages/FeedbacksPage/slice/types";
+import { VerifyPharmaciesPageState } from "app/Pages/AdminVerifyPharmacy/slice/types";
 import { transactionDetailPageState } from "app/Pages/TransactionDetailPage/slices/types";
+import { FeedbackDetailPageState } from "app/Pages/FeedbackDetail/slice/types";
+import { AdminProfilePageState } from "app/Pages/AdminProfilePage/slice/types";
 
 export interface RootState {
   Layout?: LayoutState;
@@ -47,34 +50,8 @@ export interface RootState {
   getPharmaciesList: AdminPharmaciesPageState;
   transactionSlice: transactionPageState;
   feedbacks: FeedbackPageState;
-  feedback: feedbackPageState;
-}
-
-
-
-
-export interface RootState {
-  Layout?: LayoutState;
-  createAccountPage: createAccountPageState;
-  editProfile: editProfilePageState;
-  orderSlice: orderPageState;
-  notificationSlice: notificationPageState;
-  login: LoginState;
-  addPharmacy: addPharmacyPageState;
-  addAdmin: addAdminPageState;
-  homePage: homePageState;
-  verifyAccount: verifyAccountPageState;
-  manageInventory: ManageInventorState;
-  addDrug: addDrugPageState;
-  orderDetailSlice: orderDetailPageState;
-  pharmacyAccount: pharmacyAccountPageState;
-  registerDrug: RegisterDrugPageState;
-  dashboard: DashboardPageState;
-  getDrugsList: PharmacyStockPageState;
-  drugDetail: DrugDetailPageState;
-  editDrugDetail: EditDrugDetailsPageState;
-  getUsersList: AdminUsersPageState;
-  getPharmaciesList: AdminPharmaciesPageState;
-  transactionSlice: transactionPageState;
   transactionDetailSlice: transactionDetailPageState;
+  verifyPharmacy: VerifyPharmaciesPageState;
+  feedbacksDetail: FeedbackDetailPageState;
+  adminProfile: AdminProfilePageState;
 }

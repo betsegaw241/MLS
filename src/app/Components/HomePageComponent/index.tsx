@@ -15,6 +15,7 @@ const HomePageComponent = (props: HomePageProps) => {
     document.body.style.padding = "0";
   }, []);
 
+  console.log(props.pharmacies);
   return (
     <>
       <Header notifications={[]} />
@@ -29,32 +30,44 @@ const HomePageComponent = (props: HomePageProps) => {
         flexDirection={"column"}
         // style={{ gap: 3 }}
       >
-        <Flex
-          width={"90%"}
-          marginTop={"70px"}
-          alignItems={"center"}
-          justifyContent={"space-between"}
-          borderRadius={"5px"}
-          paddingY={3}
-        >
-          <Flex>
-            <Text fontFamily={"poppins"} fontSize={6}>
-              My pharmacy
-            </Text>
+        {props.pharmacies?.length > 0 ? (
+          <Flex
+            width={"90%"}
+            marginTop={"70px"}
+            alignItems={"center"}
+            justifyContent={"space-between"}
+            borderRadius={"5px"}
+            paddingY={3}
+          >
+            <Flex>
+              <Text fontFamily={"poppins"} fontSize={6}>
+                My pharmacy
+              </Text>
+            </Flex>
           </Flex>
-          <Flex>
-            <Button
-              variant="primary"
-              borderRadius={"8px"}
-              p={1}
-              fontFamily={"poppins"}
-              fontSize={5}
-              onClick={() => navigate("/addPharmacy")}
-            >
-              Add New Pharmacy
-            </Button>
+        ) : (
+          <Flex
+            width={"90%"}
+            marginTop={"70px"}
+            alignItems={"center"}
+            justifyContent={"space-between"}
+            borderRadius={"5px"}
+            paddingY={3}
+          >
+            <Flex>
+              <Button
+                variant="primary"
+                borderRadius={"8px"}
+                p={2}
+                fontFamily={"poppins"}
+                fontSize={5}
+                onClick={() => navigate("/addPharmacy")}
+              >
+                Register Pharmacy
+              </Button>
+            </Flex>
           </Flex>
-        </Flex>
+        )}
 
         {props.loading ? (
           <LoadingPage />
@@ -116,7 +129,6 @@ const HomePageComponent = (props: HomePageProps) => {
                     height={"100%"}
                     p={1}
                   >
-                 
                     <Text fontFamily={"poppins"} fontSize={6}>
                       {pharmacy.name}
                     </Text>
@@ -132,23 +144,34 @@ const HomePageComponent = (props: HomePageProps) => {
                         {pharmacy.phoneNumber}
                       </Text>
                     </Flex>
+
                     <Flex
                       width={"100%"}
                       justifyContent={"flex-end"}
                       mt={"auto"}
                     >
-                      <Text
-                        p={1}
-                        borderRadius={1}
-                        onClick={() =>
-                          navigate(`/pharmacist/dashboard/${pharmacy._id}`)
-                        }
-                        border={"1px #B4D4FF solid"}
-                        fontFamily={"poppins"}
-                        style={{ cursor: "pointer" }}
-                      >
-                        Go to Dashboard
-                      </Text>
+                      {pharmacy.status == "pending" ? (
+                        <Text
+                          fontFamily={"poppins"}
+                          p={1}
+                          backgroundColor={"#f5f5f5"}
+                        >
+                          pending
+                        </Text>
+                      ) : (
+                        <Text
+                          p={1}
+                          borderRadius={1}
+                          onClick={() =>
+                            navigate(`/pharmacist/dashboard/${pharmacy._id}`)
+                          }
+                          border={"1px #B4D4FF solid"}
+                          fontFamily={"poppins"}
+                          style={{ cursor: "pointer" }}
+                        >
+                          Go to Dashboard
+                        </Text>
+                      )}
                     </Flex>
                   </Flex>
                 </Flex>

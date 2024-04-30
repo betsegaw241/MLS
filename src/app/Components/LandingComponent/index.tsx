@@ -1,6 +1,4 @@
-import Badge from "@mui/material/Badge";
 import { Box, Flex, Text } from "../ui/Blocks";
-import { IoMdNotificationsOutline } from "react-icons/io";
 import { useNavigate } from "react-router";
 
 const LandingComponent = () => {

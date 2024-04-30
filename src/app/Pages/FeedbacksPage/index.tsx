@@ -13,50 +13,17 @@ const FeedbacksPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
   const { actions } = UseGetFeedbacksSlice();
-  const feedbacks1 = useSelector(selectFeedbacks);
+  const feedbacks = useSelector(selectFeedbacks);
   const loading = useSelector(selectIsLoading);
   const deleted = useSelector(selectIsDeleted);
-  const [status, setStatus] = useState("");
+  const [role, setRole] = useState("");
   const [type, setType] = useState("");
-
-  const sampleFeedbacks: Feedback[] = [
-    {
-      userId: "dd04959b-7035-41ab-b846-0e050613a228",
-      title: "Billing Error",
-      content:
-        "I noticed an overcharge on my recent bill. Can you please review and rectify this I noticed an overcharge on my recent bill. Can you please review and rectify this I noticed an overcharge on my recent bill. Can you please review and rectify this?",
-      type: "complaint",
-      status: "pending",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-    {
-      userId: "dd04959b-7035-41ab-b846-0e050613a228",
-      title: "Add Dark Mode Option",
-      content:
-        "It would be great to have a dark mode option for better usability during nighttime. Many apps are implementing this feature, and I think it would benefit our users as well.",
-      type: "suggestion",
-      status: "pending",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-    {
-      userId: "dd04959b-7035-41ab-b846-0e050613a228",
-      title: "How to Change Email Address?",
-      content:
-        "I'm having trouble finding the option to change my email address in the account settings. Can you please guide me on how to do this?",
-      type: "question",
-      status: "pending",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-  ];
 
   useEffect(() => {
     dispatch(
-      actions.getFeedbacks({ page: currentPage, type: type, status: status })
+      actions.getFeedbacks({ page: currentPage, type: type, role: role })
     );
-  }, [currentPage, status, type]);
+  }, [currentPage, role, type]);
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
@@ -65,8 +32,8 @@ const FeedbacksPage = () => {
     setCurrentPage(page);
   };
 
-  const handleFilterStatus = (value: string) => {
-    setStatus(value);
+  const handleFilterByRole = (value: string) => {
+    setRole(value);
     setCurrentPage(1);
   };
   const handleFilterType = (value: string) => {
@@ -74,17 +41,17 @@ const FeedbacksPage = () => {
     setCurrentPage(1);
   };
 
-  const handleDelete = (value :any) => {
+  const handleDelete = (value: any) => {
     dispatch(actions.getFeedbacks(value));
   };
 
   return (
     <FeedbacksComponent
-      feedbacks={sampleFeedbacks}
+      feedbacks={feedbacks.data}
       page={currentPage}
-      totalPages={1}
+      totalPages={feedbacks.totalPages}
       handlePageChange={handlePageChange}
-      handleFilterStatus={handleFilterStatus}
+      handleFilterByRole={handleFilterByRole}
       handleFilterType={handleFilterType}
       handleDelete={handleDelete}
     />

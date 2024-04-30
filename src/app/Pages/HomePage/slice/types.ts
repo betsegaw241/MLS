@@ -10,4 +10,5 @@ export interface pharmacy {
   logo: string;
   email: string;
   phoneNumber: string;
+  status: string;
 }

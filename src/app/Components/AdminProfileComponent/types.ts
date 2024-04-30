@@ -1,8 +1,9 @@
-import { IProfile } from "../ProfileComponent/types";
+import { IProfile } from "app/Pages/AdminProfilePage/slice/types";
+
 
 export interface AdminProfileComponentProps {
   handleChangePassword: (values: any) => void;
-  data: IProfile;
+  profile: IProfile;
   errorMessage: string;
   ischangingPassword: boolean;
 }

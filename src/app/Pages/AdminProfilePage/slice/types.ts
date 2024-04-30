@@ -12,12 +12,14 @@ export interface PayloadType {
   user: IProfile;
 }
 export interface IProfile {
-  firstName: String;
-  lastName: String;
+  _id: string;
+  name: String;
   email: String;
   phone: String;
   avatar: string;
+  coverPhoto: string;
   confirmPassword: String;
   currentPassword: String;
   newPassword: String;
+  role: string;
 }

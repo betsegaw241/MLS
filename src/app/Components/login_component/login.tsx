@@ -18,6 +18,7 @@ import market from "../../../assets/SVG/market.svg";
 import payment from "../../../assets/SVG/payment.svg";
 import pharmacy from "../../../assets/SVG/pharmacy.svg";
 import { LoginDesplayText } from "utils/constants";
+import Alert from "../ui/Alert";
 
 const LoginComponent = (props: LoginInComponentProp) => {
   const [showpassword, setShowPassword] = useState(false);
@@ -141,12 +142,16 @@ const LoginComponent = (props: LoginInComponentProp) => {
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
+                      flexDirection: "column",
                     }}
                   >
+                    {props.errorMessage && (
+                      <Alert title={"error"} message={props.errorMessage} />
+                    )}
                     <Flex
                       flexDirection={"column"}
                       justifyContent={"center"}
-                      width={["100%",'100%','100%', "60%"]}
+                      width={["100%", "100%", "100%", "60%"]}
                       style={{ gap: 5 }}
                     >
                       <InputField name="email" type={"text"} label={"Email"} />
@@ -162,6 +167,7 @@ const LoginComponent = (props: LoginInComponentProp) => {
                         topIconlabel={showpassword ? "hide" : "show"}
                       />
 
+                      {/* <Text fontFamily={'poppins'} fontSize={3} color={'red'}>{props.errorMessage}</Text> */}
                       <Flex justifyContent={"flex-end"}>
                         <Text fontFamily={"poppins"} fontSize={1}>
                           <Link
@@ -174,6 +180,7 @@ const LoginComponent = (props: LoginInComponentProp) => {
                           </Link>
                         </Text>
                       </Flex>
+
                       <Button
                         borderRadius={1}
                         // fontWeight={"bold"}

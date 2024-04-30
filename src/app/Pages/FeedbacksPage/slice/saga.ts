@@ -8,8 +8,8 @@ function* handleGetFeedbacks(action: PayloadAction<any>) {
   try {
     const res: Feedback = yield call(api, {
       method: "GET",
-      route: "/user/",
-      query: { page: action.payload.page, role: action.payload.role },
+      route: "/feedback/",
+      query: action.payload,
       isSecureRoute: true,
     });
 

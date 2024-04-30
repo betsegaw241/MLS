@@ -9,7 +9,7 @@ function* handleGetPharmacies(action: PayloadAction<any>) {
     const res: pharmacy = yield call(api, {
       method: "GET",
       route: "/pharmacy",
-      query: { page: action.payload.page },
+      query: { page: action.payload.page, status: action.payload.status },
       isSecureRoute: true,
     });
 

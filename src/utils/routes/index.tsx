@@ -7,7 +7,7 @@ import AddPharmacyPage from "app/Pages/AddPharmacyPage/index";
 import HomePage from "app/Pages/HomePage";
 import ProfilePage from "app/Pages/ProfilePage";
 import VerifyEmailPage from "app/Pages/VerifyEmailPage";
-import AdminVerifyPharmacy from "app/Components/AdminVerifyPharmacy";
+import AdminVerifyPharmacy from "app/Pages/AdminVerifyPharmacy";
 import ManageInventoryPage from "app/Pages/ManageInventoryPage";
 import AddDrugPage from "app/Pages/AddDrugsPage";
 import OrderPage from "app/Pages/OrderPage";
@@ -26,7 +26,8 @@ import NotificationPage from "app/Pages/Notification";
 import TransactionPage from "app/Pages/TransactionPage";
 import FeedbacksPage from "app/Pages/FeedbacksPage";
 import TransactionDetailPage from "app/Pages/TransactionDetailPage";
-import VerifiedEmail from "app/Components/verifyEmail";
+import FeedbackDetailPage from "app/Pages/FeedbackDetail";
+import VerifyPharmacyDetailPage from "app/Pages/VerifyPharmacyDetailPage";
 
 export const routes: IRoute[] = [
   {
@@ -60,13 +61,6 @@ export const routes: IRoute[] = [
     allowedRole: "*",
   },
   {
-    element: <MapComponent />,
-    exact: true,
-    path: "null/map",
-    isProtected: false,
-    allowedRole: "*",
-  },
-  {
     element: <CreateAccountPage />,
     exact: true,
     path: "/signup",
@@ -78,7 +72,7 @@ export const routes: IRoute[] = [
     exact: true,
     path: "/addpharmacy",
     isProtected: false,
-    allowedRole: "*",
+    allowedRole: "pharmacist",
   },
   {
     element: <AddAdminPage />,
@@ -92,13 +86,6 @@ export const routes: IRoute[] = [
     element: <HomePage />,
     exact: true,
     path: "/pharmacist/home",
-    isProtected: true,
-    allowedRole: "pharmacist",
-  },
-  {
-    element: <HomePage />,
-    exact: true,
-    path: "/admin/home",
     isProtected: true,
     allowedRole: "pharmacist",
   },
@@ -218,7 +205,7 @@ export const routes: IRoute[] = [
     exact: true,
     path: "account",
     isProtected: true,
-    allowedRole: "superAdmin",
+    allowedRole: ["superAdmin", "admin"],
     needsLayout: true,
   },
   {
@@ -250,6 +237,30 @@ export const routes: IRoute[] = [
     path: "feedbacks",
     isProtected: true,
     allowedRole: ["superAdmin", "admin"],
+    needsLayout: true,
+  },
+  {
+    element: <FeedbackDetailPage />,
+    exact: true,
+    path: "feedbackdetail/:id",
+    isProtected: true,
+    allowedRole: ["superAdmin", "admin"],
+    needsLayout: true,
+  },
+  {
+    element: <VerifyPharmacyDetailPage />,
+    exact: true,
+    path: "verifyPharmacy/:id",
+    isProtected: true,
+    allowedRole: ["superAdmin", "admin"],
+    needsLayout: true,
+  },
+  {
+    element: <></>,
+    exact: true,
+    path: "admin/home",
+    isProtected: true,
+    allowedRole: "admin",
     needsLayout: true,
   },
 ];

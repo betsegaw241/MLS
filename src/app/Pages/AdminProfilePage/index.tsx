@@ -1,5 +1,4 @@
 import AdminProfileComponent from "app/Components/AdminProfileComponent";
-import { Flex } from "app/Components/ui/Blocks";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAdminProfilePageSlice } from "./slice";
@@ -14,7 +13,7 @@ const AdminProfilePage = () => {
   // const isEditing = useSelector(selectIsEditing);
   const ischangingPassword = useSelector(selectIsChangingPassword);
   const profile = useSelector(selectProfile);
-  const [data, setData] = useState<IProfile>(profile);
+  // const [data, setData] = useState<IProfile>(profile);
   const errorMessage = useSelector(selectErrorMessage);
   const { actions } = useAdminProfilePageSlice();
   const dispatch = useDispatch();
@@ -27,9 +26,9 @@ const AdminProfilePage = () => {
   }, []);
 
   const handleChangePassword = (values: IProfile) => {
-    console.log(values);
     dispatch(
       actions.changePassword({
+        id: profile._id,
         oldPassword: values.currentPassword,
         newPassword: values.confirmPassword,
       })
@@ -40,7 +39,7 @@ const AdminProfilePage = () => {
     <AdminProfileComponent
       handleChangePassword={handleChangePassword}
       ischangingPassword={ischangingPassword}
-      data={profile}
+      profile={profile}
       errorMessage={errorMessage}
     />
   );
