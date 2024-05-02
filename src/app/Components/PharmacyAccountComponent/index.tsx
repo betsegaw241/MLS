@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, P, Text } from "../ui/Blocks";
+import { Box, Button, Flex, Grid, P, Text } from "../ui/Blocks";
 import { GridBox } from "../ui/Blocks/GridBox";
 import { MdEdit } from "react-icons/md";
 import { useState } from "react";
@@ -9,8 +9,10 @@ import { IoMdCloudUpload } from "react-icons/io";
 import EditPharmacyProfileComponent from "./EditPharmacyProfileComponent";
 import EditPharmacyAccountDetailComponent from "./EditPharmacyAccountDetailComponent";
 import { Rating } from "react-simple-star-rating";
+import { useNavigate } from "react-router";
 
 const PharmacyAccountComponent = (props: IPharmacyAccountComponent) => {
+  const navigate = useNavigate();
   const [selectCover, setSelectCover] = useState<File[]>([]);
   const [selectLogo, setSelectLogo] = useState<File[]>([]);
   const [coverSaved, setCoverSaved] = useState(true);
@@ -168,28 +170,44 @@ const PharmacyAccountComponent = (props: IPharmacyAccountComponent) => {
             </Flex>
           )}
         </Flex>
-
         <Flex
-          flexDirection={"column"}
-          justifyContent={"center"}
           marginLeft={"5%"}
+          justifyContent={"space-between"}
+          width={"50%"}
+          alignItems={"center"}
+          flexDirection={["column", "row"]}
         >
-          <Text fontFamily={"poppins"} fontSize={6}>
-            {props.pharmacy.name}
-          </Text>
-          <Text fontFamily={"poppins"} fontSize={4}>
-            {props.pharmacy.email}
-          </Text>
-          <Flex alignItems={"center"} style={{ gap: 10 }}>
-            <Rating
-              readonly
-              allowFraction
-              initialValue={props.pharmacy?.avgRating}
-            />
-            <Text fontFamily={"poppins"} fontSize={1}>
-              {props.pharmacy?.avgRating}
+          <Flex flexDirection={"column"} justifyContent={"center"}>
+            <Text fontFamily={"poppins"} fontSize={6}>
+              {props.pharmacy.name}
             </Text>
+            <Text fontFamily={"poppins"} fontSize={4}>
+              {props.pharmacy.email}
+            </Text>
+            <Flex alignItems={"center"} style={{ gap: 10 }}>
+              <Rating
+                readonly
+                allowFraction
+                initialValue={props.pharmacy?.avgRating}
+              />
+              <Text fontFamily={"poppins"} fontSize={1}>
+                {props.pharmacy?.avgRating}
+              </Text>
+            </Flex>
           </Flex>
+          <Text
+            p={1}
+            fontFamily={"poppins"}
+            fontSize={5}
+            borderRadius={1}
+            border={"1px #B4D4FF solid"}
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              navigate(`/pharmacy/reviews/${props.pharmacy._id}`);
+            }}
+          >
+            Reviews
+          </Text>
         </Flex>
       </Flex>
 

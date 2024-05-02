@@ -15,6 +15,7 @@ const VerifyPharmacyDetailPage = () => {
   useEffect(() => {
     dispatch(actions.getpharmacy(id));
   }, []);
+  
   const handleVerify = (value: string) => {
     dispatch(actions.verifyPharmacy({ id: id, status: value }));
   };

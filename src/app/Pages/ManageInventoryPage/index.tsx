@@ -9,8 +9,8 @@ const ManageInventoryPage = () => {
   const orders = [
     {
       id: 1,
-      name: "Beka",
-      drug: "Advil",
+      name: "Tollea",
+      drug: "tole",
       phone: "0935354",
       location: "A.A",
       time: "4:30 PM",

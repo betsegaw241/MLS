@@ -28,6 +28,7 @@ import FeedbacksPage from "app/Pages/FeedbacksPage";
 import TransactionDetailPage from "app/Pages/TransactionDetailPage";
 import FeedbackDetailPage from "app/Pages/FeedbackDetail";
 import VerifyPharmacyDetailPage from "app/Pages/VerifyPharmacyDetailPage";
+import ReviewsPgae from "app/Pages/ReviewsPgae";
 
 export const routes: IRoute[] = [
   {
@@ -261,6 +262,14 @@ export const routes: IRoute[] = [
     path: "admin/home",
     isProtected: true,
     allowedRole: "admin",
+    needsLayout: true,
+  },
+  {
+    element: <ReviewsPgae />,
+    exact: true,
+    path: "pharmacy/reviews/:id",
+    isProtected: true,
+    allowedRole: "pharmacist",
     needsLayout: true,
   },
 ];

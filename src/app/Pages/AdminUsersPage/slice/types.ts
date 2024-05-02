@@ -20,7 +20,7 @@ export interface user {
   location: Adress;
   account: Account[];
   deliveryAddress: Adress[];
-  pharmaciestLicense: string;
+  pharmacistLicense: string;
   emailVerified: boolean;
   role: string;
 }

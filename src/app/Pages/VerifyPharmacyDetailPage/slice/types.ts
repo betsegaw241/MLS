@@ -1,3 +1,5 @@
+import { user } from "app/Pages/AdminUsersPage/slice/types";
+
 export interface VerifyPharmacyDetailPageState {
   errorMessage: string;
   loading: boolean;
@@ -7,7 +9,8 @@ export interface pharmacy {
   _id: string;
   name: string;
   email: string;
-  phone: string;
+  phoneNumber: string;
+  address: string;
   state: string;
   city: string;
   operationalHours: string;
@@ -19,4 +22,7 @@ export interface pharmacy {
   fastDeliveryFee: string;
   deliveryFeeinKm: string;
   isDeliveryAvailable: boolean;
+  pharmacyLicense: string;
+  status: string;
+  pharmacist: user;
 }

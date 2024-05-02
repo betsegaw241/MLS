@@ -1,11 +1,6 @@
 import { theme } from "../../../styles/theme";
 import { Button, Flex, Grid, Text } from "../ui/Blocks";
-import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
-import report from "../../../assets/Report.pdf";
-import id from "../../../assets/lid.jpeg";
 import { GridBox } from "../ui/Blocks/GridBox";
-import MapComponent from "../ui/MapComponent";
-import { useState } from "react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import React from "react";
 import { MdOutlineZoomIn } from "react-icons/md";
@@ -17,15 +12,6 @@ import { VerifyPharmacyDetailComponentProps } from "./types";
 const VerifyPharmacyDetailComponent = (
   props: VerifyPharmacyDetailComponentProps
 ) => {
-  const [currentImage, setCurrentImage] = useState(0);
-  const [isViewerOpen, setIsViewerOpen] = useState(false);
-
-  const getFileExtension = (url: any) => {
-    return url.split(".").pop().toLowerCase();
-  };
-
-  const docs = [{ uri: report }, { uri: id }];
-
   const handleDownload = (url: string) => {
     const filename = "image.jpg"; // Change the filename as needed
 
@@ -43,50 +29,8 @@ const VerifyPharmacyDetailComponent = (
         }
       });
   };
-  const getFileTypeFromMIME = async (uri) => {
-    try {
-      const response = await fetch(uri);
-      const contentType = response.headers.get("content-type");
-      console.log(contentType);
-      if (contentType.includes("application/pdf")) {
-        return "pdf";
-      } else if (contentType.includes("image")) {
-        return "image";
-      } else {
-        return "unknown";
-      }
-    } catch (error) {
-      console.error("Error fetching MIME type:", error);
-      return "unknown";
-    }
-  };
 
   const renderViewer = (document: any) => {
-    console.log("-----------", getFileTypeFromMIME(document));
-    const type = getFileTypeFromMIME(document);
-    if (type === "pdf") {
-      return (
-        <DocViewer
-          key={document.uri}
-          documents={[document]}
-          initialActiveDocument={document}
-          pluginRenderers={DocViewerRenderers}
-          config={{
-            header: {
-              disableHeader: true,
-              disableFileName: true,
-              retainURLParams: false,
-            },
-            pdfZoom: {
-              defaultZoom: 1,
-              zoomJump: 0.2,
-            },
-            pdfVerticalScrollByDefault: false,
-          }}
-          style={{ border: "1px solid #4444" }}
-        />
-      );
-    }else if (type === "image") {
     return (
       <Flex
         border={"1px solid #4444"}
@@ -136,9 +80,6 @@ const VerifyPharmacyDetailComponent = (
         </TransformWrapper>
       </Flex>
     );
-    } else {
-      return <Text fontFamily={'poppins'}>Unsupported file format</Text>;
-    }
   };
 
   return (
@@ -157,11 +98,17 @@ const VerifyPharmacyDetailComponent = (
         <Text
           fontFamily={"poppins"}
           fontSize={3}
-          backgroundColor={"#f5f5f5f5"}
+          backgroundColor={
+            props.pharmacy?.status === "approved"
+              ? "green"
+              : props.pharmacy?.status === "rejected"
+              ? "red"
+              : "#f5f5f5"
+          }
           color={"#282E34"}
           borderRadius={"4px"}
         >
-          pending
+          {props.pharmacy.status}
         </Text>
       </Flex>
       <Text fontFamily={"poppins"} fontSize={5} p={1}>
@@ -182,7 +129,10 @@ const VerifyPharmacyDetailComponent = (
         p={1}
       >
         <GridBox lable={"Name"} value={props.pharmacy?.pharmacist?.name} />
-        <GridBox lable={"Phone"} value={props.pharmacy?.pharmacist?.name} />
+        <GridBox
+          lable={"Phone"}
+          value={props.pharmacy?.pharmacist?.phoneNumber}
+        />
         <GridBox lable={"Email"} value={props.pharmacy?.pharmacist?.email} />
       </Grid>
       <Text fontFamily={"poppins"} fontSize={5} p={1}>
@@ -212,13 +162,13 @@ const VerifyPharmacyDetailComponent = (
         Pharmacy Lisense
       </Text>
       <Flex flexDirection="column" alignItems="center">
-        {renderViewer(props.pharmacy.pharmacistLicense)}
+        {renderViewer(props.pharmacy?.pharmacist?.pharmacistLicense)}
       </Flex>
       <Text fontFamily={"poppins"} fontSize={5} p={1}>
         Pharmacist Lisense
       </Text>
       <Flex flexDirection="column" alignItems="center">
-        {renderViewer(docs[1])}
+        {renderViewer(props.pharmacy?.pharmacyLicense)}
       </Flex>
 
       <Flex
