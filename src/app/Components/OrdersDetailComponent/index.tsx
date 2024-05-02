@@ -9,7 +9,12 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
   const status: IStatus = { status: "Pending" };
 
   const coord = props.order.deliveryAddress.location.coordinates;
+  const pharmacylocation = props.pharmacy?.deliveryAddress?.location.coordinates;
   const newCoord = [coord[1], coord[0]];
+  let center ;
+  if(pharmacylocation){
+    center= [pharmacylocation[1], pharmacylocation[0]];
+  } 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     const year = date.getFullYear();
@@ -95,7 +100,7 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
             />
 
             <GridBox
-              lable={"Location"}
+              lable={"Address"}
               value={props.order.deliveryAddress?.address}
             />
             <GridBox
@@ -165,7 +170,11 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
             borderRadius={1}
           >
             {props.order.deliveryAddress?.location.coordinates.length > 0 && (
-              <MapComponent position={newCoord} />
+              <MapComponent
+                position={newCoord}
+                deliveryCoverage={props.pharmacy?.deliveryCoverage}
+                center={center}
+              />
             )}
           </Box>
         </Flex>

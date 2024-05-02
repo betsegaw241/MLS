@@ -11,6 +11,8 @@ import {
 } from "./slices/selector";
 import { useEffect, useState } from "react";
 import LoadingPage from "utils/LoadingPage";
+import { usePharmacyAccountSlice } from "../PharmacyAccountPage/slices";
+import { selectPharmacy } from "../PharmacyAccountPage/slices/selector";
 
 const OrderDetailPage = () => {
   const { id } = useParams();
@@ -20,10 +22,16 @@ const OrderDetailPage = () => {
   const order = useSelector(selectOrder);
   const loading = useSelector(selectloading);
   const isUpdating = useSelector(selectIsUpdating);
+  const  pharmacyActions  = usePharmacyAccountSlice();
+  const pharmacy = useSelector(selectPharmacy);
 
   useEffect(() => {
     dispatch(actions.fetchOrder(id));
   }, []);
+
+  useEffect(() => {
+    dispatch(pharmacyActions.actions.getpharmacyDetail(order.pharmacy?._id));
+  }, [order]);
 
   function onRejectClick() {
     dispatch(
@@ -49,6 +57,7 @@ const OrderDetailPage = () => {
 
   return order._id ? (
     <OrderDetailComponent
+    pharmacy={pharmacy}
       order={order}
       isUpdating={isUpdating}
       onRejectClick={onRejectClick}

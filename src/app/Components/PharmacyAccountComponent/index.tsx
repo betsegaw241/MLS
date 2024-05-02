@@ -275,7 +275,8 @@ const PharmacyAccountComponent = (props: IPharmacyAccountComponent) => {
                   <GridBox lable={"Name"} value={props.pharmacy.name} />
                   <GridBox lable={"Email"} value={props.pharmacy.email} />
                   <GridBox lable={"Phone"} value={props.pharmacy.phoneNumber} />
-                  <GridBox lable={"adress"} value={props.pharmacy.address} />
+                  
+                  <GridBox lable={"address"} value={props.pharmacy.address} />
                   <GridBox
                     lable={"Working Hours"}
                     value={props.pharmacy.workingHours}

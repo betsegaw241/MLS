@@ -5,10 +5,16 @@ import {
   Marker,
   Popup,
   useMapEvents,
+  CircleMarker,
+  Tooltip,
 } from "react-leaflet";
 import { Flex } from "../Blocks";
+import { IPharmacyAccountComponent } from "app/Components/PharmacyAccountComponent/types";
 
-const MapComponent = (props: any) => {
+const MapComponent = (props: any & IPharmacyAccountComponent) => {
+  console.log('====================================');
+  console.log(props);
+  console.log('====================================');
   const newpos = props.position
     ? {
         latitude: props.position[0],
@@ -72,6 +78,15 @@ const MapComponent = (props: any) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <SetPositionMarker />
+        {props.deliveryCoverage && (
+          <CircleMarker
+            center={[51.51, -0.12]}
+            pathOptions={{ color: "green" }}
+            radius={props.deliveryCoverage}
+          >
+            <Tooltip>Tooltip for CircleMarker</Tooltip>
+          </CircleMarker>
+        )}
       </MapContainer>
     </Flex>
   ) : null;

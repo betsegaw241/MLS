@@ -1,8 +1,11 @@
+import { Pharmacy } from "app/Pages/OrderDetailPage/slices/types";
+import { Ipharmacy } from "../PharmacyAccountComponent/types";
+
 export interface IorderDetailComponent {
   order: IOrder;
   onRejectClick: () => void;
   onAcceptClick: () => void;
-
+  pharmacy: Ipharmacy;
   isUpdating: boolean;
 }
 export interface IOrder {
@@ -20,7 +23,7 @@ export interface IOrder {
   deliveryExpireDate: string;
   deliveryPricePerKm: number;
   customer: Customer;
-  pharmacy: Pharmacy;
+
 }
 
 interface DeliveryAddress {
@@ -37,10 +40,7 @@ export interface Customer {
   email: string;
 }
 
-export interface Pharmacy {
-  name: string;
-  email: string;
-}
+
 
 export interface SenderAccount {
   accountNumber: string;
