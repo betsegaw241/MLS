@@ -161,26 +161,10 @@ export const drugTableColumn: IColumn[] = [
     label: "Catagory",
     minWidth: 50,
   },
-  {
-    id: "Unit Price",
-    label: "Unit Price",
-    minWidth: 50,
-  },
 
   {
     id: "Stock Leve",
     label: "Stock Leve",
-    minWidth: 50,
-  },
-  {
-    id: "Minimum Stock Level",
-    label: "Minimum Stock Level",
-    minWidth: 50,
-  },
-
-  {
-    id: "prescreption",
-    label: "prescription",
     minWidth: 50,
   },
 ];

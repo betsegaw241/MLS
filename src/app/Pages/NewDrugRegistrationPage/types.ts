@@ -14,6 +14,6 @@ export interface Drug {
   strength: string;
   minStockLevel: string;
   category: string;
-  drugPhoto: string;
+  drugPhoto: string[];
   needPrescription: boolean;
 }

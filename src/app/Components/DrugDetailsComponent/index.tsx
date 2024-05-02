@@ -124,6 +124,26 @@ const DrugDetailsComponent = ({
                 {drug.sideEffects}
               </P>
             </Flex>
+            <Flex
+              p={1}
+              border={"1px solid #f5f5f5"}
+              my={1}
+              flexDirection={'column'}
+              borderRadius={1}
+             
+            >
+              <Text p={1} fontFamily={'poppins'} fontSize={2}>Drug Photo</Text>
+              <Flex width={'100%'} style={{ gap: 10 }}>
+                {drug.drugPhoto.map((item, index) => (
+                  <img
+                    key={index}
+                    style={{ height: 100, width: 100, borderRadius: "4px" }}
+                    src={item}
+                    alt={`Drug Photo ${index}`}
+                  />
+                ))}
+              </Flex>
+            </Flex>
 
             {drugStock ? (
               <>

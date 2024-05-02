@@ -79,7 +79,6 @@ const StockComponent = ({
                   setShowSortBy(!showSortBy);
                 }}
               >
-                
                 <Flex
                   flexDirection={"row"}
                   alignItems={"center"}
@@ -143,17 +142,9 @@ const StockComponent = ({
                           <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
                             {item.category}
                           </TableCell>
-                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {item.price}
-                          </TableCell>
+
                           <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
                             {item.stockLevel}
-                          </TableCell>
-                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {item.minStockLevel}
-                          </TableCell>
-                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {item.needPrescription}
                           </TableCell>
                         </TableRow>
                       ))}
