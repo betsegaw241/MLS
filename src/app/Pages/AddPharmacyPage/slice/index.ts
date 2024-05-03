@@ -7,7 +7,8 @@ import { addPharmacyPageState } from "./types";
 export const initialState: addPharmacyPageState = {
   isCreatingAccount: false,
   errorMessage: "",
-  account: undefined
+  account: undefined,
+  isAccountCreated: false
 };
 
 const slice = createSlice({
@@ -20,12 +21,12 @@ const slice = createSlice({
     addPharmacySuccess: (state, action: PayloadAction<any>) => {
       state.isCreatingAccount = false;
       state.account = action.payload;
-      // state.isAccountCreated = true;
+      state.isAccountCreated = true;
     },
     addPharmacyFailed: (state, action: PayloadAction<any>) => {
       state.isCreatingAccount = false;
       state.errorMessage = action.payload;
-      // state.isAccountCreated = false;
+      state.isAccountCreated = false;
     },
   },
 });
