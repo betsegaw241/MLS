@@ -55,9 +55,7 @@ const EditDrugDetailsPage = () => {
 
      // Modify the copy of the object
      updatedValues.drugPhoto = uploadedPhotoUrls;
- 
-     console.log(uploadedPhotoUrls, "[[[[");
-     setSelectedImages([]);
+      setSelectedImages([]);
    }
  
    dispatch(

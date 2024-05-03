@@ -13,6 +13,7 @@ import Paginate from "../ui/Pagination/Paginate";
 import { IoFilter } from "react-icons/io5";
 import { VerifypharmaciesComponentProps } from "./types";
 import Search from "../ui/SearchBar";
+import { useNavigate } from "react-router";
 
 const VerifyPharmacyComponent = ({
   pharmacies,
@@ -22,7 +23,7 @@ const VerifyPharmacyComponent = ({
   page,
   handlePageChange,
 }: VerifypharmaciesComponentProps) => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [showSortBy, setShowSortBy] = useState(false);
   const [ShowFilter, setShowFilter] = useState(false);
 
@@ -52,7 +53,7 @@ const VerifyPharmacyComponent = ({
                 fontFamily={"poppins"}
                 fontSize={6}
               >
-                Users
+                Pharmacies
               </P>
             </Flex>
             <Flex style={{ gap: 10 }}>
@@ -114,6 +115,9 @@ const VerifyPharmacyComponent = ({
                             cursor: "pointer",
                             boxShadow: "none",
                           }}
+                          onClick={() => {
+                            navigate(`/verifyPharmacy/${item._id}`);
+                          }}
                         >
                           {/* <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
                       {index}
@@ -134,11 +138,8 @@ const VerifyPharmacyComponent = ({
                             {item.email}
                           </TableCell>
                           <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {item.phone}
+                            {item.status}
                           </TableCell>
-                          {/* <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {item.}
-                          </TableCell> */}
                         </TableRow>
                       ))}
                     </TableBody>

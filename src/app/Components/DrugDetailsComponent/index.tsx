@@ -134,7 +134,7 @@ const DrugDetailsComponent = ({
             >
               <Text p={1} fontFamily={'poppins'} fontSize={2}>Drug Photo</Text>
               <Flex width={'100%'} style={{ gap: 10 }}>
-                {drug.drugPhoto.map((item, index) => (
+                {drug?.drugPhoto?.map((item, index) => (
                   <img
                     key={index}
                     style={{ height: 100, width: 100, borderRadius: "4px" }}

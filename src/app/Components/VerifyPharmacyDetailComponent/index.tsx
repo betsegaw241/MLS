@@ -155,7 +155,7 @@ const VerifyPharmacyDetailComponent = (
         <GridBox lable={"Pharmacy Name"} value={props.pharmacy.name} />
         <GridBox lable={"Pharmacy Phone"} value={props.pharmacy.phoneNumber} />
         <GridBox lable={"Pharmacy Email"} value={props.pharmacy.email} />
-        <GridBox lable={"Pharmacy Email"} value={props.pharmacy.address} />
+        <GridBox lable={"Adress"} value={props.pharmacy.address} />
       </Grid>
 
       <Text fontFamily={"poppins"} fontSize={5} p={1}>

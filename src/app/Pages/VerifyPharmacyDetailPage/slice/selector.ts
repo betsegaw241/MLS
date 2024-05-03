@@ -23,3 +23,7 @@ export const selectErrorMessage = createSelector(
   [selectSlice],
   (state) => state.errorMessage
 );
+export const selectisVerified = createSelector(
+  [selectSlice],
+  (state) => state.verified
+);

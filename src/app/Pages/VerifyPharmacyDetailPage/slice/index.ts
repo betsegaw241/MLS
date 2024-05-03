@@ -10,6 +10,7 @@ import { pharmacy, VerifyPharmacyDetailPageState } from "./types";
 export const initialState: VerifyPharmacyDetailPageState = {
   errorMessage: "",
   loading: false,
+  verified: false,
   pharmacy: {} as pharmacy,
 };
 
@@ -34,6 +35,7 @@ const slice = createSlice({
     verifyPharmacySuccess: (state, action: PayloadAction<any>) => {
       state.pharmacy = action.payload;
       state.loading = false;
+      state.verified = true;
     },
     verifyPharmacyFailed: (state, action: PayloadAction<any>) => {
       state.errorMessage = action.payload;

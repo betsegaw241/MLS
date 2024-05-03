@@ -4,6 +4,7 @@ export interface VerifyPharmacyDetailPageState {
   errorMessage: string;
   loading: boolean;
   pharmacy: pharmacy;
+  verified:boolean;
 }
 export interface pharmacy {
   _id: string;

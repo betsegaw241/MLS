@@ -1,14 +1,14 @@
 import PharmacyAccountComponent from "app/Components/PharmacyAccountComponent";
 import { useEffect, useState } from "react";
-import { IPharmacy, IbankName } from "./types";
+import { IPharmacy } from "./types";
 import { useDispatch, useSelector } from "react-redux";
 import { usePharmacyAccountSlice } from "./slices";
 import { useParams } from "react-router-dom";
 import {
-  selectLink,
   selectPharmacy,
   selectUpdated,
   selectBanks,
+  selectLoading,
 } from "./slices/selector";
 import api from "../../../API/api";
 import LoadingPage from "utils/LoadingPage";
@@ -29,7 +29,8 @@ const PharmacyAccountPage = () => {
   const pharmacy = useSelector(selectPharmacy);
   const updated = useSelector(selectUpdated);
   const banks = useSelector(selectBanks);
-  const link = useSelector(selectLink);
+  // const link = useSelector(selectLink);
+  const loading = useSelector(selectLoading);
 
   useEffect(() => {
     dispatch(actions.getpharmacyDetail(id));
@@ -97,8 +98,8 @@ const PharmacyAccountPage = () => {
       console.log(error);
     }
   }
-  let banksName :any = [];
-  let banksCode = [];
+  let banksName: any = [];
+  // let banksCode = [];
   if (banks) {
     banksName = banks?.data?.map((bank) => ({
       label: bank.name,
@@ -106,7 +107,9 @@ const PharmacyAccountPage = () => {
     }));
   }
   console.log(banks);
-  return pharmacy._id && banks ? (
+  return loading ? (
+    <LoadingPage />
+  ) : (
     <PharmacyAccountComponent
       editPharmacyData={editPharmacyData}
       setEditPharmacyData={setEditPharmacyData}
@@ -122,8 +125,6 @@ const PharmacyAccountPage = () => {
       handleUploadLogo={handleUploadLogo}
       handleUpdateAccountDetail={handleUpdateAccountDetail}
     />
-  ) : (
-    <LoadingPage />
   );
 };
 
