@@ -21,9 +21,10 @@ const AdminUsersComponent = ({
   loading,
   //   setQuery,
   //   onSearch,
+  startIndex,
   page,
   handlePageChange,
-  handleFilterUser
+  handleFilterUser,
 }: //   setMinPrice,
 //   setMaxPrice,
 //   setCatagory,
@@ -68,7 +69,7 @@ StockComponentProps) => {
                   onChange={(e) => {
                     console.log(e.target.value);
                   }}
-                  onClick={() => console.log('pop')}
+                  onClick={() => console.log("pop")}
                 />
               </Flex>
 
@@ -108,7 +109,10 @@ StockComponentProps) => {
                     stickyHeader
                     sx={{ minWidth: 650 }}
                   >
-                    <TableHeader columnName={UsersList} handleChange={handleFilterUser} />
+                    <TableHeader
+                      columnName={UsersList}
+                      handleChange={handleFilterUser}
+                    />
                     <TableBody>
                       {users.data?.map((item, index) => (
                         <TableRow
@@ -122,12 +126,12 @@ StockComponentProps) => {
                             boxShadow: "none",
                           }}
                           onClick={() => {
-                            navigate(`/pharmacist/drugdetails/${item._id}`);
+                            // navigate(`/pharmacist/drugdetails/${item._id}`);
                           }}
                         >
-                          {/* <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {index}
-                          </TableCell> */}
+                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
+                            {startIndex + index}
+                          </TableCell>
 
                           <TableCell
                             component="th"

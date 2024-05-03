@@ -7,6 +7,7 @@ export interface AdminUsersPageState {
 export interface IuserData {
   data: user[];
   totalPages: number;
+  totalDocuments: number;
 }
 export interface user {
   _id: string;

@@ -12,6 +12,8 @@ const AdminUsersPage = () => {
   const loading = useSelector(selectIsLoading);
   const [currentPage, setCurrentPage] = useState(1);
   const [role, setRole] = useState("");
+  const startIndex = (currentPage - 1) * 10 + 1;
+  const endIndex = Math.min(startIndex + 10 - 1, users.totalDocuments);
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
@@ -36,6 +38,8 @@ const AdminUsersPage = () => {
       users={users}
       handlePageChange={handlePageChange}
       handleFilterUser={handleFilterUser}
+      endIndex={endIndex}
+      startIndex={startIndex}
     />
   );
 };

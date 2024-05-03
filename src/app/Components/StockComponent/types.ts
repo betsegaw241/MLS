@@ -7,6 +7,8 @@ export interface StockComponentProps {
   onSearch: () => void;
   onFilter: () => void;
   page: number;
+  endIndex: number;
+  startIndex: number;
   drugs: IDrugdata;
   handlePageChange: (event: React.ChangeEvent<unknown>, page: number) => void;
 }
@@ -21,7 +23,7 @@ export interface IDrug {
   stockLevel: string;
   stock_Level: string;
   price: string;
-  needPrescription:boolean;
+  needPrescription: boolean;
 }
 export interface IDrugdata {
   data: IDrug[];

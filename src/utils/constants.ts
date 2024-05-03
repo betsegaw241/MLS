@@ -146,11 +146,11 @@ export const OrderTableColumns: IColumn[] = [
   },
 ];
 export const drugTableColumn: IColumn[] = [
-  // {
-  //   id: "NO",
-  //   label: "NO",
-  //   minWidth: 10,
-  // },
+  {
+    id: "NO",
+    label: "NO",
+    minWidth: 10,
+  },
   {
     id: "Drug",
     label: "Drug",
@@ -290,6 +290,11 @@ export const OutOFStock: IColumn[] = [
 ];
 
 export const UsersList: IColumn[] = [
+  {
+    id: "NO",
+    label: "No",
+    minWidth: 10,
+  },
   {
     id: "Name",
     label: "Name",
