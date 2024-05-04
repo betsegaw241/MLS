@@ -1,7 +1,11 @@
 import { Flex } from "../ui/Blocks";
+import BasicBars from "../ui/Charts/BarChart";
+import StackBars from "../ui/Charts/BarChart";
+import PieColor from "../ui/Charts/PieChart";
 //import BarChart from "../ui/Charts/BarChart";
 import PieChart from "../ui/Charts/PieChart";
 import { Chart } from "react-google-charts";
+import BasicArea from "../ui/Charts/lineChart";
 
 const DashboardComponent = () => {
   const data = [
@@ -15,23 +19,37 @@ const DashboardComponent = () => {
     ["Sunday", 1030, 540, 350],
   ];
 
- const options = {
-  chart: {
-    title: "Pharmacy Analysis",
-    subtitle: "Ordered, Sold, and Aborted: In this week monday to sunday",
-  },
-};
-const BarChart = () => {
-  return (
-    <Chart
-      chartType="Bar"
-      width="100%"
-      height="400px"
-      data={data}
-      options={options}
-    />
-  );
-};
+  const options = {
+    chart: {
+      title: "Pharmacy Analysis",
+      subtitle: "Ordered, Sold, and Aborted: In this week monday to sunday",
+    },
+  };
+  const BarChart = () => {
+    return (
+      <Chart
+        chartType="Bar"
+        width="100%"
+        height="400px"
+        data={data}
+        options={options}
+      />
+    );
+  };
+  const palette = ["green", "red", "Grey"];
+
+  const data1 = [
+    { value: 10, label: "Accepted" },
+    { value: 15, label: "Rjected" },
+    { value: 20, label: "Pending" },
+    { value: 80, label: "Pending" },
+    { value: 40, label: "Pending" },
+  ];
+  const data2 = [
+    { value: 10, label: "Accepted" },
+    { value: 15, label: "Rjected" },
+    { value: 40, label: "Pending" },
+  ];
 
   return (
     <Flex width={"100%"}>
@@ -42,11 +60,12 @@ const BarChart = () => {
         margin={1}
         p={1}
         borderRadius={1}
-        justifyContent={"center"}
         alignItems={"center"}
       >
-        <Flex marginTop={30} width="100%" height="100%">
-          <BarChart />
+        <Flex width="100%" height="100%" flexDirection={"column"}>
+          <BasicBars />
+          <BasicBars />
+          <BasicArea />
         </Flex>
       </Flex>
       <Flex
@@ -56,10 +75,11 @@ const BarChart = () => {
         borderRadius={1}
         width={"25%"}
         flexDirection={"column"}
-        backgroundColor={"#ffff"}
+        backgroundColor={"#fff"}
         p={1}
       >
-        <PieChart />
+        <PieChart data={data2} palette={palette} />
+        <PieChart data={data1} palette={palette} />
       </Flex>
     </Flex>
   );

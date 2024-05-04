@@ -1,7 +1,6 @@
 import LoginPage from "app/Pages/Login";
 import Header from "../../app/Components/layouts/Header/header";
 import { IRoute } from "./types";
-import MapComponent from "app/Components/ui/MapComponent";
 import CreateAccountPage from "app/Pages/createAccountPage/index";
 import AddPharmacyPage from "app/Pages/AddPharmacyPage/index";
 import HomePage from "app/Pages/HomePage";
