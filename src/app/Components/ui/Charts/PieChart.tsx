@@ -14,29 +14,29 @@ interface PieColorProps {
 
 const PieColor: React.FC<PieColorProps> = ({ data, palette }) => {
   return (
-    <Stack width="100%" justifyContent={"space-between"}>
-      <Typography>Orders</Typography>
-      <Box>
-        <PieChart
-          colors={palette}
-          slotProps={{ legend: { hidden: true } }}
-          series={[
-            {
-              arcLabel: (item) => `${item.label}`,
-              data: data,
-              innerRadius: 40,
-              outerRadius: 100,
-              paddingAngle: 5,
-              cornerRadius: 5,
-              startAngle: -90,
-              endAngle: 360,
-            },
-          ]}
-          {...pieParams}
-        />
-      </Box>
+    <Stack width="100%" justifyContent={"center"} alignItems={"center"}>
+      <PieChart
+        sx={{ fontSize: 11 }}
+        colors={palette}
+        series={[
+          {
+            arcLabel: (item) => `${item.label}`,
+            data: data,
+            innerRadius: 10,
+            outerRadius: 80,
+            paddingAngle: 5,
+            cornerRadius: 5,
+            startAngle: -90,
+            endAngle: 360,
+          },
+        ]}
+        slotProps={{ legend: { hidden: true } }}
+        width={200}
+        {...pieParams}
+      />
     </Stack>
   );
 };
 
 export default PieColor;
+

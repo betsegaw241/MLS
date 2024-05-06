@@ -1,4 +1,4 @@
-import { Flex } from "../ui/Blocks";
+import { Flex, Text } from "../ui/Blocks";
 import BasicBars from "../ui/Charts/BarChart";
 import StackBars from "../ui/Charts/BarChart";
 import PieColor from "../ui/Charts/PieChart";
@@ -36,32 +36,50 @@ const DashboardComponent = () => {
       />
     );
   };
-  const palette = ["green", "red", "Grey"];
+  const palette = ["#C3FF93", "#FFAF61", "#F5EFE6"];
+
+  const palette1 = [
+    "#B3C8CF",
+    "#BED7DC",
+    "#9195F6",
+    "#C6CF9B",
+    "#FFCAD4",
+    "#D895DA",
+  ];
 
   const data1 = [
-    { value: 10, label: "Accepted" },
-    { value: 15, label: "Rjected" },
-    { value: 20, label: "Pending" },
-    { value: 80, label: "Pending" },
-    { value: 40, label: "Pending" },
+    { value: 10, label: "Acetaminophen" },
+    { value: 15, label: "Ibuprofen" },
+    { value: 20, label: "Loratadine" },
+    { value: 80, label: "Loperamide" },
+    { value: 40, label: "Diphenhydramine" },
+    { value: 40, label: "Others" },
   ];
   const data2 = [
     { value: 10, label: "Accepted" },
     { value: 15, label: "Rjected" },
     { value: 40, label: "Pending" },
   ];
+  const data3 = [
+    { value: 10, label: "Morning" },
+    { value: 150, label: "Noon" },
+    { value: 40, label: "Evening" },
+  ];
 
   return (
     <Flex width={"100%"}>
       <Flex
         width={"75%"}
-        height={"100vh"}
+        minHeight={"100vh"}
         backgroundColor={"#ffff"}
         margin={1}
         p={1}
         borderRadius={1}
-        alignItems={"center"}
+        flexDirection={"column"}
       >
+        <Text fontFamily={"poppins"} fontSize={6}>
+          Dashboard
+        </Text>
         <Flex width="100%" height="100%" flexDirection={"column"}>
           <BasicBars />
           <BasicBars />
@@ -73,13 +91,25 @@ const DashboardComponent = () => {
         paddingLeft={"0px"}
         marginLeft={"0px"}
         borderRadius={1}
-        width={"25%"}
+        width={"20%"}
         flexDirection={"column"}
         backgroundColor={"#fff"}
         p={1}
       >
+        <Text fontFamily={"poppins"} fontSize={2}>
+          Orders
+        </Text>
         <PieChart data={data2} palette={palette} />
-        <PieChart data={data1} palette={palette} />
+        <Text fontFamily={"poppins"} fontSize={2}>
+          Ordered Drugs
+        </Text>
+
+        <PieChart data={data1} palette={palette1} />
+        <Text fontFamily={"poppins"} fontSize={2}>
+          Order times
+        </Text>
+
+        <PieChart data={data3} palette={palette} />
       </Flex>
     </Flex>
   );
