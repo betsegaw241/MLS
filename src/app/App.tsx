@@ -21,7 +21,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Navigate replace={true} to="/login" />} path="/" />
+        <Route
+          element={<Navigate replace={true} to="/landingPage" />}
+          path="/"
+        />
         <Route element={<LoginPage />} path="/login" />
       </Routes>
       <Routes>

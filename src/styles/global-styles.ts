@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 *, *::after, *::before {
@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
   }
  
   body {
-    font-family: 'Poppins', Arial, sans-serif;
+    font-family: 'Poppins','lobster', 'lato',Arial, sans-serif;
     box-sizing: border-box;
     width: 100%;
     margin:0;

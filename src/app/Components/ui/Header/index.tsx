@@ -32,8 +32,9 @@ const [showNotification, setShowNotification] = useState(false);
           paddingX={10}
         >
           <Text
-            fontFamily={"poppins"}
-            fontSize={6}
+            fontFamily={"lobster"}
+            fontSize={8}
+            color={'#065AD8'}
             fontWeight={"bold"}
             style={{cursor:'pointer'}}
             onClick={() => navigate("/pharmacist/home")}

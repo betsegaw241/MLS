@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Grid, P, Text } from "../ui/Blocks";
+import { Box, Flex, Grid, P, Text } from "../ui/Blocks";
 import { GridBox } from "../ui/Blocks/GridBox";
 import { MdEdit } from "react-icons/md";
 import { useState } from "react";
@@ -293,7 +293,6 @@ const PharmacyAccountComponent = (props: IPharmacyAccountComponent) => {
                   <GridBox lable={"Name"} value={props.pharmacy.name} />
                   <GridBox lable={"Email"} value={props.pharmacy.email} />
                   <GridBox lable={"Phone"} value={props.pharmacy.phoneNumber} />
-                  
                   <GridBox lable={"address"} value={props.pharmacy.address} />
                   <GridBox
                     lable={"Working Hours"}

@@ -16,7 +16,7 @@ import { FlexProps } from './types';
 
 export const Container = styled(Box)<FlexProps>`
   display: flex;
-  background: ${({ theme }) => (theme === "dark" ? "#121212" : "#ffff")};
+  background: ${({ theme }) => (theme === "dark" ? "#0D0F11" : "#E3E2FF")};
   ${compose(
     flexbox,
     flex,

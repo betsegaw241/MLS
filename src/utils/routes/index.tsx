@@ -28,6 +28,7 @@ import TransactionDetailPage from "app/Pages/TransactionDetailPage";
 import FeedbackDetailPage from "app/Pages/FeedbackDetail";
 import VerifyPharmacyDetailPage from "app/Pages/VerifyPharmacyDetailPage";
 import ReviewsPgae from "app/Pages/ReviewsPgae";
+import LandingComponent from "app/Components/LandingComponent";
 
 export const routes: IRoute[] = [
   {
@@ -270,5 +271,12 @@ export const routes: IRoute[] = [
     isProtected: true,
     allowedRole: "pharmacist",
     needsLayout: true,
+  },
+  {
+    element: <LandingComponent />,
+    exact: true,
+    path: "/landingPage",
+    isProtected: false,
+    allowedRole: "*",
   },
 ];
