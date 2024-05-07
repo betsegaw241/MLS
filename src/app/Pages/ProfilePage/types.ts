@@ -11,3 +11,8 @@ export interface FileObject {
   size: number;
   path: string;
 }
+export interface ChangePassword {
+  confirmPassword: String;
+  currentPassword: String;
+  newPassword: String;
+}

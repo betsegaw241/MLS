@@ -14,6 +14,7 @@ export interface PayloadType {
   user: IProfile;
 }
 export interface IProfile {
+  id: string;
   firstName: String;
   lastName: String;
   email: String;

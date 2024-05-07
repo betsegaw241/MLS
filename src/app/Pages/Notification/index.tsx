@@ -10,41 +10,41 @@ import { Inotification } from "./slices/types";
 function NotificationPage() {
   const dispatch = useDispatch();
   const { actions } = useNotificationPageSlice();
-  // const notifications = useSelector(selectNotification);
+   const notifications = useSelector(selectNotification);
   const { id } = useParams();
 
-  // useEffect(() => {
-  //   dispatch(actions.fetchNotifications({ id: id }));
-  // }, []);
-  //console.log(notifications);
-  const notifications: Inotification[] = [
-    {
-      userId: "user1",
-      title: "New Message",
-      message: "You have a new message in your inbox.",
-      isRead: false,
-      type: "info",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-    {
-      userId: "user2",
-      title: "Payment Received",
-      message: "You've received a payment of $100.",
-      isRead: true,
-      type: "success",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-    {
-      userId: "user3",
-      title: "Error",
-      message: "An unexpected error occurred.",
-      type: "error",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-  ];
+  useEffect(() => {
+    dispatch(actions.fetchNotifications({ id: id }));
+  }, []);
+  console.log(notifications);
+  // const notifications: Inotification[] = [
+  //   {
+  //     userId: "user1",
+  //     title: "New Message",
+  //     message: "You have a new message in your inbox.",
+  //     isRead: false,
+  //     type: "info",
+  //     createdAt: new Date(),
+  //     updatedAt: new Date(),
+  //   },
+  //   {
+  //     userId: "user2",
+  //     title: "Payment Received",
+  //     message: "You've received a payment of $100.",
+  //     isRead: true,
+  //     type: "success",
+  //     createdAt: new Date(),
+  //     updatedAt: new Date(),
+  //   },
+  //   {
+  //     userId: "user3",
+  //     title: "Error",
+  //     message: "An unexpected error occurred.",
+  //     type: "error",
+  //     createdAt: new Date(),
+  //     updatedAt: new Date(),
+  //   },
+  // ];
 
   // You can add more objects as needed
 

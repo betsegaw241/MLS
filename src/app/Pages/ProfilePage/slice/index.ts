@@ -12,6 +12,7 @@ export const initialState: editProfilePageState = {
   isUserExist: false,
   ischangingPassword: false,
   profile: {
+    id:"",
     phone: "",
     avatar: "",
     confirmPassword: "",
@@ -51,6 +52,7 @@ const slice = createSlice({
       state.profile.email = action.payload.email;
       state.profile.avatar = action.payload.avatar;
       state.profile.phone = action.payload.phoneNumber;
+      state.profile.id = action.payload._id;
     },
     getUserFailed: (state, action: PayloadAction<any>) => {
       state.isgettingUser = false;

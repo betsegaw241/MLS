@@ -61,6 +61,7 @@ const [showNotification, setShowNotification] = useState(false);
             </Box>
             <Box marginLeft={"auto"}>
               <UserInfo />
+            
             </Box>
           </Flex>
         </Flex>

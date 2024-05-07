@@ -52,12 +52,12 @@ const TransactionDetailComponent = (props: ItransactionDetailComponent) => {
           >
             <GridBox
               lable={"Sender Name"}
-              value={props.transaction.sender.name}
+              value={props.transaction.senderAccount.accountHolderName}
             />
-            <GridBox
+            {/* <GridBox
               lable={"Sender Email"}
               value={props.transaction.sender.email}
-            />
+            /> */}
             <GridBox
               lable={"Sender Account"}
               value={props.transaction.senderAccount.accountNumber}
@@ -92,12 +92,12 @@ const TransactionDetailComponent = (props: ItransactionDetailComponent) => {
           >
             <GridBox
               lable={"Reciever Name"}
-              value={props.transaction.receiver.name}
+              value={props.transaction.receiverAccount.accountHolderName}
             />
-            <GridBox
+            {/* <GridBox
               lable={"Reciever Email"}
-              value={props.transaction.receiver.email}
-            />
+              value={props.transaction.receiverAccount.email}
+            /> */}
             <GridBox
               lable={"Receiver Account"}
               value={props.transaction.receiverAccount.accountNumber}
@@ -131,10 +131,7 @@ const TransactionDetailComponent = (props: ItransactionDetailComponent) => {
             mb={2}
             p={1}
           >
-            <GridBox
-              lable={"Reason"}
-              value={props.transaction.reason}
-            />
+            <GridBox lable={"Reason"} value={props.transaction.reason} />
             <GridBox
               lable={"Created At"}
               value={formatDate(props.transaction.createdAt)}

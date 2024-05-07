@@ -8,15 +8,11 @@ const AddAdminPage = () => {
   const { actions } = useAddAdminPageSlice();
   const dispatch = useDispatch();
 
-  const handleAddAdmin = async (values: FormValues) => {
-    try {
-      const updatedData = {
-        ...values,
-      };
-      console.log("handleAddAdmin", updatedData);
-    } catch (error) {
-      console.log("handleAddAdmin--error", error);
-    }
+
+
+  const handleAddAdmin =  (values: FormValues) => {
+        dispatch(actions.addAdmin({ name:`${values.firstName} ${values.lastName}`,email:values.adminEmailAddress,}));
+
   };
 
   return (
@@ -24,8 +20,8 @@ const AddAdminPage = () => {
       <AddAdmins
         initialValues={initialValues}
         errorMessage={""}
-        handleAddAdmin={handleAddAdmin}
-      />
+        handleAddAdmin={handleAddAdmin} 
+        addAdminValidationSchema={""}      />
     </>
   );
 };

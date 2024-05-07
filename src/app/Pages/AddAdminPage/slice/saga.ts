@@ -4,13 +4,13 @@ import api from "../../../../API/api";
 import { AxiosResponse } from "axios";
 import { PayloadAction } from "@reduxjs/toolkit";
 
-function* handleAddAdmin(action: PayloadAction<string>) {
+function* handleAddAdmin(action: PayloadAction<any>) {
   try {
     const res: AxiosResponse = yield api({
-      route: "/admin/add",
+      route: "/user/admin",
       method: "POST",
       isSecureRoute: true,
-      body: { user: action.payload },
+      body: action.payload ,
     });
     if (res.status === 200) {
       yield put(actions.addAdminSuccess(res));

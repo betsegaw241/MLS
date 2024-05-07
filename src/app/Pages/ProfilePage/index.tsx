@@ -8,6 +8,7 @@ import {
   selectIsEditing,
   selectProfile,
   selectUserExist,
+  selectid,
 } from "app/Pages/ProfilePage/slice/selector";
 import ProfileComponent from "app/Components/ProfileComponent";
 import { useEditProfilePageSlice } from "./slice";
@@ -15,6 +16,8 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "utils/firebaseConfig";
 import { IProfile } from "./slice/types";
 import LoadingPage from "utils/LoadingPage";
+import { passwordinitialValues } from "./constants";
+import { changePasswordProp } from "app/Components/changePassword/types";
 
 function ProfilePage() {
   const isEditing = useSelector(selectIsEditing);
@@ -23,6 +26,7 @@ function ProfilePage() {
   const profile = useSelector(selectProfile);
   const [data, setData] = useState<IProfile>(profile);
   const user = useSelector(selectUserExist);
+  const id = useSelector(selectid);
   const errorMessage = useSelector(selectErrorMessage);
   const { actions } = useEditProfilePageSlice();
   const dispatch = useDispatch();
@@ -90,7 +94,15 @@ function ProfilePage() {
     setSelectedFile(file);
   };
 
-  const handleChangePassword = (values: IProfile) => {};
+  const handleChangePassword = (values: changePasswordProp) => {
+    dispatch(
+      actions.changePassword({
+        id: id,
+        oldPassword: values.currentPassword,
+        newPassword: values.confirmPassword,
+      })
+    );
+  };
 
   return (
     <>
@@ -105,8 +117,11 @@ function ProfilePage() {
           onSaveClick={onSaveClick}
           profile={handleFileDrop}
           changePassword={handleChangePassword}
+          PinitialValue={passwordinitialValues}
         />
-      ):(<LoadingPage/>)}
+      ) : (
+        <LoadingPage />
+      )}
     </>
   );
 }

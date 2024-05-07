@@ -37,3 +37,7 @@ export const selectIsChangingPassword = createSelector(
   [selectSlice],
   (state) => state.ischangingPassword
 );
+export const selectid = createSelector(
+  [selectSlice],
+  (state) => state.profile.id
+);

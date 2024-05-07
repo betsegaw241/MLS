@@ -1,4 +1,6 @@
 export interface changePasswordProp {
+  currentPassword: any;
+  confirmPassword: any;
   initialValues: IProfile;
 //   EditSchema: object;
 //   isEditing: boolean;

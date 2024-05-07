@@ -28,7 +28,7 @@ import FeedbacksPage from "app/Pages/FeedbacksPage";
 import TransactionDetailPage from "app/Pages/TransactionDetailPage";
 import FeedbackDetailPage from "app/Pages/FeedbackDetail";
 import VerifyPharmacyDetailPage from "app/Pages/VerifyPharmacyDetailPage";
-
+//import AdminDashboard from "app/Components/AdminDashboard";
 export const routes: IRoute[] = [
   {
     element: <DashBoardPage />,
@@ -263,4 +263,12 @@ export const routes: IRoute[] = [
     allowedRole: "admin",
     needsLayout: true,
   },
+  // {
+  //   element: <AdminDashboard />,
+  //   exact: true,
+  //   path: "superAdmindashboard",
+  //   isProtected: true,
+  //   allowedRole: ["superAdmin", "admin"],
+  //   needsLayout: true,
+  // },
 ];

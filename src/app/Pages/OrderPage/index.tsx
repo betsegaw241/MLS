@@ -14,36 +14,33 @@ function OrderPage() {
   const [query, setQuery] = useState("");
   const { id } = useParams();
 
-  const fetchOrders = () => {
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    page: number
+  ) => {
+    setCurrentPage(page);
+  };
+
+  const onSearch = () => {
+    dispatch(actions.fetchOrders({ searchQuery: query }));
+    setCurrentPage(1);
+  };
+
+  const onFilter = (value: string) => {
+    dispatch(actions.fetchOrders({ searchQuery: query }));
+    setCurrentPage(1);
+    setQuery(value);
+  };
+
+  useEffect(() => {
     dispatch(
       actions.fetchOrders({
-        id: id,
+        pharmacyId: id,
         page: currentPage,
         limit: 10,
         searchQuery: query,
       })
     );
-  };
-
-  // Function to handle pagination change
-  const handlePageChange = (
-    event: React.ChangeEvent<unknown>,
-    page: number
-  ) => {
-    setCurrentPage(page); // Update currentPage state
-  };
-
-  const onSearch = () => {
-    fetchOrders();
-  };
-
-  const onFilter = () => {
-    setCurrentPage(1);
-    fetchOrders();
-  };
-
-  useEffect(() => {
-    fetchOrders();
   }, [currentPage, query]);
 
   return (

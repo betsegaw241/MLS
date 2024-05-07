@@ -1,7 +1,12 @@
-import { FormValues } from "./types";
+import { ChangePassword, FormValues } from "./types";
 export const initialValues: FormValues = {
   phone: "",
   avatar: "",
+  currentPassword: "",
+  newPassword: "",
+  confirmPassword: "",
+};
+export const passwordinitialValues: ChangePassword = {
   currentPassword: "",
   newPassword: "",
   confirmPassword: "",

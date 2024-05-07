@@ -103,9 +103,9 @@ const NotificationComponent = (props: any) => {
     <Flex
       alignItems="flex-start"
       justifyContent="center"
-      position="fixed"
-      width="30%"
-      style={{ position: "fixed", top: 90, right: "4%" }}
+      position="relative"
+      width={["90%", "30%"]}
+      style={{ position: "fixed", top: 90, right: "2%" }}
       background="#fff"
       flexDirection="column"
       p={2}
@@ -116,7 +116,7 @@ const NotificationComponent = (props: any) => {
         alignItems="center"
         width="100%"
         justifyContent="center"
-        marginLeft={"-150px"}
+        marginLeft={"4%"}
         marginBottom={2}
       >
         <IoMdNotificationsOutline color="#06a3a8f4" style={{ fontSize: 28 }} />
@@ -141,9 +141,10 @@ const NotificationComponent = (props: any) => {
               hover={{
                 backgroundColor: "#dce6e6",
               }}
+              marginLeft={"40px"}
             >
-              <Text fontFamily="poppins" fontSize={6}>
-                <MdMessage color="#1197ccf4" style={{ fontSize: 24 }} />{" "}
+              <Text fontFamily="poppins" fontSize={7}>
+                <MdMessage color="#1197ccf4" style={{ fontSize: 18 }} />{" "}
                 {notification.title}
               </Text>
               <Text fontFamily="poppins" fontSize={3}>

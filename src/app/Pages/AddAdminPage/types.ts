@@ -1,5 +1,6 @@
 export interface FormValues {
-  adminName: string;
+  firstName: string;
+  lastName: string;
   adminEmailAddress: string;
   adminPhoneNumber: string;
   adminPassword: string;

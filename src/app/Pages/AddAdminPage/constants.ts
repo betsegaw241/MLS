@@ -1,11 +1,11 @@
 import { FormValues } from "./types";
 
 export const initialValues: FormValues = {
-  adminName: "",
+  firstName: "",
+  lastName: "",
   adminEmailAddress: "",
   adminPhoneNumber: "",
   adminPassword: "",
-
 };
 export const errorValues = {
   email: {

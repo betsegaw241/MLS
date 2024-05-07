@@ -11,6 +11,25 @@ import Header from "../ui/Header";
 import Spinner from "react-activity/dist/Spinner";
 import Modal from "../ui/Modal";
 import { CiMail, CiPhone, CiUser } from "react-icons/ci";
+import {
+  Checkbox,
+  FormControlLabel,
+  ThemeProvider,
+  createTheme,
+} from "@mui/material";
+
+const muitheme = createTheme({
+  components: {
+    MuiFormControlLabel: {
+      styleOverrides: {
+        label: {
+          fontFamily: "Poppins",
+          fontSize: 12,
+        },
+      },
+    },
+  },
+});
 
 const ProfileComponent = (props: editProfileComponentProp) => {
   const { isFocused, isDragAccept } = useDropzone({ maxFiles: 1 });
@@ -18,6 +37,8 @@ const ProfileComponent = (props: editProfileComponentProp) => {
   const [image, setImage] = useState(props.initialValues.avatar);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
+  const [showpassword, setShowPassword] = useState(false);
+
 
   return (
     <>
@@ -200,7 +221,7 @@ const ProfileComponent = (props: editProfileComponentProp) => {
                         {props.isEditing ? (
                           <Spinner style={{ marginLeft: "45%" }} />
                         ) : (
-                          "Save"
+                          "Change"
                         )}
                       </Button>
                     </Flex>
@@ -329,7 +350,7 @@ const ProfileComponent = (props: editProfileComponentProp) => {
                   Your password must be at least 6 combination of characters
                 </Text>
                 <Formik
-                  initialValues={props.initialValues}
+                  initialValues={props.PinitialValue}
                   onSubmit={(values) => {
                     props.changePassword(values);
                   }}
@@ -337,37 +358,40 @@ const ProfileComponent = (props: editProfileComponentProp) => {
                 >
                   {({ handleSubmit }) => {
                     return (
-                      <Form>
-                        <Flex
-                          flexDirection={"column"}
-                          marginLeft={["20px", "40px", "50px", "74px"]}
-                          marginRight={["20px", "40px", "50px", "74px"]}
-                          width={["50%", "60%", "65%", "70%"]}
-                          padding={"4%"}
-                          pt={10}
-                          borderRadius={"10%"}
-                          marginTop={"4px"}
-                          marginBottom={"2px"}
-                          style={{ gap: "4px" }}
-                        >
+                      <Form onSubmit={handleSubmit} style={{ width: "100%" }}>
+                        <Flex flexDirection={"column"} style={{ gap: "4px" }}>
                           <InputField
                             name="currentPassword"
-                            type={"text"}
+                            type={showpassword ? "text" : "password"}
                             label={""}
                             placeholder="Enter current password"
                           />
                           <InputField
                             name="newPassword"
-                            type={"text"}
+                            type={showpassword ? "text" : "password"}
                             label={""}
                             placeholder="Enter new password"
                           />
                           <InputField
                             name="confirmPassword"
-                            type={"text"}
+                            type={showpassword ? "text" : "password"}
                             label={""}
                             placeholder="Re-type new password"
                           />
+                        </Flex>
+                        <Flex justifyContent={"space-between"}>
+                          <ThemeProvider theme={muitheme}>
+                            <FormControlLabel
+                              control={
+                                <Checkbox
+                                  onChange={() => {
+                                    setShowPassword(!showpassword);
+                                  }}
+                                />
+                              }
+                              label="Show password"
+                            />
+                          </ThemeProvider>
                         </Flex>
 
                         <Flex
@@ -381,7 +405,7 @@ const ProfileComponent = (props: editProfileComponentProp) => {
                             variant="secondary"
                             color={"white"}
                             fontSize={2}
-                            onClick={() => handleSubmit()}
+                            type="submit"
                             px={4}
                             py={1}
                           >

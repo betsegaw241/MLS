@@ -24,11 +24,13 @@ export interface Transaction {
     accountNumber: string;
     bankName: string;
     accountType: string;
+    accountHolderName: string;
   };
   receiverAccount: {
     accountNumber: string;
     bankName: string;
     accountType: string;
+    accountHolderName:string;
   };
   reason: string;
   createdAt: string;

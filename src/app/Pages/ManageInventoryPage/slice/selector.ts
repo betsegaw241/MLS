@@ -11,7 +11,22 @@ export const selectManageInventoryState = createSelector(
   (state) => state
 );
 
+
 export const selectErrorMessage = createSelector(
   [selectSlice],
   (state) => state.errorMessage
+);
+
+export const selectRecentDrugs = createSelector(
+  [selectSlice],
+  (state) => state.recentlyadded
+);
+
+export const selectLowStockDrugs = createSelector(
+  [selectSlice],
+  (state) => state.lowStockDrug
+);
+export const selectSoonExpiringDrugs = createSelector(
+  [selectSlice],
+  (state) => state.soonExpiringDrugs
 );

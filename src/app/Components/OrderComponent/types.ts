@@ -6,7 +6,7 @@ export interface OrderComponentProps {
   currentPage: number;
   pages: number;
   onSearch: () => void;
-  onFilter: () => void;
+  onFilter: (value: string) => void;
   setQuery: React.Dispatch<React.SetStateAction<string>>;
 }
 

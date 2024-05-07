@@ -148,10 +148,10 @@ const TransactionComponent = ({
                             fontFamily: "poppins",
                           }}
                         >
-                          {transaction.sender.name}
+                          {transaction.senderAccount?.accountHolderName}
                         </TableCell>
                         <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                          {transaction.receiver.name}
+                          {transaction.receiverAccount?.accountHolderName}
                         </TableCell>
 
                         <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>

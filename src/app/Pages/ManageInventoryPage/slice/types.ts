@@ -1,15 +1,6 @@
-/* --- STATE --- */
-
-export interface ManageInventorState {
-  totalPages: number;
-  errorMessage: string;
-  loading: boolean;
+interface InventoryComponentProps {
   drugs: Drug[];
-  recentlyadded: Drug[];
-  lowStockDrug: Drug[];
-  soonExpiringDrugs: Drug[];
 }
-
 interface Drug {
   name: string;
   drugPhoto: string[];

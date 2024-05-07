@@ -1,21 +1,18 @@
 
-
-
 export interface sender {
   name: string;
   email: string;
 }
-export interface receiver {
-  name: string;
-  email: string;
-}
+
 export interface senderAccount {
   accountNumber: string;
+  accountHolderName: string;
   bankName: string;
   accountType: string;
 }
 export interface receiverAccount {
   accountNumber: string;
+  accountHolderName: string;
   bankName: string;
   accountType: string;
 }
@@ -32,4 +29,9 @@ export interface ITransaction {
 export interface ItransactionDetailComponent {
   transaction: ITransaction;
   
+}
+
+export interface receiver {
+  name: string;
+  email: string;
 }

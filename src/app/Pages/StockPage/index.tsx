@@ -28,7 +28,7 @@ const PharmacyStockPage = () => {
     if (query.length > 0) {
       dispatch(
         actions.getDrugs({
-          id: id,
+          pharmacyId: id,
           page: currentPage,
           limit: 10,
           drugName: query,
@@ -40,7 +40,7 @@ const PharmacyStockPage = () => {
     if (catagory || minPrice || maxPrice) {
       dispatch(
         actions.getDrugs({
-          id: id,
+          pharmacyId: id,
           page: currentPage,
           limit: 10,
           drugName: query,
@@ -56,7 +56,7 @@ const PharmacyStockPage = () => {
   useEffect(() => {
     dispatch(
       actions.getDrugs({
-        id: id,
+        pharmacyId: id,
         page: currentPage,
         limit: 10,
         drugName: query,
@@ -65,7 +65,7 @@ const PharmacyStockPage = () => {
         maxPrice: maxPrice,
       })
     );
-  }, [currentPage]);
+  }, [currentPage]);    
 
   return (
     <StockComponent

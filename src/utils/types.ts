@@ -15,6 +15,10 @@ export interface IUseAllowedRole {
 }
 
 export interface IColumn {
+  _id: any;
+  drug: ReactNode;
+  balance: ReactNode;
+  expiration_date: ReactNode;
   id: string;
   label: string;
   minWidth?: number;

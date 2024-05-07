@@ -20,6 +20,7 @@ import soldout from "../../../assets/images/sold.png";
 import solddrug from "../../../assets/images/drugs.png";
 import expired from "../../../assets/images/schedule.png";
 import sonexp from "../../../assets/images/time.png";
+import { Drug, InventoryComponentProps } from "./types";
 
 const theme = createTheme({
   components: {
@@ -36,7 +37,14 @@ const theme = createTheme({
   },
 });
 
-const ManageInventory = (props: any) => {
+const ManageInventory = ({
+  drugs,
+  currentPage,
+  pages,
+  onPageChange,
+  recentlyadded,
+  lowStockDrug,
+}: InventoryComponentProps) => {
   const navigate = useNavigate();
 
   const contentRefs: React.RefObject<HTMLDivElement>[] = Array.from(
@@ -47,7 +55,9 @@ const ManageInventory = (props: any) => {
   const scrollToContent = (index: number) => () => {
     contentRefs[index].current?.scrollIntoView({ behavior: "smooth" });
   };
-
+  console.log("====================================");
+  console.log(drugs);
+  console.log("====================================");
   return (
     <Flex
       width={"100%"}
@@ -246,63 +256,50 @@ const ManageInventory = (props: any) => {
                 >
                   <TableHeader columnName={RecentlyAdded} />
                   <TableBody>
-                    {props.orders?.map((drug) => (
-                      <TableRow
-                        hover
-                        key={drug.id}
-                        sx={{
-                          "&:last-child td, &:last-child th": {
-                            border: "none",
-                          },
-                          cursor: "pointer",
-                          boxShadow: "none",
-                        }}
-                        onClick={() => {
-                          navigate(`/pharmacist/orderdetail`);
-                        }}
-                      >
-                        <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                          {drug.date}
-                        </TableCell>
-
-                        <TableCell
-                          component="th"
-                          scope="row"
+                    {recentlyadded &&
+                      recentlyadded?.map((drug: Drug) => (
+                        <TableRow
+                          hover
+                          key={drug.id}
                           sx={{
-                            padding: "10px",
-                            height: "0px",
-                            fontFamily: "poppins",
+                            "&:last-child td, &:last-child th": {
+                              border: "none",
+                            },
+                            cursor: "pointer",
+                            boxShadow: "none",
+                          }}
+                          onClick={() => {
+                            navigate(`/pharmacist/drugdetails/${drug._id}`);
                           }}
                         >
-                          {drug.drug}
-                        </TableCell>
-                        <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                          {drug.expiration_date}
-                        </TableCell>
-                        <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                          {drug.recived}
-                        </TableCell>
-                        <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                          {drug.balance}
-                        </TableCell>
-                      </TableRow>
-                    ))}
+                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
+                            {new Date(drug.createdAt).toDateString()}
+                          </TableCell>
+
+                          <TableCell
+                            component="th"
+                            scope="row"
+                            sx={{
+                              padding: "10px",
+                              height: "0px",
+                              fontFamily: "poppins",
+                            }}
+                          >
+                            {drug.name}
+                          </TableCell>
+
+                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
+                            {drug.category}
+                          </TableCell>
+                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
+                            {drug.stockLevel}
+                          </TableCell>
+                        </TableRow>
+                      ))}
                   </TableBody>
                 </Table>
               </TableContainer>
             </Paper>
-
-            <Flex justifyContent={"flex-end"}>
-              <ThemeProvider theme={theme}>
-                <Pagination
-                  count={50}
-                  // onChange={}
-                  page={3}
-                  variant="outlined"
-                  shape="rounded"
-                />
-              </ThemeProvider>
-            </Flex>
           </Flex>
         </Flex>
         {/* ----------------------------------------------------- */}
@@ -344,62 +341,53 @@ const ManageInventory = (props: any) => {
                   >
                     <TableHeader columnName={LowStockAlertColumn} />
                     <TableBody>
-                      {props.orders?.map((drug) => (
-                        <TableRow
-                          hover
-                          key={drug.id}
-                          sx={{
-                            "&:last-child td, &:last-child th": {
-                              border: "none",
-                            },
-                            cursor: "pointer",
-                            boxShadow: "none",
-                          }}
-                          onClick={() => {
-                            navigate(`/pharmacist/orderdetail`);
-                          }}
-                        >
-                          <TableCell
-                            component="th"
-                            scope="row"
+                      {lowStockDrug &&
+                        lowStockDrug?.map((drug) => (
+                          <TableRow
+                            hover
+                            key={drug.id}
                             sx={{
-                              padding: "10px",
-                              height: "0px",
-                              fontFamily: "poppins",
+                              "&:last-child td, &:last-child th": {
+                                border: "none",
+                              },
+                              cursor: "pointer",
+                              boxShadow: "none",
+                            }}
+                            onClick={() => {
+                              navigate(`/pharmacist/drugdetails/${drug._id}`);
                             }}
                           >
-                            {drug.drug}
-                          </TableCell>
-                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {drug.expiration_date}
-                          </TableCell>
-
-                          <TableCell>
-                            <Text
-                              fontFamily={"poppins"}
-                              color={drug.balance > 10 ? "#805a0f" : "red"}
+                            <TableCell
+                              component="th"
+                              scope="row"
+                              sx={{
+                                padding: "10px",
+                                height: "0px",
+                                fontFamily: "poppins",
+                              }}
                             >
-                              {drug.balance}
-                            </Text>
-                          </TableCell>
-                        </TableRow>
-                      ))}
+                              {drug.name}
+                            </TableCell>
+                            <TableCell
+                              sx={{ padding: 1, fontFamily: "poppins" }}
+                            >
+                              {drug.category}
+                            </TableCell>
+
+                            <TableCell>
+                              <Text
+                                fontFamily={"poppins"}
+                                color={drug.balance > 10 ? "#805a0f" : "red"}
+                              >
+                                {drug.stockLevel}
+                              </Text>
+                            </TableCell>
+                          </TableRow>
+                        ))}
                     </TableBody>
                   </Table>
                 </TableContainer>
               </Paper>
-
-              <Flex justifyContent={"flex-end"}>
-                <ThemeProvider theme={theme}>
-                  <Pagination
-                    count={50}
-                    // onChange={}
-                    page={3}
-                    variant="outlined"
-                    shape="rounded"
-                  />
-                </ThemeProvider>
-              </Flex>
             </Flex>
           </>
         </Flex>
@@ -440,7 +428,7 @@ const ManageInventory = (props: any) => {
                   >
                     <TableHeader columnName={OutOFStock} />
                     <TableBody>
-                      {props.orders?.map((drug) => (
+                      {drugs?.map((drug) => (
                         <TableRow
                           hover
                           key={drug.id}
@@ -452,7 +440,7 @@ const ManageInventory = (props: any) => {
                             boxShadow: "none",
                           }}
                           onClick={() => {
-                            navigate(`/pharmacist/orderdetail`);
+                            navigate(`/pharmacist/drugdetails/${drug._id}`);
                           }}
                         >
                           <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
@@ -526,43 +514,48 @@ const ManageInventory = (props: any) => {
                   >
                     <TableHeader columnName={SoonExpiring} />
                     <TableBody>
-                      {props.orders?.map((drug) => (
-                        <TableRow
-                          hover
-                          key={drug.id}
-                          sx={{
-                            "&:last-child td, &:last-child th": {
-                              border: "none",
-                            },
-                            cursor: "pointer",
-                            boxShadow: "none",
-                          }}
-                          onClick={() => {
-                            navigate(`/pharmacist/orderdetail`);
-                          }}
-                        >
-                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {drug.batch}
-                          </TableCell>{" "}
-                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {drug.drug}
-                          </TableCell>
-                          <TableCell
-                            component="th"
-                            scope="row"
+                      {SoonExpiring &&
+                        SoonExpiring?.map((drug) => (
+                          <TableRow
+                            hover
+                            key={drug.id}
                             sx={{
-                              padding: "10px",
-                              height: "0px",
-                              fontFamily: "poppins",
+                              "&:last-child td, &:last-child th": {
+                                border: "none",
+                              },
+                              cursor: "pointer",
+                              boxShadow: "none",
+                            }}
+                            onClick={() => {
+                              navigate(`/pharmacist/drugdetails/${drug._id}`);
                             }}
                           >
-                            {drug.balance}
-                          </TableCell>
-                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {drug.expiration_date}
-                          </TableCell>
-                        </TableRow>
-                      ))}
+                            {/* <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
+                            {drug.batch}
+                          </TableCell>{" "} */}
+                            <TableCell
+                              sx={{ padding: 1, fontFamily: "poppins" }}
+                            >
+                              {drug.drug}
+                            </TableCell>
+                            <TableCell
+                              component="th"
+                              scope="row"
+                              sx={{
+                                padding: "10px",
+                                height: "0px",
+                                fontFamily: "poppins",
+                              }}
+                            >
+                              {drug.balance}
+                            </TableCell>
+                            <TableCell
+                              sx={{ padding: 1, fontFamily: "poppins" }}
+                            >
+                              {drug.expiration_date}
+                            </TableCell>
+                          </TableRow>
+                        ))}
                     </TableBody>
                   </Table>
                 </TableContainer>
@@ -619,7 +612,7 @@ const ManageInventory = (props: any) => {
                   >
                     <TableHeader columnName={SoonExpiring} />
                     <TableBody>
-                      {props.orders?.map((drug) => (
+                      {drugs?.map((drug) => (
                         <TableRow
                           hover
                           key={drug.id}
@@ -631,12 +624,12 @@ const ManageInventory = (props: any) => {
                             boxShadow: "none",
                           }}
                           onClick={() => {
-                            navigate(`/pharmacist/orderdetail`);
+                            navigate(`/pharmacist/drugdetails/${drug._id}`);
                           }}
                         >
-                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
+                          {/* <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
                             {drug.batch}
-                          </TableCell>
+                          </TableCell> */}
                           <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
                             {drug.drug}
                           </TableCell>

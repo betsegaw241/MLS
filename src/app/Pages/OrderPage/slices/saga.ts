@@ -8,18 +8,12 @@ function* handleFetchOrders(
   action: PayloadAction<any>
 ): Generator<any, void, AxiosResponse<any>> {
   try {
-    console.log('====================================');
-    console.log(action.payload.id);
-    console.log('====================================');
+   
     const res: AxiosResponse<any> = yield api({
       route: "/order",
       method: "GET",
       isSecureRoute: true,
-      query: {
-        page: action.payload.page,
-        limit: action.payload.limit,
-        pharmacyId: action.payload.id,
-      },
+      query: action.payload,
     });
     if (res) {
       yield put(OrderPageActions.fetchOrdersSuccess(res)); // Assuming data is an array of orders

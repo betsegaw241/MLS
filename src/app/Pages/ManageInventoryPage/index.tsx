@@ -1,130 +1,110 @@
 import ManageInventory from "app/Components/ManageInventory";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { UseManageInventorySlice } from "./slice";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import {
+  selectLowStockDrugs,
+  selectManageInventoryState,
+  selectSoonExpiringDrugs,
+  selectRecentDrugs,
+} from "./slice/selector";
+selectManageInventoryState
 const ManageInventoryPage = () => {
   const { actions } = UseManageInventorySlice();
   const dispatch = useDispatch();
-  const orders = [
-    {
-      id: 1,
-      name: "Beka",
-      drug: "Advil",
-      phone: "0935354",
-      location: "A.A",
-      time: "4:30 PM",
-      status: "PENDING",
-      date: "29/35/33",
-      recived: 400,
-      balance: 400,
-      expiration_date: "09/35/33",
-      batch: 1233,
-    },
-    {
-      id: 2,
-      name: "Toltu",
-      drug: "Differin",
-      phone: "092535454",
-      location: "Wolkite",
-      time: "4:30 PM",
-      status: "REJECTED",
-      date: "29/35/33",
-      recived: 400,
-      balance: 400,
-      expiration_date: "09/35/33",
-      batch: 1233,
-    },
-    {
-      id: 3,
-      name: "Desta",
-      drug: "Orajel",
-      phone: "093535421",
-      location: "Dire",
-      time: "4:30 PM",
-      status: "ACCEPTED",
-      date: "29/35/33",
-      recived: 400,
-      balance: 400,
-      expiration_date: "09/35/33",
-      batch: 1233,
-    },
-    {
-      id: 4,
-      name: "Damtew",
-      drug: "Advil",
-      phone: "091535488",
-      location: "A.A",
-      time: "4:30 PM",
-      status: "PENDING",
-      date: "29/35/33",
-      recived: 400,
-      balance: 400,
-      expiration_date: "09/35/33",
-      batch: 1233,
-    },
-    {
-      id: 5,
-      name: "Getu",
-      drug: "Differin",
-      phone: "095535477",
-      location: "Gubrye",
-      time: "4:30 PM",
-      status: "PENDING",
-      date: "29/35/33",
-      recived: 400,
-      balance: 4,
-      expiration_date: "09/35/33",
-      batch: 1233,
-    },
-    {
-      id: 6,
-      name: "Roba",
-      drug: "Advil",
-      phone: "093535455",
-      location: "Adama",
-      time: "4:30 PM",
-      status: "REJECTED",
-      date: "29/35/33",
-      recived: 400,
-      balance: 400,
-      expiration_date: "09/35/33",
-      batch: 1233,
-    },
-    {
-      id: 7,
-      name: "Iskindir",
-      drug: "Clifford",
-      phone: "093535433",
-      location: "Bahirdar",
-      time: "4:30 PM",
-      status: "ACCEPTED",
-      date: "29/35/33",
-      recived: 400,
-      balance: 3,
-      expiration_date: "09/35/33",
-      batch: 1233,
-    },
-    {
-      id: 8,
-      name: "Iskindir",
-      drug: "Clifford",
-      phone: "093535433",
-      location: "Bahirdar",
-      time: "4:30 PM",
-      status: "ACCEPTED",
-      date: "29/35/33",
-      recived: 400,
-      balance: 1,
-      expiration_date: "09/35/33",
-      batch: 1233,
-    },
-  ];
+   const drugs = useSelector(selectManageInventoryState);
+   const recentlyadded = useSelector(selectRecentDrugs);
+   const lowStockDrug = useSelector(selectLowStockDrugs);
+   const soonExpiringDrugs = useSelector(selectSoonExpiringDrugs);
+   const [currentPage, setCurrentPage] = useState(1);
+   const { id } = useParams();
 
-  useEffect(() => {
-    dispatch(actions.getDrugs());
-  }, []);
+    const getDrugs = () => {
+      dispatch(
+        actions.getDrugs({
+          id: id,
+          page: currentPage,
+          limit: 10,
+        })
+      );
+    };
 
-  return <ManageInventory orders={orders} />;
+      const getSoldOutDrugs = () => {
+        dispatch(
+          actions.getSoldOutDrugs({
+            id: id,
+            page: currentPage,
+            limit: 10,
+          })
+        );
+      };  
+      const getrecentlyaddedDrugs = () => {
+        dispatch(
+          actions.getrecentlyaddedDrugs({
+            id: id,
+            page: currentPage,
+            limit: 10,
+            sortBy: 'createdAt',
+            sortOrder: "dsc",
+          })
+        );
+      }; 
+       const getexpiredDrugs = () => {
+        dispatch(
+          actions.getexpiredDrugs({
+            id: id,
+            page: currentPage,
+            limit: 10,
+          })
+        );
+      };
+
+       const getSoonExpiringDrugs = () => {
+         dispatch(
+           actions.getSoonExpiringDrugs({
+             id: id,
+             page: currentPage,
+             limit: 10,
+             sortBy: "expiredDate",
+             sortOrder: "asc",
+           })
+         );
+       };
+        const getLowStockDrugs = () => {
+          dispatch(
+            actions.getLowStockDrugs({
+              id: id,
+              page: currentPage,
+              limit: 10,
+              sortBy: "stockLevel",
+              sortOrder: "dsc",
+            })
+          );
+        };
+        
+const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
+  setCurrentPage(page); 
+};
+ useEffect(() => {
+   getDrugs();
+   getSoldOutDrugs();
+   getrecentlyaddedDrugs();
+   getexpiredDrugs();
+   getSoonExpiringDrugs();
+   getLowStockDrugs();
+ }, [currentPage]);
+
+  return (
+    <ManageInventory
+      drugs={drugs.drugs.data}
+      currentPage={currentPage}
+      recentlyadded={recentlyadded.data}
+      lowStockDrug={lowStockDrug.data}
+      soonExpiringDrugs={soonExpiringDrugs.data}
+      pages={drugs.totalPages}
+      onPageChange={handlePageChange}
+    />
+  );
 };
 export default ManageInventoryPage;
