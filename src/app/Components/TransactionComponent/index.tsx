@@ -71,7 +71,7 @@ const TransactionComponent = ({
         <Flex
           borderRadius={"10%"}
           padding={1}
-          marginLeft={"40%"}
+          marginLeft={'auto'}
           background={"#F9FBFF"}
           height={"40px"}
         >
@@ -87,7 +87,7 @@ const TransactionComponent = ({
         <Flex
           borderRadius={"8px"}
           padding={1}
-          marginLeft={"10%"}
+        
           background={"#F9FBFF"}
           onClick={() => {
             setShowSortBy(!showSortBy);
