@@ -4,30 +4,30 @@ import {
   useInjectReducer,
   useInjectSaga,
 } from "../../../../store/utils/redux-injectors";
-import { AddDrugSaga } from "./saga";
-import { IDrug, addDrugPageState } from "./types";
+import { RegisterSellSaga } from "./saga";
+import { IDrug, registerSellPageState } from "./types";
 import showToast from "utils/toast";
 
-export const initialState: addDrugPageState = {
+export const initialState: registerSellPageState = {
   errorMessage: "",
   loading: false,
-  isDrugAdded: false,
+  isRegsterd: false,
   drug: [],
 };
 
 const slice = createSlice({
-  name: "addDrug",
+  name: "registerSell",
   initialState,
   reducers: {
-    addDrug: (state, action: PayloadAction<IDrug>) => {
+    resgsterSell: (state, action: PayloadAction<IDrug>) => {
       state.loading = true;
     },
-    addDrugSuccess: (state, action: PayloadAction<any>) => {
+    resgsterSellSuccess: (state, action: PayloadAction<any>) => {
       state.loading = false;
-      state.isDrugAdded = true;
+      state.isRegsterd = true;
       showToast("Drug added successfully", "success");
     },
-    addDrugFailed: (state, action: PayloadAction<any>) => {
+    resgsterSellFailed: (state, action: PayloadAction<any>) => {
       state.loading = false;
       state.errorMessage = action.payload;
     },
@@ -42,10 +42,10 @@ const slice = createSlice({
   },
 });
 
-export const { actions: addDrugActions } = slice;
+export const { actions: registerSellActions } = slice;
 
-export const UseAddDrugSlice = () => {
+export const UseRegisterSellSlice = () => {
   useInjectReducer({ key: slice.name, reducer: slice.reducer });
-  useInjectSaga({ key: slice.name, saga: AddDrugSaga });
+  useInjectSaga({ key: slice.name, saga: RegisterSellSaga });
   return { actions: slice.actions };
 };

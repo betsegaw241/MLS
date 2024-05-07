@@ -4,6 +4,7 @@ export interface RegisterDrugPageState {
   errorMessage: string;
   loading: boolean;
   drug: Drug;
+  drugadded: boolean;
 }
 
 export interface Drug {

@@ -1,17 +1,18 @@
 export interface notificationPageState {
   isgettingNotification: boolean;
   isNotificationExist: boolean;
-  notification:Inotification[];
-  notifications:[];
+  notification: INotification[];
+  notifications: [];
+  count: number;
 }
 
-export interface Inotification {
-  [x: string]: any;
+export interface INotification {
+  _id?: string;
   userId: string;
   title: string;
   message: string;
   isRead?: boolean;
-  type: "info" | "warning" | "error" | "success";
-  createdAt: any;
+  type: string;
+  createdAt: Date;
   updatedAt: Date;
 }

@@ -6,12 +6,21 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Modal from "../Modal";
 import { NotificationProps } from "app/Pages/Notification/types";
-import NotificationComponent from "./notification";
+import NotificationComponent from "../Noticications/Notification";
+import NotificationPage from "app/Pages/Notification";
+import { useSelector } from "react-redux";
+import { selectCount } from "app/Pages/Notification/slices/selector";
 
 const Header = (props: NotificationProps) => {
   const navigate = useNavigate();
-  const { notifications } = props;
-const [showNotification, setShowNotification] = useState(false);
+  // const [count, setCount] = useState(0);
+  const count = useSelector(selectCount);
+  const [showNotification, setShowNotification] = useState(false);
+  if (showNotification) {
+    document.body.style.overflow = "hidden"; // Disable scrolling on the body when modal is open
+  } else {
+    document.body.style.overflow = "auto"; // Re-enable scrolling on the body when modal is closed
+  }
   return (
     <>
       <Flex
@@ -34,9 +43,9 @@ const [showNotification, setShowNotification] = useState(false);
           <Text
             fontFamily={"lobster"}
             fontSize={8}
-            color={'#065AD8'}
+            color={"#065AD8"}
             fontWeight={"bold"}
-            style={{cursor:'pointer'}}
+            style={{ cursor: "pointer" }}
             onClick={() => navigate("/pharmacist/home")}
           >
             Medicine Locator
@@ -50,19 +59,18 @@ const [showNotification, setShowNotification] = useState(false);
           >
             <Box
               onClick={() => {
-               setShowNotification(!showNotification)
+                setShowNotification(!showNotification);
               }}
             >
-              <Badge badgeContent={2} color="error">
+              <Badge badgeContent={count} color="error">
                 <IoMdNotificationsOutline
                   color="action"
-                  style={{ fontSize: 28 }}
+                  style={{ fontSize: 30 }}
                 />
               </Badge>
             </Box>
             <Box marginLeft={"auto"}>
-              <UserInfo />
-            
+              <UserInfo type={"AAAA"} address={""} ttl={0} />
             </Box>
           </Flex>
         </Flex>
@@ -73,7 +81,7 @@ const [showNotification, setShowNotification] = useState(false);
           setShowNotification(!showNotification);
         }}
       >
-        <NotificationComponent />
+        <NotificationPage />
       </Modal>
     </>
   );

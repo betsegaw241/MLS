@@ -6,11 +6,13 @@ import {
 } from "../../../../store/utils/redux-injectors";
 import { Drug, RegisterDrugPageState } from "../types";
 import { RegistrDrugSaga } from "./saga";
+import showToast from "utils/toast";
 
 export const initialState: RegisterDrugPageState = {
   errorMessage: "",
   loading: false,
   drug: {} as Drug,
+  drugadded: false,
 };
 
 const slice = createSlice({
@@ -22,7 +24,9 @@ const slice = createSlice({
     },
     registerDrugSuccess: (state, action: PayloadAction<any>) => {
       state.loading = false;
+      state.drugadded = true;
       state.drug = action.payload;
+      showToast("Drug registerd successfully", "success");
     },
     registerDrugFailed: (state, action: PayloadAction<any>) => {
       state.loading = false;

@@ -29,6 +29,7 @@ import FeedbackDetailPage from "app/Pages/FeedbackDetail";
 import VerifyPharmacyDetailPage from "app/Pages/VerifyPharmacyDetailPage";
 import ReviewsPgae from "app/Pages/ReviewsPgae";
 import LandingComponent from "app/Components/LandingComponent";
+import RegisterSellPage from "app/Pages/RegisterSellPage";
 import CreateAdminPasswordPage from "app/Pages/CreateAdminPswrdPage";
 
 export const routes: IRoute[] = [
@@ -279,6 +280,14 @@ export const routes: IRoute[] = [
     path: "/landingPage",
     isProtected: false,
     allowedRole: "*",
+  },
+  {
+    element: <RegisterSellPage />,
+    exact: true,
+    path: "/pharmacist/registersell/:id",
+    isProtected: true,
+    allowedRole: "pharmacist",
+    needsLayout: true,
   },
   {
     element: <CreateAdminPasswordPage />,

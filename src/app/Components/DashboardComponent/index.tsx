@@ -36,6 +36,7 @@ const DashboardComponent = () => {
       />
     );
   };
+  
   const palette = ["#C3FF93", "#FFAF61", "#F5EFE6"];
 
   const palette1 = [

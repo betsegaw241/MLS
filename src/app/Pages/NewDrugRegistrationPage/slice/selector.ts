@@ -14,3 +14,7 @@ export const selectErrorMessage = createSelector(
   [selectSlice],
   (state) => state.errorMessage
 );
+export const selectIdAdded = createSelector(
+  [selectSlice],
+  (state) => state.drugadded
+);
