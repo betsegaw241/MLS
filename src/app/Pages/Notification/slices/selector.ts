@@ -3,7 +3,8 @@ import { createSelector } from "@reduxjs/toolkit";
 import { RootState } from "store/types";
 import { initialState } from ".";
 
-const selectSlice = (state: RootState) => state?.notificationSlice || initialState;
+const selectSlice = (state: RootState) =>
+  state?.notificationSlice || initialState;
 
 export const selectNotification = createSelector(
   [selectSlice],
@@ -13,4 +14,7 @@ export const selectNotificationExist = createSelector(
   [selectSlice],
   (state) => state.isNotificationExist
 );
-
+export const selectCount = createSelector(
+  [selectSlice],
+  (state) => state.count
+);

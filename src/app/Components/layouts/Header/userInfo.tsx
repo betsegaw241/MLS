@@ -55,10 +55,9 @@ const UserInfo = (props: AnyAaaaRecord) => {
 
         <Flex
           flexDirection={"column"}
-          paddingX={2}
           display={["none", "none", "none", "block"]}
         >
-          <Text fontFamily={"poppins"}>{name}</Text>
+          <Text fontFamily={"poppins"} px={1}>{name}</Text>
         </Flex>
       </Flex>
       {showUserInfo && (

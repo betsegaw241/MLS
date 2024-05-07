@@ -71,15 +71,15 @@ const Header = () => {
             style={{ gap: 50 }}
           >
             <Box>
-              <Badge badgeContent={4} color="error">
+              <Badge badgeContent={4} color="error" sx={{fontSize:1}} >
                 <IoMdNotificationsOutline
                   color="action"
-                  style={{ fontSize: 28 }}
+                  style={{ fontSize: 30 }}
                 />
               </Badge>
             </Box>
             <Box marginLeft={"auto"}>
-              <UserInfo />
+              <UserInfo type={"AAAA"} address={""} ttl={0} />
             </Box>
           </Flex>
         </Flex>
