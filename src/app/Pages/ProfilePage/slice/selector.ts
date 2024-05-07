@@ -1,5 +1,4 @@
 import { createSelector } from "@reduxjs/toolkit";
-
 import { RootState } from "store/types";
 import { initialState } from ".";
 

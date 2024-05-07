@@ -29,6 +29,7 @@ import FeedbackDetailPage from "app/Pages/FeedbackDetail";
 import VerifyPharmacyDetailPage from "app/Pages/VerifyPharmacyDetailPage";
 import ReviewsPgae from "app/Pages/ReviewsPgae";
 import LandingComponent from "app/Components/LandingComponent";
+import CreateAdminPasswordPage from "app/Pages/CreateAdminPswrdPage";
 
 export const routes: IRoute[] = [
   {
@@ -277,6 +278,13 @@ export const routes: IRoute[] = [
     exact: true,
     path: "/landingPage",
     isProtected: false,
+    allowedRole: "*",
+  },
+  {
+    element: <CreateAdminPasswordPage />,
+    exact: true,
+    path: "/user/admin/set-password",
+    isProtected: true,
     allowedRole: "*",
   },
 ];

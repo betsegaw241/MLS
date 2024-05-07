@@ -2,10 +2,6 @@ import { Form, Formik } from "formik";
 import { Button, Flex, Text } from "../ui/Blocks";
 import { InputField } from "../ui/InputComponent";
 import { AddAdminProps } from "./types.ts";
-import Header from "../ui/Header";
-import { useEffect } from "react";
-
-import { addAdminValidationSchema } from "app/Pages/AddAdminPage/validators.ts";
 
 const AddAdmins = (props: AddAdminProps) => {
   return (
@@ -48,11 +44,6 @@ const AddAdmins = (props: AddAdminProps) => {
                     name="adminEmailAddress"
                     type="text"
                     label="Email"
-                  />
-                  <InputField
-                    name="adminPassword"
-                    type="Password"
-                    label="Password"
                   />
                   <InputField
                     name="adminPhoneNumber"
