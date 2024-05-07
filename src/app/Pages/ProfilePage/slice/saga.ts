@@ -13,10 +13,7 @@ function* handleEditProfile(action: PayloadAction<PayloadType>) {
       route: `/user/${action.payload.id}`,
       method: "PUT",
       isSecureRoute: true,
-      body: {
-        avatar: action.payload.user.avatar,
-        phone: action.payload.user.phone,
-      },
+      body: action.payload,
     });
 
     if (res) {
