@@ -43,9 +43,11 @@ const AdminPharmaciesPage = () => {
     label: item.name.charAt(0).toUpperCase() + item.name.slice(1),
   }));
 
-  const onSearch = () => {};
+  const onSearch = () => {
+    // dispatch(actions.getpharmacies({  }));
+  };
   const handleAssign = (values: IntialValues) => {
-    console.log(values)
+    console.log(values);
     dispatch(actions.assignpharmacies(values));
   };
   return (

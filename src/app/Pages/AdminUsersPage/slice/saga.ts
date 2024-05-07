@@ -9,7 +9,7 @@ function* handleGetUsers(action: PayloadAction<any>) {
     const res: user = yield call(api, {
       method: "GET",
       route: "/user/",
-      query: { page: action.payload.page, role: action.payload.role },
+      query: action.payload,
       isSecureRoute: true,
     });
 

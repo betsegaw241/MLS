@@ -19,8 +19,8 @@ import Modal from "../ui/Modal";
 const AdminUsersComponent = ({
   users,
   loading,
-  //   setQuery,
-  //   onSearch,
+  setQuery,
+  onSearch,
   startIndex,
   page,
   handlePageChange,
@@ -67,32 +67,19 @@ StockComponentProps) => {
               <Flex background={"#F9FBFF"} height={"40px"} padding={"4px"}>
                 <Search
                   onChange={(e) => {
-                    console.log(e.target.value);
+                    setQuery(e.target.value);
                   }}
-                  onClick={() => console.log("pop")}
+                  onClick={() => onSearch()}
                 />
               </Flex>
 
               <Flex
                 borderRadius={"8px"}
                 paddingX={1}
-                background={"#F9FBFF"}
                 onClick={() => {
                   setShowSortBy(!showSortBy);
                 }}
-              >
-                <Flex
-                  flexDirection={"row"}
-                  alignItems={"center"}
-                  style={{ gap: 3 }}
-                  onClick={() => setShowFilter(!ShowFilter)}
-                >
-                  <IoFilter size={20} />
-                  <Text fontFamily={"poppins"} fontSize={4}>
-                    Filter
-                  </Text>
-                </Flex>
-              </Flex>
+              ></Flex>
             </Flex>
           </Flex>
           <>

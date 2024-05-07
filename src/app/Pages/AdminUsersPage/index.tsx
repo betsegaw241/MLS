@@ -1,5 +1,5 @@
 import AdminUsersComponent from "app/Components/AdminUsersComponent";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, SetStateAction, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { UseGetDrugsSlice } from "../StockPage/slice";
 import { selectIsLoading, selectUsers } from "./slice/selector";
@@ -14,6 +14,7 @@ const AdminUsersPage = () => {
   const [role, setRole] = useState("");
   const startIndex = (currentPage - 1) * 10 + 1;
   const endIndex = Math.min(startIndex + 10 - 1, users.totalDocuments);
+  const [query, setQuery] = useState("");
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
@@ -30,6 +31,9 @@ const AdminUsersPage = () => {
     setRole(value);
     setCurrentPage(1);
   };
+  const onSearch = () => {
+    dispatch(actions.getUsers({ page: currentPage, role: role, name: query }));
+  };
 
   return (
     <AdminUsersComponent
@@ -40,6 +44,8 @@ const AdminUsersPage = () => {
       handleFilterUser={handleFilterUser}
       endIndex={endIndex}
       startIndex={startIndex}
+      setQuery={setQuery}
+      onSearch={onSearch}
     />
   );
 };

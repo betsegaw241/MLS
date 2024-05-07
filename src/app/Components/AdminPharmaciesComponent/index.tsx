@@ -76,26 +76,6 @@ const AdminPharmaciesComponent = ({
                 />
               </Flex>
 
-              <Flex
-                borderRadius={"8px"}
-                paddingX={1}
-                background={"#F9FBFF"}
-                onClick={() => {
-                  setShowSortBy(!showSortBy);
-                }}
-              >
-                <Flex
-                  flexDirection={"row"}
-                  alignItems={"center"}
-                  style={{ gap: 3 }}
-                  onClick={() => setShowFilter(!ShowFilter)}
-                >
-                  <IoFilter size={20} />
-                  <Text fontFamily={"poppins"} fontSize={4}>
-                    Filter
-                  </Text>
-                </Flex>
-              </Flex>
               {localStorage.getItem("role") === "superAdmin" && (
                 <Text
                   backgroundColor={"#F9FBFF"}
@@ -161,6 +141,9 @@ const AdminPharmaciesComponent = ({
                           </TableCell>
                           <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
                             {item.email}
+                          </TableCell>
+                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
+                            {item.phone}
                           </TableCell>
                           <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
                             {item.status}
