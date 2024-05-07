@@ -4,10 +4,7 @@ import { HomePageProps } from "./types";
 import Header from "../ui/Header";
 import { useNavigate } from "react-router";
 import LoadingPage from "utils/LoadingPage";
-import cover from "../../../assets/images/cover.jpeg";
 import { IoIosCall, IoIosMail } from "react-icons/io";
-import { toast } from "react-toastify";
-import showToast from "utils/toast";
 
 const HomePageComponent = (props: HomePageProps) => {
   const navigate = useNavigate();
@@ -24,7 +21,6 @@ const HomePageComponent = (props: HomePageProps) => {
       <Flex
         backgroundColor={"#ffff"}
         // backgroundColor={"#f5f5f5"}
-        width={"100vw"}
         height={"100vh"}
         justifyContent={"flex-start"}
         alignItems={"center"}

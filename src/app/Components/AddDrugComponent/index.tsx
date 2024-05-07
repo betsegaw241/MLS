@@ -4,7 +4,6 @@ import { Button, Flex, Grid, Text } from "../ui/Blocks";
 import { InputField } from "../ui/InputComponent";
 import { useNavigate } from "react-router";
 import ReactSelect from "../ui/Blocks/Select/ReactSelect";
-import { initialValues } from "./types";
 import { addDrugValidationSchema } from "app/Pages/AddDrugsPage/validators";
 import { useEffect, useState } from "react";
 import Spinner from "react-activity/dist/Spinner";
@@ -16,7 +15,7 @@ const AddDrugComponent = (props: any) => {
 
   useEffect(() => {
     if (props.isAdded) {
-      setReset(true);
+      window.location.reload();
     }
   }, [props.isAdded, reset]);
 

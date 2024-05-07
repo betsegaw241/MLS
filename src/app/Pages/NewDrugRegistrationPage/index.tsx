@@ -4,19 +4,22 @@ import RegisterDrug from "app/Components/RegisterNewDrug";
 import { initialValues } from "./validation";
 import { Drug } from "./types";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import api from "../../../API/api";
+import { useSelector } from "react-redux";
+import { selectIdAdded } from "./slice/selector";
 
 const RegisterDrugPage = () => {
   const [selectedImages, setSelectedImages] = useState<File[]>([]);
+  const navigate = useNavigate();
 
   const { actions } = UseRegisterDrugSlice();
   const dispatch = useDispatch();
   const { id } = useParams();
+  const isadded = useSelector(selectIdAdded);
 
   const Register = async (values: Drug) => {
-    console.log("Drug values-----:", values);
-    let uploadedPhotoUrls :string[] = [];
+    let uploadedPhotoUrls: string[] = [];
 
     if (selectedImages && selectedImages.length > 0) {
       const formData = new FormData();
@@ -54,7 +57,11 @@ const RegisterDrugPage = () => {
       console.log(error);
     }
   }
+  if (isadded) {
+    navigate(`/pharmacist/adddrug/${id}`);
+  }
 
+  console.log(isadded)
   return (
     <RegisterDrug
       Register={Register}

@@ -6,11 +6,11 @@ import {
 } from "../../../../store/utils/redux-injectors";
 import { AddDrugSaga } from "./saga";
 import { IDrug, addDrugPageState } from "./types";
+import showToast from "utils/toast";
 
 export const initialState: addDrugPageState = {
   errorMessage: "",
   loading: false,
-
   isDrugAdded: false,
   drug: [],
 };
@@ -25,6 +25,7 @@ const slice = createSlice({
     addDrugSuccess: (state, action: PayloadAction<any>) => {
       state.loading = false;
       state.isDrugAdded = true;
+      showToast("Drug added successfully", "success");
     },
     addDrugFailed: (state, action: PayloadAction<any>) => {
       state.loading = false;
