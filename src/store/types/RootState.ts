@@ -27,6 +27,7 @@ import { FeedbackDetailPageState } from "app/Pages/FeedbackDetail/slice/types";
 import { AdminProfilePageState } from "app/Pages/AdminProfilePage/slice/types";
 import { VerifyPharmacyDetailPageState } from "app/Pages/VerifyPharmacyDetailPage/slice/types";
 import { ReviewsPageState } from "app/Pages/ReviewsPgae/slice/types";
+import { registerSellPageState } from "app/Pages/RegisterSellPage/slice/types";
 
 export interface RootState {
   Layout?: LayoutState;
@@ -58,4 +59,5 @@ export interface RootState {
   adminProfile: AdminProfilePageState;
   verifyPharmacyDetail: VerifyPharmacyDetailPageState;
   reviewPage: ReviewsPageState;
+  registerSell: registerSellPageState;
 }

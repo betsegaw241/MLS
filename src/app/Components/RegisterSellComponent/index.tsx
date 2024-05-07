@@ -1,62 +1,33 @@
-import { ErrorMessage, Form, Formik } from "formik";
-import { theme } from "../../../styles/theme";
+import { addDrugValidationSchema } from "app/Pages/AddDrugsPage/validators";
+import { Formik, ErrorMessage, Form } from "formik";
+import Spinner from "react-activity/dist/Spinner";
 import { Button, Flex, Grid, Text } from "../ui/Blocks";
 import { InputField } from "../ui/InputComponent";
-import { useNavigate } from "react-router";
+import { RegistersellProps, initialValues } from "./types";
 import ReactSelect from "../ui/Blocks/Select/ReactSelect";
-import { addDrugValidationSchema } from "app/Pages/AddDrugsPage/validators";
-import { useEffect, useState } from "react";
-import Spinner from "react-activity/dist/Spinner";
-import "react-activity/dist/Spinner.css";
+import { registerSellValidationSchema } from "app/Pages/RegisterSellPage/validation";
 
-const AddDrugComponent = (props: any) => {
-  const navigate = useNavigate();
-  const [reset, setReset] = useState(false);
-
-  useEffect(() => {
-    if (props.isAdded) {
-      // window.location.reload();
-    }
-  }, [props.isAdded, reset]);
-
+const RegisterSellComponent = (props: RegistersellProps) => {
   return (
     <Flex
-      m={1}
-      borderRadius={1}
-      p={4}
-      backgroundColor={theme.colors.light.white[0]}
+      margin={1}
+      backgroundColor={"#ffff"}
       width={"100%"}
-      height={"100vh"}
+      minHeight={"100vh"}
       flexDirection={"column"}
+      p={1}
+      borderRadius={1}
     >
-      <Flex width={"100%"} justifyContent={"space-between"}>
-        <Text fontSize={6} fontFamily={"poppins"} p={1}>
-          Add Drug
-        </Text>
-        <Button
-          p={1}
-          fontSize={5}
-          borderRadius={"8px"}
-          variant="secondary"
-          onClick={() => navigate(`/pharmacist/addnewdrug/${props.pharmacyId}`)}
-        >
-          Add New Drug
-        </Button>
-      </Flex>
+      <Text fontFamily={"poppins"} fontSize={6}>
+        Sell Registration
+      </Text>
       <Flex justifyContent={"center"}>
         <Formik
-          initialValues={{
-            ...props.pharmacy,
-            minWaitingTimeUnit: "", // Initialize minWaitingTimeUnit
-            maxWaitingTimeUnit: "", // Initialize maxWaitingTimeUnit
+          initialValues={initialValues}
+          onSubmit={(values) => {
+            props.handleRegister(values);
           }}
-          onSubmit={(values, { resetForm }) => {
-            props.onAddClick(values);
-            resetForm();
-            setReset(false);
-          }}
-          validationSchema={addDrugValidationSchema}
-          enableReinitialize
+          validationSchema={registerSellValidationSchema}
         >
           {({ handleSubmit, setFieldValue }) => {
             return (
@@ -91,11 +62,7 @@ const AddDrugComponent = (props: any) => {
                     borderRadius={0}
                     gridColumnGap={"40px"}
                     gridRowGap={"15px"}
-                    gridTemplateColumns={[
-                      "repeat(1, 1fr)",
-                      "repeat(2, 1fr)",
-                      "repeat(3, 1fr)",
-                    ]}
+                    gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]}
                     mb={2}
                   >
                     <Flex flexDirection={"column"}>
@@ -108,26 +75,6 @@ const AddDrugComponent = (props: any) => {
                     <Flex flexDirection={"column"}>
                       <InputField name="quantity" type="text" label="Amount" />
                     </Flex>
-                    <Flex flexDirection={"column"}>
-                      <InputField
-                        name="expiredDate"
-                        type="date"
-                        label="Expiration Date"
-                      />
-                    </Flex>
-                    <Flex flexDirection={"column"}>
-                      <InputField name="price" type="text" label="Price" />
-                    </Flex>
-                    <Flex flexDirection={"column"}>
-                      <InputField name="cost" type="text" label="Cost" />
-                    </Flex>
-                    <Flex flexDirection={"column"}>
-                      <InputField
-                        name="recievedFrom"
-                        type="text"
-                        label="Recivied From"
-                      />
-                    </Flex>
                   </Grid>
 
                   <Flex justifyContent="flex-end" alignItems="center">
@@ -138,8 +85,7 @@ const AddDrugComponent = (props: any) => {
                       fontSize={5}
                       my={5}
                       variant="secondary"
-                      onClick={() => handleSubmit()}
-                      type="button"
+                      type="submit"
                       padding={1}
                       width={"100%"}
                       height={7}
@@ -160,5 +106,4 @@ const AddDrugComponent = (props: any) => {
     </Flex>
   );
 };
-
-export default AddDrugComponent;
+export default RegisterSellComponent;

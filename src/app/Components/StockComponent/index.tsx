@@ -154,6 +154,7 @@ const StockComponent = ({
                             >
                               {item.stockLevel}
                             </TableCell>
+                            
                           </TableRow>
                         ))}
                     </TableBody>

@@ -5,7 +5,7 @@ import AddDrugComponent from "app/Components/AddDrugComponent";
 import {
   selectDrug,
   selectIsAdding,
-  selectIsAdded
+  selectIsAdded,
 } from "app/Pages/AddDrugsPage/slice/selector";
 import { useParams } from "react-router-dom";
 
@@ -22,8 +22,7 @@ const AddDrugPage = () => {
   }, []);
 
   const onAddClick = (values: any) => {
-    console.log('val id--',values)
-    dispatch(actions.addDrug({...values}));
+    dispatch(actions.addDrug({ ...values }));
   };
 
   const drugsArray = drugs.map((item) => ({

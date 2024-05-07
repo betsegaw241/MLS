@@ -15,10 +15,3 @@ export const addDrugValidationSchema = Yup.object({
     .required(errorValues.quantity.required)
     .positive(errorValues.quantity.invalid),
 });
-// drug: string;
-// batchNumber: string;
-// expiredDate: string;
-// quantity: number;
-// recievedFrom: string;
-// cost: string;
-// price: string;
