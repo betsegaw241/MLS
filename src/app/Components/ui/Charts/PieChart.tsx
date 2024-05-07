@@ -1,19 +1,42 @@
-import { Chart } from "react-google-charts";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import { PieChart } from "@mui/x-charts/PieChart";
+import { Hidden } from "@mui/material";
 
-const PieChart = () => {
-  const options = {
-    title: "My Custom Data Chart",
-    legend: { position: "top" },
-  };
+const pieParams = { height: 200, margin: { right: 10 } };
 
-  const chartData = [
-    ["Category", "Value"],
-    ["Category A", 50],
-    ["Category B", 300],
-    ["Category C", 20],
-  ];
+interface PieColorProps {
+  data: { value: number; label: string }[];
+  palette: string[];
+}
 
-  return <Chart chartType={"PieChart"} data={chartData} options={options} />;
+const PieColor: React.FC<PieColorProps> = ({ data, palette }) => {
+  return (
+    <Stack width="100%" justifyContent={"space-between"}>
+      <Typography>Orders</Typography>
+      <Box>
+        <PieChart
+          colors={palette}
+          slotProps={{ legend: { hidden: true } }}
+          series={[
+            {
+              arcLabel: (item) => `${item.label}`,
+              data: data,
+              innerRadius: 40,
+              outerRadius: 100,
+              paddingAngle: 5,
+              cornerRadius: 5,
+              startAngle: -90,
+              endAngle: 360,
+            },
+          ]}
+          {...pieParams}
+        />
+      </Box>
+    </Stack>
+  );
 };
 
-export default PieChart;
+export default PieColor;

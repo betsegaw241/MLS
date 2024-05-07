@@ -28,6 +28,7 @@ const Header = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [ShowMenu, showLogout]);
+
   return (
     <>
       <Flex
@@ -49,7 +50,7 @@ const Header = () => {
             }}
             fontSize={10}
             ml={1}
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
           >
             <MdMenu />
           </Text>
@@ -108,7 +109,7 @@ const Header = () => {
               lineHeight={1}
               paddingY={3}
               color={"#fff "}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: "pointer" }}
             >
               Medicine Locator
             </Text>

@@ -5,14 +5,17 @@ export const initialValues: FormValues = {
   email: "",
   phoneNumber: "",
   location: "",
-  pharmacyLicense: null
+  address: "",
+  pharmacyLicense: null,
 };
 export const errorValues = {
   email: {
     invalid: "Invalid email address",
     required: "Email is required",
   },
-
+  address: {
+    required: "Adress is required",
+  },
   phoneNumber: {
     invalid: "Invalid phone number",
     required: "Phone Number is required",
@@ -30,7 +33,7 @@ export const errorValues = {
   },
   pharmacyLicense: {
     required: "Pharmacy License cannot be empty",
-    fileType: "Invalid file type. Only PDF or Image files allowed.",
+    fileType: "Invalid file type. Only Image files allowed.",
     fileSize: "File size is too large. Maximum size is 5MB.",
   },
 

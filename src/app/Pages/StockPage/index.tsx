@@ -16,6 +16,8 @@ const PharmacyStockPage = () => {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [catagory, setCatagory] = useState("");
+  const startIndex = (currentPage - 1) * 10 + 1;
+  const endIndex = Math.min(startIndex + 10 - 1, drugs.totalDocuments);
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
@@ -49,7 +51,7 @@ const PharmacyStockPage = () => {
           maxPrice: maxPrice,
         })
       );
-      setCurrentPage(1)
+      setCurrentPage(1);
     }
   };
 
@@ -67,6 +69,7 @@ const PharmacyStockPage = () => {
     );
   }, [currentPage]);    
 
+  
   return (
     <StockComponent
       handlePageChange={handlePageChange}
@@ -79,6 +82,8 @@ const PharmacyStockPage = () => {
       onFilter={onFilter}
       loading={loading}
       page={currentPage}
+      endIndex={endIndex}
+      startIndex={startIndex}
     />
   );
 };

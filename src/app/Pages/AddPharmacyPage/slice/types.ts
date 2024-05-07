@@ -21,4 +21,5 @@ export interface addPharmacyPageState {
   account?: Account;
   errorMessage: string;
   isCreatingAccount: boolean;
+  isAccountCreated: boolean;
 }

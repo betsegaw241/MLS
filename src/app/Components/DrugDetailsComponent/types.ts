@@ -13,6 +13,7 @@ export interface IDrug {
   stockLevel: string;
   instruction: string;
   sideEffects: string;
+  drugPhoto: string[];
 }
 export interface IDrugdata {
   data: IDrugStock[];

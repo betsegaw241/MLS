@@ -1,29 +1,32 @@
 import styled from 'styled-components';
+import { Box } from './Box';
 import {
-  space,
-  color,
-  layout,
-  grid,
-  background,
-  border,
-  borderRadius,
-  position,
-  shadow,
+  boxShadow,
+  flexbox,
   compose,
+  flex,
+  layout,
+  space,
+  typography,
+  border,
+  position,
+  borderRadius,
 } from 'styled-system';
-import { BoxProps } from './types';
+import { FlexProps } from './types';
 
-export const Container = styled.div<BoxProps>`
-
+export const Container = styled(Box)<FlexProps>`
+  display: flex;
+  background: ${({ theme }) => (theme === "dark" ? "#121212" : "#ffff")};
   ${compose(
+    flexbox,
+    flex,
     space,
-    color,
     layout,
-    grid,
-    background,
+    typography,
     border,
-    borderRadius,
     position,
-    shadow,
-  )}
+    borderRadius,
+    boxShadow,
+  )};
 `;
+

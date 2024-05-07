@@ -20,6 +20,7 @@ import {
 import { TextProps } from './types';
 
 export const Text = styled.span<TextProps>`
+  color: ${({ theme }) => (theme === "dark" ? "#fff" : "")};
   &:hover {
     ${props => props.hover}
   }

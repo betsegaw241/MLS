@@ -7,6 +7,7 @@ export interface AdminUsersPageState {
 export interface IuserData {
   data: user[];
   totalPages: number;
+  totalDocuments: number;
 }
 export interface user {
   _id: string;
@@ -20,7 +21,7 @@ export interface user {
   location: Adress;
   account: Account[];
   deliveryAddress: Adress[];
-  pharmaciestLicense: string;
+  pharmacistLicense: string;
   emailVerified: boolean;
   role: string;
 }

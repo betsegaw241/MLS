@@ -6,6 +6,8 @@ import { useNavigate } from "react-router";
 import LoadingPage from "utils/LoadingPage";
 import cover from "../../../assets/images/cover.jpeg";
 import { IoIosCall, IoIosMail } from "react-icons/io";
+import { toast } from "react-toastify";
+import showToast from "utils/toast";
 
 const HomePageComponent = (props: HomePageProps) => {
   const navigate = useNavigate();
@@ -30,75 +32,59 @@ const HomePageComponent = (props: HomePageProps) => {
         flexDirection={"column"}
         // style={{ gap: 3 }}
       >
-        {props.pharmacies?.length > 0 ? (
-          <Flex
-            width={"90%"}
-            marginTop={"70px"}
-            alignItems={"center"}
-            justifyContent={"space-between"}
-            borderRadius={"5px"}
-            paddingY={3}
-          >
-            <Flex>
-              <Text fontFamily={"poppins"} fontSize={6}>
-                My pharmacy
-              </Text>
-            </Flex>
+        <Flex
+          width={"90%"}
+          marginTop={"70px"}
+          alignItems={"center"}
+          justifyContent={"space-between"}
+          borderRadius={"5px"}
+          paddingY={3}
+        >
+          <Flex>
+            <Text fontFamily={"poppins"} fontSize={6}>
+              My pharmacy
+            </Text>
           </Flex>
-        ) : (
-          <Flex
-            width={"90%"}
-            marginTop={"70px"}
-            alignItems={"center"}
-            justifyContent={"space-between"}
-            borderRadius={"5px"}
-            paddingY={3}
-          >
-            <Flex>
-              <Button
-                variant="primary"
-                borderRadius={"8px"}
-                p={2}
-                fontFamily={"poppins"}
-                fontSize={5}
-                onClick={() => navigate("/addPharmacy")}
-              >
-                Register Pharmacy
-              </Button>
-            </Flex>
+          <Flex>
+            <Button
+              variant="primary"
+              borderRadius={"8px"}
+              p={1}
+              fontFamily={"poppins"}
+              fontSize={5}
+              onClick={() => navigate("/addPharmacy")}
+            >
+              Register Pharmacy
+            </Button>
           </Flex>
-        )}
+        </Flex>
 
         {props.loading ? (
           <LoadingPage />
         ) : (
           <Flex
             backgroundColor={"#ffff"}
-            width={"80%"}
-            paddingBottom={4}
+            width={"90%"}
             borderRadius={"5px"}
             flexDirection={"column"}
           >
             <Grid
               // border={"1px solid #f5f5f5f5"}
               borderRadius={0}
-              gridColumnGap={"40px"}
+              // gridColumnGap={"40px"}
               gridRowGap={"15px"}
               gridTemplateColumns={[
                 "repeat(1, 1fr)",
                 "repeat(2, 1fr)",
                 "repeat(3, 1fr)",
-                // "repeat(4, 1fr)",
               ]}
-              mb={2}
-              p={1}
             >
               {props.pharmacies?.map((pharmacy) => (
                 <Flex
                   key={pharmacy._id}
                   border={"1px solid #f5f5f5f5"}
                   flexDirection={"column"}
-                  m={1}
+                  width={300}
                   alignItems={"center"}
                   justifyContent={"flex-start"}
                   borderRadius={1}
@@ -112,7 +98,7 @@ const HomePageComponent = (props: HomePageProps) => {
                     borderRadius={1}
                   >
                     <img
-                      src={cover}
+                      src={pharmacy?.logo}
                       style={{
                         width: "100%",
                         height: "100%",
@@ -150,15 +136,7 @@ const HomePageComponent = (props: HomePageProps) => {
                       justifyContent={"flex-end"}
                       mt={"auto"}
                     >
-                      {pharmacy.status == "pending" ? (
-                        <Text
-                          fontFamily={"poppins"}
-                          p={1}
-                          backgroundColor={"#f5f5f5"}
-                        >
-                          pending
-                        </Text>
-                      ) : (
+                      {pharmacy.status == "approved" ? (
                         <Text
                           p={1}
                           borderRadius={1}
@@ -170,6 +148,15 @@ const HomePageComponent = (props: HomePageProps) => {
                           style={{ cursor: "pointer" }}
                         >
                           Go to Dashboard
+                        </Text>
+                      ) : (
+                        <Text
+                          fontFamily={"poppins"}
+                          p={1}
+                          backgroundColor={"#f5f5f5"}
+                          borderRadius={1}
+                        >
+                          {pharmacy.status}
                         </Text>
                       )}
                     </Flex>

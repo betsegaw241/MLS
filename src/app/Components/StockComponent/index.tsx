@@ -27,6 +27,8 @@ const StockComponent = ({
   setMaxPrice,
   setCatagory,
   onFilter,
+  startIndex,
+  endIndex,
 }: StockComponentProps) => {
   const navigate = useNavigate();
   const [showSortBy, setShowSortBy] = useState(false);
@@ -79,7 +81,6 @@ const StockComponent = ({
                   setShowSortBy(!showSortBy);
                 }}
               >
-                
                 <Flex
                   flexDirection={"row"}
                   alignItems={"center"}
@@ -111,52 +112,50 @@ const StockComponent = ({
                     <TableHeader columnName={drugTableColumn} />
                     <TableBody>
                       {drugs.data?.map((item, index) => (
-                        <TableRow
-                          hover
-                          key={index}
-                          sx={{
-                            "&:last-child td, &:last-child th": {
-                              border: "none",
-                            },
-                            cursor: "pointer",
-                            boxShadow: "none",
-                          }}
-                          onClick={() => {
-                            navigate(`/pharmacist/drugdetails/${item._id}`);
-                          }}
-                        >
-                          {/* <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {index}
-                          </TableCell> */}
-
-                          <TableCell
-                            component="th"
-                            scope="row"
+                          <TableRow
+                            hover
+                            key={index}
                             sx={{
-                              padding: "10px",
-                              height: "0px",
-                              fontFamily: "poppins",
+                              "&:last-child td, &:last-child th": {
+                                border: "none",
+                              },
+                              cursor: "pointer",
+                              boxShadow: "none",
+                            }}
+                            onClick={() => {
+                              navigate(`/pharmacist/drugdetails/${item._id}`);
                             }}
                           >
-                            {item.name}
-                          </TableCell>
-                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {item.category}
-                          </TableCell>
-                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {item.price}
-                          </TableCell>
-                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {item.stockLevel}
-                          </TableCell>
-                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {item.minStockLevel}
-                          </TableCell>
-                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {item.needPrescription}
-                          </TableCell>
-                        </TableRow>
-                      ))}
+                            <TableCell
+                              sx={{ padding: 1, fontFamily: "poppins" }}
+                            >
+                              {startIndex + index}
+                            </TableCell>
+
+                            <TableCell
+                              component="th"
+                              scope="row"
+                              sx={{
+                                padding: "10px",
+                                height: "0px",
+                                fontFamily: "poppins",
+                              }}
+                            >
+                              {item.name}
+                            </TableCell>
+                            <TableCell
+                              sx={{ padding: 1, fontFamily: "poppins" }}
+                            >
+                              {item.category}
+                            </TableCell>
+
+                            <TableCell
+                              sx={{ padding: 1, fontFamily: "poppins" }}
+                            >
+                              {item.stockLevel}
+                            </TableCell>
+                          </TableRow>
+                        ))}
                     </TableBody>
                   </Table>
                 </TableContainer>

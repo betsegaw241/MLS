@@ -1,7 +1,6 @@
 import LoginPage from "app/Pages/Login";
 import Header from "../../app/Components/layouts/Header/header";
 import { IRoute } from "./types";
-import MapComponent from "app/Components/ui/MapComponent";
 import CreateAccountPage from "app/Pages/createAccountPage/index";
 import AddPharmacyPage from "app/Pages/AddPharmacyPage/index";
 import HomePage from "app/Pages/HomePage";
@@ -28,7 +27,9 @@ import FeedbacksPage from "app/Pages/FeedbacksPage";
 import TransactionDetailPage from "app/Pages/TransactionDetailPage";
 import FeedbackDetailPage from "app/Pages/FeedbackDetail";
 import VerifyPharmacyDetailPage from "app/Pages/VerifyPharmacyDetailPage";
-//import AdminDashboard from "app/Components/AdminDashboard";
+import ReviewsPgae from "app/Pages/ReviewsPgae";
+import LandingComponent from "app/Components/LandingComponent";
+
 export const routes: IRoute[] = [
   {
     element: <DashBoardPage />,
@@ -244,7 +245,7 @@ export const routes: IRoute[] = [
     exact: true,
     path: "feedbackdetail/:id",
     isProtected: true,
-    allowedRole: ["superAdmin", "admin"],
+    allowedRole: "superAdmin",
     needsLayout: true,
   },
   {
@@ -263,12 +264,19 @@ export const routes: IRoute[] = [
     allowedRole: "admin",
     needsLayout: true,
   },
-  // {
-  //   element: <AdminDashboard />,
-  //   exact: true,
-  //   path: "superAdmindashboard",
-  //   isProtected: true,
-  //   allowedRole: ["superAdmin", "admin"],
-  //   needsLayout: true,
-  // },
+  {
+    element: <ReviewsPgae />,
+    exact: true,
+    path: "pharmacy/reviews/:id",
+    isProtected: true,
+    allowedRole: "pharmacist",
+    needsLayout: true,
+  },
+  {
+    element: <LandingComponent />,
+    exact: true,
+    path: "/landingPage",
+    isProtected: false,
+    allowedRole: "*",
+  },
 ];

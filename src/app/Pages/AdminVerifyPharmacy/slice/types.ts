@@ -15,6 +15,7 @@ export interface pharmacy {
   phone: string;
   state: string;
   city: string;
+  status:string;
   operationalHours: string;
   coverPhoto: string;
   pharmacyLogo: string;

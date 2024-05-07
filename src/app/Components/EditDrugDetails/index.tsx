@@ -28,6 +28,7 @@ const muitheme = createTheme({
 const EditDrugDetails = (props: EditDrugDetailsComponentProps) => {
   const [selectedImages, setSelectedImages] = useState<File[]>([]);
   const [ischecked, setIsChecked] = useState(true);
+  const [photo, setPhoto] = useState<string[]>(props.drug?.drugPhoto);
 
   const UploadImages = (file: File[]) => {
     props.setSelectedImages(file);
@@ -49,8 +50,7 @@ const EditDrugDetails = (props: EditDrugDetailsComponentProps) => {
         <Formik
           initialValues={props.drug}
           onSubmit={(values) => {
-            console.log(values);
-            // props.Edit(values);
+            props.Edit(values);
           }}
           validationSchema={registerValidationSchema}
         >
@@ -126,9 +126,27 @@ const EditDrugDetails = (props: EditDrugDetailsComponentProps) => {
                       flexDirection={"column"}
                       style={{ gap: 1 }}
                     >
-                      <Text paddingY={1} fontFamily={"poppins"}>
-                        Upload drug photo (optional)
-                      </Text>
+                      <Flex
+                        alignItems={"center"}
+                        justifyContent={"space-between"}
+                      >
+                        <Text paddingY={1} fontFamily={"poppins"}>
+                          Upload drug photo (optional)
+                        </Text>
+
+                        <Text
+                          py={1}
+                          fontFamily={"poppins"}
+                          style={{ cursor: "pointer" }}
+                          onClick={() => {
+                            setPhoto([]);
+                            setFieldValue("drugPhoto", [""]);
+                          }}
+                        >
+                          clear
+                        </Text>
+                      </Flex>
+
                       <StyledDropzone images={UploadImages} />
                       <Flex p={1}>
                         {selectedImages.length > 0
@@ -140,7 +158,8 @@ const EditDrugDetails = (props: EditDrugDetailsComponentProps) => {
                                 height={"50px"}
                               />
                             ))
-                          : props.drug.drugPhoto?.map((image, index) => (
+                          : photo &&
+                            photo.map((image, index) => (
                               <img
                                 key={index}
                                 src={image}

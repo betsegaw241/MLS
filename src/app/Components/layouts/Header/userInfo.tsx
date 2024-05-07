@@ -17,8 +17,9 @@ import { GrStatusCritical } from "react-icons/gr";
 import { InputField } from "../../ui/InputComponent";
 import { Form, Formik } from "formik";
 import { feedbackComponentProp } from "./types";
+import { AnyAaaaRecord } from "dns";
 
-const UserInfo = (props: feedbackComponentProp) => {
+const UserInfo = (props: AnyAaaaRecord) => {
   const [showUserInfo, setShowUserInfo] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
@@ -355,50 +356,56 @@ const UserInfo = (props: feedbackComponentProp) => {
       >
         <Flex
           alignItems={"center"}
-          height={"20%"}
           justifyContent={"center"}
           position={"relative"}
+          width={["50%", "30%"]}
+          background={"#fff"}
+          height={["50%", "20%"]}
+          flexDirection={"column"}
+          borderRadius={1}
+          p={1}
+          py={3}
         >
-          <Box backgroundColor={"white"} borderRadius={1} p={4}>
-            <Text fontSize={3} fontWeight={4}>
-              Are you sure you want to log out?
-            </Text>
-            <Flex
-              alignItems={"center"}
-              justifyContent={"center"}
-              mt={2}
-              style={{ gap: "20px" }}
+          <Text fontSize={5} fontFamily={"poppins"} p={2}>
+            Are you sure you want to log out?
+          </Text>
+          <Flex
+            alignItems={"center"}
+            justifyContent={"space-between"}
+            flexDirection={["column", "row"]}
+            style={{ gap: "20px" }}
+            p={1}
+            width={"70%"}
+          >
+            <Button
+              borderRadius={0}
+              variant="warning"
+              fontFamily={"poppins"}
+              fontSize={4}
+              onClick={() => {
+                dispatch(actions.logout());
+                navigate("/login");
+                setShowLogout(!showLogout);
+              }}
+              p={1}
+              width={"100%"}
             >
-              <Button
-                borderRadius={0}
-                variant="warning"
-                color={"white"}
-                fontSize={2}
-                onClick={() => {
-                  dispatch(actions.logout());
-                  navigate("/login");
-                  setShowLogout(!showLogout);
-                }}
-                px={4}
-                py={1}
-              >
-                Log out
-              </Button>
-              <Button
-                backgroundColor={"#eaecef"}
-                borderRadius={0}
-                color={"#2e3a59"}
-                fontSize={2}
-                onClick={() => {
-                  setShowLogout(!showLogout);
-                }}
-                px={4}
-                py={1}
-              >
-                Cancel
-              </Button>
-            </Flex>
-          </Box>
+              Logout
+            </Button>
+            <Button
+              backgroundColor={"#eaecef"}
+              borderRadius={0}
+              fontFamily={"poppins"}
+              fontSize={4}
+              onClick={() => {
+                setShowLogout(!showLogout);
+              }}
+              width={"100%"}
+              p={1}
+            >
+              Cancel
+            </Button>
+          </Flex>
         </Flex>
       </Modal>
     </>

@@ -60,8 +60,8 @@ export const Button = styled("button")<ButtonProps>`
           bg: "#065AD8",
         },
         warning: {
-          color: "#ffffff",
-          bg: "#cc3300",
+          color: " #b30000",
+          bg: " rgba(255, 0, 0, 0.4) ",
         },
         success: {
           color: "#ffffff",

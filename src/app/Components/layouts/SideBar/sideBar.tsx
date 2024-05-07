@@ -38,9 +38,9 @@ export function SideBar() {
           width={isCollapsed ? "55px" : "200px"}
         >
           <Text
-            fontFamily={"poppins"}
+            fontFamily={"lobster"}
             fontWeight={"bold"}
-            fontSize={5}
+            fontSize={7}
             lineHeight={1}
             paddingY={3}
             color={"#fff "}

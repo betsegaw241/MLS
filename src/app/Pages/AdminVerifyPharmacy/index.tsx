@@ -6,8 +6,7 @@ import { useLocation } from "react-router-dom";
 import { UseGetUsersSlice } from "../AdminUsersPage/slice";
 import { selectUsers } from "../AdminUsersPage/slice/selector";
 import VerifyPharmacyComponent from "app/Components/VerifyPharmacyComponent";
-import { intialValues } from "./constants";
-import { IntialValues } from "app/Components/VerifyPharmacyComponent/types";
+import { intialValues } from "../AdminPharmaciesPage/constants";
 
 const AdminVerifyPharmacy = () => {
   const dispatch = useDispatch();
@@ -35,19 +34,10 @@ const AdminVerifyPharmacy = () => {
   useEffect(() => {
     dispatch(actions.getpharmacies({ page: currentPage, status: "pending" }));
   }, [currentPage, status]);
-  if (localStorage.getItem("role") === "superAdmin")
-    useEffect(() => {
-      dispatch(userActions.actions.getUsers({ role: "admin" }));
-    }, []);
 
-  const adminsArray = admins.data?.map((item) => ({
-    value: item._id,
-    label: item.name.charAt(0).toUpperCase() + item.name.slice(1),
-  }));
+ 
 
-  const handleAssign = (values: IntialValues) => {
-    console.log("$$$$$$$$$$", values);
-  };
+ 
   const onSearch = () => {};
   return (
     <>
@@ -55,13 +45,10 @@ const AdminVerifyPharmacy = () => {
         loading={loading}
         setQuery={setQuery}
         onSearch={onSearch}
-        intialValues={intialValues}
         page={0}
-        admins={adminsArray}
         pharmacies={pharmacies}
         handlePageChange={handlePageChange}
         handleFilterUser={handleFilterUser}
-        handleAssign={handleAssign}
       />
     </>
   );

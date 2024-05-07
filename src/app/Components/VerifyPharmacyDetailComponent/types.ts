@@ -1,11 +1,8 @@
-import { IpharmacyData } from "app/Pages/AdminVerifyPharmacy/slice/types";
+import { pharmacy } from "app/Pages/VerifyPharmacyDetailPage/slice/types";
 
-export interface verifyPharmacyProps {
-  pharmacies: IpharmacyData;
+export interface VerifyPharmacyDetailComponentProps {
+  pharmacy: pharmacy;
   loading: boolean;
-  //   setQuery,
-  //   onSearch,
-  page: number;
-  handlePageChange: () => void;
-  handleFilterUser: () => void;
+  handleVerify: (value: string) => void;
+  // handleVerify:() => void;
 }

@@ -72,6 +72,11 @@ const AddParmacyComponent = (props: AddPharmacyComponentProps) => {
                         />
                       </Flex>
                     </Flex>
+                    <InputField
+                      name="address"
+                      type="text"
+                      label="Adress"
+                    />
 
                     <Flex flexDirection={"column"} width={"100%"}>
                       <Text fontFamily={"poppins"} fontSize={5} paddingY={1}>

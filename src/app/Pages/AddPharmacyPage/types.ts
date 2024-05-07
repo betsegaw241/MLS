@@ -3,6 +3,7 @@ export interface FormValues {
   email: string;
   phoneNumber: string;
   location: string;
+  address: string;
   pharmacyLicense: FileObject | null;
 }
 export interface FileObject {
