@@ -12,14 +12,10 @@ function* handleFetchTransactions(
       route: "/transaction",
       method: "GET",
       isSecureRoute: true,
-      query: {
-        page: action.payload.page,
-        limit: action.payload.limit,
-        transactionName: action.payload.transactionName,
-      },
+      query: action.payload,
     });
     if (res) {
-      yield put(TransactionPageActions.fetchTransactionsSuccess(res)); 
+      yield put(TransactionPageActions.fetchTransactionsSuccess(res));
     }
   } catch (error) {
     console.log("error=======", error);

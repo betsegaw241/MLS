@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import { Box, Flex, P, Text } from "../ui/Blocks";
 import { useNavigate } from "react-router";
-import {TransactionTableColumns } from "utils/constants";
+import { TransactionTableColumns } from "utils/constants";
 import { TableHeader } from "../ui/Blocks/Table";
 import Search from "../ui/SearchBar";
 import { FiChevronDown } from "react-icons/fi";
@@ -71,11 +71,11 @@ const TransactionComponent = ({
         <Flex
           borderRadius={"10%"}
           padding={1}
-          marginLeft={'auto'}
+          marginLeft={"auto"}
           background={"#F9FBFF"}
           height={"40px"}
         >
-          <Box onClick={() => onFilter()}>
+          <Box>
             <Search
               onChange={(e) => {
                 setQuery(e.target.value);
@@ -87,20 +87,11 @@ const TransactionComponent = ({
         <Flex
           borderRadius={"8px"}
           padding={1}
-        
           background={"#F9FBFF"}
           onClick={() => {
             setShowSortBy(!showSortBy);
           }}
-        >
-          <Flex flexDirection={"row"}>
-            <Text fontFamily={"poppins"} fontSize={2}>
-              Filter by : Newest
-            </Text>
-
-            <FiChevronDown fontSize={20} />
-          </Flex>
-        </Flex>
+        ></Flex>
       </Flex>
       <>
         <Flex
