@@ -31,6 +31,7 @@ import ReviewsPgae from "app/Pages/ReviewsPgae";
 import LandingComponent from "app/Components/LandingComponent";
 import RegisterSellPage from "app/Pages/RegisterSellPage";
 import CreateAdminPasswordPage from "app/Pages/CreateAdminPswrdPage";
+import AdminDashboardPage from "app/Pages/AdminDashboardPage";
 
 export const routes: IRoute[] = [
   {
@@ -42,9 +43,9 @@ export const routes: IRoute[] = [
     needsLayout: true,
   },
   {
-    element: <></>,
+    element: <AdminDashboardPage />,
     exact: true,
-    path: "superAdmindashboard",
+    path: "dashboard",
     isProtected: true,
     allowedRole: "superAdmin",
     needsLayout: true,
