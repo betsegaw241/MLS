@@ -293,8 +293,8 @@ export const routes: IRoute[] = [
   {
     element: <CreateAdminPasswordPage />,
     exact: true,
-    path: "/user/admin/set-password",
-    isProtected: true,
+    path: "/change-password",
+    isProtected: false,
     allowedRole: "*",
   },
 ];

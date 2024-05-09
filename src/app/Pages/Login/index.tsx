@@ -33,14 +33,14 @@ function LoginPage() {
     } else if (isAuthenticated && localStorage.getItem("token")) {
       if (role) {
         if (role === "superAdmin") {
-          navigate(`/superAdmindashboard`);
+          navigate(`/dashboard`);
         } else if (role === "admin" || role === "pharmacist") {
           navigate(`/${role}/home`);
         }
       }
     }
   }, [isAuthenticated, user, role]);
-  
+
   return (
     <>
       <LoginComponent
