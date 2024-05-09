@@ -32,9 +32,9 @@ function LoginPage() {
       navigate(`/verifyemail`, { state: { email: user?.email } });
     } else if (isAuthenticated && localStorage.getItem("token")) {
       if (role) {
-        if (role === "superAdmin") {
+        if (role === "admin" || role === "superAdmin") {
           navigate(`/dashboard`);
-        } else if (role === "admin" || role === "pharmacist") {
+        } else if (role === "pharmacist") {
           navigate(`/${role}/home`);
         }
       }

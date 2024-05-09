@@ -8,6 +8,7 @@ export const initialState: createAdminPwdPageState = {
   errorMessage: "",
   account: undefined,
   isPasswordCreated: false,
+  loading: false,
 };
 
 const slice = createSlice({
@@ -15,14 +16,16 @@ const slice = createSlice({
   initialState,
   reducers: {
     createAdminPwd: (state, action: PayloadAction<any>) => {
-
+      state.loading = true;
     },
     createAdminPwdSuccess: (state, action: PayloadAction<any>) => {
       state.account = action.payload;
+      state.loading = false;
       state.isPasswordCreated = true;
     },
     createAdminPwdFailed: (state, action: PayloadAction<any>) => {
       state.errorMessage = action.payload;
+      state.loading = false;
     },
   },
 });

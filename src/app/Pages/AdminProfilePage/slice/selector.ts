@@ -30,3 +30,7 @@ export const selectIsChangingPassword = createSelector(
   [selectSlice],
   (state) => state.ischangingPassword
 );
+export const selectLoading = createSelector(
+  [selectSlice],
+  (state) => state.isgettingUser
+);

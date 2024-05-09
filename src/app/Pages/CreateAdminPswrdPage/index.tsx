@@ -12,17 +12,20 @@ import {
   ThemeProvider,
   createTheme,
 } from "@mui/material";
-
+import Spinner from "react-activity/dist/Spinner";
+import "react-activity/dist/Spinner.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { selectISPasswordCreated } from "./slice/selector";
+import { selectISPasswordCreated, selectLoading } from "./slice/selector";
+
+
 const CreateAdminPasswordPage = () => {
   const { actions } = useCreateAdminPwdPageSlice();
   const dispatch = useDispatch();
   const [showpassword, setShowPassword] = useState(false);
-  // const email = useParams();
   const navigate = useNavigate();
   const isPasswordCreated = useSelector(selectISPasswordCreated);
+  const loading = useSelector(selectLoading);
   const [token, setToken] = useState<string>("");
   const [email, setEmail] = useState<string>("");
 
@@ -169,7 +172,11 @@ const CreateAdminPasswordPage = () => {
                           padding={1}
                           width={"100%"}
                         >
-                          Save
+                          {loading ? (
+                            <Spinner style={{ marginLeft: "45%" }} />
+                          ) : (
+                            "Save"
+                          )}
                         </Button>
                       </Flex>
                     </Flex>

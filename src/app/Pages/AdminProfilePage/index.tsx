@@ -6,8 +6,10 @@ import {
   selectErrorMessage,
   selectIsChangingPassword,
   selectProfile,
+  selectLoading,
 } from "./slice/selector";
 import { IProfile } from "./slice/types";
+import LoadingPage from "utils/LoadingPage";
 
 const AdminProfilePage = () => {
   // const isEditing = useSelector(selectIsEditing);
@@ -15,6 +17,7 @@ const AdminProfilePage = () => {
   const profile = useSelector(selectProfile);
   // const [data, setData] = useState<IProfile>(profile);
   const errorMessage = useSelector(selectErrorMessage);
+  const loading = useSelector(selectLoading);
   const { actions } = useAdminProfilePageSlice();
   const dispatch = useDispatch();
   const userID = localStorage.getItem("id");
@@ -35,7 +38,9 @@ const AdminProfilePage = () => {
     );
   };
 
-  return (
+  return loading ? (
+    <LoadingPage />
+  ) : (
     <AdminProfileComponent
       handleChangePassword={handleChangePassword}
       ischangingPassword={ischangingPassword}

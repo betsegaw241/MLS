@@ -7,36 +7,7 @@ import PieChart from "../ui/Charts/PieChart";
 import { Chart } from "react-google-charts";
 import BasicArea from "../ui/Charts/lineChart";
 
-const AdminDashboardComponent = () => {
-  const data = [
-    ["Days", "Sold", "Ordered", "Aborted"],
-    ["Monday", 100, 400, 300],
-    ["Tuesday", 170, 460, 250],
-    ["Wednesday", 660, 1120, 300],
-    ["Thrusday", 1030, 540, 350],
-    ["Friday", 1030, 540, 350],
-    ["Saturday", 1030, 540, 350],
-    ["Sunday", 1030, 540, 350],
-  ];
-
-  const options = {
-    chart: {
-      title: "Pharmacy Analysis",
-      subtitle: "Ordered, Sold, and Aborted: In this week monday to sunday",
-    },
-  };
-  const BarChart = () => {
-    return (
-      <Chart
-        chartType="Bar"
-        width="100%"
-        height="400px"
-        data={data}
-        options={options}
-      />
-    );
-  };
-
+const SuperAdminDashboardComponent = () => {
   const palette = ["#C3FF93", "#FFAF61", "#F5EFE6"];
 
   const palette1 = [
@@ -47,7 +18,34 @@ const AdminDashboardComponent = () => {
     "#FFCAD4",
     "#D895DA",
   ];
-
+  const profitData: { [key: string]: number } = {
+    January: 3000,
+    February: 500,
+    March: 6000,
+    April: 6200,
+    May: 9000,
+    June: 6800,
+    July: 7000,
+    August: 7200,
+    September: 7500,
+    October: 900,
+    November: 10000,
+    December: 11000,
+  };
+  const profitData2: { [key: string]: number } = {
+    January: 100,
+    February: 50,
+    March: 600,
+    April: 6200,
+    May: 9000,
+    June: 6800,
+    July: 9000,
+    August: 1000,
+    September: 7500,
+    October: 9000,
+    November: 10000,
+    December: 11000,
+  };
   const data1 = [
     { value: 10, label: "Acetaminophen" },
     { value: 15, label: "Ibuprofen" },
@@ -82,16 +80,22 @@ const AdminDashboardComponent = () => {
           Dashboard
         </Text>
         <Flex width="100%" height="100%" flexDirection={"column"}>
-          <Text fontFamily={"poppins"}>Subscribed Pharmacies</Text>
-          <BasicArea />
-          <Text fontFamily={"poppins"}>Users</Text>
-          <BasicArea />
-          <BasicBars />
-          <BasicBars />
+          <Text fontFamily={"poppins"}>Pharmacy Registration</Text>
+          <Flex height={400}>
+            <BasicArea color={"#BED7DC"} data={profitData} />
+          </Flex>
+          <Text fontFamily={"poppins"}>Users Subscription</Text>
+          <Flex height={400}>
+            <BasicArea color={"#9195F6"} data={profitData2} />
+          </Flex>
+          <Text fontFamily={"poppins"}>Pharmacies</Text>
+          <Flex height={500}>
+            <BasicBars label={["Verified", "Pendding", "Rejected"]} />
+          </Flex>
         </Flex>
       </Flex>
     </Flex>
   );
 };
 
-export default AdminDashboardComponent;
+export default SuperAdminDashboardComponent;

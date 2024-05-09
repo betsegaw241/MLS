@@ -1,7 +1,8 @@
 import { BarChart } from "@mui/x-charts/BarChart";
 import { BarSeriesType } from "@mui/x-charts/models";
 
-export default function BasicBars() {
+export default function BasicBars(props: any) {
+  const { label } = props;
   const orderData: {
     [key: string]: { accepted: number; pending: number; rejected: number };
   } = {
@@ -73,9 +74,9 @@ export default function BasicBars() {
   const rejectedData = months.map((month) => orderData[month].rejected);
 
   const series: BarSeriesType[] = [
-    { data: acceptedData, type: "bar" },
-    { data: pendingData, type: "bar" },
-    { data: rejectedData, type: "bar" },
+    { data: acceptedData, type: "bar", label: label && label[0] },
+    { data: pendingData, type: "bar", label: label && label[1] },
+    { data: rejectedData, type: "bar", label: label && label[2] },
   ];
 
   return (

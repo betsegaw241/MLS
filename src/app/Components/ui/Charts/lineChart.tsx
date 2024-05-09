@@ -1,28 +1,20 @@
 import { LineChart } from "@mui/x-charts/LineChart";
 import { LineSeriesType } from "@mui/x-charts/models";
+interface IChartProps {
+  data: { [key: string]: number };
+  color: string;
+}
 
-export default function MonthlyProfitChart() {
-  const profitData: { [key: string]: number } = {
-    January: 10000,
-    February: 5500,
-    March: 6000,
-    April: 6200,
-    May: 9000,
-    June: 6800,
-    July: 7000,
-    August: 7200,
-    September: 7500,
-    October: 9000,
-    November: 10000,
-    December: 11000,
-  };
+export default function MonthlyProfitChart(props: IChartProps) {
+  const { color, data } = props;
 
-  const months = Object.keys(profitData);
-  const profitValues = Object.values(profitData);
+  const months = Object.keys(data);
+  const profitValues = Object.values(data);
   const series: LineSeriesType[] = [
     {
       data: profitValues,
       type: "line",
+      color: color,
     },
   ];
 

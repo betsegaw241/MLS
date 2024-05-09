@@ -11,6 +11,7 @@ export const initialState: AdminProfilePageState = {
   ischangingPassword: false,
   profile: {} as IProfile,
   passwordChanged: false,
+ 
 };
 const slice = createSlice({
   name: "adminProfile",

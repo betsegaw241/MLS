@@ -14,3 +14,7 @@ export const selectISPasswordCreated = createSelector(
   (state) => state.isPasswordCreated
 );
 
+export const selectLoading = createSelector(
+  [selectSlice],
+  (state) => state.loading
+);
