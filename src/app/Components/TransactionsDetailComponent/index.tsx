@@ -23,6 +23,7 @@ const TransactionDetailComponent = (props: ItransactionDetailComponent) => {
       flexDirection={"column"}
       p={2}
       borderRadius={1}
+      minHeight={'100vh'}
     >
       <Flex justifyContent={"space-between"} alignItems={"center"}>
         <Text fontSize={7} color={"#3d3939"}>

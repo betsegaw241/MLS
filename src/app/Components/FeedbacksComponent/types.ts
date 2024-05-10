@@ -4,11 +4,12 @@ export interface FeedbackComponentProps {
   feedbacks: Feedback[];
   totalPages: number;
   page: number;
+  reset: boolean;
+  resetFilter: () => void;
   handlePageChange: (event: React.ChangeEvent<unknown>, page: number) => void;
   handleFilterType: (value: string) => void;
   handleFilterByRole: (value: string) => void;
   handleDelete: (value: string) => void;
-  handleCreateFeedback: (value: string) => void;
 }
 export interface Feedback {
   _id: string;

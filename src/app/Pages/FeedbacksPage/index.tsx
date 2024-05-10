@@ -9,7 +9,7 @@ import {
   selectIsLoading,
   selectIsCreated,
 } from "./slice/selector";
-import UserInfo from "app/Components/layouts/Header/userInfo";
+import LoadingPage from "utils/LoadingPage";
 
 const FeedbacksPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,10 +22,11 @@ const FeedbacksPage = () => {
 
   const [role, setRole] = useState("");
   const [type, setType] = useState("");
+  const [reset, setReset] = useState(false);
 
   useEffect(() => {
     dispatch(
-      actions.getFeedbacks({ page: currentPage, type: type, role: role })
+      actions.getFeedbacks({ page: currentPage, type: type, userRole: role })
     );
   }, [currentPage, role, type]);
 
@@ -38,39 +39,37 @@ const FeedbacksPage = () => {
 
   const handleFilterByRole = (value: string) => {
     setRole(value);
+    setReset(true);
     setCurrentPage(1);
   };
   const handleFilterType = (value: string) => {
     setType(value);
+    setReset(true);
     setCurrentPage(1);
   };
 
   const handleDelete = (value: any) => {
     dispatch(actions.getFeedbacks(value));
   };
-const handleCreateFeedback = (values: any) => {
-  dispatch(
-    actions.getFeedbacks({
-      title: values.title,
-      content: values.content,
-      type: type,
-    })
-  );
-};
+  const resetFilter = () => {
+    setRole("");
+    setType("");
+  };
 
-  return (
-    
-      <FeedbacksComponent
-        feedbacks={feedbacks.data}
-        page={currentPage}
-        totalPages={feedbacks.totalPages}
-        handlePageChange={handlePageChange}
-        handleFilterByRole={handleFilterByRole}
-        handleFilterType={handleFilterType}
-        handleDelete={handleDelete}
-        handleCreateFeedback={handleCreateFeedback}
-      />
-    
+  return loading ? (
+    <LoadingPage />
+  ) : (
+    <FeedbacksComponent
+      resetFilter={resetFilter}
+      feedbacks={feedbacks.data}
+      page={currentPage}
+      totalPages={feedbacks.totalPages}
+      handlePageChange={handlePageChange}
+      handleFilterByRole={handleFilterByRole}
+      handleFilterType={handleFilterType}
+      handleDelete={handleDelete}
+      reset={reset}
+    />
   );
 };
 export default FeedbacksPage;
