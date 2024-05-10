@@ -15,9 +15,6 @@ const HeaderPage = () => {
 
   const [type, setType] = useState("");
 
- 
-
-
 const handleCreateFeedback = (values: any) => {
   dispatch(
     actions.createFeedbacks({
