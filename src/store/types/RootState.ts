@@ -20,7 +20,7 @@ import { AdminUsersPageState } from "app/Pages/AdminUsersPage/slice/types";
 import { AdminPharmaciesPageState } from "app/Pages/AdminPharmaciesPage/slice/types";
 import { notificationPageState } from "app/Pages/Notification/slices/types";
 import { transactionPageState } from "app/Pages/TransactionPage/slices/types";
-import { FeedbackPageState } from "app/Pages/FeedbacksPage/slice/types";
+import { CreateFeedbackPageState } from "app/Pages/HeaderPage/slice/types";
 import { VerifyPharmaciesPageState } from "app/Pages/AdminVerifyPharmacy/slice/types";
 import { transactionDetailPageState } from "app/Pages/TransactionDetailPage/slices/types";
 import { FeedbackDetailPageState } from "app/Pages/FeedbackDetail/slice/types";
@@ -29,6 +29,7 @@ import { VerifyPharmacyDetailPageState } from "app/Pages/VerifyPharmacyDetailPag
 import { ReviewsPageState } from "app/Pages/ReviewsPgae/slice/types";
 import { registerSellPageState } from "app/Pages/RegisterSellPage/slice/types";
 import { createAdminPwdPageState } from "app/Pages/CreateAdminPswrdPage/slice/types";
+import { FeedbackPageState } from "app/Pages/FeedbacksPage/slice/types";
 
 export interface RootState {
   createPassword: createAdminPwdPageState;
@@ -55,6 +56,7 @@ export interface RootState {
   getPharmaciesList: AdminPharmaciesPageState;
   transactionSlice: transactionPageState;
   feedbacks: FeedbackPageState;
+  createFeedbacks: CreateFeedbackPageState;
   transactionDetailSlice: transactionDetailPageState;
   verifyPharmacy: VerifyPharmaciesPageState;
   feedbacksDetail: FeedbackDetailPageState;

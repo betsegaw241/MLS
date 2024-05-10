@@ -7,7 +7,9 @@ import {
   selectFeedbacks,
   selectIsDeleted,
   selectIsLoading,
+  selectIsCreated,
 } from "./slice/selector";
+import UserInfo from "app/Components/layouts/Header/userInfo";
 
 const FeedbacksPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,6 +18,8 @@ const FeedbacksPage = () => {
   const feedbacks = useSelector(selectFeedbacks);
   const loading = useSelector(selectIsLoading);
   const deleted = useSelector(selectIsDeleted);
+  const created = useSelector(selectIsCreated);
+
   const [role, setRole] = useState("");
   const [type, setType] = useState("");
 
@@ -44,17 +48,29 @@ const FeedbacksPage = () => {
   const handleDelete = (value: any) => {
     dispatch(actions.getFeedbacks(value));
   };
+const handleCreateFeedback = (values: any) => {
+  dispatch(
+    actions.getFeedbacks({
+      title: values.title,
+      content: values.content,
+      type: type,
+    })
+  );
+};
 
   return (
-    <FeedbacksComponent
-      feedbacks={feedbacks.data}
-      page={currentPage}
-      totalPages={feedbacks.totalPages}
-      handlePageChange={handlePageChange}
-      handleFilterByRole={handleFilterByRole}
-      handleFilterType={handleFilterType}
-      handleDelete={handleDelete}
-    />
+    
+      <FeedbacksComponent
+        feedbacks={feedbacks.data}
+        page={currentPage}
+        totalPages={feedbacks.totalPages}
+        handlePageChange={handlePageChange}
+        handleFilterByRole={handleFilterByRole}
+        handleFilterType={handleFilterType}
+        handleDelete={handleDelete}
+        handleCreateFeedback={handleCreateFeedback}
+      />
+    
   );
 };
 export default FeedbacksPage;

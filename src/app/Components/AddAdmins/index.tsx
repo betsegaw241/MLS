@@ -13,7 +13,6 @@ const AddAdmins = (props: AddAdminProps) => {
         p={1}
         borderRadius={1}
         height={'100vh'}
-       
         m={1}
       >
         <Formik

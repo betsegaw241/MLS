@@ -16,10 +16,11 @@ import { MdOutlineSettingsSuggest } from "react-icons/md";
 import { GrStatusCritical } from "react-icons/gr";
 import { InputField } from "../../ui/InputComponent";
 import { Form, Formik } from "formik";
-import { feedbackComponentProp } from "./types";
-import { AnyAaaaRecord } from "dns";
+import { userInfoComponentProp } from "./types";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const UserInfo = (props: AnyAaaaRecord) => {
+const UserInfo = (props: userInfoComponentProp) => {
   const [showUserInfo, setShowUserInfo] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
@@ -31,6 +32,7 @@ const UserInfo = (props: AnyAaaaRecord) => {
   const profilePicture: any = localStorage.getItem("avatar");
   const name = localStorage.getItem("name");
   const role = localStorage.getItem("role");
+  
   return (
     <>
       <Flex
@@ -57,7 +59,9 @@ const UserInfo = (props: AnyAaaaRecord) => {
           flexDirection={"column"}
           display={["none", "none", "none", "block"]}
         >
-          <Text fontFamily={"poppins"} px={1}>{name}</Text>
+          <Text fontFamily={"poppins"} px={1}>
+            {name}
+          </Text>
         </Flex>
       </Flex>
       {showUserInfo && (
@@ -98,6 +102,7 @@ const UserInfo = (props: AnyAaaaRecord) => {
                     lineHeight={0}
                     onClick={() => {
                       setShowUserInfo(!showUserInfo);
+                    
                     }}
                   >
                     Settings
@@ -129,32 +134,31 @@ const UserInfo = (props: AnyAaaaRecord) => {
                     Profile
                   </Text>
                 </Flex>
-
-                <Flex
-                  alignItems={"center"}
-                  hover={{
-                    backgroundColor: "#E5D4FF",
-                  }}
-                  p={1}
-                  style={{ cursor: "pointer" }}
-                  onClick={() => {
-                    role && role == "pharmacist"
-                      ? setShowFeedback(!showFeedback)
-                      : "";
-                  }}
-                >
-                  <MdFeedback color="blue" />
-                  <Text
-                    color={"#363636"}
-                    fontFamily={"Poppins"}
-                    fontSize={5}
-                    padding={1}
-                    fontWeight={3}
-                    lineHeight={0}
+                {role && role === "pharmacist" && (
+                  <Flex
+                    alignItems={"center"}
+                    hover={{
+                      backgroundColor: "#E5D4FF",
+                    }}
+                    p={1}
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      setShowFeedback(!showFeedback);
+                    }}
                   >
-                    Feedback
-                  </Text>
-                </Flex>
+                    <MdFeedback color="blue" />
+                    <Text
+                      color={"#363636"}
+                      fontFamily={"Poppins"}
+                      fontSize={5}
+                      padding={1}
+                      fontWeight={3}
+                      lineHeight={0}
+                    >
+                      Feedback
+                    </Text>
+                  </Flex>
+                )}
               </Flex>
               <Flex
                 alignItems={"center"}
@@ -222,6 +226,7 @@ const UserInfo = (props: AnyAaaaRecord) => {
                   lineHeight={0}
                   onClick={() => {
                     setShowIfeedback(true);
+                      props.setType("complaint");
                   }}
                 >
                   Complaint
@@ -245,6 +250,7 @@ const UserInfo = (props: AnyAaaaRecord) => {
                   lineHeight={0}
                   onClick={() => {
                     setShowIfeedback(true);
+                      props.setType("suggestion");
                   }}
                 >
                   Suggestion
@@ -268,6 +274,7 @@ const UserInfo = (props: AnyAaaaRecord) => {
                   lineHeight={0}
                   onClick={() => {
                     setShowIfeedback(true);
+                      props.setType("question");
                   }}
                 >
                   Question
@@ -281,11 +288,17 @@ const UserInfo = (props: AnyAaaaRecord) => {
       <Formik
         initialValues={props.initialValues}
         onSubmit={(values) => {
-          props.onSaveClick(values);
+          props.handleCreateFeedback(values);
         }}
-        validationSchema={props.feedbackSchema}
       >
         {({ handleSubmit }) => {
+          const handleCreate = () => {
+            if (props.isCreated) {
+              setShowIfeedback(false);
+              toast.success("Feedback successfully submitted");
+            }
+          };
+
           return (
             <Form>
               {showIfeedback && (
@@ -299,15 +312,17 @@ const UserInfo = (props: AnyAaaaRecord) => {
                     flexDirection={"column"}
                     alignItems={"center"}
                     height={"40%"}
-                    width={"30%"}
+                    width={["90%", "70%", "50%", "40%"]}
                     justifyContent={"center"}
                     position={"relative"}
+                    borderRadius={1}
                     backgroundColor={"#ffffff"}
                   >
                     <Flex
                       width={"70%"}
                       flexDirection={"column"}
-                      alignItems={"space-between"}
+                      style={{gap:"8px"}}
+                      
                     >
                       <InputField
                         name="title"
@@ -317,27 +332,46 @@ const UserInfo = (props: AnyAaaaRecord) => {
                       />
 
                       <InputField
-                        name="message"
+                        name="content"
                         type={"textarea"}
                         label={"Message"}
                         placeholder="Enter Message"
                       />
-                      <Button
-                        borderRadius={40}
-                        fontWeight={"bold"}
-                        fontFamily={"poppins"}
-                        color={"white"}
-                        fontSize={5}
-                        my={2}
-                        marginLeft={["2%", "3%", "3%", "2%"]}
-                        variant="primary"
-                        padding={1}
-                        width={"100%"}
-                        textAlign={"center"}
-                        onClick={() => handleSubmit()}
-                      >
-                        Submit
-                      </Button>
+                      <Flex flexDirection={"row"}>
+                        <Button
+                          borderRadius={40}
+                          fontWeight={"bold"}
+                          fontFamily={"poppins"}
+                          color={"white"}
+                          fontSize={5}
+                          my={2}
+                          marginLeft={["2%", "3%", "3%", "2%"]}
+                          variant="primary"
+                          padding={1}
+                          width={"50%"}
+                          type="submit"
+                          textAlign={"center"}
+                          onClick={() => handleCreate()}
+                        >
+                          Submit
+                        </Button>
+                        <Button
+                          borderRadius={40}
+                          fontWeight={"bold"}
+                          fontFamily={"poppins"}
+                          color={"white"}
+                          fontSize={5}
+                          my={2}
+                          marginLeft={["2%", "3%", "3%", "2%"]}
+                          backgroundColor="#d34a14"
+                          padding={1}
+                          width={"50%"}
+                          textAlign={"center"}
+                          onClick={() => setShowIfeedback(false)}
+                        >
+                          Cancel
+                        </Button>
+                      </Flex>
                     </Flex>
                   </Flex>
                 </Modal>

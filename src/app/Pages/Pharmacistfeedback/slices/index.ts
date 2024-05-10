@@ -24,7 +24,6 @@ const slice = createSlice({
       state.isEditing = false;
       state.errorMessage = action.payload;
     },
-   
   },
 });
 export const { actions: EditProfilePageActions } = slice;

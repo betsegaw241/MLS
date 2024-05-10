@@ -1,10 +1,11 @@
-export interface feedbackComponentProp {
+export interface userInfoComponentProp {
   initialValues: IFeedback;
-  feedbackSchema: object;
   errorMessage: string;
-  onSaveClick: (values: IFeedback) => void;
+   setType: React.Dispatch<React.SetStateAction<string>>;
+   isCreated:boolean;
+  handleCreateFeedback: (value: IFeedback) => void;
 }
 export interface IFeedback {
   title: String;
-  message: String;
+  content: String;
 }

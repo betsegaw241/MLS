@@ -10,8 +10,9 @@ import { IFeedbackData, FeedbackPageState } from "./types";
 export const initialState: FeedbackPageState = {
   errorMessage: "",
   loading: false,
-  isDeleted:false,
+  isDeleted: false,
   feedbacks: {} as IFeedbackData,
+  isCreated: false
 };
 
 const slice = createSlice({
@@ -37,6 +38,18 @@ const slice = createSlice({
       state.loading = false;
     },
     deleteFeedbacksFailed: (state, action: PayloadAction<any>) => {
+      state.errorMessage = action.payload;
+      state.loading = false;
+    },
+    createFeedbacks: (state, action: PayloadAction<any>) => {
+      state.loading = true;
+      
+    },
+    createFeedbacksSuccess: (state, action: PayloadAction<any>) => {
+      // state.FeedbacksList = action.payload;
+      state.loading = false;
+    },
+    createFeedbacksFailed: (state, action: PayloadAction<any>) => {
       state.errorMessage = action.payload;
       state.loading = false;
     },

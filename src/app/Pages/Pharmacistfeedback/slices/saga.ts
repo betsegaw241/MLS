@@ -27,7 +27,6 @@ function* handleFeedback(action: PayloadAction<PayloadType>) {
   }
 }
 
-
 export function* EditProfilePageSaga() {
   yield takeLatest(actions.feedback.type, handleFeedback);
 }

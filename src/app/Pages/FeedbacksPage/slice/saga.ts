@@ -36,7 +36,31 @@ function* handleDeleteFeedbacks(action: PayloadAction<any>) {
     yield put(actions.deleteFeedbacksFailed(error));
   }
 }
+function* handleCreateFeedbacks(action: PayloadAction<any>) {
+  try {
+    const res: Feedback = yield call(api, {
+      method: "PUT",
+      route: "/feedback/",
+      body: action.payload,
+      // {
+      //   page: action.payload.page,
+      //   role: action.payload.role,
+      //   title: action.payload.title,
+      //   content: action.payload.content,
+      // },
+      isSecureRoute: true,
+    });
+
+    if (res) {
+      yield put(actions.createFeedbacksSuccess(res));
+    }
+  } catch (error) {
+    yield put(actions.createFeedbacksFailed(error));
+  }
+}
 export function* GetFeedbacksListSaga() {
   yield takeLatest(actions.getFeedbacks.type, handleGetFeedbacks);
   yield takeLatest(actions.deleteFeedbacks.type, handleDeleteFeedbacks);
+  yield takeLatest(actions.createFeedbacks.type, handleCreateFeedbacks);
+
 }

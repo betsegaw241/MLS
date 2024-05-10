@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Modal from "app/Components/ui/Modal";
 import SideBarMenu from "../SideBar/sideBarMenu";
 import { MdMenu } from "react-icons/md";
+import HeaderPage from "app/Pages/HeaderPage";
 
 const Header = () => {
   const [screenSize, setScreenSize] = useState({
@@ -71,7 +72,7 @@ const Header = () => {
             style={{ gap: 50 }}
           >
             <Box>
-              <Badge badgeContent={4} color="error" sx={{fontSize:1}} >
+              <Badge badgeContent={4} color="error" sx={{ fontSize: 1 }}>
                 <IoMdNotificationsOutline
                   color="action"
                   style={{ fontSize: 30 }}
@@ -79,7 +80,7 @@ const Header = () => {
               </Badge>
             </Box>
             <Box marginLeft={"auto"}>
-              <UserInfo type={"AAAA"} address={""} ttl={0} />
+              <HeaderPage />
             </Box>
           </Flex>
         </Flex>

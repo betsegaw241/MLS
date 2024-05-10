@@ -6,4 +6,3 @@ export const feedbackSchema = Yup.object({
 
   message: Yup.string().required(errorValues.message.required),
 });
-

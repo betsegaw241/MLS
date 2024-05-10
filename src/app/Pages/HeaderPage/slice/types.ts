@@ -1,9 +1,8 @@
 import { user } from "app/Pages/AdminUsersPage/slice/types";
 
-export interface FeedbackPageState {
+export interface CreateFeedbackPageState {
   errorMessage: string;
   loading: boolean;
-  isDeleted: boolean;
   isCreated: boolean;
   feedbacks: IFeedbackData;
 }

@@ -3,7 +3,8 @@ import { createSelector } from "@reduxjs/toolkit";
 import { RootState } from "store/types";
 import { initialState } from ".";
 
-const selectSlice = (state: RootState) => state?.feedbacks || initialState;
+const selectSlice = (state: RootState) =>
+  state?.createFeedbacks || initialState;
 
 export const selectFeedbacksState = createSelector(
   [selectSlice],
@@ -21,10 +22,6 @@ export const selectIsLoading = createSelector(
 export const selectErrorMessage = createSelector(
   [selectSlice],
   (state) => state.errorMessage
-);
-export const selectIsDeleted = createSelector(
-  [selectSlice],
-  (state) => state.isDeleted
 );
 export const selectIsCreated = createSelector(
   [selectSlice],

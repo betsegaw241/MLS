@@ -99,7 +99,7 @@ const LoginComponent = (props: LoginInComponentProp) => {
               />
             ))}
           </Flex>
-        </Flex>
+        </Flex> 
 
         {/* ??-------------------------------------------------------------------------------------?? */}
         <Flex width={"60%"} height={"100vh"} borderRadius={1}>

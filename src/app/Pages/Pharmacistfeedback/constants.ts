@@ -12,5 +12,4 @@ export const errorValues = {
     required: " current password is required",
     min: "message must be at least 10 characters",
   },
-
 };

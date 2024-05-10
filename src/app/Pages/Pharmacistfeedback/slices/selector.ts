@@ -14,4 +14,7 @@ export const selectErrorMessage = createSelector(
   [selectSlice],
   (state) => state.errorMessage
 );
-export const selectFeedback = createSelector([selectSlice], (state) => state.feedback);
+export const selectFeedback = createSelector(
+  [selectSlice],
+  (state) => state.feedback
+);

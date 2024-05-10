@@ -10,6 +10,7 @@ import NotificationComponent from "../Noticications/Notification";
 import NotificationPage from "app/Pages/Notification";
 import { useSelector } from "react-redux";
 import { selectCount } from "app/Pages/Notification/slices/selector";
+import HeaderPage from "app/Pages/HeaderPage";
 
 const Header = (props: NotificationProps) => {
   const navigate = useNavigate();
@@ -70,7 +71,7 @@ const Header = (props: NotificationProps) => {
               </Badge>
             </Box>
             <Box marginLeft={"auto"}>
-              <UserInfo type={"AAAA"} address={""} ttl={0} />
+              <HeaderPage />
             </Box>
           </Flex>
         </Flex>
