@@ -22,6 +22,7 @@ const AddDrugPage = () => {
   }, []);
 
   const onAddClick = (values: any) => {
+    console.log('added')
     dispatch(actions.addDrug({ ...values }));
   };
 

@@ -13,7 +13,7 @@ export const selectLoading = createSelector(
   [selectSlice],
   (state) => state.loading
 );
-export const selectIsAdded = createSelector(
+export const selectRegisterd = createSelector(
   [selectSlice],
   (state) => state.isRegsterd
 );

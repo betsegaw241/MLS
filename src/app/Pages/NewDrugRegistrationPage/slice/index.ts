@@ -32,6 +32,9 @@ const slice = createSlice({
       state.loading = false;
       state.errorMessage = action.payload;
     },
+    resetIsAdded: (state) => {
+      state.drugadded = false;
+    },
   },
 });
 

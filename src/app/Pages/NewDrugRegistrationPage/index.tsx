@@ -59,6 +59,7 @@ const RegisterDrugPage = () => {
   }
   if (isadded) {
     navigate(`/pharmacist/adddrug/${id}`);
+    dispatch(actions.resetIsAdded());
   }
 
   console.log(isadded)

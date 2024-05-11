@@ -1,4 +1,14 @@
+import { IDrugStock } from "./types";
 
+export const IntialValues: IDrugStock = {
+  drug: "",
+  batchNumber: "",
+  quantity: null,
+  cost: null,
+  price: null,
+  expiredDate: undefined,
+  recievedFrom: ""
+};
 export const errorValues = {
   drug: {
     invalid: "Invalid drug name",

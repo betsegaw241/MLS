@@ -4,10 +4,10 @@ import idea from "../../../assets/icons/idea.png";
 import question from "../../../assets/icons/question.png";
 import Paginate from "../ui/Pagination/Paginate";
 import Dropdown from "../ui/Blocks/Dropdown";
-import Modal from "../ui/Modal";
 import { useState } from "react";
 import { FeedbackComponentProps } from "./types";
 import { useNavigate } from "react-router";
+import { RiFilterOffFill } from "react-icons/ri";
 
 const FeedbacksComponent = (props: FeedbackComponentProps) => {
   const [showModal, setShowModal] = useState(false);
@@ -39,7 +39,6 @@ const FeedbacksComponent = (props: FeedbackComponentProps) => {
         <Flex
           style={{ gap: 10 }}
           justifyContent={"flex-end"}
-          //   p={1}
           alignItems={"center"}
         >
           <Text fontFamily={"poppins"} p={1}>
@@ -56,6 +55,19 @@ const FeedbacksComponent = (props: FeedbackComponentProps) => {
             label={"Type"}
             handleChange={props.handleFilterType}
           />
+          {props.reset ? (
+            <Flex
+              p={1}
+              alignItems={"center"}
+              style={{ cursor: "pointer" }}
+              onClick={() => props.resetFilter()}
+            >
+              <RiFilterOffFill />
+              <Text fontFamily={"poppins"}>Reset</Text>
+            </Flex>
+          ) : (
+            <></>
+          )}
         </Flex>
 
         <Flex width={"100%"} flexDirection={"column"} style={{ gap: 10 }}>

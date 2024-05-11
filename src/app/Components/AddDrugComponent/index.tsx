@@ -8,6 +8,7 @@ import { addDrugValidationSchema } from "app/Pages/AddDrugsPage/validators";
 import { useEffect, useState } from "react";
 import Spinner from "react-activity/dist/Spinner";
 import "react-activity/dist/Spinner.css";
+import { IntialValues } from "app/Pages/AddDrugsPage/constants";
 
 const AddDrugComponent = (props: any) => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const AddDrugComponent = (props: any) => {
 
   useEffect(() => {
     if (props.isAdded) {
-      // window.location.reload();
+      window.location.reload();
     }
   }, [props.isAdded, reset]);
 
@@ -45,18 +46,11 @@ const AddDrugComponent = (props: any) => {
       </Flex>
       <Flex justifyContent={"center"}>
         <Formik
-          initialValues={{
-            ...props.pharmacy,
-            minWaitingTimeUnit: "", // Initialize minWaitingTimeUnit
-            maxWaitingTimeUnit: "", // Initialize maxWaitingTimeUnit
-          }}
-          onSubmit={(values, { resetForm }) => {
+          initialValues={IntialValues}
+          onSubmit={(values) => {
             props.onAddClick(values);
-            resetForm();
-            setReset(false);
           }}
           validationSchema={addDrugValidationSchema}
-          enableReinitialize
         >
           {({ handleSubmit, setFieldValue }) => {
             return (
@@ -116,10 +110,10 @@ const AddDrugComponent = (props: any) => {
                       />
                     </Flex>
                     <Flex flexDirection={"column"}>
-                      <InputField name="price" type="text" label="Price" />
+                      <InputField name="price" type="" label="Price" />
                     </Flex>
                     <Flex flexDirection={"column"}>
-                      <InputField name="cost" type="text" label="Cost" />
+                      <InputField name="cost" type="" label="Cost" />
                     </Flex>
                     <Flex flexDirection={"column"}>
                       <InputField

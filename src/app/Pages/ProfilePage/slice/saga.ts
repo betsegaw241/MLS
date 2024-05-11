@@ -26,10 +26,9 @@ function* handleEditProfile(action: PayloadAction<PayloadType>) {
 function* handleGetUser(action: PayloadAction<string>) {
   try {
     const res: AxiosResponse = yield api({
-      route: "/user/:userId",
+      route: `/user/${action.payload}`,
       method: "GET",
       isSecureRoute: true,
-      query: { id: action.payload },
     });
     if (res) {
       yield put(actions.getUserSuccess(res));

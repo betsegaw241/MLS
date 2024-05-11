@@ -22,7 +22,7 @@ function ProfilePage() {
   const ischangingPassword = useSelector(selectIsChangingPassword);
   const profile = useSelector(selectProfile);
   const user = useSelector(selectUserExist);
-  const id = useSelector(selectid);
+  // const id = useSelector(selectid);
   const editing = useSelector(selectIsEditing);
 
   const errorMessage = useSelector(selectErrorMessage);
@@ -77,7 +77,7 @@ function ProfilePage() {
   const handleChangePassword = (values: changePasswordProp) => {
     dispatch(
       actions.changePassword({
-        id: id,
+        id: userID,
         oldPassword: values.currentPassword,
         newPassword: values.confirmPassword,
       })

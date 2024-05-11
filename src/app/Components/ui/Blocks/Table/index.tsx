@@ -15,6 +15,7 @@ export const StyledTableCell = styled(TableCell)(() => ({
     fontFamily: "poppins",
     paddingBottom: "15px",
     paddingTop: "15px",
+    zIndex:0
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 1,

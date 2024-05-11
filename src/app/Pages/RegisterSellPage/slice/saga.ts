@@ -8,7 +8,7 @@ function* handleRegisterSell(action: PayloadAction<any>) {
   try {
     const res: IDrug = yield call(api, {
       method: "POST",
-      route: `/drug/stocks/${action.payload.drug}`,
+      route: `/drug/sale/${action.payload.drug}`,
       body: action.payload,
       isSecureRoute: true,
     });
@@ -22,5 +22,5 @@ function* handleRegisterSell(action: PayloadAction<any>) {
 }
 
 export function* RegisterSellSaga() {
-  yield takeLatest(actions.resgsterSellFailed.type, handleRegisterSell);
+  yield takeLatest(actions.resgsterSell.type, handleRegisterSell);
 }
