@@ -1,7 +1,7 @@
 import { initialValues } from "./constants";
 import { Form, Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Text,Button, Flex, H3 } from "app/Components/ui/Blocks";
+import { Text, Button, Flex, H3 } from "app/Components/ui/Blocks";
 import { FormValues } from "./types";
 import { useCreateAdminPwdPageSlice } from "./slice";
 import { createAdminPasswordValidationSchema } from "./validators";
@@ -12,25 +12,46 @@ import {
   ThemeProvider,
   createTheme,
 } from "@mui/material";
+import Spinner from "react-activity/dist/Spinner";
+import "react-activity/dist/Spinner.css";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { selectISPasswordCreated, selectLoading } from "./slice/selector";
 
-import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { selectISPasswordCreated } from "./slice/selector";
+
 const CreateAdminPasswordPage = () => {
   const { actions } = useCreateAdminPwdPageSlice();
   const dispatch = useDispatch();
   const [showpassword, setShowPassword] = useState(false);
-  const {email, token } = useParams();
   const navigate = useNavigate();
   const isPasswordCreated = useSelector(selectISPasswordCreated);
+  const loading = useSelector(selectLoading);
+  const [token, setToken] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+
+  useEffect(() => {
+    const currentUrl = window.location.href;
+
+    const queryParams: { [key: string]: string } = {};
+    const regex = /[?&]([^=#]+)=([^&#]*)/g;
+    let match;
+
+    while ((match = regex.exec(currentUrl)) !== null) {
+      queryParams[decodeURIComponent(match[1])] = decodeURIComponent(match[2]);
+    }
+
+    const { token, email } = queryParams;
+    setToken(token || "");
+    setEmail(email || "");
+  }, []);
+
   const handleCreateAdminPassword = (values: FormValues) => {
     dispatch(
       actions.createAdminPwd({
         password: values.password,
         confirmPassword: values.confirmPassword,
         email: email,
-        token: token
-          
+        token: token,
       })
     );
   };
@@ -67,7 +88,6 @@ const CreateAdminPasswordPage = () => {
           validationSchema={createAdminPasswordValidationSchema}
         >
           {({ handleSubmit }) => {
-
             return (
               <>
                 {isPasswordCreated ? (
@@ -85,7 +105,7 @@ const CreateAdminPasswordPage = () => {
                     height={"100vh"}
                   >
                     <Text
-                      style={{ fontFamily: "poppins", cursor:"pointer"}}
+                      style={{ fontFamily: "poppins", cursor: "pointer" }}
                       p={1}
                       backgroundColor={"rgba(153, 220, 247, 0.938)"}
                       borderRadius={1}
@@ -152,7 +172,11 @@ const CreateAdminPasswordPage = () => {
                           padding={1}
                           width={"100%"}
                         >
-                          Save
+                          {loading ? (
+                            <Spinner style={{ marginLeft: "45%" }} />
+                          ) : (
+                            "Save"
+                          )}
                         </Button>
                       </Flex>
                     </Flex>
@@ -163,8 +187,7 @@ const CreateAdminPasswordPage = () => {
           }}
         </Formik>
       </Flex>
-      </>
+    </>
   );
 };
 export default CreateAdminPasswordPage;
-

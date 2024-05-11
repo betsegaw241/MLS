@@ -7,12 +7,14 @@ import Modal from "app/Components/ui/Modal";
 import SideBarMenu from "../SideBar/sideBarMenu";
 import { MdMenu } from "react-icons/md";
 import HeaderPage from "app/Pages/HeaderPage";
+import NotificationPage from "app/Pages/Notification";
 
 const Header = () => {
   const [screenSize, setScreenSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
+  const [showNotification, setShowNotification] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(screenSize.width < 1000);
   const [ShowMenu, setShowMenu] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
@@ -73,6 +75,12 @@ const Header = () => {
           >
             <Box>
               <Badge badgeContent={4} color="error" sx={{ fontSize: 1 }}>
+            <Box
+              onClick={() => {
+                setShowNotification(!showNotification);
+              }}
+            >
+              <Badge badgeContent={4} color="error" sx={{ fontSize: 1 }}>
                 <IoMdNotificationsOutline
                   color="action"
                   style={{ fontSize: 30 }}
@@ -125,6 +133,14 @@ const Header = () => {
           </Flex>
         </Modal>
       )}
+      <Modal
+        open={showNotification}
+        setOpen={() => {
+          setShowNotification(!showNotification);
+        }}
+      >
+        <NotificationPage />
+      </Modal>
     </>
   );
 };

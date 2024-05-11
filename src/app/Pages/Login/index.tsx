@@ -32,15 +32,15 @@ function LoginPage() {
       navigate(`/verifyemail`, { state: { email: user?.email } });
     } else if (isAuthenticated && localStorage.getItem("token")) {
       if (role) {
-        if (role === "superAdmin") {
-          navigate(`/superAdmindashboard`);
-        } else if (role === "admin" || role === "pharmacist") {
+        if (role === "admin" || role === "superAdmin") {
+          navigate(`/dashboard`);
+        } else if (role === "pharmacist") {
           navigate(`/${role}/home`);
         }
       }
     }
   }, [isAuthenticated, user, role]);
-  
+
   return (
     <>
       <LoginComponent

@@ -20,16 +20,14 @@ function TransactionPage() {
     setCurrentPage(page);
   };
   const onSearch = () => {
-    if (query.length > 0) {
-      dispatch(
-        actions.fetchTransactions({
-          id: id,
-          page: currentPage,
-          limit: 10,
-          transactionName: query,
-        })
-      );
-    }
+    dispatch(
+      actions.fetchTransactions({
+        id: id,
+        page: currentPage,
+        limit: 10,
+        searchQuery: query,
+      })
+    );
   };
   const onFilter = () => {
     dispatch(
@@ -48,7 +46,6 @@ function TransactionPage() {
       actions.fetchTransactions({ id: id, page: currentPage, limit: 10 })
     );
   }, [currentPage]);
-  console.log(transactions);
 
   return (
     <>

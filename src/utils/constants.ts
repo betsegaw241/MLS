@@ -67,7 +67,7 @@ export const superAdminMenu: ISideBarMenu[] = [
 export const adminMenu: ISideBarMenu[] = [
   {
     label: "Dashboard",
-    to: "/admin/home",
+    to: "/dashboard",
     icon: RxDashboard,
   },
   {
@@ -92,7 +92,8 @@ export const PharmaciesMenu = [
     label: "Inventory",
     to: "/inventory",
     icon: MdOutlineInventory2,
-    subMenuItems: [ {
+    subMenuItems: [
+      {
         label: "Stock",
         to: "/stock",
         icon: RxDashboard,
@@ -107,7 +108,6 @@ export const PharmaciesMenu = [
         to: "/registersell",
         icon: IoIosAdd,
       },
-     
     ],
   },
   {
