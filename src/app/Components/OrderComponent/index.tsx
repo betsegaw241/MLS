@@ -50,7 +50,6 @@ const OrderComponent = ({
     return formattedDate;
   };
 
-
   return (
     <Box
       width={"100%"}
@@ -60,39 +59,28 @@ const OrderComponent = ({
       height={"100vh"}
       p={1}
     >
-      <Flex alignItems={"center"} p={1}>
-        <Flex flexDirection={"column"} paddingY={1}>
+      <Flex alignItems={"center"} p={1} justifyContent={'space-between'}>
           <P margin={"0px"} padding={"0px"} fontFamily={"poppins"} fontSize={6}>
             Orders
           </P>
-          <P margin={"0px"} padding={"0px"} fontFamily={"poppins"} fontSize={1}>
-            All Orders
-          </P>
-        </Flex>
+         
+     
         <Flex
           borderRadius={"10%"}
           padding={1}
-          marginLeft={"40%"}
           background={"#F9FBFF"}
           height={"40px"}
         >
           <Box>
             <Search
               onChange={(e) => {
-                //     console.log(e.target.value);
+                setQuery(e.target.value);
               }}
               onClick={() => onSearch()}
             />
           </Box>
         </Flex>
-        <Flex
-          borderRadius={"8px"}
-          paddingX={1}
-          background={"#F9FBFF"}
-          onClick={() => {
-            setShowSortBy(!showSortBy);
-          }}
-        ></Flex>
+       
       </Flex>
       <>
         <Flex
@@ -115,7 +103,7 @@ const OrderComponent = ({
                   handleChange={onFilter}
                 />
                 <TableBody>
-                  {orders.data.map((order: Order) => (
+                  {orders.data?.map((order: Order) => (
                     <TableRow
                       hover
                       key={order._id}

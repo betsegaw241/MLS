@@ -27,7 +27,11 @@ function* handleGetDrugStock(action: PayloadAction<any>) {
       method: "GET",
       route: `/drug/stocks/${action.payload.id}`,
       isSecureRoute: true,
-      query: { page: action.payload.page, limit: action.payload.limit },
+      query: {
+        page: action.payload.page,
+        limit: action.payload.limit,
+        sortBy: action.payload.sortBy,
+      },
     });
     console.log(res);
 

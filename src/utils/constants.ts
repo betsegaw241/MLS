@@ -152,6 +152,9 @@ export const OrderTableColumns: IColumn[] = [
       { label: "Pending", value: "pending" },
       { label: "InProgress", value: "inprogress" },
       { label: "Rejected", value: "rejected" },
+      { label: "Deliverd", value: "delivered" },
+      { label: "Refunded", value: "refunded" },
+      { label: "Expired", value: "expired" },
     ],
   },
 ];

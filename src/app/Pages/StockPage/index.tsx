@@ -54,12 +54,14 @@ const PharmacyStockPage = () => {
       setCurrentPage(1);
     }
   };
-
+  
   useEffect(() => {
     dispatch(
       actions.getDrugs({
         pharmacyId: id,
         page: currentPage,
+        sortBy:'createdAt',
+        sortOrder:'dsc',
         limit: 10,
         drugName: query,
         catagory: catagory,

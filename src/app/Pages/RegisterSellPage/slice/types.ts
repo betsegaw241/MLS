@@ -5,8 +5,8 @@ export interface registerSellPageState {
   drug: IDrug[];
 }
 export interface IDrug {
-  name: string;
-  _id: string;
-  batch: string;
-  quantity: number;
+  stockId: string;
+  quantity: string;
+  drug: string;
+  pharmacyId: string | undefined;
 }

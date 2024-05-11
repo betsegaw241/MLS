@@ -14,19 +14,16 @@ const HomePageComponent = (props: HomePageProps) => {
     document.body.style.padding = "0";
   }, []);
 
-  console.log(props.pharmacies);
   return (
     <>
       <Header notifications={[]} />
       <Flex
         backgroundColor={"#ffff"}
-        // backgroundColor={"#f5f5f5"}
         height={"100vh"}
         justifyContent={"flex-start"}
         alignItems={"center"}
         margin={"0px"}
         flexDirection={"column"}
-        // style={{ gap: 3 }}
       >
         <Flex
           width={"90%"}
@@ -136,9 +133,10 @@ const HomePageComponent = (props: HomePageProps) => {
                         <Text
                           p={1}
                           borderRadius={1}
-                          onClick={() =>
-                            navigate(`/pharmacist/dashboard/${pharmacy._id}`)
-                          }
+                          onClick={() => {
+                            navigate(`/pharmacist/dashboard/${pharmacy._id}`);
+                            localStorage.setItem("pharmacyId", pharmacy._id);
+                          }}
                           border={"1px #B4D4FF solid"}
                           fontFamily={"poppins"}
                           style={{ cursor: "pointer" }}

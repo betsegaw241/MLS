@@ -25,11 +25,12 @@ const slice = createSlice({
     resgsterSellSuccess: (state, action: PayloadAction<any>) => {
       state.loading = false;
       state.isRegsterd = true;
-      showToast("Drug added successfully", "success");
+      showToast(`${action.payload.message}`, "success");
     },
     resgsterSellFailed: (state, action: PayloadAction<any>) => {
       state.loading = false;
       state.errorMessage = action.payload;
+      showToast(`${action.payload}`, "error");
     },
 
     getDrug: (state, action: PayloadAction<string | undefined>) => {},

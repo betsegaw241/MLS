@@ -21,6 +21,7 @@ export interface IDrugdata {
 }
 
 export interface IDrugStock {
+  _id: string;
   batchNumber: string;
   expiredDate: string;
   quantity: number;

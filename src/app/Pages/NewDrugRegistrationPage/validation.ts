@@ -8,7 +8,7 @@ export const initialValues: Drug = {
   strength: "",
   minStockLevel: "",
   needPrescription: true,
-  drugPhoto: "",
+  drugPhoto: [],
   category: "",
 };
 

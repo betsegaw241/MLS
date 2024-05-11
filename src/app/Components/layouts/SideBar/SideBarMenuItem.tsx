@@ -3,18 +3,17 @@ import { Flex, Text } from "../../ui/Blocks";
 import { SideBarMenuItemProp } from "./types";
 import React, { useState } from "react";
 import "styles/fonts.css";
-import { useSelector } from "react-redux";
 // import { selectRole } from "app/Pages/Layout/slice/selectors";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
-import { selectpharmacyId } from "app/Pages/DashboardPage/slice/selectors";
 
 const SideBarMenuItem = (props: SideBarMenuItemProp) => {
   const { label, to, icon, subMenuItems } = props.menuItem;
   const { pathname } = useLocation();
-  // const role = useSelector(selectRole);
-  const id = useSelector(selectpharmacyId);
+  // const role = useSelector(selectRole);pharmacyId
+  // const id = useSelector(selectpharmacyId);
   const role = localStorage.getItem("role");
+  const id = localStorage.getItem("pharmacyId");
   const [openSubMenu, setOpenSubMenu] = useState(false);
   return (
     <Link
@@ -47,8 +46,6 @@ const SideBarMenuItem = (props: SideBarMenuItemProp) => {
             lineHeight={1}
             padding={1}
             color={"#fff "}
-
-            // backgroundColor={"#0C07FF"}
           >
             {label}
           </Text>
