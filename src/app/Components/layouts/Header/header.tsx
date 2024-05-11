@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 import Modal from "app/Components/ui/Modal";
 import SideBarMenu from "../SideBar/sideBarMenu";
 import { MdMenu } from "react-icons/md";
-import HeaderPage from "app/Pages/HeaderPage";
 import NotificationPage from "app/Pages/Notification";
+import HeaderPage from "app/Pages/HeaderPage";
 
 const Header = () => {
   const [screenSize, setScreenSize] = useState({
@@ -73,8 +73,6 @@ const Header = () => {
             justifyContent={"space-between"}
             style={{ gap: 50 }}
           >
-            <Box>
-              <Badge badgeContent={4} color="error" sx={{ fontSize: 1 }}>
             <Box
               onClick={() => {
                 setShowNotification(!showNotification);

@@ -4,6 +4,7 @@ import { PayloadAction } from "@reduxjs/toolkit";
 
 import api from "../../../../API/api";
 import { data } from "../../../models/user";
+import { Drugs } from "./types";
 
 function* handleGetDrugs(action: PayloadAction<any>) {
   try {
@@ -56,11 +57,11 @@ function* soonExpiringDrugs(action: PayloadAction<any>) {
 }
 
 function* getexpiredDrugs(action: PayloadAction<any>) {
-  try {
+   try {
     const res: data = yield call(api, {
       method: "GET",
-      route: "/",
-      body: action.payload,
+      route: `/drug/stocks/${action.payload.id}`,
+      query: action.payload,
       isSecureRoute: true,
     });
 

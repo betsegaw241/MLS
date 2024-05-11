@@ -1,14 +1,5 @@
 /* --- STATE --- */
 
-export interface ManageInventorState {
-  totalPages: number;
-  errorMessage: string;
-  loading: boolean;
-  drugs: Drug[];
-  recentlyadded: Drug[];
-  lowStockDrug: Drug[];
-  soonExpiringDrugs: Drug[];
-}
 
 interface Drug {
   name: string;

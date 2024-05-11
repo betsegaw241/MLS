@@ -84,7 +84,7 @@ const DashboardComponent = () => {
         <Flex width="100%" height="100%" flexDirection={"column"}>
           <BasicBars />
           <BasicBars />
-          <BasicArea />
+          <BasicArea data={{}} color={""} />
         </Flex>
       </Flex>
       <Flex

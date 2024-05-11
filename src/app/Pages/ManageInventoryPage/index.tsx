@@ -8,6 +8,7 @@ import {
   selectManageInventoryState,
   selectSoonExpiringDrugs,
   selectRecentDrugs,
+  selectExpiredDrugs,
 } from "./slice/selector";
 selectManageInventoryState
 const ManageInventoryPage = () => {
@@ -16,6 +17,7 @@ const ManageInventoryPage = () => {
    const drugs = useSelector(selectManageInventoryState);
    const recentlyadded = useSelector(selectRecentDrugs);
    const lowStockDrug = useSelector(selectLowStockDrugs);
+   const expiredDrugs = useSelector(selectExpiredDrugs);
    const soonExpiringDrugs = useSelector(selectSoonExpiringDrugs);
    const [currentPage, setCurrentPage] = useState(1);
    const { id } = useParams();
@@ -56,6 +58,7 @@ const ManageInventoryPage = () => {
             id: id,
             page: currentPage,
             limit: 10,
+            status:"expired"
           })
         );
       };
@@ -91,7 +94,7 @@ const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
    getSoldOutDrugs();
    getrecentlyaddedDrugs();
    getexpiredDrugs();
-   getSoonExpiringDrugs();
+    getSoonExpiringDrugs();
    getLowStockDrugs();
  }, [currentPage]);
 
@@ -104,6 +107,7 @@ const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
       soonExpiringDrugs={soonExpiringDrugs.data}
       pages={drugs.totalPages}
       onPageChange={handlePageChange}
+      expiredDrugs={expiredDrugs.data}
     />
   );
 };

@@ -20,7 +20,7 @@ import soldout from "../../../assets/images/sold.png";
 import solddrug from "../../../assets/images/drugs.png";
 import expired from "../../../assets/images/schedule.png";
 import sonexp from "../../../assets/images/time.png";
-import { Drug, InventoryComponentProps } from "./types";
+import {  InventoryComponentProps } from "./types";
 
 const theme = createTheme({
   components: {
@@ -44,6 +44,8 @@ const ManageInventory = ({
   onPageChange,
   recentlyadded,
   lowStockDrug,
+  expiredDrugs,
+  soonExpiringDrugs,
 }: InventoryComponentProps) => {
   const navigate = useNavigate();
 
@@ -55,9 +57,6 @@ const ManageInventory = ({
   const scrollToContent = (index: number) => () => {
     contentRefs[index].current?.scrollIntoView({ behavior: "smooth" });
   };
-  console.log("====================================");
-  console.log(drugs);
-  console.log("====================================");
   return (
     <Flex
       width={"100%"}
@@ -257,7 +256,7 @@ const ManageInventory = ({
                   <TableHeader columnName={RecentlyAdded} />
                   <TableBody>
                     {recentlyadded &&
-                      recentlyadded?.map((drug: Drug) => (
+                      recentlyadded?.map((drug) => (
                         <TableRow
                           hover
                           key={drug.id}
@@ -357,31 +356,36 @@ const ManageInventory = ({
                               navigate(`/pharmacist/drugdetails/${drug._id}`);
                             }}
                           >
-                            <TableCell
-                              component="th"
-                              scope="row"
-                              sx={{
-                                padding: "10px",
-                                height: "0px",
-                                fontFamily: "poppins",
-                              }}
-                            >
-                              {drug.name}
-                            </TableCell>
-                            <TableCell
-                              sx={{ padding: 1, fontFamily: "poppins" }}
-                            >
-                              {drug.category}
-                            </TableCell>
-
-                            <TableCell>
-                              <Text
-                                fontFamily={"poppins"}
-                                color={drug.balance > 10 ? "#805a0f" : "red"}
-                              >
-                                {drug.stockLevel}
-                              </Text>
-                            </TableCell>
+                            {drug.status === "lowStock" && (
+                              <>
+                                <TableCell
+                                  component="th"
+                                  scope="row"
+                                  sx={{
+                                    padding: "10px",
+                                    height: "0px",
+                                    fontFamily: "poppins",
+                                  }}
+                                >
+                                  {drug.name}
+                                </TableCell>
+                                <TableCell
+                                  sx={{ padding: 1, fontFamily: "poppins" }}
+                                >
+                                  {drug.category}
+                                </TableCell>
+                                <TableCell>
+                                  <Text
+                                    fontFamily={"poppins"}
+                                    color={
+                                      drug.balance > 10 ? "#805a0f" : "red"
+                                    }
+                                  >
+                                    {drug.status}
+                                  </Text>
+                                </TableCell>
+                              </>
+                            )}
                           </TableRow>
                         ))}
                     </TableBody>
@@ -514,8 +518,8 @@ const ManageInventory = ({
                   >
                     <TableHeader columnName={SoonExpiring} />
                     <TableBody>
-                      {SoonExpiring &&
-                        SoonExpiring?.map((drug) => (
+                      {soonExpiringDrugs &&
+                        soonExpiringDrugs?.map((drug) => (
                           <TableRow
                             hover
                             key={drug.id}
@@ -612,7 +616,7 @@ const ManageInventory = ({
                   >
                     <TableHeader columnName={SoonExpiring} />
                     <TableBody>
-                      {drugs?.map((drug) => (
+                      {expiredDrugs?.map((drug) => (
                         <TableRow
                           hover
                           key={drug.id}
@@ -627,13 +631,9 @@ const ManageInventory = ({
                             navigate(`/pharmacist/drugdetails/${drug._id}`);
                           }}
                         >
-                          {/* <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {drug.batch}
-                          </TableCell> */}
                           <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {drug.drug}
+                            {drug.category}
                           </TableCell>
-
                           <TableCell
                             component="th"
                             scope="row"
@@ -643,10 +643,13 @@ const ManageInventory = ({
                               fontFamily: "poppins",
                             }}
                           >
-                            {drug.balance}
+                            {drug.name}
                           </TableCell>
                           <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {drug.expiration_date}
+                            {new Date(drug.createdAt).toDateString()}
+                          </TableCell>
+                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
+                            {drug.status}
                           </TableCell>
                         </TableRow>
                       ))}

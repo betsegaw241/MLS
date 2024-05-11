@@ -5,18 +5,18 @@ import {
   useInjectSaga,
 } from "../../../../store/utils/redux-injectors";
 import { data } from "../../../models/user";
-import { ManageInventorState } from "../types";
 import { ManageInventorySaga } from "./saga";
-import { Drug } from "app/Components/ManageInventory/types";
+import { Drugs, ManageInventorState } from "./types";
 
 export const initialState: ManageInventorState = {
   errorMessage: "",
   loading: false,
   totalPages: 0,
-  drugs: [] as Drug[],
-  recentlyadded: [],
-  lowStockDrug: [],
-  soonExpiringDrugs:[],
+  drugs: {} as Drugs,
+  recentlyadded: {} as Drugs,
+  lowStockDrug: {} as Drugs,
+  soonExpiringDrugs: {} as Drugs,
+  expiredDrugs: {} as Drugs
 };
 
 const slice = createSlice({
@@ -26,7 +26,7 @@ const slice = createSlice({
     getDrugs: (state, action: PayloadAction<any>) => {
       state.loading = true;
     },
-    getDrugsSuccess: (state, action: PayloadAction<data>) => {
+    getDrugsSuccess: (state, action: PayloadAction<any>) => {
       state.loading = false;
       state.drugs = action.payload;
     },
@@ -37,7 +37,7 @@ const slice = createSlice({
     getrecentlyaddedDrugs: (state, action: PayloadAction<any>) => {
       state.loading = true;
     },
-    getrecentlyaddedDrugsSuccess: (state, action: PayloadAction<data>) => {
+    getrecentlyaddedDrugsSuccess: (state, action: PayloadAction<any>) => {
       state.loading = false;
       state.recentlyadded = action.payload;
     },
@@ -48,9 +48,9 @@ const slice = createSlice({
     getexpiredDrugs: (state, action: PayloadAction<any>) => {
       state.loading = true;
     },
-    getexpiredDrugsSuccess: (state, action: PayloadAction<data>) => {
+    getexpiredDrugsSuccess: (state, action: PayloadAction<any>) => {
       state.loading = false;
-      //state.user = action.payload;
+      state.expiredDrugs = action.payload;
     },
     getexpiredDrugsFailed: (state, action: PayloadAction<any>) => {
       state.loading = false;
@@ -59,7 +59,7 @@ const slice = createSlice({
     getSoonExpiringDrugs: (state, action: PayloadAction<any>) => {
       state.loading = true;
     },
-    getSoonExpiringDrugsSuccess: (state, action: PayloadAction<data>) => {
+    getSoonExpiringDrugsSuccess: (state, action: PayloadAction<any>) => {
       state.loading = false;
       //state.user = action.payload;
     },
@@ -70,7 +70,7 @@ const slice = createSlice({
     getLowStockDrugs: (state, action: PayloadAction<any>) => {
       state.loading = true;
     },
-    getLowStockDrugsSuccess: (state, action: PayloadAction<data>) => {
+    getLowStockDrugsSuccess: (state, action: PayloadAction<any>) => {
       state.loading = false;
       state.lowStockDrug = action.payload;
     },
@@ -81,7 +81,7 @@ const slice = createSlice({
     getSoldOutDrugs: (state, action: PayloadAction<any>) => {
       state.loading = true;
     },
-    getSoldOutDrugsSuccess: (state, action: PayloadAction<data>) => {
+    getSoldOutDrugsSuccess: (state, action: PayloadAction<any>) => {
       state.loading = false;
       state.soonExpiringDrugs = action.payload;
     },

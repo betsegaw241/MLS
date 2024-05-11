@@ -30,3 +30,7 @@ export const selectSoonExpiringDrugs = createSelector(
   [selectSlice],
   (state) => state.soonExpiringDrugs
 );
+export const selectExpiredDrugs = createSelector(
+  [selectSlice],
+  (state) => state.expiredDrugs
+);

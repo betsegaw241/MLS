@@ -260,8 +260,8 @@ export const LowStockAlertColumn: IColumn[] = [
 ];
 export const SoonExpiring: IColumn[] = [
   {
-    id: "Batch Number ",
-    label: "Batch Number",
+    id: "Category ",
+    label: "Category",
     minWidth: 50,
   },
   {
@@ -270,13 +270,13 @@ export const SoonExpiring: IColumn[] = [
     minWidth: 50,
   },
   {
-    id: "Balance",
-    label: "Balance",
+    id: "Created At",
+    label: "Created At",
     minWidth: 50,
   },
   {
-    id: "Expairation Date",
-    label: "Expairation Date",
+    id: "Status",
+    label: "Status",
     minWidth: 50,
   },
 ];
