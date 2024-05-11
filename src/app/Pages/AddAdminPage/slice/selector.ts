@@ -19,3 +19,7 @@ export const selectErrorMessage = createSelector(
   [selectSlice],
   (state) => state.errorMessage
 );
+export const selectIsCreated = createSelector(
+  [selectSlice],
+  (state) => state.isCreated
+);

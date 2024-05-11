@@ -5,10 +5,8 @@ import { addAdminPageSaga } from "./saga";
 import { addAdminPageState } from "./types";
 
 export const initialState: addAdminPageState = {
-  isCreatingAccount: false,
   errorMessage: "",
   account: undefined,
-  isAccountCreated: false,
   FormValues: {
     firstName: "",
     lastName: "",
@@ -16,26 +14,23 @@ export const initialState: addAdminPageState = {
     adminPhoneNumber: "",
     adminPassword: "",
   },
+  isCreated: false
 };
 
 const slice = createSlice({
-  name: "registerAdmin",
+  name: "addAdmin",
   initialState,
   reducers: {
     addAdmin: (state, action: PayloadAction<any>) => {
-      state.isCreatingAccount = true;
+      state.isCreated = false;
     },
     addAdminSuccess: (state, action: PayloadAction<any>) => {
-      state.isCreatingAccount = false;
+      state.isCreated = true;
       state.account = action.payload;
-      state.isAccountCreated = true;
-      
     },
     addAdminFailed: (state, action: PayloadAction<any>) => {
-      state.isCreatingAccount = false;
       state.errorMessage = action.payload;
-      state.isAccountCreated = false;
-      
+      state.isCreated = false;
     },
   },
 });

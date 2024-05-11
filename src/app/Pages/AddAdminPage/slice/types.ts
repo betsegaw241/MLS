@@ -16,9 +16,8 @@ export interface Account {
 export interface addAdminPageState {
   account?: Account;
   errorMessage: string;
-  isCreatingAccount: boolean;
-  isAccountCreated: boolean;
   FormValues: values;
+  isCreated: boolean;
 }
 export interface values {
   firstName: string;

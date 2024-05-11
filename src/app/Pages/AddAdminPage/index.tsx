@@ -5,11 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAddAdminPageSlice } from "./slice";
 import { addAdminValidationSchema } from "./validators";
 import { selectErrorMessage } from "./slice/selector";
-
+import { selectIsCreated } from "./slice/selector";
 const AddAdminPage = () => {
   const { actions } = useAddAdminPageSlice();
   const dispatch = useDispatch();
   const errorMessage = useSelector(selectErrorMessage);
+  const isCreated = useSelector(selectIsCreated);
 
   const handleAddAdmin = (values: FormValues) => {
     dispatch(
@@ -28,6 +29,7 @@ const AddAdminPage = () => {
         errorMessage={errorMessage}
         handleAddAdmin={handleAddAdmin}
         addAdminValidationSchema={addAdminValidationSchema}
+        isCreated={isCreated}
       />
     </>
   );

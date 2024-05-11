@@ -2,8 +2,12 @@ import { Form, Formik } from "formik";
 import { Button, Flex, Text } from "../ui/Blocks";
 import { InputField } from "../ui/InputComponent";
 import { AddAdminProps } from "./types.ts";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router";
 
 const AddAdmins = (props: AddAdminProps) => {
+  const navigate = useNavigate();
   return (
     <>
       <Flex
@@ -12,19 +16,24 @@ const AddAdmins = (props: AddAdminProps) => {
         background={"#fff"}
         p={1}
         borderRadius={1}
-        height={'100vh'}
+        height={"100vh"}
         m={1}
       >
         <Formik
           initialValues={props.initialValues}
           onSubmit={(values) => {
             props.handleAddAdmin(values);
-         
           }}
           validationSchema={props.addAdminValidationSchema}
         >
           {({ handleSubmit }) => {
-            
+            const handleCreate = () => {
+              if (props.isCreated) {
+                toast.success("Admin successfully created!!!");
+              }
+              navigate("/users");
+            };
+
             return (
               <Form
                 style={{
@@ -61,9 +70,7 @@ const AddAdmins = (props: AddAdminProps) => {
                       fontSize={2}
                       my={2}
                       variant="primary"
-                      onClick={() => {
-                        handleSubmit();
-                      }}
+                      onClick={() => handleCreate()}
                       type="submit"
                       padding={1}
                       width={"100%"}

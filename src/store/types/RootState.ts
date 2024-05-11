@@ -4,7 +4,6 @@ import { addAdminPageState } from "app/Pages/AddAdminPage/slice/types";
 import { homePageState } from "app/Pages/HomePage/slice/types";
 import { LayoutState } from "app/Pages/Layout/slice/types";
 import { LoginState } from "app/Pages/Login/slice/types";
-import { ManageInventorState } from "app/Pages/ManageInventoryPage/types";
 import { orderDetailPageState } from "app/Pages/OrderDetailPage/slices/types";
 import { RegisterDrugPageState } from "app/Pages/NewDrugRegistrationPage/types";
 import { orderPageState } from "app/Pages/OrderPage/slices/types";
@@ -30,6 +29,7 @@ import { ReviewsPageState } from "app/Pages/ReviewsPgae/slice/types";
 import { registerSellPageState } from "app/Pages/RegisterSellPage/slice/types";
 import { createAdminPwdPageState } from "app/Pages/CreateAdminPswrdPage/slice/types";
 import { FeedbackPageState } from "app/Pages/FeedbacksPage/slice/types";
+import { ManageInventorState } from "app/Pages/ManageInventoryPage/slice/types";
 
 export interface RootState {
   createPassword: createAdminPwdPageState;
