@@ -61,7 +61,7 @@ const slice = createSlice({
     },
     getSoonExpiringDrugsSuccess: (state, action: PayloadAction<any>) => {
       state.loading = false;
-      //state.user = action.payload;
+    state.soonExpiringDrugs = action.payload;
     },
     getSoonExpiringDrugsFailed: (state, action: PayloadAction<any>) => {
       state.loading = false;

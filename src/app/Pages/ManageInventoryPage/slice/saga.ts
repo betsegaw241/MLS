@@ -44,7 +44,7 @@ function* soonExpiringDrugs(action: PayloadAction<any>) {
     const res: data = yield call(api, {
       method: "GET",
       route: "/drug",
-      body: action.payload,
+      query: action.payload,
       isSecureRoute: true,
     });
 

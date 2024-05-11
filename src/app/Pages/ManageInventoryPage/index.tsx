@@ -58,30 +58,21 @@ const ManageInventoryPage = () => {
             id: id,
             page: currentPage,
             limit: 10,
-            status:"expired"
+            status: "expired",
           })
         );
       };
 
-       const getSoonExpiringDrugs = () => {
-         dispatch(
-           actions.getSoonExpiringDrugs({
-             id: id,
-             page: currentPage,
-             limit: 10,
-             sortBy: "expiredDate",
-             sortOrder: "asc",
-           })
-         );
-       };
+       
         const getLowStockDrugs = () => {
           dispatch(
             actions.getLowStockDrugs({
               id: id,
               page: currentPage,
               limit: 10,
+              status: "lowStock",
               sortBy: "stockLevel",
-              sortOrder: "dsc",
+              sortOrder: "asc",
             })
           );
         };
@@ -90,11 +81,11 @@ const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
   setCurrentPage(page); 
 };
  useEffect(() => {
-   getDrugs();
-   getSoldOutDrugs();
+  //  getDrugs();
+  //  getSoldOutDrugs();
    getrecentlyaddedDrugs();
    getexpiredDrugs();
-    getSoonExpiringDrugs();
+    // getSoonExpiringDrugs();
    getLowStockDrugs();
  }, [currentPage]);
 
@@ -103,11 +94,10 @@ const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
       drugs={drugs.drugs.data}
       currentPage={currentPage}
       recentlyadded={recentlyadded.data}
-      lowStockDrug={lowStockDrug.data}
-      soonExpiringDrugs={soonExpiringDrugs.data}
+      lowStockDrug={lowStockDrug}
       pages={drugs.totalPages}
       onPageChange={handlePageChange}
-      expiredDrugs={expiredDrugs.data}
+      expiredDrugs={expiredDrugs}
     />
   );
 };

@@ -14,13 +14,14 @@ import {
 } from "utils/constants";
 import { TableHeader } from "../ui/Blocks/Table";
 import { Pagination } from "@mui/material";
-import { useRef } from "react";
+import { ChangeEvent, useRef } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import soldout from "../../../assets/images/sold.png";
 import solddrug from "../../../assets/images/drugs.png";
 import expired from "../../../assets/images/schedule.png";
 import sonexp from "../../../assets/images/time.png";
 import {  InventoryComponentProps } from "./types";
+import Paginate from "../ui/Pagination/Paginate";
 
 const theme = createTheme({
   components: {
@@ -45,7 +46,6 @@ const ManageInventory = ({
   recentlyadded,
   lowStockDrug,
   expiredDrugs,
-  soonExpiringDrugs,
 }: InventoryComponentProps) => {
   const navigate = useNavigate();
 
@@ -57,6 +57,9 @@ const ManageInventory = ({
   const scrollToContent = (index: number) => () => {
     contentRefs[index].current?.scrollIntoView({ behavior: "smooth" });
   };
+
+ 
+
   return (
     <Flex
       width={"100%"}
@@ -323,7 +326,6 @@ const ManageInventory = ({
           <>
             <Flex
               flexDirection={"column"}
-              height={["400px", "410px", "430px", "300px"]}
               justifyContent={"space-between"}
               mb={5}
               p={1}
@@ -341,7 +343,7 @@ const ManageInventory = ({
                     <TableHeader columnName={LowStockAlertColumn} />
                     <TableBody>
                       {lowStockDrug &&
-                        lowStockDrug?.map((drug) => (
+                        lowStockDrug.data?.map((drug) => (
                           <TableRow
                             hover
                             key={drug.id}
@@ -356,192 +358,6 @@ const ManageInventory = ({
                               navigate(`/pharmacist/drugdetails/${drug._id}`);
                             }}
                           >
-                            {drug.status === "lowStock" && (
-                              <>
-                                <TableCell
-                                  component="th"
-                                  scope="row"
-                                  sx={{
-                                    padding: "10px",
-                                    height: "0px",
-                                    fontFamily: "poppins",
-                                  }}
-                                >
-                                  {drug.name}
-                                </TableCell>
-                                <TableCell
-                                  sx={{ padding: 1, fontFamily: "poppins" }}
-                                >
-                                  {drug.category}
-                                </TableCell>
-                                <TableCell>
-                                  <Text
-                                    fontFamily={"poppins"}
-                                    color={
-                                      drug.balance > 10 ? "#805a0f" : "red"
-                                    }
-                                  >
-                                    {drug.status}
-                                  </Text>
-                                </TableCell>
-                              </>
-                            )}
-                          </TableRow>
-                        ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </Paper>
-            </Flex>
-          </>
-        </Flex>
-        {/* ----------------------------------------------- */}
-
-        <Flex
-          flexDirection={"column"}
-          pt={1}
-          ref={contentRefs[1]}
-          mt={20}
-          width={"100%"}
-        >
-          <Text
-            fontFamily={"poppins"}
-            fontSize={5}
-            p={1}
-            width={"100%"}
-            // backgroundColor={"#f5f5f5"}
-            borderRadius={"5px"}
-          >
-            Out of Stock
-          </Text>
-          <>
-            <Flex
-              flexDirection={"column"}
-              justifyContent={"space-between"}
-              p={1}
-              mt={1}
-              style={{ gap: "20px" }}
-            >
-              <Paper sx={{ width: "100%", boxShadow: "none" }}>
-                <TableContainer component={Paper} sx={{ maxHeight: 480 }}>
-                  <Table
-                    aria-label="a dense table"
-                    size="small"
-                    stickyHeader
-                    sx={{ minWidth: 650 }}
-                  >
-                    <TableHeader columnName={OutOFStock} />
-                    <TableBody>
-                      {drugs?.map((drug) => (
-                        <TableRow
-                          hover
-                          key={drug.id}
-                          sx={{
-                            "&:last-child td, &:last-child th": {
-                              border: "none",
-                            },
-                            cursor: "pointer",
-                            boxShadow: "none",
-                          }}
-                          onClick={() => {
-                            navigate(`/pharmacist/drugdetails/${drug._id}`);
-                          }}
-                        >
-                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {drug.id}
-                          </TableCell>
-
-                          <TableCell
-                            component="th"
-                            scope="row"
-                            sx={{
-                              padding: "10px",
-                              height: "0px",
-                              fontFamily: "poppins",
-                            }}
-                          >
-                            {drug.drug}
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </Paper>
-
-              <Flex justifyContent={"flex-end"}>
-                <ThemeProvider theme={theme}>
-                  <Pagination
-                    count={50}
-                    // onChange={}
-                    page={3}
-                    variant="outlined"
-                    shape="rounded"
-                  />
-                </ThemeProvider>
-              </Flex>
-            </Flex>
-          </>
-        </Flex>
-        {/* ----------------------------------------------------- */}
-        <Flex
-          flexDirection={"column"}
-          ref={contentRefs[2]}
-          mt={1}
-          width={"100%"}
-        >
-          <Text
-            fontFamily={"poppins"}
-            fontSize={5}
-            p={1}
-            width={"100%"}
-            // backgroundColor={"#f5f5f5"}
-            borderRadius={"5px"}
-          >
-            Soon expiring drugs
-          </Text>
-          <>
-            <Flex
-              flexDirection={"column"}
-              justifyContent={"space-between"}
-              style={{ gap: "20px" }}
-              p={1}
-              mt={1}
-            >
-              <Paper sx={{ width: "100%", boxShadow: "none" }}>
-                <TableContainer component={Paper} sx={{ maxHeight: 480 }}>
-                  <Table
-                    aria-label="a dense table"
-                    size="small"
-                    stickyHeader
-                    sx={{ minWidth: 650 }}
-                  >
-                    <TableHeader columnName={SoonExpiring} />
-                    <TableBody>
-                      {soonExpiringDrugs &&
-                        soonExpiringDrugs?.map((drug) => (
-                          <TableRow
-                            hover
-                            key={drug.id}
-                            sx={{
-                              "&:last-child td, &:last-child th": {
-                                border: "none",
-                              },
-                              cursor: "pointer",
-                              boxShadow: "none",
-                            }}
-                            onClick={() => {
-                              navigate(`/pharmacist/drugdetails/${drug._id}`);
-                            }}
-                          >
-                            {/* <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {drug.batch}
-                          </TableCell>{" "} */}
-                            <TableCell
-                              sx={{ padding: 1, fontFamily: "poppins" }}
-                            >
-                              {drug.drug}
-                            </TableCell>
                             <TableCell
                               component="th"
                               scope="row"
@@ -551,12 +367,20 @@ const ManageInventory = ({
                                 fontFamily: "poppins",
                               }}
                             >
-                              {drug.balance}
+                              {drug.name}
                             </TableCell>
                             <TableCell
                               sx={{ padding: 1, fontFamily: "poppins" }}
                             >
-                              {drug.expiration_date}
+                              {drug.category}
+                            </TableCell>
+                            <TableCell>
+                              <Text
+                                fontFamily={"poppins"}
+                                color={drug.balance > 10 ? "#805a0f" : "red"}
+                              >
+                                {drug.stockLevel}
+                              </Text>
                             </TableCell>
                           </TableRow>
                         ))}
@@ -564,22 +388,20 @@ const ManageInventory = ({
                   </Table>
                 </TableContainer>
               </Paper>
-
-              <Flex justifyContent={"flex-end"}>
-                <ThemeProvider theme={theme}>
-                  <Pagination
-                    count={50}
-                    // onChange={}
-                    page={3}
-                    variant="outlined"
-                    shape="rounded"
-                  />
-                </ThemeProvider>
-              </Flex>
+              <ThemeProvider theme={theme}>
+                <Pagination
+                  count={lowStockDrug.totalPages}
+                  onChange={onPageChange}
+                  page={currentPage}
+                  variant="outlined"
+                  shape="rounded"
+                />
+              </ThemeProvider>
             </Flex>
           </>
         </Flex>
-        {/* ---------------------------------------------------- */}
+        {/* ----------------------------------------------- */}
+
         <Flex
           flexDirection={"column"}
           pt={1}
@@ -599,7 +421,6 @@ const ManageInventory = ({
           <>
             <Flex
               flexDirection={"column"}
-              height={["400px", "410px", "430px", "300px"]}
               justifyContent={"space-between"}
               pb={6}
               style={{ gap: "20px" }}
@@ -616,7 +437,7 @@ const ManageInventory = ({
                   >
                     <TableHeader columnName={SoonExpiring} />
                     <TableBody>
-                      {expiredDrugs?.map((drug) => (
+                      {expiredDrugs?.data?.map((drug) => (
                         <TableRow
                           hover
                           key={drug.id}
@@ -658,17 +479,15 @@ const ManageInventory = ({
                 </TableContainer>
               </Paper>
 
-              <Flex justifyContent={"flex-end"}>
-                <ThemeProvider theme={theme}>
-                  <Pagination
-                    count={50}
-                    // onChange={}
-                    page={3}
-                    variant="outlined"
-                    shape="rounded"
-                  />
-                </ThemeProvider>
-              </Flex>
+              <ThemeProvider theme={theme}>
+                <Paginate
+                  count={pages}
+                  onChange={onPageChange}
+                  page={currentPage}
+                  variant="outlined"
+                  shape="rounded"
+                />
+              </ThemeProvider>
             </Flex>
           </>
         </Flex>
