@@ -26,7 +26,10 @@ export const errorValues = {
     max: "Password is too long",
     combination: "Password must include combination of characters",
   },
-  adminName: {
-    required: "Admin Name is required",
+  firstName: {
+    required: "First Name is required",
+  },
+  lastName: {
+    required: "Last Name is required",
   },
 };

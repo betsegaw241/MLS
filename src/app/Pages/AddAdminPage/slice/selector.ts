@@ -15,3 +15,7 @@ export const selectAccount = createSelector(
   [selectSlice],
   (state) => state.account
 );
+export const selectErrorMessage = createSelector(
+  [selectSlice],
+  (state) => state.errorMessage
+);

@@ -19,10 +19,12 @@ const AddAdmins = (props: AddAdminProps) => {
           initialValues={props.initialValues}
           onSubmit={(values) => {
             props.handleAddAdmin(values);
+         
           }}
           validationSchema={props.addAdminValidationSchema}
         >
           {({ handleSubmit }) => {
+            
             return (
               <Form
                 style={{
@@ -46,7 +48,7 @@ const AddAdmins = (props: AddAdminProps) => {
                   />
                   <InputField
                     name="adminPhoneNumber"
-                    type=""
+                    type="text"
                     label="Phone Number"
                   />
                   <Flex justifyContent="space-between" alignItems="center">
@@ -61,7 +63,6 @@ const AddAdmins = (props: AddAdminProps) => {
                       variant="primary"
                       onClick={() => {
                         handleSubmit();
-                       
                       }}
                       type="submit"
                       padding={1}

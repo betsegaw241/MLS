@@ -12,7 +12,7 @@ function* handleAddAdmin(action: PayloadAction<any>) {
       isSecureRoute: true,
       body: action.payload ,
     });
-    if (res.status === 200) {
+    if (res) {
       yield put(actions.addAdminSuccess(res));
     }
   } catch (error) {
