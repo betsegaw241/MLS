@@ -38,7 +38,7 @@ function OrderPage() {
         pharmacyId: id,
         page: currentPage,
         limit: 10,
-        searchQuery: query,
+        status: query,
       })
     );
   }, [currentPage, query]);
