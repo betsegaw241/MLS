@@ -85,6 +85,7 @@ const Header = () => {
                 />
               </Badge>
             </Box>
+
             <Box marginLeft={"auto"}>
               <HeaderPage />
             </Box>
@@ -131,6 +132,8 @@ const Header = () => {
           </Flex>
         </Modal>
       )}
+
+      {showNotification && 
       <Modal
         open={showNotification}
         setOpen={() => {
@@ -138,8 +141,9 @@ const Header = () => {
         }}
       >
         <NotificationPage />
-      </Modal>
+      </Modal> }
     </>
-  );
+  )
+  
 };
 export default Header;
