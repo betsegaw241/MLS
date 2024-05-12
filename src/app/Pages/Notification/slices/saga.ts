@@ -17,7 +17,7 @@ function* handleFetchNotifications(action: PayloadAction<any>) {
     }
   } catch (error) {
     console.log("error======", error);
-    yield put(actions.fetchNotificationsFailed(error));
+    yield put(actions.fetchNotificationsFailed());
   }
 }
 
