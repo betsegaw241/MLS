@@ -1,15 +1,18 @@
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { Box, Flex, Text } from "../Blocks";
 import { NotificationProps } from "./types";
+import ScaleLoader from "react-spinners/ScaleLoader";
 
-const NotificationComponent = ({ Notifications }: NotificationProps) => {
-
-  const [loading, setLoading] = useState<boolean>(false);
+const NotificationComponent = ({
+  Notifications,
+  page,
+  setPage,
+  loading,
+}: NotificationProps) => {
   const [error, setError] = useState<any>(null);
   const navigate = useNavigate();
-const id = localStorage.getItem("id");
 
   const formatDate = (createdAt: Date) => {
     const date = new Date(createdAt);
@@ -34,6 +37,19 @@ const id = localStorage.getItem("id");
       return `${minutes} ${minutes === 1 ? "minute" : "minutes"} ago`;
     } else {
       return `${seconds} ${seconds === 1 ? "second" : "seconds"} ago`;
+    }
+  };
+  const scrollContainerRef = useRef(null);
+
+  const handleScroll = () => {
+    const { scrollTop, scrollHeight, clientHeight }: any =
+      scrollContainerRef.current;
+    const scrollLength = scrollHeight - clientHeight;
+    if (scrollTop > 800) {
+      setPage(page + 1);
+    }
+    if (scrollTop < 1 && page < 1) {
+      setPage(page - 1);
     }
   };
 
@@ -69,24 +85,33 @@ const id = localStorage.getItem("id");
         maxHeight="80vh"
         overflowY="auto"
         overflowX="hidden"
+        ref={scrollContainerRef}
+        style={{ height: "100vh", overflow: "auto" }}
+        onScroll={handleScroll}
       >
         <Flex
           flexDirection="column"
           justifyContent={"center"}
           width="100%"
-          style={{ gap: 5 }}
-          mb={50}
+          pb={10}
         >
           {loading ? (
-            <Text>Loading...</Text>
+            <Flex
+              width={"100%"}
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
+              {" "}
+              <ScaleLoader color="#065AD8" height={50} width={6} />
+            </Flex>
           ) : (
             Notifications.data?.map((notification, index) => (
               <Flex
                 key={index}
                 p={1}
-                onClick={() =>
-                  navigate(`/pharmacist/request/${notification._id}`)
-                }
+                // onClick={() =>
+                //   // navigate(`/pharmacist/request/${notification._id}`)
+                // }
                 borderBottom="0.5px solid #e9e7e7"
                 hover={{
                   backgroundColor: "#dce6e6",

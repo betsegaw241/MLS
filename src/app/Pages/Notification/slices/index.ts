@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { notificationPageState } from "./types";
+import { INotificationData, notificationPageState } from "./types";
 import { NotificationPageSaga } from "./saga";
 import { useInjectReducer, useInjectSaga } from "redux-injectors";
 
@@ -7,8 +7,8 @@ export const initialState: notificationPageState = {
   isgettingNotification: false,
   isNotificationExist: false,
   count: 1,
-  notification: [],
-  notifications: [],
+  notification: {} as INotificationData,
+  notifications: {} as INotificationData,
 };
 
 const slice = createSlice({

@@ -1,9 +1,12 @@
 export interface notificationPageState {
   isgettingNotification: boolean;
   isNotificationExist: boolean;
-  notification: INotification[];
-  notifications: [];
+  notification: INotificationData;
+  notifications: INotificationData;
   count: number;
+}
+export interface INotificationData {
+  data: INotification[];
 }
 
 export interface INotification {

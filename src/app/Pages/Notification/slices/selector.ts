@@ -18,3 +18,7 @@ export const selectCount = createSelector(
   [selectSlice],
   (state) => state.count
 );
+export const selectLoading = createSelector(
+  [selectSlice],
+  (state) => state.isgettingNotification
+);
