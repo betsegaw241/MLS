@@ -411,7 +411,6 @@ const ManageInventory = ({
             fontSize={5}
             p={1}
             width={"100%"}
-            // backgroundColor={"#f5f5f5"}
             borderRadius={"5px"}
           >
             Expired drugs

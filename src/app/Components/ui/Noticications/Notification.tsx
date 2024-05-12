@@ -80,7 +80,7 @@ const id = localStorage.getItem("id");
           {loading ? (
             <Text>Loading...</Text>
           ) : (
-            Notifications.data.map((notification, index) => (
+            Notifications.data?.map((notification, index) => (
               <Flex
                 key={index}
                 p={1}

@@ -17,9 +17,6 @@ const slice = createSlice({
   reducers: {
     fetchNotifications: (state, action: PayloadAction<any>) => {
       state.isgettingNotification = true;
-      console.log('====================================');
-      console.log(3);
-      console.log('====================================');
     },
     fetchNotificationsSuccess: (state, action: PayloadAction<any>) => {
       state.isgettingNotification = false;
@@ -31,6 +28,20 @@ const slice = createSlice({
     },
     incrementCount: (state) => {
       state.count += 1;
+    },
+    markAsReadAllNotifications: (state) => {
+      state.isgettingNotification = true;
+    },
+    markAsReadAllNotificationsSuccess: (state, action: PayloadAction<any>) => {
+      state.isgettingNotification = false;
+      state.isNotificationExist = true;
+      state.notification = action.payload;
+    },
+    markAsReadAllNotificationsFailed: (state) => {
+      state.isgettingNotification = false;
+    },
+    decrementCount: (state) => {
+      state.count -= 1;
     },
   },
 });

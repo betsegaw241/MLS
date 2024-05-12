@@ -22,6 +22,9 @@ function NotificationPage() {
     dispatch(actions.fetchNotifications(id));
  }, []);
  
+ useEffect(() => {
+   dispatch(actions.markAsReadAllNotifications());
+ }, []);
 
   return <NotificationComponent Notifications={notifications} />;
 }

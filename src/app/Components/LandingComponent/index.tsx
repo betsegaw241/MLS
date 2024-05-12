@@ -2,14 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import { Box, Flex, Text } from "../ui/Blocks";
 import { useNavigate } from "react-router";
 import { Rating } from "react-simple-star-rating";
-import imge from "assets/brands/verified.png";
+import imge from "../../../assets/brands/verified.png";
 import { IoIosCall, IoMdMail } from "react-icons/io";
-import fb from "assets/icons/facebook.png";
-import tg from "assets/icons/telegram.png";
-import ln from "assets/icons/linkedin.png";
-import gp from "assets/icons/google-play.png";
-import aps from "assets/icons/app-store.png";
-import doc from "assets/images/doctor.png";
+import fb from "../../../assets/icons/facebook.png";
+import tg from "../../../assets/icons/telegram.png";
+import ln from "../../../assets/icons/linkedin.png";
+import gp from "../../../assets/icons/google-play.png";
+import aps from "../../../assets/icons/app-store.png";
+import doc from "../../../assets/images/doctor.png";
 
 const LandingComponent = () => {
   const navigate = useNavigate();
