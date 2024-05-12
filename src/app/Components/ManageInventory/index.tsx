@@ -14,13 +14,13 @@ import {
 } from "utils/constants";
 import { TableHeader } from "../ui/Blocks/Table";
 import { Pagination } from "@mui/material";
-import { ChangeEvent, useRef } from "react";
+import { useRef } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import soldout from "../../../assets/images/sold.png";
 import solddrug from "../../../assets/images/drugs.png";
 import expired from "../../../assets/images/schedule.png";
 import sonexp from "../../../assets/images/time.png";
-import {  InventoryComponentProps } from "./types";
+import { InventoryComponentProps } from "./types";
 import Paginate from "../ui/Pagination/Paginate";
 
 const theme = createTheme({
@@ -57,8 +57,6 @@ const ManageInventory = ({
   const scrollToContent = (index: number) => () => {
     contentRefs[index].current?.scrollIntoView({ behavior: "smooth" });
   };
-
- 
 
   return (
     <Flex
@@ -125,7 +123,7 @@ const ManageInventory = ({
                   Low Stock Alert
                 </Text>
                 <Text fontFamily={"poppins"} fontSize={6}>
-                  30 drugs
+                  {lowStockDrug.totalDocuments}
                 </Text>
               </Flex>
             </Flex>
@@ -221,7 +219,7 @@ const ManageInventory = ({
                   Expired
                 </Text>
                 <Text fontFamily={"poppins"} fontSize={6}>
-                  23 drugs
+                  {expiredDrugs.totalDocuments}
                 </Text>
               </Flex>
             </Flex>

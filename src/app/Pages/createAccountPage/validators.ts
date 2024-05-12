@@ -95,17 +95,4 @@ export const createAccoutSchemaStep3 = Yup.object({
       const maxSize = 5 * 1024 * 1024; // 5MB
       return (value as FileObject)?.size <= maxSize; // Use type assertion
     }),
-  nigdFikad: Yup.mixed()
-    .required(errorValues.nigdFikad.required)
-
-    .test("fileType", errorValues.nigdFikad.fileType, (value) => {
-      if (!value) return true; // Allow empty field, assuming it's optional
-      const supportedFileTypes = ["application/pdf", "image/jpeg", "image/png"];
-      return supportedFileTypes.includes((value as FileObject)?.type); // Use type assertion
-    })
-    .test("fileSize", errorValues.nigdFikad.fileSize, (value) => {
-      if (!value) return true; // Allow empty field, assuming it's optional
-      const maxSize = 5 * 1024 * 1024; // 5MB
-      return (value as FileObject)?.size <= maxSize; // Use type assertion
-    }),
 });

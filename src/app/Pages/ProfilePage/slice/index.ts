@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { editProfilePageState } from "./types";
 import { useInjectReducer, useInjectSaga } from "redux-injectors";
 import { EditProfilePageSaga } from "./saga";
+import showToast from "utils/toast";
 
 export const initialState: editProfilePageState = {
   isAuthenticated: false,
@@ -12,7 +13,7 @@ export const initialState: editProfilePageState = {
   isUserExist: false,
   ischangingPassword: false,
   profile: {
-    id:"",
+    id: "",
     phone: "",
     avatar: "",
     confirmPassword: "",
@@ -23,6 +24,7 @@ export const initialState: editProfilePageState = {
     email: "",
   },
   passwordChanged: false,
+  edited: false,
 };
 const slice = createSlice({
   name: "editProfile",
@@ -33,8 +35,11 @@ const slice = createSlice({
     },
     editProfileSuccess: (state, action: PayloadAction<any>) => {
       state.isEditing = false;
+      state.edited = true;
       state.profile.avatar = action.payload.avatar;
       state.profile.phone = action.payload.phone;
+      localStorage.setItem("avatar", action.payload.user.avatar);
+      showToast("User edited Sucessfully", "success");
     },
     editProfileFailed: (state, action: PayloadAction<any>) => {
       state.isEditing = false;

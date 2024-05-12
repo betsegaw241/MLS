@@ -1,20 +1,25 @@
+import Spinner from "react-activity/dist/Spinner";
 import { Box, Button, Flex, Grid, Text } from "../ui/Blocks";
 import { GridBox } from "../ui/Blocks/GridBox";
 import MapComponent from "../ui/MapComponent";
-import { IOrder, IorderDetailComponent } from "./types";
+import { IorderDetailComponent } from "./types";
 export interface IStatus {
   status: "ACCEPTED" | "REJECTED" | "Pending";
 }
 const OrderDetailComponent = (props: IorderDetailComponent) => {
   const status: IStatus = { status: "Pending" };
+  const coord = props.order.deliveryAddress?.location?.coordinates;
+  const pharmacylocation = props.order?.pharmacy?.location?.coordinates;
+  let newCoord;
+  let center;
 
-  const coord = props.order.deliveryAddress.location.coordinates;
-  const pharmacylocation = props.pharmacy?.deliveryAddress?.location.coordinates;
-  const newCoord = [coord[1], coord[0]];
-  let center ;
-  if(pharmacylocation){
-    center= [pharmacylocation[1], pharmacylocation[0]];
-  } 
+  if (newCoord) {
+    newCoord = [coord[1], coord[0]];
+  }
+
+  if (pharmacylocation) {
+    center = [pharmacylocation[1], pharmacylocation[0]];
+  }
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     const year = date.getFullYear();
@@ -67,12 +72,12 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
               value={props.order.drugs?.map((drug) => drug.drugName).join(", ")}
             />
             <GridBox lable={"Dosage"} value={"Zuma"} />
-            <GridBox lable={"quantity"} value={props.order.quantity} />
+            <GridBox lable={"quantity"} value={props.order?.quantity} />
             <GridBox lable={"Drug"} value={"Zuma"} />
-            <GridBox lable={"Status"} value={props.order.status} />
+            <GridBox lable={"Status"} value={props.order?.status} />
             <GridBox
               lable={"Pharmacy Name"}
-              value={props.order.pharmacy.name}
+              value={props.order?.pharmacy?.name}
             />
           </Grid>
         </Box>
@@ -96,18 +101,18 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
           >
             <GridBox
               lable={"Customer Name"}
-              value={props.order.customer.name}
+              value={props.order?.customer?.name}
             />
 
             <GridBox
               lable={"Address"}
-              value={props.order.deliveryAddress?.address}
+              value={props.order?.deliveryAddress?.address}
             />
             <GridBox
               lable={"Phone"}
-              value={props.order.deliveryAddress?.phoneNumber}
+              value={props.order?.deliveryAddress?.phoneNumber}
             />
-            <GridBox lable={"Email"} value={props.order.customer.email} />
+            <GridBox lable={"Email"} value={props.order?.customer?.email} />
           </Grid>
         </Box>
         <Box>
@@ -131,31 +136,31 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
             <GridBox lable={"Distance"} value={"5km"} />
             <GridBox
               lable={"DeliveryExpireDate"}
-              value={formatDate(props.order.deliveryExpireDate)}
+              value={formatDate(props.order?.deliveryExpireDate)}
             />
             <GridBox
               lable={"Has Delivery"}
-              value={props.order.hasDelivery == true ? "Yes" : "No"}
+              value={props.order?.hasDelivery == true ? "Yes" : "No"}
             />
             <GridBox
               lable={"Delivery Fee"}
-              value={Math.round(props.order.deliveryFee) + " ETB"}
+              value={Math.round(props.order?.deliveryFee) + " ETB"}
             />
             <GridBox
               lable={"Total Cost"}
-              value={props.order.totalCost + " ETB"}
+              value={props.order?.totalCost + " ETB"}
             />
             <GridBox
               lable={"Total Amount"}
-              value={Math.round(props.order.totalAmount) + " ETB"}
+              value={Math.round(props.order?.totalAmount) + " ETB"}
             />{" "}
             <GridBox
               lable={"Profit"}
-              value={Math.round(props.order.profit) + " ETB"}
+              value={Math.round(props.order?.profit) + " ETB"}
             />
             <GridBox
               lable={"Delivery Price Per Km"}
-              value={Math.round(props.order.deliveryPricePerKm) + " ETB"}
+              value={Math.round(props.order?.deliveryPricePerKm) + " ETB"}
             />
           </Grid>
         </Box>
@@ -169,7 +174,7 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
             backgroundColor={"#f5f5f5f5"}
             borderRadius={1}
           >
-            {props.order.deliveryAddress?.location.coordinates.length > 0 && (
+            {center &&  (
               <MapComponent
                 position={newCoord}
                 deliveryCoverage={props.pharmacy?.deliveryCoverage}
@@ -193,7 +198,11 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
               borderRadius={1}
               onClick={() => props.onAcceptClick()}
             >
-              Accept
+              {props.isUpdating ? (
+                <Spinner style={{ marginLeft: "45%" }} />
+              ) : (
+                "Accept"
+              )}
             </Button>
           )}
           {props.order.status === ("pending" || "Pending" || "PENDING") && (

@@ -30,7 +30,6 @@ const slice = createSlice({
     resgsterSellFailed: (state, action: PayloadAction<any>) => {
       state.loading = false;
       state.errorMessage = action.payload;
-      showToast(`${action.payload}`, "error");
     },
 
     getDrug: (state, action: PayloadAction<string | undefined>) => {},

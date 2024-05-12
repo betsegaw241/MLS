@@ -20,9 +20,9 @@ const OrderDetailPage = () => {
   const dispatch = useDispatch();
   const { actions } = useOrderDetailPageSlice();
   const order = useSelector(selectOrder);
-  const loading = useSelector(selectloading);
+  const loading = useSelector(selectIsUpdating);
   const isUpdating = useSelector(selectIsUpdating);
-  const  pharmacyActions  = usePharmacyAccountSlice();
+  const pharmacyActions = usePharmacyAccountSlice();
   const pharmacy = useSelector(selectPharmacy);
 
   useEffect(() => {
@@ -55,9 +55,9 @@ const OrderDetailPage = () => {
     );
   }
 
-  return order._id ? (
+  return order ? (
     <OrderDetailComponent
-    pharmacy={pharmacy}
+      pharmacy={pharmacy}
       order={order}
       isUpdating={isUpdating}
       onRejectClick={onRejectClick}

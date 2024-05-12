@@ -9,6 +9,7 @@ import tg from "assets/icons/telegram.png";
 import ln from "assets/icons/linkedin.png";
 import gp from "assets/icons/google-play.png";
 import aps from "assets/icons/app-store.png";
+import doc from "assets/images/doctor.png";
 
 const LandingComponent = () => {
   const navigate = useNavigate();
@@ -85,10 +86,9 @@ const LandingComponent = () => {
         px={1}
         justifyContent={"center"}
         backgroundColor={"rgba(202, 240, 248, 0.09)"}
-        
       >
         <Flex
-          width={"30%"}
+          width={"35%"}
           flexDirection={"column"}
           justifyContent={"center"}
           alignItems={"center"}
@@ -97,15 +97,15 @@ const LandingComponent = () => {
           <Text fontSize={10} fontWeight={"bold"} fontFamily={"poppins"}>
             Help us to build the future of healthcare
           </Text>
-          <Text fontFamily={"lato"} textAlign={"center"} fontSize={6}>
-            Lorem ipsum dolor consectetur adipisicing elit. Laboriosam, atque
-            ea. praesentium at culpa quibusdam illum, architecto quia
-            necessitatibus.
+          <Text fontFamily={"poppins"} fontSize={4} py={5}>
+            A medicine locator system is a software application that allows
+            users to search for and locate pharmacies that stock the medications
+            they need. It can also provide information on pricing, availability,
+            and directions to nearby pharmacies.
           </Text>
           <Flex
-            justifyContent={"space-around"}
+            justifyContent={"space-between"}
             width={"100%"}
-            p={1}
             alignItems={"center"}
           >
             <Text
@@ -124,8 +124,21 @@ const LandingComponent = () => {
             </Text>
           </Flex>
         </Flex>
-        <Flex width={"60%"}>s-----</Flex>
-        <Text></Text>
+        <Flex width={"65%"} flexDirection={"column"} alignItems={"center"}>
+          <Flex
+            position={"relative"}
+            background={"rgba(11, 96, 176, 0.1)"}
+            width={600}
+            height={600}
+            zIndex={-1}
+            borderRadius={"50%"}
+          >
+            <img
+              src={doc}
+              style={{ width: 500, marginTop: "auto", height: 500 }}
+            />
+          </Flex>
+        </Flex>
       </Flex>
       <Flex
         background={"#0B60B0"}
@@ -209,18 +222,7 @@ const LandingComponent = () => {
             healthcare by making it easier for patients to find and afford the
             medications they need.
           </Text>
-          <Text
-            backgroundColor={"rgba(255, 255, 255, 0.1)"}
-            borderRadius={1}
-            color={"#fff"}
-            fontFamily={"poppins"}
-            p={1}
-            fontSize={3}
-            width={100}
-            textAlign={"center"}
-          >
-            more &gt;
-          </Text>
+          
         </Flex>
       </Flex>
 
@@ -255,7 +257,7 @@ const LandingComponent = () => {
           </Text>
         </Flex>
         <Flex
-          width={"20%"}
+          width={"30%"}
           height={300}
           borderRadius={1}
           justifyContent={"center"}
@@ -270,11 +272,11 @@ const LandingComponent = () => {
             Fabrizo Luwi
           </Text>
           <Rating readonly allowFraction initialValue={4.5} size={20} />
-          <Text fontFamily={"poppins"} textAlign={"center"} fontSize={2}>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam
+          <Text fontFamily={"poppins"} textAlign={"center"} fontSize={3} py={2}>
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam
             eligendi quae quos suscipit iusto! Reprehenderit maxime, quas rerum
             necessitatibus iure quam voluptatibus recusandae dolore impedit,
-            consectetur soluta minus hic quidem.
+            consectetur soluta minus hic quidem."
           </Text>
         </Flex>
         <Flex

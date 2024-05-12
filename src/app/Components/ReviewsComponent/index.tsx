@@ -103,7 +103,7 @@ const ReviewsComponent = (props: ReviewComponentProps) => {
             >
               <Flex p={1}>
                 <img
-                  src={image}
+                  src={item.customer.avatar}
                   height={50}
                   width={50}
                   style={{ borderRadius: "4px" }}

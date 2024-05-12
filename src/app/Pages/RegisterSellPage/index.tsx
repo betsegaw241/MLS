@@ -35,15 +35,17 @@ const RegisterSellPage = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(
-      drugDetailactions.actions.getDrugStock({
-        id: drug,
-        page: currentPage,
-        limit: 10,
-        sortBy: "createdAt",
-        sortOrder: "dsc",
-      })
-    );
+    if (drug) {
+      dispatch(
+        drugDetailactions.actions.getDrugStock({
+          id: drug,
+          page: currentPage,
+          limit: 10,
+          sortBy: "createdAt",
+          sortOrder: "dsc",
+        })
+      );
+    }
   }, [currentPage, drug]);
 
   const drugsArray = drugs.map((item) => ({

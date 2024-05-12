@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {orderDetailPageState } from "./types";
+import {IOrder, orderDetailPageState } from "./types";
 import { OrderDetailPageSaga } from "./saga";
 import { useInjectReducer, useInjectSaga } from "redux-injectors";
 
@@ -7,7 +7,7 @@ export const initialState: orderDetailPageState = {
   isgettingOrder: false,
   isOrderExist: false,
   isUpdating: false,
-  order: [],
+  order: {} as IOrder,
 };
 
 const slice = createSlice({

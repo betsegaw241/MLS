@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Grid, P, Text } from "../ui/Blocks";
 import { InputField } from "../ui/InputComponent";
-import { Form, Formik } from "formik";
+import { ErrorMessage, Form, Formik } from "formik";
 import { editProfileComponentProp } from "./types";
 import Dropzone, { useDropzone } from "react-dropzone";
 import { H2 } from "../ui/Blocks/Text/Text";
@@ -32,12 +32,22 @@ const muitheme = createTheme({
 });
 
 const ProfileComponent = (props: editProfileComponentProp) => {
-  const { isFocused, isDragAccept } = useDropzone({ maxFiles: 1 });
+  // const { isFocused, isDragAccept } = useDropzone({  });
   const [edit, setEdit] = useState(false);
   const [image, setImage] = useState(props.initialValues.avatar);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
   const [showpassword, setShowPassword] = useState(false);
+
+  const { isDragAccept, isFocused } = useDropzone({
+    accept: { "image/*": [] },
+    maxFiles: 1,
+  });
+  const { passwordChanged } = props;
+
+  useEffect(() => {
+    setShowChangePasswordModal(false);
+  }, [passwordChanged]);
 
   return (
     <Flex
@@ -128,7 +138,7 @@ const ProfileComponent = (props: editProfileComponentProp) => {
             }}
             validationSchema={props.EditSchema}
           >
-            {({ handleSubmit }) => {
+            {({ handleSubmit, setFieldValue }) => {
               return (
                 <Form style={{ display: "flex", justifyContent: "center" }}>
                   <Flex
@@ -145,6 +155,7 @@ const ProfileComponent = (props: editProfileComponentProp) => {
                         onDrop={(files) => {
                           props.profile(files[0]);
                           setSelectedFile(files[0]);
+                          setFieldValue("picture", files[0]);
                         }}
                       >
                         {({ getRootProps, getInputProps }) => (
@@ -174,7 +185,9 @@ const ProfileComponent = (props: editProfileComponentProp) => {
                     <Flex flexDirection={"column"} width={"100%"}>
                       <InputField label="Phone" name={"phone"} type={"text"} />
                     </Flex>
-
+                    <Text fontFamily={"poppins"} color={"red"} fontSize={3}>
+                      <ErrorMessage name={"picture"} />
+                    </Text>
                     <Button
                       borderRadius={1}
                       fontWeight={"bold"}
@@ -268,7 +281,7 @@ const ProfileComponent = (props: editProfileComponentProp) => {
           >
             <Box backgroundColor={"white"} borderRadius={1} p={4}>
               <H2>Change Password</H2>
-              <Text fontSize={5} fontWeight={4} fontFamily={"poppins"}>
+              <Text fontSize={3} fontWeight={4} fontFamily={"poppins"}>
                 Your password must be at least 6 combination of characters
               </Text>
               <Formik
@@ -321,6 +334,7 @@ const ProfileComponent = (props: editProfileComponentProp) => {
                         justifyContent={"center"}
                         mt={2}
                         style={{ gap: "20px" }}
+                        width={"100%"}
                       >
                         <Button
                           borderRadius={0}
@@ -328,8 +342,8 @@ const ProfileComponent = (props: editProfileComponentProp) => {
                           color={"white"}
                           fontSize={2}
                           type="submit"
-                          px={4}
-                          py={1}
+                          p={1}
+                          width={"90%"}
                         >
                           {props.ischangingPassword ? (
                             <Spinner style={{ marginLeft: "45%" }} />
@@ -348,8 +362,8 @@ const ProfileComponent = (props: editProfileComponentProp) => {
                               !showChangePasswordModal
                             );
                           }}
-                          px={4}
-                          py={1}
+                          width={"90%"}
+                          p={1}
                         >
                           Cancel
                         </Button>
