@@ -1,36 +1,43 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { Box, Flex, Text } from "../Blocks";
 import { NotificatioProps } from "./types";
 
-const NotificationComponent = ({ notifications }: NotificatioProps) => {
-  // const [notifications, setNotifications] = useState<any[]>([]);
+const NotificationComponent = ({ Notifications }: NotificatioProps) => {
+  const [notifications, setNotifications] = useState<any[]>([]);
 
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<any>(null);
   const navigate = useNavigate();
+const id = localStorage.getItem("id");
+  useEffect(() => {
+    setLoading(true);
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   try {
-  //     const eventSource = new EventSource("http://localhost:3000/notification/new");
+    try {
+      const eventSource = new EventSource(
+        `https://medicin-locator-service.onrender.com/api/notification/new/?id=${id}`,
+        
+      );
 
-  //     eventSource.onmessage = (event) => {
-  //       const data = JSON.parse(event.data);
-  //       setNotifications(data);
-  //     };
+      eventSource.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        console.log('====================================');
+        console.log(data);
+        console.log('====================================');
+        setNotifications(data);
+      };
 
-  //     return () => {
-  //       eventSource.close();
-  //     };
-  //   } catch (error) {
-  //     setError(error);
-  //   }
-  //    finally {
-  //      setLoading(false);
-  //    }
-  // }, []);
+      return () => {
+        eventSource.close();
+      };
+    } catch (error) {
+      setError(error);
+    }
+     finally {
+       setLoading(false);
+     }
+  }, []);
 
   // useEffect(() => {
   //   const fetchNotifications = async () => {
@@ -126,42 +133,42 @@ const NotificationComponent = ({ notifications }: NotificatioProps) => {
         >
           {loading ? (
             <Text>Loading...</Text>
-          ) : (
-            notifications.map((notification, index) => (
-              <Flex
-                key={index}
-                p={1}
-                onClick={() =>
-                  navigate(`/pharmacist/request/${notification._id}`)
-                }
-                borderBottom="0.5px solid #e9e7e7"
-                hover={{
-                  backgroundColor: "#dce6e6",
-                }}
-                justifyContent={"flex-start"}
-                style={{ gap: 10, cursor: "pointer" }}
-              >
-                <Flex pt={"8px"}>
-                  <Box
-                    background="blue"
-                    width={1}
-                    height={1}
-                    borderRadius={"50%"}
-                  />
-                </Flex>
+          ) : (null
+            // notifications.map((notification, index) => (
+            //   <Flex
+            //     key={index}
+            //     p={1}
+            //     onClick={() =>
+            //       navigate(`/pharmacist/request/${notification._id}`)
+            //     }
+            //     borderBottom="0.5px solid #e9e7e7"
+            //     hover={{
+            //       backgroundColor: "#dce6e6",
+            //     }}
+            //     justifyContent={"flex-start"}
+            //     style={{ gap: 10, cursor: "pointer" }}
+            //   >
+            //     <Flex pt={"8px"}>
+            //       <Box
+            //         background="blue"
+            //         width={1}
+            //         height={1}
+            //         borderRadius={"50%"}
+            //       />
+            //     </Flex>
 
-                <Flex flexDirection={"column"}>
-                  <Text fontFamily="poppins">{notification.title}</Text>
+            //     <Flex flexDirection={"column"}>
+            //       <Text fontFamily="poppins">{notification.title}</Text>
 
-                  <Text fontFamily="poppins" fontSize={3}>
-                    {notification.message}
-                  </Text>
-                  <Text fontFamily="poppins" fontSize={1} py={1}>
-                    {formatDate(notification.createdAt)}
-                  </Text>
-                </Flex>
-              </Flex>
-            ))
+            //       <Text fontFamily="poppins" fontSize={3}>
+            //         {notification.message}
+            //       </Text>
+            //       <Text fontFamily="poppins" fontSize={1} py={1}>
+            //         {formatDate(notification.createdAt)}
+            //       </Text>
+            //     </Flex>
+            //   </Flex>
+            // ))
           )}
           {error && <Text>Error: {error.message}</Text>}
         </Flex>

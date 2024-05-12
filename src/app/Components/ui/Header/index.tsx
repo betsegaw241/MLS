@@ -3,7 +3,7 @@ import { Box, Flex, Text } from "../Blocks";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import UserInfo from "../../layouts/Header/userInfo";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "../Modal";
 import { NotificationProps } from "app/Pages/Notification/types";
 import NotificationComponent from "../Noticications/Notification";
@@ -14,14 +14,39 @@ import HeaderPage from "app/Pages/HeaderPage";
 
 const Header = (props: NotificationProps) => {
   const navigate = useNavigate();
-  // const [count, setCount] = useState(0);
-  const count = useSelector(selectCount);
+  const [count, setCount] = useState(0);
+  // const count = useSelector(selectCount);
   const [showNotification, setShowNotification] = useState(false);
   if (showNotification) {
     document.body.style.overflow = "hidden"; // Disable scrolling on the body when modal is open
   } else {
     document.body.style.overflow = "auto"; // Re-enable scrolling on the body when modal is closed
   }
+const id = localStorage.getItem("id");
+    useEffect(() => {
+console.log('====================================');
+console.log(1111);
+console.log('====================================');
+      try {
+        const eventSource = new EventSource(
+          `https://medicin-locator-service.onrender.com/api/notification/new/?id=${id}`
+        );
+
+        eventSource.onmessage = (event) => {
+          const data = JSON.parse(event.data);
+          console.log("====================================");
+          console.log(data);
+          console.log("====================================");
+          setCount(data);
+        };
+
+        return () => {
+          eventSource.close();
+        };
+      } catch (error) {
+      } finally {
+      }
+    }, []);
   return (
     <>
       <Flex

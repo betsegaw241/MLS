@@ -2,7 +2,6 @@ import { Flex, Text } from "../ui/Blocks";
 import BasicBars from "../ui/Charts/BarChart";
 import StackBars from "../ui/Charts/BarChart";
 import PieColor from "../ui/Charts/PieChart";
-//import BarChart from "../ui/Charts/BarChart";
 import PieChart from "../ui/Charts/PieChart";
 import { Chart } from "react-google-charts";
 import BasicArea from "../ui/Charts/lineChart";
