@@ -24,9 +24,6 @@ const Header = (props: NotificationProps) => {
   }
 const id = localStorage.getItem("id");
     useEffect(() => {
-console.log('====================================');
-console.log(1111);
-console.log('====================================');
       try {
         const eventSource = new EventSource(
           `https://medicin-locator-service.onrender.com/api/notification/new/?id=${id}`

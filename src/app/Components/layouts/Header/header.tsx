@@ -18,6 +18,8 @@ const Header = () => {
   const [isCollapsed, setIsCollapsed] = useState(screenSize.width < 1000);
   const [ShowMenu, setShowMenu] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
+  const [count, setCount] = useState(null);
+
   useEffect(() => {
     const handleResize = () => {
       setScreenSize({
@@ -33,11 +35,30 @@ const Header = () => {
   }, [ShowMenu, showLogout]);
 
   if (showNotification || ShowMenu) {
-    document.body.style.overflow = "hidden"; 
+    document.body.style.overflow = "hidden";
   } else {
-    document.body.style.overflow = "auto"; 
+    document.body.style.overflow = "auto";
   }
+  const id = localStorage.getItem("id");
 
+  useEffect(() => {
+    try {
+      const eventSource = new EventSource(
+        `https://medicin-locator-service.onrender.com/api/notification/new/?id=${id}`
+      );
+
+      eventSource.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        setCount(data);
+      };
+
+      return () => {
+        eventSource.close();
+      };
+    } catch (error) {
+    } finally {
+    }
+  }, []);
   return (
     <>
       <Flex
@@ -84,7 +105,7 @@ const Header = () => {
                 setShowNotification(!showNotification);
               }}
             >
-              <Badge badgeContent={4} color="error" sx={{ fontSize: 1 }}>
+              <Badge badgeContent={count} color="error" sx={{ fontSize: 1 }}>
                 <IoMdNotificationsOutline
                   color="action"
                   style={{ fontSize: 30 }}
@@ -139,17 +160,17 @@ const Header = () => {
         </Modal>
       )}
 
-      {showNotification && 
-      <Modal
-        open={showNotification}
-        setOpen={() => {
-          setShowNotification(!showNotification);
-        }}
-      >
-        <NotificationPage />
-      </Modal> }
+      {showNotification && (
+        <Modal
+          open={showNotification}
+          setOpen={() => {
+            setShowNotification(!showNotification);
+          }}
+        >
+          <NotificationPage />
+        </Modal>
+      )}
     </>
-  )
-  
+  );
 };
 export default Header;
