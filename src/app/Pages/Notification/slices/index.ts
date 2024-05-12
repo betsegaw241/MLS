@@ -17,6 +17,9 @@ const slice = createSlice({
   reducers: {
     fetchNotifications: (state, action: PayloadAction<any>) => {
       state.isgettingNotification = true;
+      console.log('====================================');
+      console.log(3);
+      console.log('====================================');
     },
     fetchNotificationsSuccess: (state, action: PayloadAction<any>) => {
       state.isgettingNotification = false;

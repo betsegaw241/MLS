@@ -1,31 +1,30 @@
-import { put, call } from "redux-saga/effects";
-import { NotificationPageActions } from ".";
+import { put, call, takeLatest } from "redux-saga/effects";
+import { NotificationPageActions as actions } from ".";
+import { AxiosResponse } from "axios";
+import api from "../../../../API/api";
+import { PayloadAction } from "@reduxjs/toolkit";
 
-function* handleFetchNotifications() {
+function* handleFetchNotifications(action: PayloadAction<any>) {
   try {
-    const eventSource = new EventSource(
-      "https://medicin-locator-service.onrender.com/api/notification/new"
-    );
-
-    function* onMessageHandler(event: MessageEvent<any>) {
-      const data = JSON.parse(event.data);
-      console.log("**************", data);
-      yield put(NotificationPageActions.fetchNotificationsSuccess(data));
-    }
-
-    eventSource.onmessage = function (event) {
-      const generator = onMessageHandler(event);
-      generator.next();
-    };
-
-    yield call(() => {
-      eventSource.close();
+    const res: AxiosResponse<any> = yield api({
+      route: "/notification/",
+      method: "GET",
+      isSecureRoute: true,
+      query:{page:1}
     });
+    if (res) {
+      yield put(actions.fetchNotificationsSuccess(res));
+    }
   } catch (error) {
-    yield put(NotificationPageActions.fetchNotificationsFailed());
+    console.log("error======", error);
+    yield put(actions.fetchNotificationsFailed(error));
   }
 }
 
 export function* NotificationPageSaga() {
-  yield call(handleFetchNotifications);
+  yield takeLatest(
+    actions.fetchNotifications.type,
+    handleFetchNotifications
+  );
+  
 }

@@ -6,25 +6,31 @@ selectIsCreated,
 } from "./slice/selector";
 import UserInfo from "app/Components/layouts/Header/userInfo";
 import { initialValues } from "../Pharmacistfeedback/constants";
+import { useNotificationPageSlice } from "../Notification/slices";
 
 const HeaderPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
   const { actions } = UseCreateFeedbacksSlice();
   const isCreated = useSelector(selectIsCreated);
+  const action = useNotificationPageSlice();
 
   const [type, setType] = useState("");
 
-const handleCreateFeedback = (values: any) => {
-  dispatch(
-    actions.createFeedbacks({
-      title: values.title,
-      content: values.content,
-      type: type,
-      
-    })
-  );
-};
+  useEffect(() => {
+  dispatch(action.actions.fetchNotifications(''));
+   }, []);
+
+
+  const handleCreateFeedback = (values: any) => {
+    dispatch(
+      actions.createFeedbacks({
+        title: values.title,
+        content: values.content,
+        type: type,
+      })
+    );
+  };
 
   return (
     <>
@@ -33,7 +39,7 @@ const handleCreateFeedback = (values: any) => {
         initialValues={initialValues}
         errorMessage={""}
         setType={setType}
-        isCreated = {isCreated}
+        isCreated={isCreated}
       />
     </>
   );

@@ -1,6 +1,6 @@
 import { INotification } from "app/Pages/Notification/types";
 
-export interface NotificatioProps {
+export interface NotificationProps {
   // onCountChange,
   Notifications: INotification[];
 }

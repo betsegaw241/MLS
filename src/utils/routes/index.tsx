@@ -216,7 +216,7 @@ export const routes: IRoute[] = [
     element: <NotificationPage />,
     exact: true,
     path: "pharmacist/notification",
-    isProtected: false,
+    isProtected: true,
     allowedRole: "*",
   },
   {
