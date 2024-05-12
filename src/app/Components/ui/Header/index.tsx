@@ -1,15 +1,11 @@
 import Badge from "@mui/material/Badge";
 import { Box, Flex, Text } from "../Blocks";
 import { IoMdNotificationsOutline } from "react-icons/io";
-import UserInfo from "../../layouts/Header/userInfo";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Modal from "../Modal";
 import { NotificationProps } from "app/Pages/Notification/types";
-import NotificationComponent from "../Noticications/Notification";
 import NotificationPage from "app/Pages/Notification";
-import { useSelector } from "react-redux";
-import { selectCount } from "app/Pages/Notification/slices/selector";
 import HeaderPage from "app/Pages/HeaderPage";
 
 const Header = (props: NotificationProps) => {
@@ -35,13 +31,13 @@ const id = localStorage.getItem("id");
           setCount(data);
         };
 
-        return () => {
-          eventSource.close();
-        };
-      } catch (error) {
-      } finally {
-      }
-    }, []);
+      return () => {
+        eventSource.close();
+      };
+    } catch (error) {
+    } finally {
+    }
+  }, []);
   return (
     <>
       <Flex
