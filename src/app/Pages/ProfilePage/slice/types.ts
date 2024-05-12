@@ -8,6 +8,7 @@ export interface editProfilePageState {
   isUserExist: boolean;
   ischangingPassword: boolean;
   passwordChanged: boolean;
+  edited: boolean;
 }
 export interface PayloadType {
   id: string;

@@ -1,4 +1,5 @@
 export interface IPharmacy {
+  location: any;
   _id: string;
   name: string;
   email: string;

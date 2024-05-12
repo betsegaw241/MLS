@@ -40,3 +40,7 @@ export const selectid = createSelector(
   [selectSlice],
   (state) => state.profile.id
 );
+export const selectEdited = createSelector(
+  [selectSlice],
+  (state) => state.edited
+);

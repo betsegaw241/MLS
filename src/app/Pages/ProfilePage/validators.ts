@@ -1,5 +1,6 @@
 import * as Yup from "yup";
 import { errorValues } from "./constants";
+import { FileObject } from "./types";
 
 export const EditSchema = Yup.object({
   phone: Yup.string()
@@ -11,6 +12,29 @@ export const EditSchema = Yup.object({
     .required(errorValues.phone.required)
 
     .min(1, errorValues.phone.min),
+  picture: Yup.mixed()
+    .test(
+      "fileType",
+      "Invalid file type. Only Image files allowed.",
+      (value) => {
+        if (!value) return true;
+        const supportedFileTypes = [
+          "application/pdf",
+          "image/jpeg",
+          "image/png",
+        ];
+        return supportedFileTypes.includes((value as FileObject)?.type);
+      }
+    )
+    .test(
+      "fileSize",
+      "File size is too large. Maximum size is 5MB.",
+      (value) => {
+        if (!value) return true;
+        const maxSize = 5 * 1024 * 1024; // 5MB
+        return (value as FileObject)?.size <= maxSize;
+      }
+    ),
 });
 
 export const changePasswordValidationSchema = Yup.object({

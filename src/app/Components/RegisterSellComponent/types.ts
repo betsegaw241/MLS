@@ -1,4 +1,4 @@
-import { IDrugdata } from "../DrugDetailsComponent/types";
+import { IDrugdata } from "app/Pages/DrugDetailPage/slice/types";
 
 export interface RegistersellProps {
   drugs: IDrug[];

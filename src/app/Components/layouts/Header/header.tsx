@@ -32,6 +32,12 @@ const Header = () => {
     };
   }, [ShowMenu, showLogout]);
 
+  if (showNotification || ShowMenu) {
+    document.body.style.overflow = "hidden"; 
+  } else {
+    document.body.style.overflow = "auto"; 
+  }
+
   return (
     <>
       <Flex

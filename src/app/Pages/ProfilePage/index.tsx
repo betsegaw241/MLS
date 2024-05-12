@@ -8,6 +8,8 @@ import {
   selectProfile,
   selectUserExist,
   selectid,
+  selectEdited,
+  selectIsPasswordChanged,
 } from "app/Pages/ProfilePage/slice/selector";
 import ProfileComponent from "app/Components/ProfileComponent";
 import { useEditProfilePageSlice } from "./slice";
@@ -21,44 +23,45 @@ function ProfilePage() {
   const isEditing = useSelector(selectIsEditing);
   const ischangingPassword = useSelector(selectIsChangingPassword);
   const profile = useSelector(selectProfile);
+  const edited = useSelector(selectEdited);
   const user = useSelector(selectUserExist);
   // const id = useSelector(selectid);
   const editing = useSelector(selectIsEditing);
+  const passwordChanged = useSelector(selectIsPasswordChanged);
 
   const errorMessage = useSelector(selectErrorMessage);
   const { actions } = useEditProfilePageSlice();
   const dispatch = useDispatch();
   const userID = localStorage.getItem("id");
-  const [selectedFile, setSelectedFile] = useState<File>();
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const formData = new FormData();
   const [image, setimage] = useState("");
 
   useEffect(() => {
     dispatch(actions.getUser(userID));
-  }, [editing]);
+  }, [editing, edited]);
 
   async function onSaveClick(values: IProfile): Promise<void> {
+    const profileData: { [key: string]: any } = {
+      phoneNumber: values.phone,
+      id: userID,
+    };
+
     if (selectedFile) {
       formData.append("file", selectedFile);
-      await uploadFileAndUpdateState(formData, setimage);
-      formData.delete("file");
+      const uploadedImage = await uploadFileAndUpdateState(formData);
+      profileData.avatar = uploadedImage;
     }
-    dispatch(
-      actions.editProfile({
-        phoneNumber: values.phone,
-        avatar: image,
-        id: userID,
-      })
-    );
+
+    dispatch(actions.editProfile(profileData));
+    setimage("");
+    setSelectedFile(null);
   }
   const handleFileDrop = (file: File) => {
     setSelectedFile(file);
   };
 
-  async function uploadFileAndUpdateState(
-    data: any,
-    setState: (res: any) => void
-  ) {
+  async function uploadFileAndUpdateState(data: any) {
     try {
       const res = await api({
         route: `/file/upload`,
@@ -67,7 +70,7 @@ function ProfilePage() {
         body: data,
       });
       if (res) {
-        setState(res);
+        return res;
       }
     } catch (error) {
       console.log(error);
@@ -93,6 +96,7 @@ function ProfilePage() {
           isEditing={isEditing}
           PasswordValidationSchema={changePasswordValidationSchema}
           ischangingPassword={ischangingPassword}
+          passwordChanged={passwordChanged}
           EditSchema={EditSchema}
           onSaveClick={onSaveClick}
           profile={handleFileDrop}

@@ -49,6 +49,7 @@ const slice = createSlice({
       localStorage.removeItem("email");
       localStorage.removeItem("role");
       localStorage.removeItem("name");
+      localStorage.removeItem("pharmacyId");
     },
   },
 });

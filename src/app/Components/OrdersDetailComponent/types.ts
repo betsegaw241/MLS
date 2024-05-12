@@ -1,39 +1,15 @@
-import { Pharmacy } from "app/Pages/OrderDetailPage/slices/types";
-import { Ipharmacy } from "../PharmacyAccountComponent/types";
+import { IOrder, Pharmacy } from "app/Pages/OrderDetailPage/slices/types";
+import { IPharmacy } from "app/Pages/PharmacyAccountPage/types";
+
 
 export interface IorderDetailComponent {
   order: IOrder;
   onRejectClick: () => void;
   onAcceptClick: () => void;
-  pharmacy: Ipharmacy;
+  pharmacy: IPharmacy;
   isUpdating: boolean;
 }
-export interface IOrder {
-  _id: string;
-  deliveryAddress: DeliveryAddress;
-  hasDelivery: boolean;
-  status: string;
-  drugs: Drug[];
-  quantity: number;
-  totalAmount: number;
-  profit: number;
-  totalCost: number;
-  deliveryDistance: number;
-  deliveryFee: number;
-  deliveryExpireDate: string;
-  deliveryPricePerKm: number;
-  customer: Customer;
 
-}
-
-interface DeliveryAddress {
-  location: {
-    coordinates: [number, number];
-    type: string;
-  };
-  address: string;
-  phoneNumber: string;
-}
 
 export interface Customer {
   name: string;
@@ -60,11 +36,3 @@ export interface Transaction {
   reason: string;
 }
 
-interface Drug {
-  quantity: number;
-  _id: string;
-  drugId: string;
-  stockId: string;
-  price: number;
-  drugName: string;
-}

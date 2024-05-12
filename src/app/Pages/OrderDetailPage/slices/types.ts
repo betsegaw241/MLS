@@ -1,10 +1,9 @@
 export interface orderDetailPageState {
   isgettingOrder: boolean;
   isOrderExist: boolean;
-  order: IOrder[];
+  order: IOrder;
   isUpdating: boolean;
 }
-
 
 export interface Location {
   coordinates: [number, number];
@@ -23,10 +22,11 @@ export interface Customer {
 }
 
 export interface Pharmacy {
+  location: any;
+  _id: string;
   name: string;
   email: string;
 }
-
 
 export interface SenderAccount {
   accountNumber: string;
@@ -52,18 +52,25 @@ export interface PayloadType {
 }
 
 export interface IOrder {
+  deliveryPricePerKm: number;
+  profit: number;
+  totalAmount: number;
+  totalCost: string;
+  deliveryFee: number;
   _id: string;
   deliveryAddress: DeliveryAddress;
   status: string;
   drugId: string;
   quantity: number;
-  deliveryDate: string; 
+  deliveryDate: string;
   transactionId: string;
-  orderedAt: string; 
+  orderedAt: string;
   customer: Customer;
   pharmacy: Pharmacy;
   drugs: Drug[];
   transaction: Transaction;
+  deliveryExpireDate:string;
+  hasDelivery:boolean;
 }
 
 interface Drug {

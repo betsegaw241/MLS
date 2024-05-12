@@ -35,7 +35,7 @@ export function SideBar() {
           alignItems={"center"}
           flexDirection={"column"}
           zIndex={200}
-          width={isCollapsed ? "55px" : "200px"}
+          width={"200px"}
         >
           <Text
             fontFamily={"lobster"}

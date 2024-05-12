@@ -9,6 +9,7 @@ export interface editProfileComponentProp {
   onSaveClick: (values: IProfile) => void;
   changePassword: (values: any) => void;
   errorMessage: string;
+  passwordChanged: boolean;
 }
 export interface IProfile {
   id: string;

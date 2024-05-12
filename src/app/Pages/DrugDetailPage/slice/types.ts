@@ -25,5 +25,5 @@ export interface IDrugdata {
 }
 
 export interface IDrugStock {
-  IDrugStock
+  
 }

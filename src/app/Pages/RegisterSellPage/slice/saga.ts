@@ -12,7 +12,7 @@ function* handleRegisterSell(action: PayloadAction<any>) {
       body: action.payload,
       isSecureRoute: true,
     });
-
+    
     if (res) {
       yield put(actions.resgsterSellSuccess(res));
     }
