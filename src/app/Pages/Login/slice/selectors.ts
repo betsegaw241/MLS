@@ -17,6 +17,11 @@ export const selectIsLogging = createSelector(
   [selectSlice],
   (state) => state.isLogging
 );
+export const selectIsLoading = createSelector(
+  [selectSlice],
+  (state) => state.loading
+);
+
 export const selectErrorMessage = createSelector(
   [selectSlice],
   (state) => state.errorMessage
@@ -30,4 +35,19 @@ export const selectIsAuthenticated = createSelector(
 export const selectRedirectTo = createSelector(
   [selectSlice],
   (state) => state.redirectTo
+);
+
+export const selectOtpSent = createSelector(
+  [selectSlice],
+  (state) => state.otpSent
+);
+
+export const selectOtpVerified = createSelector(
+  [selectSlice],
+  (state) => state.otpVerified
+);
+
+export const selectPasswordChanged = createSelector(
+  [selectSlice],
+  (state) => state.passwordResetted
 );

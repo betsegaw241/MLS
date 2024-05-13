@@ -19,6 +19,11 @@ export const initialState: LoginState = {
     path: null,
   },
   errorMessage: "",
+  otpSent: false,
+  otpVerified: false,
+  passwordResetted: false,
+  loading: false,
+  error: "",
 };
 
 const slice = createSlice({
@@ -50,6 +55,48 @@ const slice = createSlice({
       localStorage.removeItem("role");
       localStorage.removeItem("name");
       localStorage.removeItem("pharmacyId");
+    },
+    sendOtp: (state: LoginState, action: PayloadAction<any>) => {
+      state.loading = true;
+    },
+    sendOtpSuccess: (state: LoginState, action: PayloadAction<IUser>) => {
+      state.otpSent = true;
+      state.loading = false;
+    },
+    sendOtpFailed: (state: LoginState, action: PayloadAction<any>) => {
+      state.otpSent = false;
+      state.loading = false;
+      state.error = action.payload;
+    },
+    verifyOtp: (state: LoginState, action: PayloadAction<any>) => {
+      state.loading = true;
+    },
+    verifyOtpSuccess: (state: LoginState, action: PayloadAction<IUser>) => {
+      state.otpVerified = true;
+      state.loading = false;
+    },
+    verifyOtpFailed: (state: LoginState, action: PayloadAction<any>) => {
+      state.otpVerified = false;
+      state.loading = false;
+      state.error = action.payload;
+    },
+    changePassword: (state: LoginState, action: PayloadAction<any>) => {
+      state.loading = true;
+    },
+    changePasswordSuccess: (
+      state: LoginState,
+      action: PayloadAction<IUser>
+    ) => {
+      state.passwordResetted = true;
+      state.loading = false;
+    },
+    changePasswordFailed: (state: LoginState, action: PayloadAction<any>) => {
+      state.passwordResetted = false;
+      state.loading = false;
+      state.error = action.payload;
+    },
+    reset: (state: LoginState) => {
+      state.otpVerified = false;
     },
   },
 });

@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import { errorValues } from "./constants";
+import { changePassworderrorValues, errorValues } from "./constants";
 
 export const loginInSchema = Yup.object({
   email: Yup.string()
@@ -14,4 +14,32 @@ export const loginInSchema = Yup.object({
     // )
     .required(errorValues.password.required),
   rememberMe: Yup.bool(),
+});
+export const forgetPasswordValidationSchema = Yup.object({
+  email: Yup.string()
+    .email(errorValues.email.invalid)
+    .required(errorValues.email.required),
+});
+
+export const newPasswordValidationSchema = Yup.object({
+  password: Yup.string()
+    .min(8, changePassworderrorValues .password.min)
+    .max(255, changePassworderrorValues .password.max)
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
+      changePassworderrorValues .password.combination
+    )
+    .required(changePassworderrorValues .password.required),
+  confirmPassword: Yup.string()
+    .min(8, changePassworderrorValues .password.min)
+    .max(255, changePassworderrorValues .password.max)
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
+      changePassworderrorValues .password.combination
+    )
+    .oneOf(
+      [Yup.ref("password")],
+      changePassworderrorValues .confirmPassword.match
+    )
+    .required("Confirm Password is required"),
 });

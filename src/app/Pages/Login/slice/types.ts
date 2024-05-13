@@ -16,4 +16,9 @@ export interface LoginState {
   isLogging: boolean;
   isAuthenticated: boolean;
   errorMessage: string;
+  error: string;
+  otpSent:boolean;
+  otpVerified:boolean;
+  passwordResetted:boolean;
+  loading:boolean;
 }

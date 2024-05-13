@@ -2,7 +2,7 @@ import { Form, Formik } from "formik";
 import { theme } from "../../../styles/theme";
 import { Box, Button, Flex, Text } from "app/Components/ui/Blocks";
 import { InputField } from "app/Components/ui/InputComponent";
-import { LoginInComponentProp } from "./types";
+import { LoginInComponentProp, forgetPasswordIntialValue } from "./types";
 import { useEffect, useState } from "react";
 import { BiShow } from "react-icons/bi";
 import { BiHide } from "react-icons/bi";
@@ -18,11 +18,18 @@ import payment from "../../../assets/SVG/payment.svg";
 import pharmacy from "../../../assets/SVG/pharmacy.svg";
 import { LoginDesplayText } from "utils/constants";
 import Alert from "../ui/Alert";
+import {
+  forgetPasswordValidationSchema,
+  newPasswordValidationSchema,
+} from "app/Pages/Login/validators";
+import OtpInput from "react-otp-input";
 
 const LoginComponent = (props: LoginInComponentProp) => {
   const [showpassword, setShowPassword] = useState(false);
   const [showForgotPasswordModal, setshowForgotPasswordModal] = useState(false);
   const images = [easymngmt, pharmacy, market, delivery, payment];
+  const [otp, setOtp] = useState("");
+  const [showNewpassword, setShowNewpassword] = useState(false);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -38,6 +45,18 @@ const LoginComponent = (props: LoginInComponentProp) => {
     document.body.style.margin = "0";
     document.body.style.padding = "0";
   }, []);
+
+  const handleVerify = () => {
+    props.handleVerifyOtp(otp);
+  };
+
+  useEffect(() => {
+    if (props.OtpVerified) {
+      setshowForgotPasswordModal(false);
+      setShowNewpassword(true);
+    }
+  }, [props.loading]);
+
   return (
     <Flex
       backgroundColor={theme.colors.dark.black[2]}
@@ -99,7 +118,7 @@ const LoginComponent = (props: LoginInComponentProp) => {
               />
             ))}
           </Flex>
-        </Flex> 
+        </Flex>
 
         {/* ??-------------------------------------------------------------------------------------?? */}
         <Flex width={"60%"} height={"100vh"} borderRadius={1}>
@@ -122,7 +141,7 @@ const LoginComponent = (props: LoginInComponentProp) => {
             <Flex mb={5}>
               <Text fontFamily={"Poppins"} fontSize={1}>
                 Dont have an account?
-                <Link to={"/addpharmacy"}>signup</Link>
+                <Link to={"/signup"}>signup</Link>
               </Text>
             </Flex>
 
@@ -223,59 +242,135 @@ const LoginComponent = (props: LoginInComponentProp) => {
             height={"20%"}
             justifyContent={"center"}
             position={"relative"}
+            width={"50%"}
           >
-            <Box backgroundColor={"white"} borderRadius={1} p={4}>
-              <Text fontSize={5} fontWeight={4} fontFamily={"poppins"}>
-                Enter your email to send link and change password
-              </Text>
-              <Formik
-                initialValues={props.initialValues}
-                onSubmit={(values) => {
-                  props.onLoginClick(values);
-                }}
-                validationSchema={props.loginInSchema}
-              >
-                <InputField name="email" type={"text"} label={"Email"} />
-              </Formik>
+            {props.OtpSent ? (
+              <>
+                <Flex
+                  flexDirection={"column"}
+                  width={"100%"}
+                  background={"#fff"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                  borderRadius={1}
+                  py={2}
+                >
+                  <Text fontFamily={"poppins"} fontSize={7}>
+                    Verify Your Email
+                  </Text>
+                  <Flex width={"70%"} py={1}>
+                    <Text
+                      fontFamily={"poppins"}
+                      fontSize={1}
+                      textAlign={"center"}
+                    >
+                      Please check your email for the verification code and
+                      enter it below to complete the registration process.
+                    </Text>
+                  </Flex>
 
-              <Flex
-                alignItems={"center"}
-                justifyContent={"center"}
-                mt={2}
-                style={{ gap: "20px" }}
-              >
-                <Button
-                  borderRadius={0}
-                  variant="secondary"
-                  color={"white"}
-                  fontSize={2}
-                  onClick={() => {
-                    //setshowForgotPasswordModal(!showForgotPasswordModal);
+                  <Flex
+                    width={"100%"}
+                    justifyContent={"center"}
+                    py={1}
+                    flexDirection={"column"}
+                    alignItems={"center"}
+                    style={{ gap: 20 }}
+                  >
+                    <OtpInput
+                      inputStyle={{
+                        width: 30,
+                        height: 30,
+                        fontSize: 25,
+                        fontFamily: "poppins",
+                      }}
+                      value={otp}
+                      onChange={setOtp}
+                      numInputs={6}
+                      renderSeparator={<span style={{ fontSize: 30 }}>-</span>}
+                      renderInput={(props) => <input {...props} />}
+                    />
+                    {props.errorMessage && (
+                      <Alert title={"error"} message={props.errorMessage} />
+                    )}
+                    <Button
+                      variant="secondary"
+                      p={1}
+                      fontFamily={"poppins"}
+                      fontSize={5}
+                      borderRadius={1}
+                      width={250}
+                      onClick={handleVerify}
+                    >
+                      {props.loading ? (
+                        <Spinner style={{ marginLeft: "45%" }} />
+                      ) : (
+                        "Verify"
+                      )}
+                    </Button>
+                  </Flex>
+                </Flex>
+              </>
+            ) : (
+              <Box backgroundColor={"white"} borderRadius={1} p={4}>
+                <Text fontSize={5} fontFamily={"poppins"}>
+                  Enter your email to send link and change password
+                </Text>
+                <Formik
+                  initialValues={forgetPasswordIntialValue}
+                  onSubmit={(values) => {
+                    props.forgetPassword(values);
                   }}
-                  px={4}
-                  py={1}
+                  validationSchema={forgetPasswordValidationSchema}
                 >
-                  Send
-                </Button>
-                <Button
-                  backgroundColor={"#eaecef"}
-                  borderRadius={0}
-                  variant="warning"
-                  color={"#fff"}
-                  fontSize={2}
-                  onClick={() => {
-                    setshowForgotPasswordModal(!showForgotPasswordModal);
-                  }}
-                  px={4}
-                  py={1}
-                >
-                  Cancel
-                </Button>
-              </Flex>
-            </Box>
+                  <Form>
+                    <InputField name="email" type={"text"} label={"Email"} />
+                    <Flex
+                      alignItems={"center"}
+                      justifyContent={"center"}
+                      mt={2}
+                      style={{ gap: "20px" }}
+                    >
+                      <Button
+                        borderRadius={0}
+                        variant="secondary"
+                        color={"white"}
+                        fontSize={2}
+                        onClick={() => {
+                          //setshowForgotPasswordModal(!showForgotPasswordModal);
+                        }}
+                        px={4}
+                        py={1}
+                      >
+                        {props.loading ? (
+                          <Spinner style={{ marginLeft: "45%" }} />
+                        ) : (
+                          "Send"
+                        )}
+                      </Button>
+                      <Button
+                        backgroundColor={"#eaecef"}
+                        borderRadius={0}
+                        variant="warning"
+                        color={"#fff"}
+                        fontSize={2}
+                        onClick={() => {
+                          setshowForgotPasswordModal(!showForgotPasswordModal);
+                        }}
+                        px={4}
+                        py={1}
+                      >
+                        Cancel
+                      </Button>
+                    </Flex>
+                  </Form>
+                </Formik>
+              </Box>
+            )}
           </Flex>
         </Modal>
       )}
+      
     </Flex>
   );
 };

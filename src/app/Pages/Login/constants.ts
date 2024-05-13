@@ -17,3 +17,20 @@ export const errorValues = {
       "password must contain at least one lowercase, uppercase, digit & special character",
   },
 };
+
+export const changePassworderrorValues = {
+
+  password: {
+    min: "Password must be greater than 8",
+    max: "Password is too long",
+    required: "Password is required",
+    combination:
+      "Password must contain at least one lowercase, uppercase, digit & special character",
+  },
+ 
+  confirmPassword: {
+    match: "Passwords do not match",
+  },
+
+
+};

@@ -94,7 +94,7 @@ export const errorValues = {
   },
   pharmacistLicense: {
     required: "Pharmacist License cannot be empty",
-    fileType: "Invalid file type. Only PDF or Image files allowed.",
+    fileType: "Invalid file type. Only Image files allowed.",
     fileSize: "File size is too large. Maximum size is 5MB.",
   },
 };

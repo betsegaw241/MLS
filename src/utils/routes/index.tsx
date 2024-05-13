@@ -32,6 +32,7 @@ import LandingComponent from "app/Components/LandingComponent";
 import RegisterSellPage from "app/Pages/RegisterSellPage";
 import CreateAdminPasswordPage from "app/Pages/CreateAdminPswrdPage";
 import AdminDashboardPage from "app/Pages/AdminDashboardPage";
+import ChangePasswordPage from "app/Pages/ChangePassword";
 
 export const routes: IRoute[] = [
   {
@@ -61,6 +62,13 @@ export const routes: IRoute[] = [
     element: <LoginPage />,
     exact: true,
     path: "/loginPage",
+    isProtected: false,
+    allowedRole: "*",
+  },
+  {
+    element: <ChangePasswordPage />,
+    exact: true,
+    path: "/changePassword",
     isProtected: false,
     allowedRole: "*",
   },

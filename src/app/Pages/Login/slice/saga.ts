@@ -29,6 +29,60 @@ function* handleLogin(action: PayloadAction<FormValues>) {
   }
 }
 
+function* handleSendOtp(action: PayloadAction<FormValues>) {
+  try {
+    const res: IUser = yield call(api, {
+      method: "POST",
+      route: "/user/send-otp",
+      body: action.payload,
+      isSecureRoute: true,
+    });
+
+    if (res) {
+     
+      yield put(actions.sendOtpSuccess(res));
+    }
+  } catch (error) {
+    yield put(actions.sendOtpFailed(error));
+  }
+}
+function* handleVerifyOtp(action: PayloadAction<FormValues>) {
+  try {
+    const res: IUser = yield call(api, {
+      method: "POST",
+      route: "/user/verify-otp",
+      body: action.payload,
+      isSecureRoute: true,
+    });
+
+    if (res) {
+     
+      yield put(actions.verifyOtpSuccess(res));
+    }
+  } catch (error) {
+    yield put(actions.verifyOtpFailed(error));
+  }
+}
+function* handleChangePassword(action: PayloadAction<FormValues>) {
+  try {
+    const res: IUser = yield call(api, {
+      method: "POST",
+      route: "/user/reset-password",
+      body: action.payload,
+      isSecureRoute: true,
+    });
+
+    if (res) {
+     
+      yield put(actions.changePasswordSuccess(res));
+    }
+  } catch (error) {
+    yield put(actions.changePasswordFailed(error));
+  }
+}
 export function* LoginSaga() {
   yield takeLatest(actions.login.type, handleLogin);
+  yield takeLatest(actions.sendOtp.type, handleSendOtp);
+  yield takeLatest(actions.verifyOtp.type, handleVerifyOtp);
+  yield takeLatest(actions.changePassword.type, handleChangePassword);
 }
