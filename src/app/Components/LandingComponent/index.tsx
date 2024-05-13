@@ -10,6 +10,7 @@ import ln from "../../../assets/icons/linkedin.png";
 import gp from "../../../assets/icons/google-play.png";
 import aps from "../../../assets/icons/app-store.png";
 import doc from "../../../assets/images/doctor.png";
+import { testimonials } from "utils/constants";
 
 const LandingComponent = () => {
   const navigate = useNavigate();
@@ -75,6 +76,9 @@ const LandingComponent = () => {
             style={{ cursor: "pointer" }}
             borderRadius={1}
             color={"#fff"}
+            onClick={() => {
+              navigate("/signup");
+            }}
           >
             Register Your Pharmacy
           </Text>
@@ -115,6 +119,9 @@ const LandingComponent = () => {
               style={{ cursor: "pointer" }}
               borderRadius={1}
               color={"#fff"}
+              onClick={() => {
+                navigate("/signup");
+              }}
             >
               Register Your Pharmacy
             </Text>
@@ -222,85 +229,61 @@ const LandingComponent = () => {
             healthcare by making it easier for patients to find and afford the
             medications they need.
           </Text>
-          
         </Flex>
       </Flex>
 
       <Flex
         backgroundColor={"rgba(202, 240, 248, 0.09)"}
         height={"100vh"}
-        justifyContent={"space-around"}
         alignItems={"center"}
         overflow={"hidden"}
+        justifyContent={"center"}
+        flexDirection={"column"}
       >
         <Flex
-          width={"20%"}
-          height={300}
-          borderRadius={1}
+          flexDirection={"column"}
+          width={"100%"}
           justifyContent={"center"}
           alignItems={"center"}
-          background={"#f5f5f5"}
-          flexDirection={"column"}
-          p={1}
-          boxShadow={"-2px 0px 20px -2px rgba(0,0,0,0.2)"}
+          py={5}
         >
-          <img src={imge} width={60} />
-          <Text fontFamily={"lato"} fontSize={6}>
-            Antoni Joshua
-          </Text>
-          <Rating readonly allowFraction initialValue={5} size={20} />
-          <Text fontFamily={"lato"} textAlign={"center"} fontSize={4}>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam
-            eligendi quae quos suscipit iusto! Reprehenderit maxime, quas rerum
-            necessitatibus iure quam voluptatibus recusandae dolore impedit,
-            consectetur soluta minus hic quidem.
+          <Text fontFamily={"poppins"} fontSize={5}>
+            What People Are Saying
           </Text>
         </Flex>
-        <Flex
-          width={"30%"}
-          height={300}
-          borderRadius={1}
-          justifyContent={"center"}
-          alignItems={"center"}
-          background={"#f5f5f5"}
-          flexDirection={"column"}
-          p={1}
-          boxShadow={"-2px 0px 20px -2px rgba(0,0,0,0.2)"}
-        >
-          <img src={imge} width={60} />
-          <Text fontFamily={"poppins"} fontSize={6}>
-            Fabrizo Luwi
-          </Text>
-          <Rating readonly allowFraction initialValue={4.5} size={20} />
-          <Text fontFamily={"poppins"} textAlign={"center"} fontSize={3} py={2}>
-            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam
-            eligendi quae quos suscipit iusto! Reprehenderit maxime, quas rerum
-            necessitatibus iure quam voluptatibus recusandae dolore impedit,
-            consectetur soluta minus hic quidem."
-          </Text>
-        </Flex>
-        <Flex
-          width={"20%"}
-          height={300}
-          borderRadius={1}
-          justifyContent={"center"}
-          alignItems={"center"}
-          background={"#f5f5f5"}
-          flexDirection={"column"}
-          p={1}
-          boxShadow={"-2px 0px 20px -2px rgba(0,0,0,0.2)"}
-        >
-          <img src={imge} width={60} />
-          <Text fontFamily={"poppins"} fontSize={6}>
-            Fabrizo Luwi
-          </Text>
-          <Rating readonly allowFraction initialValue={4.5} size={20} />
-          <Text fontFamily={"poppins"} textAlign={"center"} fontSize={2}>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam
-            eligendi quae quos suscipit iusto! Reprehenderit maxime, quas rerum
-            necessitatibus iure quam voluptatibus recusandae dolore impedit,
-            consectetur soluta minus hic quidem.
-          </Text>
+
+        <Flex width={"100%"} justifyContent={"space-around"} flexWrap={"wrap"}>
+          {testimonials.map((item) => (
+            <Flex
+              width={"25%"}
+              borderRadius={1}
+              justifyContent={"center"}
+              alignItems={"center"}
+              background={"#f5f5f5"}
+              flexDirection={"column"}
+              p={3}
+              boxShadow={"-2px 0px 20px -2px rgba(0,0,0,0.2)"}
+            >
+              <img
+                src={item.avatar}
+                width={50}
+                height={50}
+                style={{ borderRadius: "50%" }}
+              />
+              <Text fontFamily={"poppins"} fontSize={6}>
+                {item.name}
+              </Text>
+              <Text fontFamily={"poppins"}>{item.job}</Text>
+              <Text
+                fontFamily={"poppins"}
+                textAlign={"center"}
+                fontSize={2}
+                py={2}
+              >
+                "{item.content}"
+              </Text>
+            </Flex>
+          ))}
         </Flex>
       </Flex>
 

@@ -1,4 +1,4 @@
-import { IColumn, ISideBarMenu } from "./types";
+import { IColumn, ISideBarMenu, Itestimonials } from "./types";
 import { RxDashboard } from "react-icons/rx";
 import { MdOutlineFeedback } from "react-icons/md";
 import { VscRequestChanges } from "react-icons/vsc";
@@ -433,5 +433,35 @@ export const feedbackList: IColumn[] = [
       { label: "Suggestion", value: "suggestion" },
       { label: "Question", value: "question" },
     ],
+  },
+];
+
+export const testimonials: Itestimonials[] = [
+  {
+    id: "1",
+    name: "John Doe",
+    job: "Satisfied Customer",
+    avatar:
+      "https://img.freepik.com/free-photo/casual-young-african-man-smiling-isolated-white_93675-128895.jpg?t=st=1715585071~exp=1715588671~hmac=0e285643f0ff441eb012b6ee5ba6665c72a159898ed190fd9325ad6bd33afa9c&w=740",
+    content:
+      "Running around to different pharmacies used to be a huge hassle, especially when I wasn t feeling well. The Medicine Locator System has been a lifesaver! Now, I can simply search for my medication from my phone and see exactly which pharmacies have it in stock. No more wasted trips or unnecessary stress. Plus, being able to compare prices beforehand helps me save money too. This app is a must-have for anyone who needs to get their prescriptions filled!pen_spark",
+  },
+  {
+    id: "2",
+    name: "Dr. Sarah Yonas",
+    job: "Medical Practitioner",
+    avatar:
+      "https://img.freepik.com/free-photo/front-view-doctor-wearing-stethoscope_23-2149856261.jpg?size=626&ext=jpg&ga=GA1.1.2064405410.1710828823&semt=ais_user",
+    content:
+      "In my practice, I've seen countless patients struggle with the tedious process of finding essential medications. The Medicine Locator System is a game-changer. My patients can now easily locate nearby pharmacies with the medicines they need, saving them valuable time and frustration. The system also empowers them to compare prices and make informed decisions. I highly recommend this platform to anyone seeking a more efficient and convenient way to obtain medications.",
+  },
+  {
+    id: "3",
+    name: "Danel Henok",
+    job: "Satisfied Customer",
+    avatar:
+      "https://img.freepik.com/premium-photo/portrait-handsome-smiling-african-american-young-man-black-background_8119-2235.jpg?w=740",
+    content:
+      "As a working mom, finding time for myself is a constant struggle. The Medicine Locator System has been a huge help in managing my family s health needs. It allows me to quickly search for medications on the go, whether I m at work or picking up the kids. Plus, the ability to order for delivery is a game-changer! No more dragging a sick child out to the pharmacy. This system is a lifesaver for busy families like mine. I can t recommend it enough!pen_spark",
   },
 ];

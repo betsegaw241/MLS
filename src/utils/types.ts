@@ -25,3 +25,11 @@ interface Option {
   label: string;
   value: string;
 }
+
+export interface Itestimonials {
+  id: string;
+  name: string;
+  job: string;
+  avatar: string;
+  content: string;
+}
