@@ -11,6 +11,7 @@ export const initialState: AdminPharmaciesPageState = {
   errorMessage: "",
   loading: false,
   pharmaciesList: {} as IpharmacyData,
+  assigned: false,
 };
 
 const slice = createSlice({
@@ -34,10 +35,12 @@ const slice = createSlice({
     assignpharmaciesSuccess: (state, action: PayloadAction<any>) => {
       state.pharmaciesList = action.payload;
       state.loading = false;
+      state.assigned = true;
     },
     assignpharmaciesFailed: (state, action: PayloadAction<any>) => {
       state.errorMessage = action.payload;
       state.loading = false;
+      state.assigned = false;
     },
   },
 });

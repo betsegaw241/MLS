@@ -2,6 +2,7 @@ export interface AdminPharmaciesPageState {
   errorMessage: string;
   loading: boolean;
   pharmaciesList: IpharmacyData;
+  assigned: boolean;
 }
 
 export interface IpharmacyData {
@@ -15,7 +16,7 @@ export interface pharmacy {
   phone: string;
   state: string;
   city: string;
-  status:string;
+  status: string;
   operationalHours: string;
   coverPhoto: string;
   pharmacyLogo: string;

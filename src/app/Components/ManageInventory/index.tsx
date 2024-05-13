@@ -127,70 +127,8 @@ const ManageInventory = ({
                 </Text>
               </Flex>
             </Flex>
-            <Flex
-              width={"100%"}
-              height={100}
-              p={1}
-              borderRadius={"4px"}
-              boxShadow={"-1px 5px 8px -3px #B6BABD"}
-              backgroundColor={"#B4D4FF"}
-              alignItems={"center"}
-              onClick={scrollToContent(1)}
-            >
-              <Flex>
-                <img
-                  src={soldout}
-                  width={50}
-                  height={50}
-                  style={{ opacity: 0.8 }}
-                ></img>
-              </Flex>
-              <Flex
-                flexDirection={"column"}
-                width={"100%"}
-                justifyContent={"center"}
-                alignItems={"center"}
-              >
-                <Text fontFamily={"poppins"} fontSize={3}>
-                  Out of Stock
-                </Text>
-                <Text fontFamily={"poppins"} fontSize={6}>
-                  30 drugs
-                </Text>
-              </Flex>
-            </Flex>
-            <Flex
-              width={"100%"}
-              height={100}
-              p={1}
-              borderRadius={"4px"}
-              boxShadow={"-1px 5px 8px -3px #B6BABD"}
-              backgroundColor={"#B4D4FF"}
-              alignItems={"center"}
-              onClick={scrollToContent(2)}
-            >
-              <Flex>
-                <img
-                  src={sonexp}
-                  width={50}
-                  height={50}
-                  style={{ opacity: 1 }}
-                ></img>
-              </Flex>
-              <Flex
-                flexDirection={"column"}
-                width={"100%"}
-                justifyContent={"center"}
-                alignItems={"center"}
-              >
-                <Text fontFamily={"poppins"} fontSize={3}>
-                  Soon Expiring
-                </Text>
-                <Text fontFamily={"poppins"} fontSize={6}>
-                  30 drugs
-                </Text>
-              </Flex>
-            </Flex>
+       
+          
             <Flex
               width={"100%"}
               height={100}

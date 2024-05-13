@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsLoading, selectPharmacies } from "./slice/selector";
+import {
+  selectAssigned,
+  selectIsLoading,
+  selectPharmacies,
+} from "./slice/selector";
 import { UseGetPharmaciesSlice } from "./slice";
 import AdminPharmaciesComponent from "app/Components/AdminPharmaciesComponent";
 import { UseGetUsersSlice } from "../AdminUsersPage/slice";
@@ -16,11 +20,12 @@ const AdminPharmaciesPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [status, setStatus] = useState("");
   const admins = useSelector(selectUsers);
+  const assigned = useSelector(selectAssigned);
   const [query, setQuery] = useState("");
 
   useEffect(() => {
     dispatch(actions.getpharmacies({ page: currentPage, status: status }));
-  }, [currentPage, status]);
+  }, [currentPage, status, assigned]);
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
@@ -47,8 +52,8 @@ const AdminPharmaciesPage = () => {
     // dispatch(actions.getpharmacies({  }));
   };
   const handleAssign = (values: IntialValues) => {
-    console.log(values);
     dispatch(actions.assignpharmacies(values));
+    setCurrentPage(1);
   };
   return (
     <AdminPharmaciesComponent

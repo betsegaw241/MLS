@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { UseGetDrugsSlice } from "../StockPage/slice";
 import { selectIsLoading, selectUsers } from "./slice/selector";
 import { UseGetUsersSlice } from "./slice";
+import { useEditProfilePageSlice } from "../ProfilePage/slice";
+import { selectEdited } from "../ProfilePage/slice/selector";
 
 const AdminUsersPage = () => {
   const dispatch = useDispatch();
@@ -16,6 +18,8 @@ const AdminUsersPage = () => {
   const endIndex = Math.min(startIndex + 10 - 1, users.totalDocuments);
   const [query, setQuery] = useState("");
   const [user, setUser] = useState("");
+  const profileActions = useEditProfilePageSlice();
+  const edited = useSelector(selectEdited);
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
@@ -26,16 +30,20 @@ const AdminUsersPage = () => {
 
   useEffect(() => {
     dispatch(actions.getUsers({ page: currentPage, role: role }));
-  }, [currentPage, role]);
+  }, [currentPage, role, edited]);
 
   const handleFilterUser = (value: string) => {
     setRole(value);
     setCurrentPage(1);
   };
-  const handleManageUser = (value:any) => {
-    console.log(value,user)
+  const handleManageUser = (value: any) => {
+    dispatch(
+      profileActions.actions.editProfile({
+        id: value.user,
+        status: value.value,
+      })
+    );
   };
-  
 
   const onSearch = () => {
     dispatch(actions.getUsers({ page: currentPage, role: role, name: query }));
@@ -43,7 +51,7 @@ const AdminUsersPage = () => {
 
   return (
     <AdminUsersComponent
-    setUser={setUser}
+      setUser={setUser}
       loading={false}
       page={currentPage}
       users={users}

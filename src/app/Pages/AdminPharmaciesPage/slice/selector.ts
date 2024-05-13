@@ -22,3 +22,8 @@ export const selectErrorMessage = createSelector(
   [selectSlice],
   (state) => state.errorMessage
 );
+
+export const selectAssigned = createSelector(
+  [selectSlice],
+  (state) => state.assigned
+);
