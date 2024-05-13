@@ -28,8 +28,10 @@ export const errorValues = {
   },
   firstName: {
     required: "First Name is required",
+    invalid: "Invalid first name",
   },
   lastName: {
     required: "Last Name is required",
+    invalid: "Invalid last name",
   },
 };

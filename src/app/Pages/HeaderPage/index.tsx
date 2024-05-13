@@ -17,9 +17,9 @@ const HeaderPage = () => {
 
   const [type, setType] = useState("");
 
-  useEffect(() => {
-  dispatch(action.actions.fetchNotifications(''));
-   }, []);
+  // useEffect(() => {
+  // dispatch(action.actions.fetchNotifications(''));
+  //  }, []);
 
 
   const handleCreateFeedback = (values: any) => {

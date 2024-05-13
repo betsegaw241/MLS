@@ -56,18 +56,14 @@ const AdminProfileComponent = (props: AdminProfileComponentProps) => {
             </Text>
           </Flex>
 
+        
           <Text
             fontFamily={"poppins"}
             p={1}
-            style={{
-              cursor: "pointer",
+            py={1}
+            hover={{
+              backgroundColor: "#E5D4FF",
             }}
-          >
-            Edit profile
-          </Text>
-          <Text
-            fontFamily={"poppins"}
-            p={1}
             style={{
               cursor: "pointer",
             }}

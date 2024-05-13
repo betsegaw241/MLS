@@ -10,7 +10,7 @@ export interface pharmaciesComponentProps {
   pharmacies: IpharmacyData;
   handlePageChange: (event: React.ChangeEvent<unknown>, page: number) => void;
   handleFilterUser?: (value: string) => void;
-  handleAssign?: (value: IntialValues) => void;
+  handleAssign: (value: IntialValues) => void;
 }
 
 interface Iadmins {

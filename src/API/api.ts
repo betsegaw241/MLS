@@ -13,8 +13,7 @@ const api = async (config: IAPICallConfig) => {
     const header: HeaderObj = config.header || {};
 
     if (config.isSecureRoute) {
-      authToken =
-        localStorage.getItem("token") || Cookies.get(cookieKeys.authToken);
+      authToken = localStorage.getItem("token");
       header.Authorization = `Bearer ${authToken}`;
     }
 

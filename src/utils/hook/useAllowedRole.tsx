@@ -8,7 +8,8 @@ interface IUseAllowedRole {
 }
 
 export function useAllowedRole(props: IUseAllowedRole) {
-  const role = useSelector(selectRole) || localStorage.getItem("role");
+  // const role = useSelector(selectRole) || localStorage.getItem("role");
+   const role =  localStorage.getItem("role");
 
   const navigate = useNavigate();
   if (!role || !props.allowedRole.includes(role)) {

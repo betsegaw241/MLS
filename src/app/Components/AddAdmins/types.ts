@@ -5,5 +5,6 @@ export interface AddAdminProps {
   addAdminValidationSchema: Object;
   initialValues: FormValues;
   isCreated: boolean;
+  loading:boolean;
   handleAddAdmin: (values: FormValues) => void;
 }

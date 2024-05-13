@@ -18,6 +18,7 @@ export interface addAdminPageState {
   errorMessage: string;
   FormValues: values;
   isCreated: boolean;
+  loading:boolean;
 }
 export interface values {
   firstName: string;

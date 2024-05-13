@@ -14,7 +14,8 @@ export const initialState: addAdminPageState = {
     adminPhoneNumber: "",
     adminPassword: "",
   },
-  isCreated: false
+  isCreated: false,
+  loading: false,
 };
 
 const slice = createSlice({
@@ -23,13 +24,19 @@ const slice = createSlice({
   reducers: {
     addAdmin: (state, action: PayloadAction<any>) => {
       state.isCreated = false;
+      state.loading = true;
     },
     addAdminSuccess: (state, action: PayloadAction<any>) => {
       state.isCreated = true;
       state.account = action.payload;
+      state.loading = false;
     },
     addAdminFailed: (state, action: PayloadAction<any>) => {
       state.errorMessage = action.payload;
+      state.isCreated = false;
+      state.loading = false;
+    },
+    addReset: (state) => {
       state.isCreated = false;
     },
   },

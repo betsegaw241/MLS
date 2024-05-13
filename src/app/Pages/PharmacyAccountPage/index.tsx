@@ -106,7 +106,6 @@ const PharmacyAccountPage = () => {
       value: bank.name,
     }));
   }
-  console.log(banks);
   return loading ? (
     <LoadingPage />
   ) : (

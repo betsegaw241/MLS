@@ -84,30 +84,7 @@ const UserInfo = (props: userInfoComponentProp) => {
               width={["200px", "200px", "200px"]}
             >
               <Flex flexDirection={"column"}>
-                <Flex
-                  alignItems={"center"}
-                  hover={{
-                    backgroundColor: "#E5D4FF",
-                  }}
-                  p={1}
-                  style={{ cursor: "pointer" }}
-                >
-                  <IoMdSettings color="blue" />
-                  <Text
-                    color={"#363636"}
-                    fontFamily={"Poppins"}
-                    fontSize={5}
-                    padding={1}
-                    fontWeight={3}
-                    lineHeight={0}
-                    onClick={() => {
-                      setShowUserInfo(!showUserInfo);
-                    
-                    }}
-                  >
-                    Settings
-                  </Text>
-                </Flex>
+               
 
                 <Flex
                   alignItems={"center"}

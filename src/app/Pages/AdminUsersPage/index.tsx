@@ -15,6 +15,7 @@ const AdminUsersPage = () => {
   const startIndex = (currentPage - 1) * 10 + 1;
   const endIndex = Math.min(startIndex + 10 - 1, users.totalDocuments);
   const [query, setQuery] = useState("");
+  const [user, setUser] = useState("");
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
@@ -31,12 +32,18 @@ const AdminUsersPage = () => {
     setRole(value);
     setCurrentPage(1);
   };
+  const handleManageUser = (value:any) => {
+    console.log(value,user)
+  };
+  
+
   const onSearch = () => {
     dispatch(actions.getUsers({ page: currentPage, role: role, name: query }));
   };
 
   return (
     <AdminUsersComponent
+    setUser={setUser}
       loading={false}
       page={currentPage}
       users={users}
@@ -46,6 +53,7 @@ const AdminUsersPage = () => {
       startIndex={startIndex}
       setQuery={setQuery}
       onSearch={onSearch}
+      handleManageUser={handleManageUser}
     />
   );
 };

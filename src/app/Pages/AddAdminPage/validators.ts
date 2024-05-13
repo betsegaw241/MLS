@@ -2,8 +2,8 @@ import * as Yup from "yup";
 import { errorValues } from "./constants";
 
 export const addAdminValidationSchema = Yup.object({
-  firstName: Yup.string().trim().required(errorValues.firstName.required),
-  lastName: Yup.string().trim().required(errorValues.lastName.required),
+  firstName: Yup.string().trim().required(errorValues.firstName.required) .matches(/^[^\d]+$/, errorValues.firstName.invalid),
+  lastName: Yup.string().trim().required(errorValues.lastName.required) .matches(/^[^\d]+$/, errorValues.firstName.invalid),
   adminEmailAddress: Yup.string()
     .email(errorValues.email.invalid)
     .required(errorValues.email.required),

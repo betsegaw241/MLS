@@ -15,6 +15,7 @@ import { StockComponentProps } from "./types";
 import Paginate from "../ui/Pagination/Paginate";
 import { IoFilter } from "react-icons/io5";
 import Modal from "../ui/Modal";
+import Dropdown from "../ui/Blocks/Dropdown";
 
 const AdminUsersComponent = ({
   users,
@@ -25,10 +26,9 @@ const AdminUsersComponent = ({
   page,
   handlePageChange,
   handleFilterUser,
-}: //   setMinPrice,
-//   setMaxPrice,
-//   setCatagory,
-//  onFilter,
+  handleManageUser,
+  setUser
+}: 
 
 StockComponentProps) => {
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ StockComponentProps) => {
       backgroundColor={"#ffff"}
       m={1}
       borderRadius={1}
-      height={"100vh"}
+      minHeight={"100vh"}
       p={1}
     >
       {loading ? (
@@ -139,6 +139,18 @@ StockComponentProps) => {
                           </TableCell>
                           <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
                             {item.role}
+                          </TableCell>
+                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
+                            <Dropdown
+                              options={[
+                                { label: "Activate", value: "active" },
+                                { label: "Deactivated", value: "deactivated" },
+                              ]}
+                              label={item.status}
+                              handleChange={(value)=>{
+                                handleManageUser({value:value,user:item._id})
+                              }}
+                            />
                           </TableCell>
                         </TableRow>
                       ))}

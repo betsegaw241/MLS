@@ -93,23 +93,9 @@ const VerifyPharmacyDetailComponent = (
     >
       <Flex alignItems={"center"} style={{ gap: 50 }}>
         <Text fontFamily={"poppins"} fontSize={6}>
-          Verify Pharmacy
+          Verify Pharmacy Details
         </Text>
-        <Text
-          fontFamily={"poppins"}
-          fontSize={3}
-          backgroundColor={
-            props.pharmacy?.status === "approved"
-              ? "green"
-              : props.pharmacy?.status === "rejected"
-              ? "red"
-              : "#f5f5f5"
-          }
-          color={"#282E34"}
-          borderRadius={"4px"}
-        >
-          {props.pharmacy.status}
-        </Text>
+       
       </Flex>
       <Text fontFamily={"poppins"} fontSize={5} p={1}>
         Pharmacist Information
@@ -156,6 +142,7 @@ const VerifyPharmacyDetailComponent = (
         <GridBox lable={"Pharmacy Phone"} value={props.pharmacy.phoneNumber} />
         <GridBox lable={"Pharmacy Email"} value={props.pharmacy.email} />
         <GridBox lable={"Adress"} value={props.pharmacy.address} />
+        <GridBox lable={"Status"} value={props.pharmacy.status} />
       </Grid>
 
       <Text fontFamily={"poppins"} fontSize={5} p={1}>
@@ -171,36 +158,81 @@ const VerifyPharmacyDetailComponent = (
         {renderViewer(props.pharmacy?.pharmacyLicense)}
       </Flex>
 
-      <Flex
-        p={1}
-        paddingTop={50}
-        justifyContent={"flex-end"}
-        style={{ gap: 30 }}
-      >
-        <Button
-          variant="secondary"
+      {props.pharmacy?.status == "pending" ||
+      props.pharmacy?.status == "unassigned" ? (
+        <Flex
           p={1}
-          borderRadius={1}
-          fontFamily={"poppins"}
-          fontSize={5}
-          width={200}
-          onClick={() => props.handleVerify("approved")}
+          paddingTop={50}
+          justifyContent={"flex-end"}
+          style={{ gap: 30 }}
         >
-          Approve
-        </Button>
-        <Button
-          variant="warning"
+          <Button
+            variant="secondary"
+            p={1}
+            borderRadius={1}
+            fontFamily={"poppins"}
+            fontSize={5}
+            width={200}
+            onClick={() => props.handleVerify("approved")}
+          >
+            Approve
+          </Button>
+          <Button
+            variant="warning"
+            p={1}
+            borderRadius={1}
+            fontFamily={"poppins"}
+            fontSize={5}
+            width={200}
+            onClick={() => props.handleVerify("rejected")}
+          >
+            Reject
+          </Button>
+        </Flex>
+      ) : props.pharmacy?.status == "approved" ? (
+        <Flex
           p={1}
-          borderRadius={1}
-          fontFamily={"poppins"}
-          fontSize={5}
-          width={200}
-          onClick={() => props.handleVerify("rejected")}
+          paddingTop={50}
+          justifyContent={"flex-end"}
+          style={{ gap: 30 }}
         >
-          Reject
-        </Button>
-      </Flex>
+          <Button
+            variant="warning"
+            p={1}
+            borderRadius={1}
+            fontFamily={"poppins"}
+            fontSize={5}
+            width={200}
+            onClick={() => props.handleVerify("deactivated")}
+          >
+            Approve
+          </Button>
+        </Flex>
+      ) : props.pharmacy?.status == "rejected" ||
+        props.pharmacy?.status == "deactivated" ? (
+        <Flex
+          p={1}
+          paddingTop={50}
+          justifyContent={"flex-end"}
+          style={{ gap: 30 }}
+        >
+          <Button
+            variant="warning"
+            p={1}
+            borderRadius={1}
+            fontFamily={"poppins"}
+            fontSize={5}
+            width={200}
+            onClick={() => props.handleVerify("approved")}
+          >
+            Approve
+          </Button>
+        </Flex>
+      ) : (
+        <></>
+      )}
     </Flex>
   );
 };
 export default VerifyPharmacyDetailComponent;
+// enum: ['pending', 'approved', 'rejected', 'deactivated', 'unassigned'],

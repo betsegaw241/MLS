@@ -22,4 +22,7 @@ export const selectErrorMessage = createSelector(
 export const selectIsCreated = createSelector(
   [selectSlice],
   (state) => state.isCreated
+);export const selectIsLoading= createSelector(
+  [selectSlice],
+  (state) => state.loading
 );

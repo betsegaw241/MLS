@@ -387,11 +387,15 @@ const PharmacyAccountComponent = (props: IPharmacyAccountComponent) => {
                 />
                 <GridBox
                   lable={"Minimum delivery time"}
-                  value={props.pharmacy.minDeliveryTime}
+                  value={
+                    Math.round(props.pharmacy.minDeliveryTime / 60) + " hr"
+                  }
                 />
                 <GridBox
                   lable={"Maximum delivery time"}
-                  value={props.pharmacy.maxDeliveryTime}
+                  value={
+                    Math.round(props.pharmacy.maxDeliveryTime / 60) + " hr"
+                  }
                 />
               </Grid>
               <Flex width={"100%"} justifyContent={"space-between"} p={1}>

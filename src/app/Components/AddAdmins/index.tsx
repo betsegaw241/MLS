@@ -5,6 +5,7 @@ import { AddAdminProps } from "./types.ts";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router";
+import Spinner from "react-activity/dist/Spinner/index";
 
 const AddAdmins = (props: AddAdminProps) => {
   const navigate = useNavigate();
@@ -27,13 +28,6 @@ const AddAdmins = (props: AddAdminProps) => {
           validationSchema={props.addAdminValidationSchema}
         >
           {({ handleSubmit }) => {
-            const handleCreate = () => {
-              if (props.isCreated) {
-                toast.success("Admin successfully created!!!");
-              }
-              navigate("/users");
-            };
-
             return (
               <Form
                 style={{
@@ -70,12 +64,16 @@ const AddAdmins = (props: AddAdminProps) => {
                       fontSize={2}
                       my={2}
                       variant="primary"
-                      onClick={() => handleCreate()}
+                      //  onClick={() => handleSubmit()}
                       type="submit"
                       padding={1}
                       width={"100%"}
                     >
-                      Add
+                      {props.loading ? (
+                        <Spinner style={{ marginLeft: "45%" }} />
+                      ) : (
+                        "Add"
+                      )}
                     </Button>
                   </Flex>
                 </Flex>

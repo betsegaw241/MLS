@@ -4,7 +4,7 @@ export interface StockComponentProps {
   loading: boolean;
   setQuery: React.Dispatch<React.SetStateAction<string>>;
   // setMinPrice: React.Dispatch<React.SetStateAction<string>>;
-  // setMaxPrice: React.Dispatch<React.SetStateAction<string>>;
+  setUser: React.Dispatch<React.SetStateAction<string>>;
   // setCatagory: React.Dispatch<React.SetStateAction<string>>;
   onSearch: () => void;
   // onFilter: () => void;
@@ -14,4 +14,5 @@ export interface StockComponentProps {
   users: IuserData;
   handlePageChange: (event: React.ChangeEvent<unknown>, page: number) => void;
   handleFilterUser: (value: string) => void;
+  handleManageUser: (value: string) => void;
 }

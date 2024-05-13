@@ -121,13 +121,8 @@ const AdminPharmaciesComponent = ({
                           }}
                           onClick={() => {
                             navigate(`/verifyPharmacy/${item._id}`);
-                            // navigate(`/pharmacist/drugdetails/${item._id}`);
                           }}
                         >
-                          {/* <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {index}
-                          </TableCell> */}
-
                           <TableCell
                             component="th"
                             scope="row"
@@ -142,9 +137,7 @@ const AdminPharmaciesComponent = ({
                           <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
                             {item.email}
                           </TableCell>
-                          <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
-                            {item.phone}
-                          </TableCell>
+
                           <TableCell sx={{ padding: 1, fontFamily: "poppins" }}>
                             {item.status}
                           </TableCell>

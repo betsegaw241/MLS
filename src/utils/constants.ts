@@ -329,6 +329,11 @@ export const UsersList: IColumn[] = [
       { label: "Coustomer", value: "customer" },
     ],
   },
+  {
+    id: "action",
+    label: "Actions",
+    minWidth: 50,
+  },
 ];
 export const pharmaciesList: IColumn[] = [
   {
@@ -341,11 +346,7 @@ export const pharmaciesList: IColumn[] = [
     label: "Email",
     minWidth: 50,
   },
-  {
-    id: "Phone",
-    label: "Phone",
-    minWidth: 50,
-  },
+
   {
     id: "Status",
     label: "Status",
@@ -371,11 +372,11 @@ export const VerifypharmaciesList: IColumn[] = [
     label: "Email",
     minWidth: 50,
   },
-  {
-    id: "Phone",
-    label: "Phone",
-    minWidth: 50,
-  },
+  // {
+  //   id: "Phone",
+  //   label: "Phone",
+  //   minWidth: 50,
+  // },
   {
     id: "Status",
     label: "Status",

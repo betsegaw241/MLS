@@ -35,7 +35,7 @@ const AdminPharmaciesPage = () => {
   };
 
   useEffect(() => {
-    dispatch(userActions.actions.getUsers({ role: "admin" }));
+    dispatch(userActions.actions.getUsers({ role: "admin", limit: 50 }));
   }, []);
 
   const adminsArray = admins?.data?.map((item) => ({

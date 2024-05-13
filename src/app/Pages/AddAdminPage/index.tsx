@@ -4,23 +4,33 @@ import { FormValues } from "./types";
 import { useDispatch, useSelector } from "react-redux";
 import { useAddAdminPageSlice } from "./slice";
 import { addAdminValidationSchema } from "./validators";
-import { selectErrorMessage } from "./slice/selector";
+import { selectErrorMessage, selectIsLoading } from "./slice/selector";
 import { selectIsCreated } from "./slice/selector";
+import { useNavigate } from "react-router";
 const AddAdminPage = () => {
   const { actions } = useAddAdminPageSlice();
   const dispatch = useDispatch();
   const errorMessage = useSelector(selectErrorMessage);
   const isCreated = useSelector(selectIsCreated);
+  const loading = useSelector(selectIsLoading);
+  const navigate = useNavigate();
 
   const handleAddAdmin = (values: FormValues) => {
     dispatch(
       actions.addAdmin({
         name: `${values.firstName} ${values.lastName}`,
-        phoneNumber:values.adminPhoneNumber,
+        phoneNumber: values.adminPhoneNumber,
         email: values.adminEmailAddress,
       })
     );
   };
+
+if(isCreated){
+  dispatch(actions.addReset);
+  navigate('/users')
+}
+
+
 
   return (
     <>
@@ -30,6 +40,7 @@ const AddAdminPage = () => {
         handleAddAdmin={handleAddAdmin}
         addAdminValidationSchema={addAdminValidationSchema}
         isCreated={isCreated}
+        loading={loading}
       />
     </>
   );

@@ -56,7 +56,7 @@ const TransactionComponent = ({
       backgroundColor={"#ffff"}
       m={1}
       borderRadius={1}
-      height={"100vh"}
+      minHeight={"100vh"}
       p={1}
     >
       <Flex alignItems={"center"} p={1}>

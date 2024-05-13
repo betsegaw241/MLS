@@ -10,6 +10,7 @@ export interface IuserData {
   totalDocuments: number;
 }
 export interface user {
+  status: string;
   _id: string;
   name: string;
   phoneNumber: string;
