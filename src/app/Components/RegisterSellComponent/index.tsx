@@ -159,6 +159,14 @@ const RegisterSellComponent = (props: RegistersellProps) => {
                                   >
                                     {item.cost}
                                   </TableCell>
+                                  <TableCell
+                                    sx={{
+                                      padding: 1,
+                                      fontFamily: "poppins",
+                                    }}
+                                  >
+                                    {item.currentQuantity}
+                                  </TableCell>
                                 </TableRow>
                               ))}
                             </TableBody>

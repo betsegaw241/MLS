@@ -311,8 +311,8 @@ const UserInfo = (props: userInfoComponentProp) => {
                   <Flex
                     flexDirection={"column"}
                     alignItems={"center"}
-                    height={"40%"}
-                    width={["90%", "70%", "50%", "40%"]}
+                    py={2}
+                    width={["90%", "40%"]}
                     justifyContent={"center"}
                     position={"relative"}
                     borderRadius={1}
@@ -337,15 +337,14 @@ const UserInfo = (props: userInfoComponentProp) => {
                         label={"Message"}
                         placeholder="Enter Message"
                       />
-                      <Flex flexDirection={"row"}>
+                      <Flex flexDirection={"row"} style={{gap:10}}>
                         <Button
-                          borderRadius={40}
+                          borderRadius={1}
                           fontWeight={"bold"}
                           fontFamily={"poppins"}
                           color={"white"}
                           fontSize={5}
                           my={2}
-                          marginLeft={["2%", "3%", "3%", "2%"]}
                           variant="primary"
                           padding={1}
                           width={"50%"}
@@ -356,13 +355,12 @@ const UserInfo = (props: userInfoComponentProp) => {
                           Submit
                         </Button>
                         <Button
-                          borderRadius={40}
+                          borderRadius={1}
                           fontWeight={"bold"}
                           fontFamily={"poppins"}
                           color={"white"}
                           fontSize={5}
                           my={2}
-                          marginLeft={["2%", "3%", "3%", "2%"]}
                           backgroundColor="#d34a14"
                           padding={1}
                           width={"50%"}

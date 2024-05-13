@@ -225,10 +225,7 @@ const DrugDetailsComponent = ({
                                 <TableCell
                                   sx={{ padding: 1, fontFamily: "poppins" }}
                                 >
-                                  {new Date(item.createdAt).toLocaleDateString(
-                                    "en-US",
-                                    { timeZone: "UTC" }
-                                  )}
+                                  {item.currentQuantity}
                                 </TableCell>
                               </TableRow>
                             ))}

@@ -213,8 +213,8 @@ export const drugBatch: IColumn[] = [
     minWidth: 50,
   },
   {
-    id: "Date",
-    label: "Recived   Date",
+    id: "Current Quantity",
+    label: "currentQuantity",
     minWidth: 50,
   },
 ];

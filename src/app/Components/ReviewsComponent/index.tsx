@@ -20,7 +20,6 @@ const ReviewsComponent = (props: ReviewComponentProps) => {
         <Text fontFamily={"poppins"} fontSize={6}>
           Reviews
         </Text>
-        <Text fontFamily={"poppins"}>filter</Text>
       </Flex>
       <Flex
         p={1}

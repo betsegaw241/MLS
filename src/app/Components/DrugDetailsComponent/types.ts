@@ -1,3 +1,5 @@
+import { IDrugdata } from "app/Pages/DrugDetailPage/slice/types";
+
 export interface DrugDetailComponent {
   errorMessage: string;
   drug: IDrug;
@@ -15,10 +17,7 @@ export interface IDrug {
   sideEffects: string;
   drugPhoto: string[];
 }
-export interface IDrugdata {
-  data: IDrugStock[];
-  totalPages: number;
-}
+
 
 export interface IDrugStock {
   _id: string;
