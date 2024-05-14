@@ -4,8 +4,9 @@ import { useDispatch } from "react-redux";
 import { useAddPharmacyPageSlice } from "./slice";
 import api from "../../../API/api";
 import { useSelector } from "react-redux";
-import { selectIsAcountCreated } from "../createAccountPage/slice/selector";
 import { useNavigate } from "react-router";
+import { selectLoading, selectedAccountCreated } from "./slice/selector";
+import { useEffect } from "react";
 
 const AddPharmacyPage = () => {
   const { actions } = useAddPharmacyPageSlice();
@@ -13,7 +14,9 @@ const AddPharmacyPage = () => {
   const formData = new FormData();
   const navigate = useNavigate();
 
-  const created = useSelector(selectIsAcountCreated);
+  const created = useSelector(selectedAccountCreated);
+  const loading = useSelector(selectLoading);
+
   const handleAddPharmacy = async (values: any) => {
     formData.append("file", values.pharmacyLicense);
     const uploadedFileUrl = await uploadFileAndUpdateState(formData);
@@ -25,7 +28,6 @@ const AddPharmacyPage = () => {
       );
     }
   };
-
   if (created) {
     navigate("/pharmacist/home");
   }
@@ -38,10 +40,10 @@ const AddPharmacyPage = () => {
         isSecureRoute: true,
         body: data,
       });
-      return res; // Assuming the response contains the URL of the uploaded file
+      return res;
     } catch (error) {
       console.log(error);
-      return null; // Return null if upload fails
+      return null;
     }
   }
 
@@ -50,6 +52,7 @@ const AddPharmacyPage = () => {
       <AddParmacyComponent
         initialValues={initialValues}
         errorMessage={""}
+        loading={loading}
         handleAddpharmacy={handleAddPharmacy}
       />
     </>

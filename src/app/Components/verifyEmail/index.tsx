@@ -5,6 +5,7 @@ import emailIcon from "../../../assets/brands/emailIcon.png";
 import OtpInput from "react-otp-input";
 import emailIcon2 from "../../../assets/brands/verified.png";
 import { useNavigate } from "react-router";
+import Spinner from "react-activity/dist/Spinner";
 
 const VerifyEmailComponent = (props: any) => {
   const navigate = useNavigate();
@@ -112,6 +113,11 @@ const VerifyEmailComponent = (props: any) => {
                 renderSeparator={<span style={{ fontSize: 30 }}>-</span>}
                 renderInput={(props) => <input {...props} />}
               />
+              {props.error && (
+                <Text fontFamily={"poppins"} fontSize={3} color={"red"}>
+                  {props.error}
+                </Text>
+              )}
               <Button
                 variant="secondary"
                 p={1}
@@ -121,7 +127,11 @@ const VerifyEmailComponent = (props: any) => {
                 width={250}
                 onClick={handleVerify}
               >
-                Verify
+                {props.verifying ? (
+                  <Spinner style={{ marginLeft: "45%" }} />
+                ) : (
+                  "Verify"
+                )}
               </Button>
             </Flex>
           </>

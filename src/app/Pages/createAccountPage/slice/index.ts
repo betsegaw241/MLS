@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { useInjectReducer, useInjectSaga } from "redux-injectors";
 import { CreateAccountPageSaga } from "./saga";
 import { createAccountPageState } from "./types";
+import showToast from "utils/toast";
 
 export const initialState: createAccountPageState = {
   isCreatingAccount: false,
@@ -11,7 +12,7 @@ export const initialState: createAccountPageState = {
 };
 
 const slice = createSlice({
-  name: "createAccount",
+  name: "addPharmacy",
   initialState,
   reducers: {
     createAccount: (state, action: PayloadAction<any>) => {
@@ -25,6 +26,7 @@ const slice = createSlice({
       state.isCreatingAccount = false;
       state.errorMessage = action.payload;
       state.isAcountCreated = false;
+      showToast(action.payload,'error')
     },
   },
 });

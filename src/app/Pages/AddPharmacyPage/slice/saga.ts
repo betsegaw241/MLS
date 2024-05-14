@@ -12,7 +12,7 @@ function* handleAddPharmacy(action: PayloadAction<any>) {
       isSecureRoute: true,
       body:  action.payload ,
     });
-    if (res.status === 200) {
+    if (res) {
       yield put(actions.addPharmacySuccess(res));
     }
   } catch (error) {

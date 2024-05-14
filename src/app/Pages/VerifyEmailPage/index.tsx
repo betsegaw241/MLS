@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useVerifyAccountPageSlice } from "./slice";
-import { selectIsAcountVerified } from "./slice/selector";
+import { selectErrorMessage, selectIsAcountVerified, selectVerifying } from "./slice/selector";
 
 const VerifyEmailPage = () => {
   const navigate = useNavigate();
@@ -14,18 +14,24 @@ const VerifyEmailPage = () => {
   const dispatch = useDispatch();
   const { actions } = useVerifyAccountPageSlice();
   const verified = useSelector(selectIsAcountVerified);
+  const verifying = useSelector(selectVerifying);
+  const error = useSelector(selectErrorMessage);
 
   // useEffect(() => {
   //   navigate("/verifiedemail");
   // }, [verified]);
 
   const onHandleVerify = (value: any) => {
-    console.log("otp--", value);
     dispatch(actions.verifyAccount({ code: value, email: data.email }));
   };
 
   return (
-    <VerifyEmailComponent onHandleVerify={onHandleVerify} verified={verified} />
+    <VerifyEmailComponent
+      verifying={verifying}
+      onHandleVerify={onHandleVerify}
+      verified={verified}
+      error={error}
+    />
   );
 };
 

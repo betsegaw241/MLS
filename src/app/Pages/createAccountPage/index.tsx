@@ -36,13 +36,10 @@ const CreateAccountPage = () => {
   const [isUploaded, setIsUploaded] = useState(false);
   const [data, setData] = useState<FormValues>(initialValues);
   const [set1Data, setStep1Data] = useState(null);
-  const [set2Data, setStep2Data] = useState(null);
-  // const [set3Data, setStep3Data] = useState(null);
   const [currentStep, setCurrentStep] = useState(0);
   const [email, setemail] = useState("");
 
-  const totalSteps = 3;
-  const formData = new FormData();
+  let formData = new FormData();
 
   const onSignupClick = (values: any) => {
     setemail(values.email);
@@ -53,6 +50,7 @@ const CreateAccountPage = () => {
     formData.append("password", values.password);
 
     dispatch(actions.createAccount(formData));
+    formData = new FormData();
   };
 
   useEffect(() => {

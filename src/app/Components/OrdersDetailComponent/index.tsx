@@ -8,7 +8,7 @@ export interface IStatus {
 }
 const OrderDetailComponent = (props: IorderDetailComponent) => {
   const status: IStatus = { status: "Pending" };
-  const coord = props.order.deliveryAddress?.location?.coordinates;
+  const coord = props.order.deliveryAddress.location.coordinates;
   const pharmacylocation = props.order?.pharmacy?.location?.coordinates;
   let newCoord;
   let center;
@@ -174,9 +174,9 @@ const OrderDetailComponent = (props: IorderDetailComponent) => {
             backgroundColor={"#f5f5f5f5"}
             borderRadius={1}
           >
-            {center &&  (
+            {coord && (
               <MapComponent
-                position={newCoord}
+                position={[coord[1], coord[0]]}
                 deliveryCoverage={props.pharmacy?.deliveryCoverage}
                 center={center}
               />

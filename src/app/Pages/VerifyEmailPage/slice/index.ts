@@ -25,6 +25,7 @@ const slice = createSlice({
       state.isVerifyingAccount = false;
       state.errorMessage = action.payload;
       state.isAcountVerified = false;
+      // showToast(action.payload,'error')
     },
   },
 });

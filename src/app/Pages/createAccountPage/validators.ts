@@ -46,7 +46,7 @@ export const createAccoutSchemaStep1 = Yup.object({
 
     .test("fileType", errorValues.pharmacistLicense.fileType, (value) => {
       if (!value) return true; // Allow empty field, assuming it's optional
-      const supportedFileTypes = ["application/pdf", "image/jpeg", "image/png"];
+      const supportedFileTypes = ["image/jpeg", "image/png"];
       return supportedFileTypes.includes((value as FileObject)?.type); // Use type assertion
     })
     .test("fileSize", errorValues.pharmacistLicense.fileSize, (value) => {

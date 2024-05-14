@@ -8,6 +8,7 @@ import { FileObject } from "app/Pages/AddPharmacyPage/types";
 import { addPharmacyValidationSchema } from "app/Pages/AddPharmacyPage/validators";
 import Header from "../ui/Header";
 import { useEffect } from "react";
+import Spinner from "react-activity/dist/Spinner";
 
 const AddParmacyComponent = (props: AddPharmacyComponentProps) => {
   useEffect(() => {
@@ -17,7 +18,7 @@ const AddParmacyComponent = (props: AddPharmacyComponentProps) => {
 
   return (
     <Flex pt={70} width={"100%"}>
-      <Header notifications={[]}  />
+      <Header notifications={[]} />
 
       <Flex width={"100%"} justifyContent={"center"}>
         <Formik
@@ -45,17 +46,13 @@ const AddParmacyComponent = (props: AddPharmacyComponentProps) => {
                   style={{ gap: 50 }}
                 >
                   <Flex flexDirection={"column"} flex={1} style={{ gap: 5 }}>
-                    <Flex py={1}>
-                      <Text fontFamily={"poppins"} fontSize={6}>
+                    <Flex pb={1}>
+                      <Text fontFamily={"poppins"} fontSize={6} fontWeight={'bold'}>
                         Register Pharmacy
                       </Text>
                     </Flex>
 
-                    <InputField
-                      name="name"
-                      type="text"
-                      label="Pharmacy Name"
-                    />
+                    <InputField name="name" type="text" label="Pharmacy Name" />
                     <Flex width={"100%"} style={{ gap: 20 }}>
                       <Flex flexDirection={"column"} flex={1}>
                         <InputField
@@ -72,11 +69,7 @@ const AddParmacyComponent = (props: AddPharmacyComponentProps) => {
                         />
                       </Flex>
                     </Flex>
-                    <InputField
-                      name="address"
-                      type="text"
-                      label="Adress"
-                    />
+                    <InputField name="address" type="text" label="Adress" />
 
                     <Flex flexDirection={"column"} width={"100%"}>
                       <Text fontFamily={"poppins"} fontSize={5} paddingY={1}>
@@ -107,7 +100,7 @@ const AddParmacyComponent = (props: AddPharmacyComponentProps) => {
                     <Text fontFamily={"poppins"} fontSize={5}>
                       Pharmacy Location
                     </Text>
-                    <Flex padding={"0px"} paddingTop={"5px"}  >
+                    <Flex padding={"0px"} paddingTop={"5px"}>
                       <MapComponent onMapClick={handleMapClick} />
                     </Flex>
                     <Text
@@ -135,7 +128,11 @@ const AddParmacyComponent = (props: AddPharmacyComponentProps) => {
                         padding={1}
                         width={"100%"}
                       >
-                        Submit
+                        {props.loading ? (
+                          <Spinner style={{ marginLeft: "45%" }} />
+                        ) : (
+                          "Submit"
+                        )}
                       </Button>
                     </Flex>
                   </Flex>

@@ -16,7 +16,7 @@ const showToast = (message: string, type: "success" | "error"): void => {
   } else if (type === "error") {
     toast.error(message, {
       position: "top-center",
-      autoClose: 500,
+      autoClose: 2000,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,

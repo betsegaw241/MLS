@@ -9,6 +9,7 @@ import { userItialValues } from "app/Pages/createAccountPage/constants";
 import { FileObject } from "app/Pages/AddPharmacyPage/types";
 import FileUpload from "../ui/FileUpload";
 import pharmacy from "../../../assets/SVG/pharmacy.svg";
+import Spinner from "react-activity/dist/Spinner";
 
 const CreateAccount = (props: CreateAccountComponentProp) => {
   const [checked, setChecked] = useState(false);
@@ -181,7 +182,11 @@ const CreateAccount = (props: CreateAccountComponentProp) => {
                       padding={1}
                       width={"200px"}
                     >
-                      Signup
+                      {props.creatingAccount ? (
+                        <Spinner style={{ marginLeft: "45%" }} />
+                      ) : (
+                        "Signup"
+                      )}
                     </Button>
                   </Flex>
                 </Flex>

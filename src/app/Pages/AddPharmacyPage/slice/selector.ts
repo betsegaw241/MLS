@@ -19,3 +19,7 @@ export const selectedAccountCreated = createSelector(
   [selectSlice],
   (state) => state.isAccountCreated
 );
+export const selectLoading = createSelector(
+  [selectSlice],
+  (state) => state.isCreatingAccount
+);

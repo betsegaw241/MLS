@@ -34,7 +34,7 @@ import { ManageInventorState } from "app/Pages/ManageInventoryPage/slice/types";
 export interface RootState {
   createPassword: createAdminPwdPageState;
   Layout?: LayoutState;
-  createAccountPage: createAccountPageState;
+  createAccount: createAccountPageState;
   editProfile: editProfilePageState;
   orderSlice: orderPageState;
   notificationSlice: notificationPageState;
