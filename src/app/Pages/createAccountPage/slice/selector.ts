@@ -4,7 +4,7 @@ import { RootState } from "store/types";
 import { initialState } from ".";
 
 const selectSlice = (state: RootState) =>
-  state?.addPharmacy || initialState;
+  state?.createAccount || initialState;
 
 export const selectCreateAccountPage = createSelector(
   [selectSlice],
@@ -13,7 +13,7 @@ export const selectCreateAccountPage = createSelector(
 
 export const selectIsAcountCreated = createSelector(
   [selectSlice],
-  (state) => state.isAccountCreated
+  (state) => state.isAcountCreated
 );
 export const selectErrorMessage = createSelector(
   [selectSlice],

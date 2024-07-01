@@ -23,13 +23,16 @@ const slice = createSlice({
       state.isCreatingAccount = false;
       state.account = action.payload;
       state.isAccountCreated = true;
-      showToast(action.payload.message, "success");
+      // showToast(action.payload.message, "success");
     },
     addPharmacyFailed: (state, action: PayloadAction<any>) => {
       state.isCreatingAccount = false;
       state.errorMessage = action.payload;
       state.isAccountCreated = false;
       showToast(action.payload, "error");
+    },
+    addReset: (state) => {
+      state.isAccountCreated = false;
     },
   },
 });

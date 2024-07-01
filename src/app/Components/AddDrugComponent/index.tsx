@@ -100,7 +100,7 @@ const AddDrugComponent = (props: any) => {
                       />
                     </Flex>
                     <Flex flexDirection={"column"}>
-                      <InputField name="quantity" type="text" label="Amount" />
+                      <InputField name="quantity" type="text" label="Quantity" />
                     </Flex>
                     <Flex flexDirection={"column"}>
                       <InputField

@@ -8,7 +8,7 @@ export interface IStatus {
 }
 const OrderDetailComponent = (props: IorderDetailComponent) => {
   const status: IStatus = { status: "Pending" };
-  const coord = props.order.deliveryAddress.location.coordinates;
+  const coord = props.order?.deliveryAddress?.location?.coordinates;
   const pharmacylocation = props.order?.pharmacy?.location?.coordinates;
   let newCoord;
   let center;

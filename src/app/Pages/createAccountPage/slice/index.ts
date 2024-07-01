@@ -12,7 +12,7 @@ export const initialState: createAccountPageState = {
 };
 
 const slice = createSlice({
-  name: "addPharmacy",
+  name: "createAccount",
   initialState,
   reducers: {
     createAccount: (state, action: PayloadAction<any>) => {

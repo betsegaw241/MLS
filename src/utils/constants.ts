@@ -449,7 +449,7 @@ export const testimonials: Itestimonials[] = [
   },
   {
     id: "2",
-    name: "Dr. Sarah Yonas",
+    name: "Dr. Seble Yonas",
     job: "Medical Practitioner",
     avatar:
       "https://img.freepik.com/free-photo/front-view-doctor-wearing-stethoscope_23-2149856261.jpg?size=626&ext=jpg&ga=GA1.1.2064405410.1710828823&semt=ais_user",

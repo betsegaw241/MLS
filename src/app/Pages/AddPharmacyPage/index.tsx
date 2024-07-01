@@ -18,6 +18,7 @@ const AddPharmacyPage = () => {
   const loading = useSelector(selectLoading);
 
   const handleAddPharmacy = async (values: any) => {
+    console.log(values)
     formData.append("file", values.pharmacyLicense);
     const uploadedFileUrl = await uploadFileAndUpdateState(formData);
     formData.delete("file");
@@ -30,6 +31,7 @@ const AddPharmacyPage = () => {
   };
   if (created) {
     navigate("/pharmacist/home");
+    dispatch(actions.addReset());
   }
 
   async function uploadFileAndUpdateState(data: any) {
@@ -40,6 +42,7 @@ const AddPharmacyPage = () => {
         isSecureRoute: true,
         body: data,
       });
+      
       return res;
     } catch (error) {
       console.log(error);
