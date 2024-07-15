@@ -13,7 +13,7 @@ const api = async (config: IAPICallConfig) => {
     const header: HeaderObj = config.header || {};
 
     if (config.isSecureRoute) {
-      authToken = localStorage.getItem("token");
+      authToken = localStorage.getItem("token") ||  Cookies.get(cookieKeys.authToken);
       header.Authorization = `Bearer ${authToken}`;
     }
 
@@ -36,9 +36,9 @@ const api = async (config: IAPICallConfig) => {
     if (error?.response) {
       const { response } = error;
       if (response) {
-        if (response.status === 401) {
-          handleTokenExpiration();
-        }
+      if (response.status === 401) {
+      handleTokenExpiration();
+      }
       }
       if (error instanceof APIError) throw error;
       else throw (response.data?.code, response.data?.message);

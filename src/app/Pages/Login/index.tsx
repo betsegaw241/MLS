@@ -38,6 +38,7 @@ function LoginPage() {
   useEffect(() => {
     if (isAuthenticated && user?.emailVerified === false) {
       navigate(`/verifyemail`, { state: { email: user?.email } });
+      dispatch(actions.sendOtp({ email: user.email, type: "verify" }));
     } else if (isAuthenticated && localStorage.getItem("token")) {
       if (role) {
         if (role === "admin" || role === "superAdmin") {

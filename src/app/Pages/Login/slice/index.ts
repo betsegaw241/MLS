@@ -38,6 +38,12 @@ const slice = createSlice({
       state.isAuthenticated = true;
       state.role = action.payload.role;
       state.user = action.payload;
+      localStorage.setItem("token", `${action.payload.accessToken}`);
+      localStorage.setItem("id", `${action.payload._id}`);
+      localStorage.setItem("avatar", `${action.payload.avatar}`);
+      localStorage.setItem("email", `${action.payload.email}`);
+      localStorage.setItem("name", `${action.payload.name}`);
+      localStorage.setItem("role", `${action.payload.role}`);
     },
     loginFailed: (state: LoginState, action: PayloadAction<any>) => {
       state.isLogging = false;
