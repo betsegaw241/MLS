@@ -1,7 +1,7 @@
 import { Form, Formik } from "formik";
 import { Button, Flex, Text } from "../ui/Blocks";
 import { InputField } from "../ui/InputComponent";
-import { AddAdminProps } from "./types.ts";
+import { AddAdminProps } from "./types";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router";

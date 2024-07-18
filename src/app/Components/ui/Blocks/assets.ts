@@ -1,4 +1,4 @@
 // Import all icons here
-import { ReactComponent as UserIcon } from 'assets/icons/user.svg';
+import ReactComponent from '*.svg';
 
-export { UserIcon };
+export { ReactComponent as userIcon };

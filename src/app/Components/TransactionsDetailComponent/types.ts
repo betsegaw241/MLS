@@ -6,7 +6,7 @@ export interface sender {
 
 export interface senderAccount {
   accountNumber: string;
-  accountHolderName: string;
+  accountHolderName?: string;
   bankName: string;
   accountType: string;
 }
@@ -22,6 +22,7 @@ export interface ITransaction {
   receiver: receiver;
   senderAccount: senderAccount;
   receiverAccount: receiverAccount;
+  
   reason: string;
   createdAt: string;
 }

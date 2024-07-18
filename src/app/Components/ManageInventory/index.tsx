@@ -127,8 +127,7 @@ const ManageInventory = ({
                 </Text>
               </Flex>
             </Flex>
-       
-          
+
             <Flex
               width={"100%"}
               height={100}
@@ -416,11 +415,9 @@ const ManageInventory = ({
 
               <ThemeProvider theme={theme}>
                 <Paginate
-                  count={pages}
-                  onChange={onPageChange}
+                  pages={pages}
+                  handlePageChange={onPageChange}
                   page={currentPage}
-                  variant="outlined"
-                  shape="rounded"
                 />
               </ThemeProvider>
             </Flex>

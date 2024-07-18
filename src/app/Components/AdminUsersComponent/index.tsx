@@ -27,10 +27,8 @@ const AdminUsersComponent = ({
   handlePageChange,
   handleFilterUser,
   handleManageUser,
-  setUser
-}: 
-
-StockComponentProps) => {
+  setUser,
+}: StockComponentProps) => {
   const navigate = useNavigate();
   const [showSortBy, setShowSortBy] = useState(false);
   const [ShowFilter, setShowFilter] = useState(false);
@@ -147,8 +145,8 @@ StockComponentProps) => {
                                 { label: "Deactivated", value: "deactivated" },
                               ]}
                               label={item.status}
-                              handleChange={(value)=>{
-                                handleManageUser({value:value,user:item._id})
+                              handleChange={(value) => {
+                                handleManageUser(value, item._id);
                               }}
                             />
                           </TableCell>

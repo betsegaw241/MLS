@@ -12,13 +12,15 @@ export interface sender {
     name: string;
     email: string;
   }
-export interface senderAccount {
+  export interface senderAccount {
     accountNumber: string;
+    accountHolderName?: string;
     bankName: string;
     accountType: string;
   }
   export interface receiverAccount {
     accountNumber: string;
+    accountHolderName: string;
     bankName: string;
     accountType: string;
   }

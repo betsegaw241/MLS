@@ -1,7 +1,7 @@
 /* --- STATE --- */
 
 
-interface Drug {
+export interface Drug {
   name: string;
   drugPhoto: string[];
   pharmacyId: string;

@@ -1,7 +1,7 @@
 import { FormValues } from "./types";
 export const initialValues: FormValues = {
   title: "",
-  message: "",
+  content: "",
 };
 
 export const errorValues = {

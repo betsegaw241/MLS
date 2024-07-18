@@ -37,7 +37,7 @@
 //                 flexDirection={"column"}
 //                 pt={1}
 //               >
-               
+
 //                 <Flex flexDirection={"column"} width={"100%"}>
 //                   <Text fontFamily={"poppins"}>Pharmacy Lisence</Text>
 //                   <FileUpload
@@ -161,5 +161,4 @@
 // };
 
 // export default CreateAccountStep3;
-// {
-// }
+export {};
