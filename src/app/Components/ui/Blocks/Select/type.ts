@@ -5,6 +5,7 @@ export type SelectProps = {
   lable: string;
   value: string;
   onChange?: (e: any) => void;
+  options: string[];
 };
 export type OptionType = {
   value: string;

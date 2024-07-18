@@ -37,7 +37,7 @@ const PharmacyAccountPage = () => {
     dispatch(actions.getBanks());
   }, [updated]);
 
-  const handleUpdate = async (values: IPharmacy) => {
+  const handleUpdate = (values: IPharmacy) => {
     dispatch(
       actions.updatepharmacyDetail({ ...values, cover: cover, logo: logo })
     );

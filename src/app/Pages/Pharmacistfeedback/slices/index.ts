@@ -16,12 +16,8 @@ const slice = createSlice({
   reducers: {
     feedback: (state, action: PayloadAction<any>) => {},
     feedbackSuccess: (state, action: PayloadAction<any>) => {
-      state.isEditing = false;
-      state.profile.avatar = action.payload.avatar;
-      state.profile.phone = action.payload.phone;
     },
     feedbackFailed: (state, action: PayloadAction<any>) => {
-      state.isEditing = false;
       state.errorMessage = action.payload;
     },
   },
@@ -30,6 +26,6 @@ export const { actions: EditProfilePageActions } = slice;
 
 export const useEditProfilePageSlice = () => {
   useInjectReducer({ key: slice.name, reducer: slice.reducer });
-  useInjectSaga({ key: slice.name, saga: feedbackPageSaga });
+  useInjectSaga({ key: slice.name, saga: FeedbackPageSaga });
   return { actions: slice.actions };
 };

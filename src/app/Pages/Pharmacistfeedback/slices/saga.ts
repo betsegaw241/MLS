@@ -3,9 +3,8 @@ import { EditProfilePageActions as actions } from ".";
 import api from "../../../../API/api";
 import { AxiosResponse } from "axios";
 import { PayloadAction } from "@reduxjs/toolkit";
-import { PayloadType } from "./types";
 
-function* handleFeedback(action: PayloadAction<PayloadType>) {
+function* handleFeedback(action: PayloadAction<any>) {
   console.log(action.payload);
 
   try {
@@ -27,6 +26,6 @@ function* handleFeedback(action: PayloadAction<PayloadType>) {
   }
 }
 
-export function* EditProfilePageSaga() {
+export function* FeedbackPageSaga() {
   yield takeLatest(actions.feedback.type, handleFeedback);
 }

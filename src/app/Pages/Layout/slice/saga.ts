@@ -29,7 +29,7 @@ function* handleLogin(action: PayloadAction<FormValues>) {
       yield put(actions.loginSuccess(res.data));
     }
   } catch (error) {
-    yield put(actions.loginFailed(error));
+    yield put(actions.loginFailed(error as string));
   }
 }
 

@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { UseCreateFeedbacksSlice } from "./slice";
-import {
-selectIsCreated,
-} from "./slice/selector";
+import { selectIsCreated } from "./slice/selector";
 import UserInfo from "app/Components/layouts/Header/userInfo";
 import { initialValues } from "../Pharmacistfeedback/constants";
 import { useNotificationPageSlice } from "../Notification/slices";
@@ -20,7 +18,6 @@ const HeaderPage = () => {
   // useEffect(() => {
   // dispatch(action.actions.fetchNotifications(''));
   //  }, []);
-
 
   const handleCreateFeedback = (values: any) => {
     dispatch(

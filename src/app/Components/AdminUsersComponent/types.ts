@@ -14,5 +14,5 @@ export interface StockComponentProps {
   users: IuserData;
   handlePageChange: (event: React.ChangeEvent<unknown>, page: number) => void;
   handleFilterUser: (value: string) => void;
-  handleManageUser: (value: string) => void;
+  handleManageUser: (value: string, user: string) => void;
 }

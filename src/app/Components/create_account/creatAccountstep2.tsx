@@ -35,7 +35,7 @@
 //               <Flex
 //                 flexDirection="column"
 //                 mt={5}
-              
+
 //                 marginX={"2px"}
 //                 width={["100%", "700px"]}
 //                 borderRadius={"8px"}
@@ -119,3 +119,4 @@
 // };
 
 // export default CreateAccountStep2;
+export {};

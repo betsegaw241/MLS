@@ -11,7 +11,7 @@ import { TableHeader } from "../ui/Blocks/Table";
 import LoadingPage from "utils/LoadingPage";
 import Paginate from "../ui/Pagination/Paginate";
 import Search from "../ui/SearchBar";
-import { pharmaciesComponentProps } from "../AdminPharmaciesComponent/types";
+import { adminDashboardComponentProps } from "../AdminPharmaciesComponent/types";
 import BasicBars from "../ui/Charts/BarChart";
 
 const AdminDashboardComponent = ({
@@ -22,7 +22,7 @@ const AdminDashboardComponent = ({
   page,
   handlePageChange,
   handleFilterUser,
-}: pharmaciesComponentProps) => {
+}: adminDashboardComponentProps) => {
   const navigate = useNavigate();
 
   return (

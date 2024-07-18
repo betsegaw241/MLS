@@ -7,7 +7,6 @@
 // import { theme } from "../../../styles/theme";
 // import { userItialValues } from "app/Pages/createAccountPage/constants";
 
-
 // const CreateAccountStep1 = (props: CreateAccountComponentProp) => {
 //   const [checked, setChecked] = useState(false);
 
@@ -113,3 +112,4 @@
 //   );
 // };
 // export default CreateAccountStep1;
+export {};

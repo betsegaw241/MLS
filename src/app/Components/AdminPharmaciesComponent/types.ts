@@ -13,6 +13,19 @@ export interface pharmaciesComponentProps {
   handleAssign: (value: IntialValues) => void;
 }
 
+export interface adminDashboardComponentProps {
+  loading: boolean;
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
+  onSearch: () => void;
+  // onFilter: () => void;
+  admins?: Iadmins[];
+  page: number;
+  pharmacies: IpharmacyData;
+  handlePageChange: (event: React.ChangeEvent<unknown>, page: number) => void;
+  handleFilterUser?: (value: string) => void;
+}
+
+
 interface Iadmins {
   label: string;
   value: string;

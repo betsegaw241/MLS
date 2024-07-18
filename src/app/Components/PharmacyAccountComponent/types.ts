@@ -23,6 +23,8 @@ export interface Ipharmacy {
   workingHours: string;
   cover?: string;
   logo?: string;
+  location: any;
+
 
   minDeliveryTime: number;
   maxDeliveryTime: number;
